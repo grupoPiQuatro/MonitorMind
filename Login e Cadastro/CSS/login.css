@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+body {
+    margin: 0;
+    height: 100vh;
+    font-family: 'Roboto', sans-serif;
+}
+
+.geral {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+}
+
+.banner {
+    height: 100vh;
+    width: 58%;
+    background-image: url("../assets/banner.png");
+    background-size: cover; 
+    background-position: 25%;
+    /* background-repeat: no-repeat; */
+    /* box-shadow: 10px -0px 10px rgba(50, 50, 50, 0.77); */
+}
+
+.formulario{
+    height: 100vh;
+    width: 42%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tema {
+    width: 95%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.tema img {
+    position: relative;
+    top: 1vh;
+}
+
+.tema img:hover {
+    cursor: pointer;
+}
+
+.formulario .container{
+    height: 60vh;
+    width: 30vw;
+    margin-top: 8vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.texto-logo {
+    height: 17vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.texto-logo img{
+    width: 22%;
+    margin-left: 30px;
+}
+
+.texto-logo .texto-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.texto-logo h1, p{
+    margin: 0;
+    font-weight: 600;
+}
+
+.texto-logo h1{
+    font-size: 4.5rem;
+    font-weight: 500;
+}
+
+.texto-logo .barrinha {
+    width: 3vw;
+    border-top: solid 2px #4EABE9;
+}
+
+.campos {
+    height: 37vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.campos .container {
+    height: 20vh;
+    width: 30vw;
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.campos .entrada {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+}
+
+.campos .entrada label{
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.campos .entrada input{
+    height: 4.5vh;
+    border: none;
+    outline: 0;
+    background-color: #D9D9D9;
+    border-radius: 8px;
+    margin-top: 12px;
+    padding: 0 1vw;
+    font-size: 1.2rem;
+}
+
+.campos .buttons {
+    height: 10vh;
+    margin-top: 2vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.campos button {
+    font-size: 1.2rem;
+    height: 48px;
+    width: 150px;
+    border-radius: 12px;
+    color: #FFFF;
+    background-color: #4EABE9;
+    border: none;
+}
+
+.campos button:hover {
+    cursor: pointer;
+}
+
+.campos a {
+    text-decoration: none;
+    color: #4EABE9;
+}
+
+.form .setaRetorno img {
+    position: relative;
+    top: 15vh;
+    left: -4.5vw;
+}

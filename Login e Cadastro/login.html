@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/login.css">
+    <title>Login</title>
+</head>
+
+<body>
+    <div class="geral">
+        
+
+        <div class="formulario" id="forms">
+
+            <div class="tema">
+                <img src="assets/icon-lua.png" alt="" id="temaImg" onclick="trocarTema()">
+            </div>
+
+            <div class="form">
+
+                <div class="container">
+                    <div class="texto-logo">
+                        <img src="assets/logoEscura.png" alt="" id="logoMM">
+                        <div class="texto-top">
+                            <h1 id="titulo">Login</h1>
+                            <div class="barrinha"></div>
+                            <!-- <p>Dados da empresa</p> -->
+                        </div>
+                    </div>
+                    <div class="campos">
+                        <div class="container">
+                            <div class="entrada">
+                                <label for="ipt_email" id="nomeCampo01">Email:</label>
+                                <input id="ipt_email">
+                            </div>
+                            <div class="entrada">
+                                <label for="ipt_senha" id="nomeCampo02">Senha:</label>
+                                <input id="ipt_senha">
+                            </div>
+                        </div>
+                            <div class="buttons">
+                                <button class="botaoEntrar" href="" onclick="entrar()">Entrar</button>
+                                <a class="botaoCadastro" href="cadastro.html">Não tem uma conta?</a>
+                            </div>
+
+                        
+                        
+                    </div>
+
+                    
+                </div>
+
+                <div class="setaRetorno">
+                    <img src="assets/icon-setaEscura.png" id="seta" alt="">
+                </div>
+                
+            </div>
+
+        </div>
+
+        <div class="banner">
+        </div>
+
+    </div>
+
+ 
+    </div>
+</body>
+
+</html>
+
+<script>
+    var temaClaro = true;
+    function trocarTema() {
+        let tema = document.getElementById("forms");
+        let logo = document.getElementById("logoMM");
+        let temaImagem = document.getElementById("temaImg");
+        let cadastroTitulo = document.getElementById("titulo");
+        let labelNome01 = document.getElementById("nomeCampo01");
+        let labelNome02 = document.getElementById("nomeCampo02");
+        let setaImg = document.getElementById("seta");
+
+        if (temaClaro) {
+            tema.style.backgroundColor = "#1A1A1A";
+            cadastroTitulo.style.color = "#FFF";
+            labelNome01.style.color = "#FFF";
+            labelNome02.style.color = "#FFF";
+            logo.src = "assets/LogoClara.png";
+            temaImagem.src = "assets/icon-sol.png";
+            setaImg.src = "assets/icon-seta.png";
+            temaClaro = false;
+        } else {
+            tema.style.backgroundColor = "#FFF";
+            cadastroTitulo.style.color = "#000000";
+            labelNome01.style.color = "#000000";
+            labelNome02.style.color = "#000000";
+            logo.src = "assets/logoEscura.png";
+            temaImagem.src = "assets/icon-lua.png";
+            setaImg.src = "assets/icon-setaEscura.png";
+            temaClaro = true;
+        }
+        
+
+        
+    }
+</script>
