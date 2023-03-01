@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+body {
+    margin: 0;
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+}
+
+.window {
+    height: 100vh;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+li {
+    list-style-type: none;
+}
+
+.container {
+    margin: auto;
+    width: 80%;
+}
+
+.firstWindow {
+    background-image: url("../assets/home_backgroundIMG.png");
+    background-position: 50%;
+    background-size: cover;
+}
+
+
+header {
+    width: 100%;
+    height: 112px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header #logo {
+    width: 112px;
+    height: 60px;
+    cursor: pointer;
+}
+
+header .links {
+    width: 30%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 20pt;
+}
+
+header .buttons button{
+    font-size: 15pt;
+    border-radius: 5px;
+    padding: 2px 10px;
+    color: white;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.firstWindow .text {
+    font-family: 'Heebo', sans-serif;
+    vertical-align: middle;
+    margin-top: 6vh;
+    height: 50vh;
+    width: 51%;
+    font-size: 64px;
+    color: white;
+}
+
+/* SEGUNDA TELA */
+
+.secondWindow {
+    width: 100vh;
+}
