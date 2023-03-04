@@ -9,26 +9,32 @@
 </head>
 <body>
     <!-- Primeira tela -->
-    <section class="window firstWindow">
+    <section class="window firstWindow" id="home">
 
-        <div class="container">
 
-            <header>
-                <img id="logo" src="assets/logoClara.png">
+            <nav>
+                <img class="logo" src="assets/logoClara.png">
+
+                <input type="checkbox" class="menuTrigger" style="position: absolute; opacity: 0;">
+
+                <div class="menuLines">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
 
                 <div class="links">
                     <li><a href="">Home</a></li>
-                    <li><a href="">Sobre nós</a></li>
-                    <li><a href="">Vantagens</a></li>
+                    <li><a href="#sobre-nos">Sobre nós</a></li>
+                    <li><a href="#vantagens">Vantagens</a></li>
                 </div>
 
                 <div class="buttons">
                     <button onclick="signin()">Sign in</button>
                     <button onclick="signup()" style="background-color: #4EABE9;">Sign up</button>
                 </div>
-            </header>
+            </nav>
 
-        </div>
 
         <div class="container">
             <div class="text">
@@ -39,23 +45,110 @@
 
     
 
-    <section class="window secondWindow">
-        <div class="text1">
-            <li>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita optio eos exercitationem. Tempora cupiditate, nostrum et quidem repellendus odio, quod quibusdam aperiam aliquam provident voluptatibus qui at aut! Numquam, quibusdam!
-            </li>
-            <li>
-                <img src="" alt="">
-            </li>
+    <section class="window secondWindow" id="sobre-nos">
+
+        <div class = "container">
+
+            <div class="text first">
+                <li>
+                    <div>
+                        <span class="title">Sobre <label class="destaque">nós</label></span>
+                        <span class="contentText">
+                            Somos uma companhia de monitoramento de computadores para empresas do ramo de call center.<br>Mais do que uma empresa comum, nos preocupamos com a qualidade de nosso serviço. Trazemos para nossos clientes a segurança e confiança de que não precisam se preocupar, nós estaremos lá para ajudar.
+                        </span>
+                    </div>
+                </li>
+                <li class="direita">
+                    <img src="/MonitorMind/Login e Cadastro/assets/home_mulherCallCenter.jpeg" alt="">
+                </li>
+            </div>
+
+            <div class="text second">
+                <li>
+                    <img src="/MonitorMind/Login e Cadastro/assets/home_mulherCallCenter.jpeg" alt="">
+                </li>
+                <li class="direita">
+                    <span class="contentText">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita optio eos exercitationem. Tempora cupiditate, nostrum et quidem repellendus odio, quod quibusdam aperiam aliquam provident voluptatibus qui at aut! Numquam, quibusdam!
+                    </span>
+                </li>
+            </div>
+
         </div>
-        <div class="text2">
-            <li>
-                <img src="" alt="">
-            </li>
-            <li>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam, consectetur obcaecati. Reprehenderit quia, ipsa tempora necessitatibus asperiores voluptate, neque nam minima soluta ratione quisquam. Fugiat minima aspernatur facilis sed ducimus!
-            </li>
+
+    </section>
+
+    <section class="window thirdWindow" id="vantagens">
+
+        <div class="container">
+
+            <span class="title">Vantagen da <label class="destaque">companhia</label></span>
+
+            <div class="boxes">
+
+                <li>
+
+                    <div class="boxTitle">
+                        <span class="titleContent">Identificação de <label class="destaque">problemas</label></span>
+                    </div>
+
+                    <img src="assets/home_IconsAlerta.png">
+
+                    <span class="content">Com a monitoração constante do hardware, a empresa pode identificar rapidamente qualquer problema que possa surgir. Isso pode ajudar a minimizar os tempos de inatividade, economizando tempo e dinheiro.</span>
+
+                </li>
+
+                <li class="boxVertical">
+
+                    <div class="boxTitle">
+                        <span class="titleContent">Prevenção de <label class="destaque">problemas</label></span>
+                    </div>
+
+                    <img src="assets/home_iconsHardware.png">
+
+                    <span class="content">A monitoração regular também pode ajudar a prevenir problemas antes que ocorram, permitindo que a empresa tome medidas preventivas. Isso pode ajudar a evitar danos ao hardware e reduzir custos de manutenção.</span>
+
+                </li>
+
+                <li>
+
+                    <div class="boxTitle">
+                        <span class="titleContent">Melhoria da <label class="destaque">performance</label></span>
+                    </div>
+
+                    <img src="assets/home_iconsFoguete.png">
+
+                    <span class="content"> A monitoração constante pode ajudar a identificar problemas de desempenho em tempo real, permitindo que a empresa tome medidas para melhorar a eficiência do hardware e otimizar seu desempenho. Isso pode levar a economias significativas de custos e melhorar a experiência do usuário.</span>
+
+                </li>
+
+            </div>
+
         </div>
     </section>
+
+    <footer>
+
+        <div class="container">
+
+            <img class="logo" src="assets/logoEscura.png">
+            <div class="icons">
+                <li><img src="assets/home_iconsInstagram.png" alt=""></li>
+                <li><img src="assets/home_iconsTwitter.png" alt=""></li>
+                <li><img src="assets/home_iconsFacebook.png" alt=""></li>
+            </div>
+
+        </div>
+    </footer>
 </body>
 </html>
+
+<script>
+    function signin(){
+        window.location = "login.html"
+    }
+
+    function signup(){
+        window.location = "cadastro.html"
+    }
+</script>

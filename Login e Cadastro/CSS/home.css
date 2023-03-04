@@ -8,6 +8,7 @@ body {
 
 .window {
     height: 100vh;
+    width: 100%;
 }
 
 a {
@@ -19,7 +20,11 @@ li {
     list-style-type: none;
 }
 
-.container {
+.destaque{
+    color: #4EABE9;
+}
+
+.container, nav {
     margin: auto;
     width: 80%;
 }
@@ -28,32 +33,48 @@ li {
     background-image: url("../assets/home_backgroundIMG.png");
     background-position: 50%;
     background-size: cover;
+    display: flex;
+    justify-content: center;
 }
 
 
-header {
-    width: 100%;
+nav {
     height: 112px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; 
     align-items: center;
+    position: fixed;
 }
 
-header #logo {
+.logo {
     width: 112px;
     height: 60px;
     cursor: pointer;
 }
 
-header .links {
+nav .links {
     width: 30%;
     display: flex;
     justify-content: space-between;
-    font-size: 20pt;
+    font-size: 17pt;
+    transition: 0.2s ease;
 }
 
-header .buttons button{
-    font-size: 15pt;
+nav .links li {
+    padding: 0 5px;
+}
+
+nav .links li a{
+    transition: 0.3s ease;
+}
+
+nav .links a:hover{
+    transition: 0.3s;
+    color: #4EABE9;
+}
+
+nav .buttons button{
+    font-size: 13pt;
     border-radius: 5px;
     padding: 2px 10px;
     color: white;
@@ -64,16 +85,361 @@ header .buttons button{
 
 .firstWindow .text {
     font-family: 'Heebo', sans-serif;
-    vertical-align: middle;
-    margin-top: 6vh;
     height: 50vh;
     width: 51%;
-    font-size: 64px;
+    font-size: max(10px, 4.1vw);
     color: white;
 }
 
 /* SEGUNDA TELA */
 
+
 .secondWindow {
-    width: 100vh;
+    width: 100%;
+    background-color: black;
+    color: white;
+    border-bottom: 1px #4EABE9 solid;
+}
+
+.secondWindow .container{
+    height: 95vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.secondWindow .text{
+    display: flex;
+    height: 30%;
+    padding: 5vh 0;
+}
+
+.secondWindow .text li{
+    width: 50%;
+    display: flex;
+    align-items: center;
+}
+
+.secondWindow .text .direita{
+    justify-content: end;
+}
+
+.secondWindow .first li div{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.secondWindow .text img{
+    width: 70%;
+}
+
+.title {
+    font-size: 30pt;
+}
+
+.secondWindow .text .contentText{
+    width: 70%;
+    font-size: 13pt;
+}
+
+
+/* TERCEIRA TELA */
+
+
+.thirdWindow{
+    background-color: black;
+    color: white;
+}
+
+.thirdWindow .container{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.thirdWindow .container .title{
+    padding: 50px 0;
+    font-size: 35pt;
+    text-align: center;
+}
+
+.thirdWindow .boxes{
+    display: flex;
+    justify-content: space-between;
+}
+
+.thirdWindow .boxes li{
+    height: 70vh;
+    width: 28%;
+    border-radius: 30px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    background-color: white;
+    color: black;
+}
+
+.thirdWindow .boxes li .content{ 
+    /* border: #4EABE9 solid 3px; */
+    height: 49%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} 
+
+.thirdWindow .boxes li .boxTitle{
+    /* border: red solid 3px; */
+    height: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+.thirdWindow .boxes li .titleContent{
+    font-size: 24px;
+    width: 90%;
+}
+
+.thirdWindow .boxes li img{
+    width: 45%;
+}
+
+.thirdWindow .boxes li .content{
+    width: 80%;
+}
+
+
+/* FOOTER */
+
+
+footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 90px;
+}
+
+footer .container .icons{
+    display: flex;
+}
+
+footer .container .icons img {
+    width: 40px;
+    padding: 0 1vw;
+    cursor: pointer;
+}
+
+footer .container .icons img:last-child{
+    padding: 0 0 0 1vw;
+}
+
+
+/* MEDIA QUERY */
+
+@media screen and (max-width: 1024px){
+    .firstWindow .text {
+        font-size: max(20px, 3.5vw);
+        width: 60%;
+    }
+
+}
+
+@media screen and (max-width: 830px) {
+        /* Menu hamburguer */
+
+        nav .menuLines{
+            position: absolute;
+            right: 0;
+            z-index: 999;
+            width: 35px;
+            height: 35px;
+        }
+        
+        nav .menuTrigger{
+            display: block;
+            position: absolute;
+            z-index: 1000;
+            width: 35px;
+            height: 35px;
+            right: 0;
+            opacity: 0;
+        }
+        
+        nav .menuLines span {
+            display: block;
+            width: 35px;
+            height: 5px;
+            margin-bottom: 10px;
+            background-color: #4EABE9;
+            border-radius: 3px;
+            transition: 0.2s ease;
+        }
+    
+        nav .menuTrigger:checked ~ .menuLines span{
+            background-color: #232323;
+        }
+    
+        nav .menuTrigger:checked ~ .menuLines span:nth-child(1){
+            transform-origin: 0 100%;
+            transform: rotate(45deg) scaleX(1.25);
+        }
+        nav .menuTrigger:checked ~ .menuLines span:nth-child(2){
+            opacity: 0;
+        }
+        nav .menuTrigger:checked ~ .menuLines span:nth-child(3){
+            transform-origin: 0 100%;
+            transform: rotate(-45deg) scaleX(1.25);
+        }
+    
+        nav .links{
+            position: absolute;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            z-index: 998;
+            right: -13%;
+            top: 0;
+    
+            width: 250px;
+            height: calc(100vh - 100px);
+            padding-top: 100px;
+            margin-right: -250px;
+            
+            background-color: white;
+        }
+    
+        nav .links a{
+            color: black;
+        }
+    
+        nav .links li{
+            padding: 13px;
+        }
+    
+        nav .menuTrigger:checked ~ .links{
+            margin-right: 0px;
+        }
+    
+        nav .buttons{
+            display: flex;
+            /* flex-direction: column; */
+            position: absolute;
+            right: 0;
+            margin-right: 30%;
+            color: #232323;
+        }
+
+        /*
+        nav .buttons button:nth-child(1){
+            color: #232323;
+        }
+
+        nav .menuTrigger:checked ~ .buttons{
+            height: 30px;
+            margin-right: 0;
+            z-index: 997;
+            padding: 600px 30px 0 0;
+        } */
+}
+
+@media screen and (max-width: 750px){
+    .logo{
+        width: 70px;
+        height: 35px;
+    }
+    
+    /* Segunda tela */
+    
+    .secondWindow .container .second img{
+        display: none;
+    }
+    
+    
+    .secondWindow{
+        height: 110vh;
+        display: flex;
+        align-items: center;
+    }
+    
+    .secondWindow .container .first{
+        padding: 0;
+        height: 80%;
+    }
+    
+    .secondWindow .container .contentText {
+        height: 100%;
+        width: 100%;
+    }
+
+    .secondWindow .second{
+        height: 20%;
+    }
+
+    .secondWindow .first, .secondWindow .second{
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .secondWindow .container .text li{
+        width: 100%;
+        justify-content: center;
+    }
+
+    .secondWindow .container .text li div{
+        align-items: center;
+    }
+
+    /* Terceira tela */
+
+    .firstWindow .text {
+        font-size: max(25px, 4.1vw);
+        width: 65%;
+    }
+
+    .thirdWindow{
+        height: 270vh;
+    }
+
+    .thirdWindow .container .title{
+        font-size: max(20pt, 30pt);
+    }
+
+    .thirdWindow .container .boxes{
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        height: 270vh;
+    }
+
+    .thirdWindow .container .boxes li{
+        width: 80%;
+    }
+
+    .thirdWindow .boxes li img{
+        width: 35%;
+    }
+
+    footer .container .icons img {
+        width: 30px;
+    }
+}
+
+@media screen and (max-width: 400px){
+    .firstWindow .text {
+        font-size: max(27px, 4.1vw);
+        width: 100%;
+    }
+
+    nav .buttons{
+        flex-direction: column;
+        margin-right: 35%;
+    }
 }
