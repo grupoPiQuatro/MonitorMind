@@ -6,6 +6,10 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
+html{
+    scroll-behavior:smooth;
+}
+
 .window {
     height: 100vh;
     width: 100%;
@@ -49,7 +53,11 @@ nav {
 .logo {
     width: 112px;
     height: 60px;
-    cursor: pointer;
+    
+}
+
+nav li a:hover{
+    border-bottom: 3px solid #4EABE9; 
 }
 
 nav .links {
