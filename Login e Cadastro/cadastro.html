@@ -16,43 +16,82 @@
         </div>
 
         <div class="formulario" id="forms">
+            
+            <div class="container">
+                
+                <div class="tema">
+                    <img src="assets/icon-lua.png" alt="" id="temaImg" onclick="trocarTema()">
+                </div>
 
-            <div class="tema">
-                <img src="assets/icon-lua.png" alt="" id="temaImg" onclick="trocarTema()">
-            </div>
+                <div class="form">
 
-            <div class="form">
+                    <div class="container">
+                        <div class="texto-logo">
+                            <img src="assets/logoEscura.png" alt="" id="logoMM">
+                            <div class="texto-top">
+                                <h1 id="titulo">Cadastro</h1>
+                                <div class="barrinha"></div>
+                                <!-- <p>Dados da empresa</p> -->
+                            </div>
+                        </div>
+                        <div class="campos">
 
-                <div class="container">
-                    <div class="texto-logo">
-                        <img src="assets/logoEscura.png" alt="" id="logoMM">
-                        <div class="texto-top">
-                            <h1 id="titulo">Cadastro</h1>
-                            <div class="barrinha"></div>
-                            <!-- <p>Dados da empresa</p> -->
+                            <div class="parteUmCad" id="cadastroEmpresa">
+                                <div class="entrada">
+                                    <label for="ipt_nome" id="campo01">Nome da empresa:</label>
+                                    <input id="ipt_nome">
+                                </div>
+                                <div class="entrada">
+                                    <label for="ipt_cnpj" id="campo02">CNPJ:</label>
+                                    <input id="ipt_cnpj">
+                                </div>
+                                <div class="entrada">
+                                    <label for="ipt_telefone" id="campo03">Telefone:</label>
+                                    <input id="ipt_telefone">
+                                </div>
+
+                                <div class="buttons">
+                                    <button class="botaoEntrar" href="" onclick="continuarCad()">Continuar</button>
+                                    <a class="botaoCadastro" href="cadastro.html">Não tem uma conta?</a>
+                                </div>
+                            </div>
+
+                            <div class="parteDoisCad" style="display: none;" id="cadastroEmpresa2">
+                                <div class="entrada">
+                                    <label for="ipt_nome" id="nomeCampo01">CEP:</label>
+                                    <input id="ipt_nome">
+                                </div>
+                                <div class="entrada">
+                                    <label for="ipt_cnpj" id="nomeCampo02">Número:</label>
+                                    <input id="ipt_cnpj">
+                                </div>
+                                <div class="entrada">
+                                    <label for="ipt_telefone" id="nomeCampo03">Logradouro:</label>
+                                    <input id="ipt_telefone">
+                                </div>
+                                <div class="entrada">
+                                    <label for="ipt_telefone" id="nomeCampo03">Bairro:</label>
+                                    <input id="ipt_telefone">
+                                </div>
+                                <div class="entrada">
+                                    <label for="ipt_telefone" id="nomeCampo03">Cidade:</label>
+                                    <input id="ipt_telefone">
+                                </div>
+                                <div class="entrada">
+                                    <label for="ipt_telefone" id="nomeCampo03">Estado:</label>
+                                    <input id="ipt_telefone">
+                                </div>
+
+                                <div class="buttons">
+                                    <button class="botaoEntrar" href="" onclick="entrar()">Continuar</button>
+                                    <a class="botaoCadastro" href="cadastro.html">Não tem uma conta?</a>
+                                </div>
+                            </div>
+
+
                         </div>
                     </div>
-                    <div class="campos">
 
-                        <div class="entrada">
-                            <label for="ipt_nome" id="nomeCampo01">Nome da empresa:</label>
-                            <input id="ipt_nome">
-                        </div>
-                        <div class="entrada">
-                            <label for="ipt_cnpj" id="nomeCampo02">CNPJ:</label>
-                            <input id="ipt_cnpj">
-                        </div>
-                        <div class="entrada">
-                            <label for="ipt_telefone" id="nomeCampo03">Telefone:</label>
-                            <input id="ipt_telefone">
-                        </div>
-
-                        <div class="buttons">
-                            <button class="botaoEntrar" href="" onclick="entrar()">Continuar</button>
-                            <a class="botaoCadastro" href="cadastro.html">Não tem uma conta?</a>
-                        </div>
-
-                    </div>
                 </div>
 
             </div>
@@ -60,7 +99,7 @@
         </div>
     </div>
 
- 
+
     </div>
 </body>
 
@@ -73,9 +112,9 @@
         let logo = document.getElementById("logoMM");
         let temaImagem = document.getElementById("temaImg");
         let cadastroTitulo = document.getElementById("titulo");
-        let labelNome01 = document.getElementById("nomeCampo01");
-        let labelNome02 = document.getElementById("nomeCampo02");
-        let labelNome03 = document.getElementById("nomeCampo03");
+        let labelNome01 = document.getElementById("campo01");
+        let labelNome02 = document.getElementById("campo02");
+        let labelNome03 = document.getElementById("campo03");
 
         if (temaClaro) {
             tema.style.backgroundColor = "#1A1A1A";
@@ -96,8 +135,12 @@
             temaImagem.src = "assets/icon-lua.png"
             temaClaro = true;
         }
-        
 
-        
+    }
+
+    function continuarCad() {
+        cadastroEmpresa.style.display = "none";
+        cadastroEmpresa2.style.display = "flex";
+        cadastroEm
     }
 </script>

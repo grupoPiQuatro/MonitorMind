@@ -41,6 +41,13 @@ body {
     align-items: center;
 }
 
+.formulario .container{
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 .tema {
     width: 95%;
     display: flex;
@@ -56,10 +63,10 @@ body {
     cursor: pointer;
 }
 
-.formulario .container{
-    height: 70vh;
+
+.form .container{
+    height: 67vh;
     width: 30vw;
-    margin-top: 8vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -67,7 +74,7 @@ body {
 }
 
 .texto-logo {
-    height: 18.5vh;
+    height: 16vh;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -109,6 +116,19 @@ body {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+}
+
+.campos .parteUmCad, .parteDoisCad {
+    height: 48vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.campos .parteDoisCad {
+    gap: 10px;
 }
 
 .campos .entrada {
