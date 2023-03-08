@@ -41,13 +41,6 @@ body {
     align-items: center;
 }
 
-.formulario .container{
-    height: 80vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
 .tema {
     width: 95%;
     display: flex;
@@ -63,9 +56,18 @@ body {
     cursor: pointer;
 }
 
+.form {
+    height: 90vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 
 .form .container{
-    height: 67vh;
+    height: 70vh;
     width: 30vw;
     display: flex;
     flex-direction: column;
@@ -109,7 +111,7 @@ body {
     border-top: solid 2px #4EABE9;
 }
 
-.campos {
+.campos01 {
     height: 48vh;
     width: 100%;
     display: flex;
@@ -118,7 +120,7 @@ body {
     align-items: center;
 }
 
-.campos .parteUmCad, .parteDoisCad {
+.campos01 .parteUmCad {
     height: 48vh;
     width: 100%;
     display: flex;
@@ -127,22 +129,18 @@ body {
     justify-content: space-between;
 }
 
-.campos .parteDoisCad {
-    gap: 10px;
-}
-
-.campos .entrada {
+.campos01 .entrada {
     width: 70%;
     display: flex;
     flex-direction: column;
 }
 
-.campos .entrada label{
+.campos01 .entrada label{
     font-size: 1.1rem;
     font-weight: 500;
 }
 
-.campos .entrada input{
+.campos01 .entrada input{
     height: 4.5vh;
     border: none;
     outline: 0;
@@ -153,7 +151,7 @@ body {
     font-size: 1.2rem;
 }
 
-.campos .buttons {
+.campos01 .buttons {
     height: 10vh;
     margin-top: 2vh;
     display: flex;
@@ -162,7 +160,7 @@ body {
     align-items: center;
 }
 
-.campos button {
+.campos01 button {
     font-size: 1.2rem;
     height: 48px;
     width: 150px;
@@ -172,17 +170,176 @@ body {
     border: none;
 }
 
-.campos button:hover {
+.campos01 button:hover {
     cursor: pointer;
 }
 
-.campos a {
+.campos01 a {
+    text-decoration: none;
+    color: #4EABE9;
+}
+
+
+
+/* PARTE 2 CAD */
+.container02 {
+    width: 30vw;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.campos02 {
+    height: 72vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.campos02 .parteDoisCad {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+
+.campos02 .entrada {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+}
+
+.campos02 .entrada label{
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.campos02 .entrada input{
+    height: 4.5vh;
+    border: none;
+    outline: 0;
+    background-color: #D9D9D9;
+    border-radius: 8px;
+    margin-top: 12px;
+    padding: 0 1vw;
+    font-size: 1.2rem;
+}
+
+.campos02 .buttons {
+    height: 10vh;
+    margin-top: 2vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.campos02 button {
+    font-size: 1.2rem;
+    height: 48px;
+    width: 150px;
+    border-radius: 12px;
+    color: #FFFF;
+    background-color: #4EABE9;
+    border: none;
+}
+
+.campos02 button:hover {
+    cursor: pointer;
+}
+
+.campos02 a {
+    text-decoration: none;
+    color: #4EABE9;
+}
+
+
+/* Parte 3 */
+.container03 {
+    width: 30vw;
+    height: 75vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.campos03 {
+    height: 55vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.campos03 .parteTresCad {
+    height: 53vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.campos03 .entrada {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+}
+
+.campos03 .entrada label{
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.campos03 .entrada input{
+    height: 4.5vh;
+    border: none;
+    outline: 0;
+    background-color: #D9D9D9;
+    border-radius: 8px;
+    margin-top: 12px;
+    padding: 0 1vw;
+    font-size: 1.2rem;
+}
+
+.campos03 .buttons {
+    height: 10vh;
+    margin-top: 2vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.campos03 button {
+    font-size: 1.2rem;
+    height: 48px;
+    width: 150px;
+    border-radius: 12px;
+    color: #FFFF;
+    background-color: #4EABE9;
+    border: none;
+}
+
+.campos03 button:hover {
+    cursor: pointer;
+}
+
+.campos03 a {
     text-decoration: none;
     color: #4EABE9;
 }
 
 @media screen and (max-width: 1328px){
-    .campos .entrada {
+    .campos01 .entrada {
         width: 280px;
     }
 }
@@ -209,19 +366,25 @@ body {
 } 
 
 @media screen and (max-height: 700px){
-    .campos .buttons {
+    .campos01 .buttons {
         height: 12vh;
     }
 }
 
 @media screen and (max-width: 420px){
-    .campos .entrada{
+    .campos01 .entrada{
         width: 250px;
     }
 }
 
 @media screen and (max-width: 300px){
-    .campos .entrada{
+    .campos01 .entrada{
         width: 200px;
+    }
+}
+
+@media screen and (max-width: 400px){
+    .formulario .container{
+        height: 66vh;
     }
 }
