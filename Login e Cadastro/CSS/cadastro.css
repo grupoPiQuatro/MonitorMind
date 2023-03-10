@@ -153,6 +153,7 @@ body {
 
 .campos01 .buttons {
     height: 10vh;
+    width: 300px;
     margin-top: 2vh;
     display: flex;
     flex-direction: column;
@@ -172,9 +173,6 @@ body {
 
 .campos01 button:hover {
     cursor: pointer;
-    color: rgb(255, 255, 255);
-    font-size: 1.4rem;
-    transition: all .3s ease-in-out;
 }
 
 .campos01 a {
@@ -237,6 +235,7 @@ body {
 
 .campos02 .buttons {
     height: 10vh;
+    width: 300px;
     margin-top: 2vh;
     display: flex;
     flex-direction: column;
@@ -315,6 +314,7 @@ body {
 
 .campos03 .buttons {
     height: 10vh;
+    width: 300px;
     margin-top: 2vh;
     display: flex;
     flex-direction: column;
@@ -341,15 +341,11 @@ body {
     color: #4EABE9;
 }
 
-@media screen and (max-width: 1328px){
-    .campos01 .entrada {
-        width: 280px;
-    }
-}
+
 
 @media screen and (max-width: 1366px){
     .texto-logo h1{
-        font-size: 50px;
+        font-size: 55px;
     }
 }
 
@@ -372,10 +368,35 @@ body {
     .campos01 .buttons {
         height: 12vh;
     }
+    .campos02 .buttons {
+        height: 12vh;
+    }
+    .campos03 .buttons {
+        height: 12vh;
+    }
+}
+
+
+@media screen and (max-width: 1328px){
+    .campos01 .entrada {
+        width: 280px;
+    }
+    .campos02 .entrada {
+        width: 280px;
+    }
+    .campos03 .entrada {
+        width: 280px;
+    }
 }
 
 @media screen and (max-width: 420px){
     .campos01 .entrada{
+        width: 250px;
+    }
+    .campos02 .entrada{
+        width: 250px;
+    }
+    .campos03 .entrada{
         width: 250px;
     }
 }
@@ -384,10 +405,16 @@ body {
     .campos01 .entrada{
         width: 200px;
     }
+    .campos02 .entrada{
+        width: 200px;
+    }
+    .campos03 .entrada{
+        width: 200px;
+    }
 }
 
-@media screen and (max-width: 400px){
+/* @media screen and (max-width: 400px){
     .formulario .container{
         height: 66vh;
     }
-}
+} */

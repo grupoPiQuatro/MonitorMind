@@ -39,21 +39,21 @@
 
                         <div class="parteUmCad">
                             <div class="entrada">
-                                <label for="ipt_nome" id="campo01">Nome da empresa:</label>
+                                <label for="ipt_nome" id="label01">Nome da empresa:</label>
                                 <input id="ipt_nome">
                             </div>
                             <div class="entrada">
-                                <label for="ipt_cnpj" id="campo02">CNPJ:</label>
+                                <label for="ipt_cnpj" id="label02">CNPJ:</label>
                                 <input id="ipt_cnpj">
                             </div>
                             <div class="entrada">
-                                <label for="ipt_telefone" id="campo03">Telefone:</label>
+                                <label for="ipt_telefone" id="label03">Telefone:</label>
                                 <input id="ipt_telefone">
                             </div>
 
                             <div class="buttons">
                                 <button class="botaoEntrar" href="" onclick="continuarCad()">Continuar</button>
-                                <a class="botaoCadastro" href="cadastro.html">Não tem uma conta?</a>
+                                <a class="botaoCadastro" href="cadastro.html">Já tem uma conta? Faça o login</a>
                             </div>
                         </div>
                     </div>
@@ -63,9 +63,9 @@
                 <div class="container02" id="cadastroEmpresa2" style="display: none;">
 
                     <div class="texto-logo">
-                        <img src="assets/logoEscura.png" alt="" id="logoMM">
+                        <img src="assets/logoEscura.png" alt="" id="logoMM02">
                         <div class="texto-top">
-                            <h1 id="titulo">Cadastro</h1>
+                            <h1 id="titulo02">Cadastro</h1>
                             <div class="barrinha"></div>
                         </div>
                     </div>
@@ -73,28 +73,28 @@
                     <div class="campos02">
                         <div class="parteDoisCad">
                             <div class="entrada">
-                                <label for="ipt_nome" id="nomeCampo01">CEP:</label>
-                                <input id="ipt_nome">
+                                <label for="ipt_cep" id="label04">CEP:</label>
+                                <input id="ipt_cep">
                             </div>
                             <div class="entrada">
-                                <label for="ipt_cnpj" id="nomeCampo02">Número:</label>
-                                <input id="ipt_cnpj">
+                                <label for="ipt_numero" id="label05">Número:</label>
+                                <input id="ipt_numero">
                             </div>
                             <div class="entrada">
-                                <label for="ipt_telefone" id="nomeCampo03">Logradouro:</label>
-                                <input id="ipt_telefone">
+                                <label for="ipt_logradouro" id="label06">Logradouro:</label>
+                                <input id="ipt_logradouro">
                             </div>
                             <div class="entrada">
-                                <label for="ipt_telefone" id="nomeCampo03">Bairro:</label>
-                                <input id="ipt_telefone">
+                                <label for="ipt_bairro" id="label07">Bairro:</label>
+                                <input id="ipt_bairro">
                             </div>
                             <div class="entrada">
-                                <label for="ipt_telefone" id="nomeCampo03">Cidade:</label>
-                                <input id="ipt_telefone">
+                                <label for="ipt_cidade" id="label08">Cidade:</label>
+                                <input id="ipt_cidade">
                             </div>
                             <div class="entrada">
-                                <label for="ipt_telefone" id="nomeCampo03">Estado:</label>
-                                <input id="ipt_telefone">
+                                <label for="ipt_estado" id="label09">Estado:</label>
+                                <input id="ipt_estado">
                             </div>
 
                             <div class="buttons">
@@ -108,9 +108,9 @@
                 <div class="container03" id="cadastroEmpresa3" style="display: none;">
 
                     <div class="texto-logo">
-                        <img src="assets/logoEscura.png" alt="" id="logoMM">
+                        <img src="assets/logoEscura.png" alt="" id="logoMM03">
                         <div class="texto-top">
-                            <h1 id="titulo">Cadastro</h1>
+                            <h1 id="titulo03">Cadastro</h1>
                             <div class="barrinha"></div>
                         </div>
                     </div>
@@ -118,19 +118,19 @@
                     <div class="campos03">
                         <div class="parteTresCad">
                             <div class="entrada">
-                                <label for="ipt_usuario" id="nomeCampo01">Usuário:</label>
+                                <label for="ipt_usuario" id="label10">Usuário:</label>
                                 <input id="ipt_usuario">
                             </div>
                             <div class="entrada">
-                                <label for="ipt_email" id="nomeCampo02">Email:</label>
+                                <label for="ipt_email" id="label11">Email:</label>  
                                 <input id="ipt_email">
                             </div>
                             <div class="entrada">
-                                <label for="ipt_senha" id="nomeCampo03">Senha:</label>
+                                <label for="ipt_senha" id="label12">Senha:</label>
                                 <input id="ipt_senha">
                             </div>
                             <div class="entrada">
-                                <label for="ipt_senhaConfirmar" id="nomeCampo03">Confirmação de senha:</label>
+                                <label for="ipt_senhaConfirmar" id="label13">Confirmação de senha:</label>
                                 <input id="ipt_senhaConfirmar">
                             </div>
 
@@ -165,28 +165,71 @@
     function trocarTema() {
         let tema = document.getElementById("forms");
         let logo = document.getElementById("logoMM");
+        let logo02 = document.getElementById("logoMM02");
+        let logo03 = document.getElementById("logoMM03");
         let temaImagem = document.getElementById("temaImg");
         let cadastroTitulo = document.getElementById("titulo");
-        let labelNome01 = document.getElementById("campo01");
-        let labelNome02 = document.getElementById("campo02");
-        let labelNome03 = document.getElementById("campo03");
+        let cadastroTitulo02 = document.getElementById("titulo02");
+        let cadastroTitulo03 = document.getElementById("titulo03");
+        let labelNome01 = document.getElementById("label01");
+        let labelNome02 = document.getElementById("label02");
+        let labelNome03 = document.getElementById("label03");
+        let labelNome04 = document.getElementById("label04");
+        let labelNome05 = document.getElementById("label05");
+        let labelNome06 = document.getElementById("label06");
+        let labelNome07 = document.getElementById("label07");
+        let labelNome08 = document.getElementById("label08");
+        let labelNome09 = document.getElementById("label09");
+        let labelNome10 = document.getElementById("label10");
+        let labelNome11 = document.getElementById("label11");
+        let labelNome12 = document.getElementById("label12");
+        let labelNome13 = document.getElementById("label13");
+        
 
         if (temaClaro) {
             tema.style.backgroundColor = "#1A1A1A";
             cadastroTitulo.style.color = "#FFF";
+            cadastroTitulo02.style.color = "#FFF";
+            cadastroTitulo03.style.color = "#FFF";
             labelNome01.style.color = "#FFF";
             labelNome02.style.color = "#FFF";
             labelNome03.style.color = "#FFF";
+            labelNome04.style.color = "#FFF";
+            labelNome05.style.color = "#FFF";
+            labelNome06.style.color = "#FFF";
+            labelNome07.style.color = "#FFF";
+            labelNome08.style.color = "#FFF";
+            labelNome09.style.color = "#FFF";
+            labelNome10.style.color = "#FFF";
+            labelNome11.style.color = "#FFF";
+            labelNome12.style.color = "#FFF";
+            labelNome13.style.color = "#FFF";
             logo.src = "assets/LogoClara.png"
+            logo02.src = "assets/LogoClara.png"
+            logo03.src = "assets/LogoClara.png"
             temaImagem.src = "assets/icon-sol.png"
             temaClaro = false;
         } else {
             tema.style.backgroundColor = "#FFF";
             cadastroTitulo.style.color = "#000000";
+            cadastroTitulo02.style.color = "#000000";
+            cadastroTitulo03.style.color = "#000000";
             labelNome01.style.color = "#000000";
             labelNome02.style.color = "#000000";
             labelNome03.style.color = "#000000";
+            labelNome04.style.color = "#000000";
+            labelNome05.style.color = "#000000";
+            labelNome06.style.color = "#000000";
+            labelNome07.style.color = "#000000";
+            labelNome08.style.color = "#000000";
+            labelNome09.style.color = "#000000";
+            labelNome10.style.color = "#000000";
+            labelNome11.style.color = "#000000";
+            labelNome12.style.color = "#000000";
+            labelNome13.style.color = "#000000";
             logo.src = "assets/logoEscura.png"
+            logo02.src = "assets/logoEscura.png"
+            logo03.src = "assets/logoEscura.png"
             temaImagem.src = "assets/icon-lua.png"
             temaClaro = true;
         }
