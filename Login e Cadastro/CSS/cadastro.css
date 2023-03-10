@@ -172,6 +172,9 @@ body {
 
 .campos01 button:hover {
     cursor: pointer;
+    color: rgb(255, 255, 255);
+    font-size: 1.4rem;
+    transition: all .3s ease-in-out;
 }
 
 .campos01 a {
