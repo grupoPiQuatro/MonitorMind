@@ -28,7 +28,7 @@ li {
     color: #4EABE9;
 }
 
-.container, nav {
+.container{
     margin: auto;
     width: 80%;
 }
@@ -44,16 +44,30 @@ li {
 
 nav {
     height: 112px;
+    width: 100%;
     display: flex;
     justify-content: space-between; 
     align-items: center;
     position: fixed;
 }
 
+nav .container {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    margin: auto;
+    width: 80%;
+}
+
+nav.header {
+    height: 112px;
+    background-color: rgba(0, 0, 0, 0.8);
+    transition: 0.8s;
+}
+
 .logo {
     width: 112px;
-    height: 60px;
-    
+    height: 60px; 
 }
 
 nav li a:hover{
@@ -104,7 +118,7 @@ nav .buttons button{
 
 .secondWindow {
     width: 100%;
-    background-color: black;
+    background-color: #1A1A1A;
     color: white;
     border-bottom: 1px #4EABE9 solid;
 }
@@ -157,7 +171,7 @@ nav .buttons button{
 
 
 .thirdWindow{
-    background-color: black;
+    background-color: #1A1A1A;
     color: white;
 }
 
@@ -313,14 +327,12 @@ footer .container .icons img:last-child{
             justify-content: flex-start;
             align-items: center;
             z-index: 998;
-            right: -13%;
+            right: 0%;
             top: 0;
-    
-            width: 250px;
-            height: calc(100vh - 100px);
+            width: 130px;
+            height: 100vh;
             padding-top: 100px;
-            margin-right: -250px;
-            
+            margin-right: -250px; 
             background-color: white;
         }
     

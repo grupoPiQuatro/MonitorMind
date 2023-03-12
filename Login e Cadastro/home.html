@@ -14,29 +14,32 @@
 
 
             <nav>
-                <a href="#home">
-                    <img class="logo" src="assets/logoClara.png">
-                </a>
-               
-
-                <input type="checkbox" class="menuTrigger" style="position: absolute; opacity: 0;">
-
-                <div class="menuLines">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                <div class="container">
+                    <a href="#home">
+                        <img class="logo" src="assets/logoClara.png">
+                    </a>
+                   
+    
+                    <input type="checkbox" class="menuTrigger" style="position: absolute; opacity: 0;">
+    
+                    <div class="menuLines">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+    
+                    <div class="links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#sobre-nos">Sobre nós</a></li>
+                        <li><a href="#vantagens">Vantagens</a></li>
+                    </div>
+    
+                    <div class="buttons">
+                        <button onclick="signin()">Sign in</button>
+                        <button onclick="signup()" style="background-color: #4EABE9;">Sign up</button>
+                    </div>
                 </div>
-
-                <div class="links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#sobre-nos">Sobre nós</a></li>
-                    <li><a href="#vantagens">Vantagens</a></li>
-                </div>
-
-                <div class="buttons">
-                    <button onclick="signin()">Sign in</button>
-                    <button onclick="signup()" style="background-color: #4EABE9;">Sign up</button>
-                </div>
+                
             </nav>
 
 
@@ -63,13 +66,13 @@
                     </div>
                 </li>
                 <li class="direita">
-                    <img src="/MonitorMind/Login e Cadastro/assets/home_mulherCallCenter.jpeg" alt="">
+                    <img src="assets/testeImage.png" alt="">
                 </li>
             </div>
 
             <div class="text second">
                 <li>
-                    <img src="/MonitorMind/Login e Cadastro/assets/home_mulherCallCenter.jpeg" alt="">
+                    <img src="assets/testeImage.png" alt="">
                 </li>
                 <li class="direita">
                     <span class="contentText">
@@ -155,4 +158,9 @@
     function signup(){
         window.location = "cadastro.html"
     }
+
+    window.addEventListener('scroll', function () {
+    var menu = document.querySelector('nav');
+    menu.classList.toggle('header', window.scrollY > 20);
+})
 </script>
