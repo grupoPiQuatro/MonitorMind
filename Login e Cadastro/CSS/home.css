@@ -75,7 +75,7 @@ nav li a:hover{
 }
 
 nav .links {
-    width: 30%;
+    width: 34%;
     display: flex;
     justify-content: space-between;
     font-size: 17pt;
@@ -107,7 +107,7 @@ nav .buttons button{
 }
 
 nav .buttons {
-    width: 11vw;
+    width: 14vw;
     display: flex;
     justify-content: space-between;
 }
@@ -149,6 +149,7 @@ nav .buttons button:hover{
 .secondWindow .text{
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .secondWindow .text .textSobre{
@@ -167,7 +168,7 @@ nav .buttons button:hover{
 }
 
 .secondWindow .text img{
-    width: 600px;
+    width: 30vw;
 }
 
 
@@ -199,13 +200,14 @@ nav .buttons button:hover{
 }
 
 .thirdWindow .container img {
-    width: 750px;
+    width: 30vw;
 }
 
 
 /* QUARTA TELA */
 
 .fourthWindow{
+    height: 110vh;
     background-color: #1A1A1A;
     color: white;
 }
@@ -224,12 +226,13 @@ nav .buttons button:hover{
 }
 
 .fourthWindow .boxes{
+    height: 80%;
     display: flex;
     justify-content: space-between;
 }
 
 .fourthWindow .boxes li{
-    height: 68vh;
+    height: 100%;
     width: 26%;
     border-radius: 30px;
     display: flex;
@@ -250,7 +253,7 @@ nav .buttons button:hover{
 
 .fourthWindow .boxes li .boxTitle{
     /* border: red solid 3px; */
-    height: 15%;
+    height: 12%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -269,7 +272,7 @@ nav .buttons button:hover{
 
 .fourthWindow .boxes li .content{
     width: 80%;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     line-height: 1.5;
     text-align: justify;
 }
