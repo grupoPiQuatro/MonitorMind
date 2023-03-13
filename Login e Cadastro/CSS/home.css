@@ -11,7 +11,7 @@ html{
 }
 
 .window {
-    height: 100vh;
+    height: 95vh;
     width: 100%;
 }
 
@@ -80,6 +80,7 @@ nav .links {
     justify-content: space-between;
     font-size: 17pt;
     transition: 0.2s ease;
+    margin-right: 6vw;
 }
 
 nav .links li {
@@ -96,20 +97,35 @@ nav .links a:hover{
 }
 
 nav .buttons button{
-    font-size: 13pt;
+    font-size: 16pt;
     border-radius: 5px;
-    padding: 2px 10px;
+    padding: 4px 14px;
     color: white;
     border: none;
     background-color: transparent;
     cursor: pointer;
 }
 
+nav .buttons {
+    width: 11vw;
+    display: flex;
+    justify-content: space-between;
+}
+
+nav .buttons .botaoCadastro {
+    background-color: #4EABE9;
+}
+
+nav .buttons button:hover{
+    background-color: #a4cae4;
+    transition: 0.3s;
+}
+
 .firstWindow .text {
     font-family: 'Heebo', sans-serif;
     height: 50vh;
     width: 51%;
-    font-size: max(10px, 4.1vw);
+    font-size: 2.5rem;
     color: white;
 }
 
@@ -127,87 +143,104 @@ nav .buttons button{
     height: 95vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 
 .secondWindow .text{
     display: flex;
-    height: 30%;
-    padding: 5vh 0;
+    justify-content: space-between;
 }
 
-.secondWindow .text li{
-    width: 50%;
-    display: flex;
-    align-items: center;
+.secondWindow .text .textSobre{
+    width: 31vw;
 }
 
-.secondWindow .text .direita{
-    justify-content: end;
+.secondWindow .text .textSobre h2{
+    font-size: 2.5rem;
+    margin: 0;
 }
 
-.secondWindow .first li div{
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
+.secondWindow .text .textSobre p{
+    font-size: 1.2rem;
+    line-height: 1.5;
+    text-align: justify;
 }
 
 .secondWindow .text img{
-    width: 70%;
-}
-
-.title {
-    font-size: 30pt;
-}
-
-.secondWindow .text .contentText{
-    width: 70%;
-    font-size: 13pt;
+    width: 600px;
 }
 
 
 /* TERCEIRA TELA */
 
+.thirdWindow {
+    border-bottom: 1px #4EABE9 solid;
+    display: flex;
+    align-items: center;
+}
 
-.thirdWindow{
+.thirdWindow .container {
+    height: 85vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.thirdWindow .container h2 {
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+.thirdWindow .container p {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    text-align: justify;
+}
+
+.thirdWindow .container img {
+    width: 750px;
+}
+
+
+/* QUARTA TELA */
+
+.fourthWindow{
     background-color: #1A1A1A;
     color: white;
 }
 
-.thirdWindow .container{
+.fourthWindow .container{
     height: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
     align-items: center;
 }
 
-.thirdWindow .container .title{
-    padding: 50px 0;
-    font-size: 35pt;
+.fourthWindow .container h2{
+    font-size: 2.5rem;
     text-align: center;
 }
 
-.thirdWindow .boxes{
+.fourthWindow .boxes{
     display: flex;
     justify-content: space-between;
 }
 
-.thirdWindow .boxes li{
-    height: 70vh;
-    width: 28%;
+.fourthWindow .boxes li{
+    height: 68vh;
+    width: 26%;
     border-radius: 30px;
-
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-
     background-color: white;
     color: black;
 }
 
-.thirdWindow .boxes li .content{ 
+.fourthWindow .boxes li .content{ 
     /* border: #4EABE9 solid 3px; */
     height: 49%;
     display: flex;
@@ -215,7 +248,7 @@ nav .buttons button{
     justify-content: center;
 } 
 
-.thirdWindow .boxes li .boxTitle{
+.fourthWindow .boxes li .boxTitle{
     /* border: red solid 3px; */
     height: 15%;
     display: flex;
@@ -225,17 +258,20 @@ nav .buttons button{
     width: 100%;
 }
 
-.thirdWindow .boxes li .titleContent{
+.fourthWindow .boxes li .titleContent{
     font-size: 24px;
     width: 90%;
 }
 
-.thirdWindow .boxes li img{
+.fourthWindow .boxes li img{
     width: 45%;
 }
 
-.thirdWindow .boxes li .content{
+.fourthWindow .boxes li .content{
     width: 80%;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    text-align: justify;
 }
 
 
@@ -271,7 +307,6 @@ footer .container .icons img:last-child{
         font-size: max(20px, 3.5vw);
         width: 60%;
     }
-
 }
 
 @media screen and (max-width: 830px) {
@@ -279,7 +314,7 @@ footer .container .icons img:last-child{
 
         nav .menuLines{
             position: absolute;
-            right: 0;
+            right: 35px;
             z-index: 999;
             width: 35px;
             height: 35px;
@@ -291,7 +326,7 @@ footer .container .icons img:last-child{
             z-index: 1000;
             width: 35px;
             height: 35px;
-            right: 0;
+            right: 35px;
             opacity: 0;
         }
         
@@ -350,27 +385,30 @@ footer .container .icons img:last-child{
     
         nav .buttons{
             display: flex;
-            /* flex-direction: column; */
+            flex-direction: column;
+            width: 120px;
             position: absolute;
             right: 0;
-            margin-right: 30%;
+            margin-right: 32%;
             color: #232323;
         }
 
-        /*
-        nav .buttons button:nth-child(1){
-            color: #232323;
+        nav .buttons button{
+            font-size: 13pt;
         }
 
-        nav .menuTrigger:checked ~ .buttons{
-            height: 30px;
-            margin-right: 0;
-            z-index: 997;
-            padding: 600px 30px 0 0;
-        } */
 }
 
 @media screen and (max-width: 750px){
+    .firstWindow {
+        height: 80vh;
+    }
+
+    .firstWindow .container .text{
+        margin-top: 12vh;
+    }
+
+
     .logo{
         width: 70px;
         height: 35px;
@@ -378,72 +416,91 @@ footer .container .icons img:last-child{
     
     /* Segunda tela */
     
-    .secondWindow .container .second img{
-        display: none;
-    }
-    
-    
-    .secondWindow{
-        height: 110vh;
+    .secondWindow {
+        height: 165vh;
         display: flex;
+        justify-content: center;
         align-items: center;
     }
-    
-    .secondWindow .container .first{
-        padding: 0;
-        height: 80%;
+
+    .secondWindow .container{
+        height: 95%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
     }
     
-    .secondWindow .container .contentText {
-        height: 100%;
-        width: 100%;
+
+    .secondWindow .first{
+        height: 71vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
     }
 
     .secondWindow .second{
-        height: 20%;
-    }
-
-    .secondWindow .first, .secondWindow .second{
-        flex-direction: column;
+        height: 65vh;
+        display: flex;
+        flex-direction: column-reverse;
         justify-content: space-between;
-    }
-
-    .secondWindow .container .text li{
-        width: 100%;
-        justify-content: center;
-    }
-
-    .secondWindow .container .text li div{
         align-items: center;
     }
 
+    .secondWindow .text img{
+        width: 100%;
+    }
+
+    .secondWindow .text .textSobre{
+        width: 100%;
+    }
+
+    .secondWindow .text .primeiro h2{
+        margin-bottom: 3vh;
+    }
+
     /* Terceira tela */
+
+    .thirdWindow  {
+        height: 125vh;
+    }
+
+    .thirdWindow .container img {
+        width: 100%;
+    }
+
+    /* Quarta tela */
 
     .firstWindow .text {
         font-size: max(25px, 4.1vw);
         width: 65%;
     }
 
-    .thirdWindow{
+    .fourthWindow{
         height: 270vh;
     }
 
-    .thirdWindow .container .title{
+    .fourthWindow .container .title{
         font-size: max(20pt, 30pt);
     }
 
-    .thirdWindow .container .boxes{
+    .fourthWindow .container .boxes{
         flex-direction: column;
         justify-content: space-around;
         align-items: center;
         height: 270vh;
     }
 
-    .thirdWindow .container .boxes li{
+    .fourthWindow .container .boxes li{
+        height: 80vh;
         width: 80%;
     }
 
-    .thirdWindow .boxes li img{
+    .fourthWindow .container .boxes li .content{
+        height: 53vh;
+    }
+
+    .fourthWindow .boxes li img{
         width: 35%;
     }
 
@@ -460,6 +517,6 @@ footer .container .icons img:last-child{
 
     nav .buttons{
         flex-direction: column;
-        margin-right: 35%;
+        margin-right: 37%;
     }
 }

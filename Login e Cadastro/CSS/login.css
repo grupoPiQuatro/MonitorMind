@@ -33,12 +33,18 @@ body {
 .tema {
     width: 95%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
 }
 
 .tema img {
     position: relative;
     top: 1vh;
+}
+
+.tema #seta {
+    width: 50px;
+    position: relative;
+    top: 1.2vh;
 }
 
 .tema img:hover {
@@ -173,14 +179,18 @@ body {
     color: #4EABE9;
 }
 
-.form .setaRetorno{
+/* .form .setaRetorno{
     display: flex;
-    width: 90%;
+    width: 80%;
+}
+
+.form .setaRetorno img {
+    width: 60px;
 }
 
 .form .setaRetorno img:hover {
     cursor: pointer;   
-}
+} */
 
 @media screen and (max-width: 1328px){
     .campos .entrada {

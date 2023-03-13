@@ -14,12 +14,12 @@
     <div class="geral">
 
         <div class="banner">
-            <img src="assets/icon-seta.png" alt="">
         </div>
 
         <div class="formulario" id="forms">
 
             <div class="tema">
+                <img src="assets/icon-setaEscura.png" alt="" id="seta" onclick="voltarHome()">
                 <img src="assets/icon-lua.png" alt="" id="temaImg" onclick="trocarTema()">
             </div>
 
@@ -53,7 +53,7 @@
 
                             <div class="buttons">
                                 <button class="botaoEntrar" href="" onclick="continuarCad()">Continuar</button>
-                                <a class="botaoCadastro" href="cadastro.html">Já tem uma conta? Faça o login</a>
+                                <a class="botaoCadastro" href="login.html">Já tem uma conta? Faça o login</a>
                             </div>
                         </div>
                     </div>
@@ -99,7 +99,7 @@
 
                             <div class="buttons">
                                 <button class="botaoEntrar" href="" onclick="continuarCad02()">Continuar</button>
-                                <a class="botaoCadastro" href="cadastro.html">Já tem uma conta? Faça o login</a>
+                                
                             </div>
                         </div>
                     </div>
@@ -136,7 +136,7 @@
 
                             <div class="buttons">
                                 <button class="botaoEntrar" href="" onclick="entrar()">Continuar</button>
-                                <a class="botaoCadastro" href="cadastro.html">Já tem uma conta? Faça o login</a>
+                                
                             </div>
                         </div>
                     </div>
@@ -184,6 +184,7 @@
         let labelNome11 = document.getElementById("label11");
         let labelNome12 = document.getElementById("label12");
         let labelNome13 = document.getElementById("label13");
+        let setaImg = document.getElementById("seta");
         
 
         if (temaClaro) {
@@ -208,6 +209,7 @@
             logo02.src = "assets/LogoClara.png"
             logo03.src = "assets/LogoClara.png"
             temaImagem.src = "assets/icon-sol.png"
+            setaImg.src = "assets/icon-seta.png";
             temaClaro = false;
         } else {
             tema.style.backgroundColor = "#FFF";
@@ -231,6 +233,7 @@
             logo02.src = "assets/logoEscura.png"
             logo03.src = "assets/logoEscura.png"
             temaImagem.src = "assets/icon-lua.png"
+            setaImg.src = "assets/icon-setaEscura.png";
             temaClaro = true;
         }
 
@@ -244,5 +247,9 @@
     function continuarCad02() {
         cadastroEmpresa2.style.display = "none";
         cadastroEmpresa3.style.display = "flex";
+    }
+
+    function voltarHome() {
+        window.location = "home.html"
     }
 </script>

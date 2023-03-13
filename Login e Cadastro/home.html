@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,88 +9,121 @@
     <link rel="stylesheet" href="CSS/home.css">
     <link rel="shortcut icon" href="assets/logoClara.png" type="image/x-icon">
 </head>
+
 <body>
     <!-- Primeira tela -->
     <section class="window firstWindow" id="home">
 
 
-            <nav>
-                <div class="container">
-                    <a href="#home">
-                        <img class="logo" src="assets/logoClara.png">
-                    </a>
-                   
-    
-                    <input type="checkbox" class="menuTrigger" style="position: absolute; opacity: 0;">
-    
-                    <div class="menuLines">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-    
-                    <div class="links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#sobre-nos">Sobre nós</a></li>
-                        <li><a href="#vantagens">Vantagens</a></li>
-                    </div>
-    
-                    <div class="buttons">
-                        <button onclick="signin()">Sign in</button>
-                        <button onclick="signup()" style="background-color: #4EABE9;">Sign up</button>
-                    </div>
+        <nav>
+            <div class="container">
+                <a href="#home">
+                    <img class="logo" src="assets/logoClara.png">
+                </a>
+
+
+                <input type="checkbox" class="menuTrigger" style="position: absolute; opacity: 0;">
+
+                <div class="menuLines">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </div>
-                
-            </nav>
 
+                <div class="links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#sobre-nos">Sobre nós</a></li>
+                    <li><a href="#solucao">Solução</a></li>
+                    <li><a href="#vantagens">Vantagens</a></li>
+                </div>
 
+                <div class="buttons">
+                    <button onclick="signin()">Sign in</button>
+                    <button onclick="signup()" class="botaoCadastro">Sign up</button>
+                </div>
+            </div>
+
+        </nav>
+        
         <div class="container">
             <div class="text">
-                <span>Seu hardware seguro e eficiente, com nosso monitoramento inteligente.</span>
+                <h1>Seu hardware seguro e eficiente, com nosso monitoramento inteligente.</h1>
             </div>
         </div>
     </section>
 
-    
+
 
     <section class="window secondWindow" id="sobre-nos">
 
-        <div class = "container">
+        <div class="container">
 
             <div class="text first">
-                <li>
-                    <div>
-                        <span class="title">Sobre <label class="destaque">nós</label></span>
-                        <span class="contentText">
-                            Somos uma companhia de monitoramento de computadores para empresas do ramo de call center.<br>Mais do que uma empresa comum, nos preocupamos com a qualidade de nosso serviço. Trazemos para nossos clientes a segurança e confiança de que não precisam se preocupar, nós estaremos lá para ajudar.
-                        </span>
-                    </div>
-                </li>
-                <li class="direita">
-                    <img src="assets/testeImage.png" alt="">
-                </li>
+                <div class="textSobre primeiro">
+                    <h2>Sobre <label class="destaque">nós</label></h2>
+                    <p>
+                        Somos uma companhia de monitoramento de computadores para empresas do ramo de call
+                        center.<br><br>Mais do que uma empresa comum, nos preocupamos com a qualidade de nosso serviço.
+                        Trazemos para nossos clientes a segurança e confiança de que não precisam se preocupar, nós
+                        estaremos lá para ajudar.
+                    </p>
+                </div>
+
+                <img src="assets/testeImage.png" alt="">
             </div>
 
             <div class="text second">
-                <li>
-                    <img src="assets/testeImage.png" alt="">
-                </li>
-                <li class="direita">
-                    <span class="contentText">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita optio eos exercitationem. Tempora cupiditate, nostrum et quidem repellendus odio, quod quibusdam aperiam aliquam provident voluptatibus qui at aut! Numquam, quibusdam!
-                    </span>
-                </li>
+                <img src="assets/tecnicoPc.jpg" alt="">
+
+
+                <div class="textSobre segundo"> 
+                    <p>
+                        A Monitor Mind é especializada em desenvolver soluções de monitoramento de hardware de computadores para ajudar o suporte técnico do call center a garantir que seus sistemas estejam sempre operando com eficiência e segurança. <br><br>Nosso objetivo é oferecer aos clientes uma maneira fácil e eficiente de identificar e resolver problemas de hardware, melhorando o tempo de resposta e a qualidade do atendimento ao cliente.
+                    </p>
+                </div>
             </div>
 
         </div>
 
     </section>
 
-    <section class="window thirdWindow" id="vantagens">
+    <section class="window thirdWindow" id="solucao">
+
+        <div class="container">
+            <h2>A nossa <label class="destaque">solução</label></h2>
+            <div>
+                <p>
+                    A nossa solução consistem em monitorar constantemente o uso da CPU, disco e memória RAM de cada
+                    computador em tempo real.
+
+                    Ao monitorar o uso desses componentes, é possível identificar quando um computador está
+                    sobrecarregado
+                    ou operando com desempenho abaixo do esperado, o que pode indicar um problema de hardware.
+                </p>
+                <p>
+                    Quando um problema é detectado, o software pode gerar alertas para o suporte do local agir antes que
+                    o computador
+                    sofra danos e atrapalhe o serviço.
+
+
+                    Ao detectar e corrigir problemas antes que eles se tornem mais graves, o suporte do local pode
+                    manter os
+                    computadores funcionando com eficiência máxima e garantir a satisfação dos clientes que dependem do
+                    serviço do call center.
+                </p>
+
+            </div>
+
+            <img src="assets/Support Tech.jpg" alt="">
+        </div>
+    </section>
+
+
+    <section class="window fourthWindow" id="vantagens">
 
         <div class="container">
 
-            <span class="title">Vantagem da <label class="destaque">companhia</label></span>
+            <h2>Vantagens da <label class="destaque">companhia</label></h2>
 
             <div class="boxes">
 
@@ -101,7 +135,9 @@
 
                     <img src="assets/home_IconsAlerta.png">
 
-                    <span class="content">Com a monitoração constante do hardware, a empresa pode identificar rapidamente qualquer problema que possa surgir. Isso pode ajudar a minimizar os tempos de inatividade, economizando tempo e dinheiro.</span>
+                    <span class="content">Com a monitoração constante do hardware, a empresa pode identificar
+                        rapidamente qualquer problema que possa surgir. Isso pode ajudar a minimizar os tempos de
+                        inatividade, economizando tempo e dinheiro.</span>
 
                 </li>
 
@@ -113,7 +149,9 @@
 
                     <img src="assets/home_iconsHardware.png">
 
-                    <span class="content">A monitoração regular também pode ajudar a prevenir problemas antes que ocorram, permitindo que a empresa tome medidas preventivas. Isso pode ajudar a evitar danos ao hardware e reduzir custos de manutenção.</span>
+                    <span class="content">A monitoração regular também pode ajudar a prevenir problemas antes que
+                        ocorram, permitindo que a empresa tome medidas preventivas. Isso pode ajudar a evitar danos ao
+                        hardware e reduzir custos de manutenção.</span>
 
                 </li>
 
@@ -125,7 +163,10 @@
 
                     <img src="assets/home_iconsFoguete.png">
 
-                    <span class="content"> A monitoração constante pode ajudar a identificar problemas de desempenho em tempo real, permitindo que a empresa tome medidas para melhorar a eficiência do hardware e otimizar seu desempenho. Isso pode levar a economias significativas de custos e melhorar a experiência do usuário.</span>
+                    <span class="content"> A monitoração constante pode ajudar a identificar problemas de desempenho em
+                        tempo real, permitindo que a empresa tome medidas para melhorar a eficiência do hardware e
+                        otimizar seu desempenho. Isso pode levar a economias significativas de custos e melhorar a
+                        experiência do usuário.</span>
 
                 </li>
 
@@ -148,19 +189,20 @@
         </div>
     </footer>
 </body>
+
 </html>
 
 <script>
-    function signin(){
+    function signin() {
         window.location = "login.html"
     }
 
-    function signup(){
+    function signup() {
         window.location = "cadastro.html"
     }
 
     window.addEventListener('scroll', function () {
-    var menu = document.querySelector('nav');
-    menu.classList.toggle('header', window.scrollY > 20);
-})
+        var menu = document.querySelector('nav');
+        menu.classList.toggle('header', window.scrollY > 20);
+    })
 </script>

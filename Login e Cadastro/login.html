@@ -17,6 +17,9 @@
         <div class="formulario" id="forms">
 
             <div class="tema">
+                
+                <img src="assets/icon-setaEscura.png" id="seta" alt="voltar" onclick="voltarHome()">
+                
                 <img src="assets/icon-lua.png" alt="" id="temaImg" onclick="trocarTema()">
             </div>
 
@@ -54,9 +57,7 @@
                     
                 </div>
 
-                <div class="setaRetorno">
-                    <img src="assets/icon-setaEscura.png" id="seta" alt="">
-                </div>
+                
                 
             </div>
 
@@ -103,8 +104,9 @@
             setaImg.src = "assets/icon-setaEscura.png";
             temaClaro = true;
         }
-        
+    }
 
-        
+    function voltarHome() {
+        window.location = "home.html"
     }
 </script>

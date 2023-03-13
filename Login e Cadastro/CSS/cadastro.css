@@ -22,17 +22,6 @@ body {
     /* box-shadow: 10px -0px 10px rgba(50, 50, 50, 0.77); */
 }
 
-.banner img {
-    position: relative;
-    top: 3vh;
-    left: 2vw;
-}
-
-.banner img:hover {
-    cursor: pointer;
-}
-
-
 .formulario{
     height: 100vh;
     width: 42%;
@@ -44,12 +33,18 @@ body {
 .tema {
     width: 95%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
 }
 
 .tema img {
     position: relative;
     top: 1vh;
+}
+
+.tema #seta {
+    width: 50px;
+    position: relative;
+    top: 1.2vh;
 }
 
 .tema img:hover {
@@ -346,6 +341,14 @@ body {
 @media screen and (max-width: 1366px){
     .texto-logo h1{
         font-size: 55px;
+    }
+
+    .campos02 .parteDoisCad {
+        gap: 10px;
+    }
+
+    .form .container02 {
+        margin-top: 5vh;
     }
 }
 
