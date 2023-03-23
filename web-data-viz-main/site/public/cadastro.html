@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="CSS/cadastro.css">
     <link rel="shortcut icon" href="assets/logoClara.png" type="image/x-icon">
     <title>Cadastro</title>
+    <script src="./js/funcoes.js"></script>
 </head>
 
 <body>
@@ -135,8 +136,7 @@
                             </div>
 
                             <div class="buttons">
-                                <button class="botaoEntrar" href="" onclick="entrar()">Continuar</button>
-                                
+                                <button class="botaoEntrar" onclick="cadastrar()">Cadastrar</button>                       
                             </div>
                         </div>
                     </div>
@@ -161,6 +161,76 @@
 </html>
 
 <script>
+    function cadastrar() {
+        aguardar();
+
+        //Recupere o valor da nova input pelo nome do id
+        // Agora vá para o método fetch logo abaixo
+        var nomeVar = ipt_nome.value;
+        var cnpjVar = ipt_cnpj.value;
+        var telefoneVar = ipt_telefone.value;
+        var cepVar = ipt_cep.value;
+        var numeroVar = ipt_numero.value;
+        var logradouroVar = ipt_logradouro.value;
+        var bairroVar = ipt_bairro.value;
+        var cidadeVar = ipt_cidade.value;
+        var estadoVar = ipt_estado.value;
+        var usuarioVar = ipt_usuario.value;
+        var emailVar = ipt_email.value;
+        var senhaVar = ipt_senha.value;
+        
+        if (nomeVar == "" || cnpjVar == "") {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+
+            finalizarAguardar();
+            return false;
+        }
+        
+
+        // Enviando o valor da nova input
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomeServer: nomeVar,
+                cnpjServer: cnpjVar,
+                telefoneServer: telefoneVar,
+                // cepServer: cepVar,
+                // numeroServer: numeroVar,
+                // logradouroServer: logradouroVar,
+                // bairroServer: bairroVar,
+                // cidadeServer: cidadeVar,
+                // estadoServer: estadoVar,
+                // usuarioServer: usuarioVar,
+                // emailServer: emailVar,
+                // senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+            
+                setTimeout(() => {
+                    window.location = "login.html";
+                }, "1000")
+                              
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+             console.log(`#ERRO: ${resposta}`);
+            // finalizarAguardar();
+        });
+
+        return false;
+    }
+
     var temaClaro = true;
     function trocarTema() {
         let tema = document.getElementById("forms");
