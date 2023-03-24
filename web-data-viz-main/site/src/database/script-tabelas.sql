@@ -6,45 +6,26 @@
 comandos para mysql - banco local - ambiente de desenvolvimento
 */
 
-CREATE DATABASE aquatech;
+create database Sprint;
+use Sprint;
 
-USE aquatech;
-
-CREATE TABLE usuario (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	nome VARCHAR(50),
-	email VARCHAR(50),
-	senha VARCHAR(50)
+create table empresa(
+	id int primary key auto_increment,
+    nome varchar(50),
+    cnpj char(14),
+    telefone char(10)
 );
 
-CREATE TABLE aviso (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	titulo VARCHAR(100),
-	descricao VARCHAR(150),
-	fk_usuario INT,
-	FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
+create table usuario(
+	id int primary key auto_increment,
+	email varchar(50),
+	senha varchar(50)
 );
 
-create table aquario (
-/* em nossa regra de negócio, um aquario tem apenas um sensor */
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	descricao VARCHAR(300)
-);
+insert into usuario values
+	(null, 'mm@email.com', '1234');
 
-/* esta tabela deve estar de acordo com o que está em INSERT de sua API do arduino - dat-acqu-ino */
-
-create table medida (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	dht11_umidade DECIMAL,
-	dht11_temperatura DECIMAL,
-	luminosidade DECIMAL,
-	lm35_temperatura DECIMAL,
-	chave TINYINT,
-	momento DATETIME,
-	fk_aquario INT,
-	FOREIGN KEY (fk_aquario) REFERENCES aquario(id)
-);
-
+drop database Sprint;
 
 /*
 comando para sql server - banco remoto - ambiente de produção

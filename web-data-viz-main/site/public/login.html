@@ -78,10 +78,10 @@
 <script>
 
 function entrar() {
-        aguardar();
+        // aguardar();
 
-        var emailVar = email.value;
-        var senhaVar = senha.value;
+        var emailVar = ipt_email.value;
+        var senhaVar = ipt_senha.value;
 
         console.log("FORM LOGIN: ", emailVar);
 
@@ -122,24 +122,25 @@ function entrar() {
 
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.idUsuario;
-
+                    // sessionStorage.ID_USUARIO = json.idUsuario;
+                    
+                    alert('Login realizado com sucesso')
                     setTimeout(function () {
                         
                         window.location = "login.html";
                         
                     }, 1000); // apenas para exibir o loading
-
                 });
 
             } else {
                 swal({
-                title: "Ops...",
-                text: "HOUVE UM ERRO AO REALIZAR O LOGIN!",
-                icon: "error",
+                    title: "Ops...",
+                    text: "HOUVE UM ERRO AO REALIZAR O LOGIN!",
+                    icon: "error",
                 });
                 // alert("Houve um erro ao tentar realizar o login!");
-
+                alert('Login realizado com sucesso')
+                
                 resposta.text().then(texto => {
                     console.error(texto);
                     finalizarAguardar(texto);
