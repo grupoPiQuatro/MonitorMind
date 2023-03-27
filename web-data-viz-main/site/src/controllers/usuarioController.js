@@ -33,7 +33,7 @@ function entrar(req, res) {
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está indefinida!");
     } else {
-        
+
         usuarioModel.entrar(email, senha)
             .then(
                 function (resultado) {
@@ -60,28 +60,82 @@ function entrar(req, res) {
 
 }
 
-function cadastrar(req, res) {
+function cadastrarEmpresa(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
-    var nome = req.body.nomeServer;
+    var nomeEmpresa = req.body.nomeServer;
     var cnpj = req.body.cnpjServer;
     var telefone = req.body.telefoneServer;
-    // var cep = req.body.cepServer;
-    // var numero = req.body.numeroServer;
-    // var logradouro = req.body.logradouroServer;
-    // var bairro = req.body.bairroServer;
-    // var cidade = req.body.cidadeServer;
-    // var estado = req.body.estadoServer;
-    // var usuario = req.body.usuarioServer;
-    // var email = req.body.emailServer;
-    // var senha = req.body.senhaServer;
 
     // Faça as validações dos valores
-    if (nome == undefined) {
+    if (nomeEmpresa == undefined) {
         res.status(400).send("Seu nome está undefined!");
-    }else {
-        
+    } else {
+
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, cnpj, telefone)
+        usuarioModel.cadastrarEmpresa(nomeEmpresa, cnpj, telefone)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                    
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
+function cadastrarEndereco(req, res) {
+    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+
+    var cep = req.body.cepServer;
+    var numero = req.body.numeroServer;
+
+    // Faça as validações dos valores
+    if (cep == undefined) {
+        res.status(400).send("Seu cep está undefined!");
+    } else {
+
+        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+        usuarioModel.cadastrarEndereco(cep, numero)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                    
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
+function cadastrarUsuario(req, res) {
+    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+
+    var usuario = req.body.usuarioServer;
+    var email = req.body.emailServer;
+    var senha = req.body.senhaServer;
+
+    // Faça as validações dos valores
+    if (usuario == undefined) {
+        res.status(400).send("Seu usuario está undefined!");
+    } else {
+
+        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+        usuarioModel.cadastrarUsuario(usuario, email, senha)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -101,7 +155,9 @@ function cadastrar(req, res) {
 
 module.exports = {
     entrar,
-    cadastrar,
+    cadastrarEmpresa,
+    cadastrarEndereco,
+    cadastrarUsuario,
     listar,
     testar
 }

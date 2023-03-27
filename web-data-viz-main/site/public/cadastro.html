@@ -9,13 +9,13 @@
     <link rel="shortcut icon" href="assets/logoClara.png" type="image/x-icon">
     <title>Cadastro</title>
     <script src="./js/funcoes.js"></script>
+    <script src="js/cadastro.js"></script>
 </head>
 
 <body>
     <div class="geral">
 
-        <div class="banner">
-        </div>
+        <div class="banner"></div>
 
         <div class="formulario" id="forms">
 
@@ -36,24 +36,27 @@
                         </div>
                     </div>
 
-                    <div class="campos01" >
+                    <div class="campos01">
 
                         <div class="parteUmCad">
                             <div class="entrada">
                                 <label for="ipt_nome" id="label01">Nome da empresa:</label>
-                                <input id="ipt_nome">
+                                <input id="ipt_nome" placeholder="Nome Empresa">
+                                <div style="display: none;" id="msgNomeEmpresa"><span class="msgErro">Nome da empresa vazio</span></div>
                             </div>
                             <div class="entrada">
                                 <label for="ipt_cnpj" id="label02">CNPJ:</label>
-                                <input id="ipt_cnpj">
+                                <input id="ipt_cnpj" placeholder="XX. XXX. XXX/0001-XX">
+                                <div style="display: none;" id="msgCNPJ"><span class="msgErro">CNPJ deve conter 14 dígitos</span></div>
                             </div>
                             <div class="entrada">
                                 <label for="ipt_telefone" id="label03">Telefone:</label>
-                                <input id="ipt_telefone">
+                                <input id="ipt_telefone" placeholder="(XX) XXXX-XXXX">
+                                <div style="display: none;" id="msgTelefone"><span class="msgErro">Telefone deve conter 10 dígitos</span></div>
                             </div>
 
                             <div class="buttons">
-                                <button class="botaoEntrar" href="" onclick="continuarCad()">Continuar</button>
+                                <button class="botaoEntrar" href="" onclick="validarCad()">Continuar</button>
                                 <a class="botaoCadastro" href="login.html">Já tem uma conta? Faça o login</a>
                             </div>
                         </div>
@@ -75,11 +78,13 @@
                         <div class="parteDoisCad">
                             <div class="entrada">
                                 <label for="ipt_cep" id="label04">CEP:</label>
-                                <input id="ipt_cep">
+                                <input id="ipt_cep" placeholder="00000-000" onkeyup="validarCEP()">
+                                <div style="display: none;" id="msgCep"><span class="msgErro">CEP deve conter 8 dígitos</span></div>
                             </div>
                             <div class="entrada">
                                 <label for="ipt_numero" id="label05">Número:</label>
-                                <input id="ipt_numero">
+                                <input id="ipt_numero" placeholder="22">
+                                <div style="display: none;" id="msgNumero"><span class="msgErro">Número incorreto</span></div>
                             </div>
                             <div class="entrada">
                                 <label for="ipt_logradouro" id="label06">Logradouro:</label>
@@ -99,8 +104,8 @@
                             </div>
 
                             <div class="buttons">
-                                <button class="botaoEntrar" href="" onclick="continuarCad02()">Continuar</button>
-                                
+                                <button class="botaoEntrar" href="" onclick="validarCad02()">Continuar</button>
+
                             </div>
                         </div>
                     </div>
@@ -120,207 +125,35 @@
                         <div class="parteTresCad">
                             <div class="entrada">
                                 <label for="ipt_usuario" id="label10">Usuário:</label>
-                                <input id="ipt_usuario">
+                                <input id="ipt_usuario" placeholder="Henrique Macedo">
+                                <div style="display: none;" id="msgUsuario"><span class="msgErro">Usuário vazio</span></div>
                             </div>
                             <div class="entrada">
-                                <label for="ipt_email" id="label11">Email:</label>  
-                                <input id="ipt_email">
+                                <label for="ipt_email" id="label11">Email:</label>
+                                <input id="ipt_email" placeholder="monitor@email.com">
+                                <div style="display: none;" id="msgEmail"><span class="msgErro">Email no padrão incorreto</span></div>
                             </div>
                             <div class="entrada">
                                 <label for="ipt_senha" id="label12">Senha:</label>
                                 <input id="ipt_senha">
+                                <div style="display: none;" id="msgSenha"><span class="msgErro">Senha vazia</span></div>
                             </div>
                             <div class="entrada">
                                 <label for="ipt_senhaConfirmar" id="label13">Confirmação de senha:</label>
                                 <input id="ipt_senhaConfirmar">
+                                <div style="display: none;" id="msgConfirmarSenha"><span class="msgErro">Senhas não coincidem</span></div>
                             </div>
 
                             <div class="buttons">
-                                <button class="botaoEntrar" onclick="cadastrar()">Cadastrar</button>                       
+                                <button class="botaoEntrar" onclick="validarCad03()">Cadastrar</button>
                             </div>
                         </div>
                     </div>
                 </div>
 
-
-
             </div>
-
-
         </div>
-
-
-
-    </div>
-    </div>
-
-
     </div>
 </body>
 
 </html>
-
-<script>
-    function cadastrar() {
-        aguardar();
-
-        //Recupere o valor da nova input pelo nome do id
-        // Agora vá para o método fetch logo abaixo
-        var nomeVar = ipt_nome.value;
-        var cnpjVar = ipt_cnpj.value;
-        var telefoneVar = ipt_telefone.value;
-        var cepVar = ipt_cep.value;
-        var numeroVar = ipt_numero.value;
-        var logradouroVar = ipt_logradouro.value;
-        var bairroVar = ipt_bairro.value;
-        var cidadeVar = ipt_cidade.value;
-        var estadoVar = ipt_estado.value;
-        var usuarioVar = ipt_usuario.value;
-        var emailVar = ipt_email.value;
-        var senhaVar = ipt_senha.value;
-        
-        if (nomeVar == "" || cnpjVar == "") {
-            cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
-
-            finalizarAguardar();
-            return false;
-        }
-        
-
-        // Enviando o valor da nova input
-        fetch("/usuarios/cadastrar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                // crie um atributo que recebe o valor recuperado aqui
-                // Agora vá para o arquivo routes/usuario.js
-                nomeServer: nomeVar,
-                cnpjServer: cnpjVar,
-                telefoneServer: telefoneVar,
-                // cepServer: cepVar,
-                // numeroServer: numeroVar,
-                // logradouroServer: logradouroVar,
-                // bairroServer: bairroVar,
-                // cidadeServer: cidadeVar,
-                // estadoServer: estadoVar,
-                // usuarioServer: usuarioVar,
-                // emailServer: emailVar,
-                // senhaServer: senhaVar
-            })
-        }).then(function (resposta) {
-
-            console.log("resposta: ", resposta);
-
-            if (resposta.ok) {
-                
-                alert('Cadastro realizado com sucesso!')
-                setTimeout(() => {
-                    window.location = "login.html";
-                }, "1000")
-                              
-            } else {
-                throw ("Houve um erro ao tentar realizar o cadastro!");
-            }
-        }).catch(function (resposta) {
-             console.log(`#ERRO: ${resposta}`);
-            // finalizarAguardar();
-        });
-
-        return false;
-    }
-
-    var temaClaro = true;
-    function trocarTema() {
-        let tema = document.getElementById("forms");
-        let logo = document.getElementById("logoMM");
-        let logo02 = document.getElementById("logoMM02");
-        let logo03 = document.getElementById("logoMM03");
-        let temaImagem = document.getElementById("temaImg");
-        let cadastroTitulo = document.getElementById("titulo");
-        let cadastroTitulo02 = document.getElementById("titulo02");
-        let cadastroTitulo03 = document.getElementById("titulo03");
-        let labelNome01 = document.getElementById("label01");
-        let labelNome02 = document.getElementById("label02");
-        let labelNome03 = document.getElementById("label03");
-        let labelNome04 = document.getElementById("label04");
-        let labelNome05 = document.getElementById("label05");
-        let labelNome06 = document.getElementById("label06");
-        let labelNome07 = document.getElementById("label07");
-        let labelNome08 = document.getElementById("label08");
-        let labelNome09 = document.getElementById("label09");
-        let labelNome10 = document.getElementById("label10");
-        let labelNome11 = document.getElementById("label11");
-        let labelNome12 = document.getElementById("label12");
-        let labelNome13 = document.getElementById("label13");
-        let setaImg = document.getElementById("seta");
-        
-
-        if (temaClaro) {
-            tema.style.backgroundColor = "#1A1A1A";
-            cadastroTitulo.style.color = "#FFF";
-            cadastroTitulo02.style.color = "#FFF";
-            cadastroTitulo03.style.color = "#FFF";
-            labelNome01.style.color = "#FFF";
-            labelNome02.style.color = "#FFF";
-            labelNome03.style.color = "#FFF";
-            labelNome04.style.color = "#FFF";
-            labelNome05.style.color = "#FFF";
-            labelNome06.style.color = "#FFF";
-            labelNome07.style.color = "#FFF";
-            labelNome08.style.color = "#FFF";
-            labelNome09.style.color = "#FFF";
-            labelNome10.style.color = "#FFF";
-            labelNome11.style.color = "#FFF";
-            labelNome12.style.color = "#FFF";
-            labelNome13.style.color = "#FFF";
-            logo.src = "assets/LogoClara.png"
-            logo02.src = "assets/LogoClara.png"
-            logo03.src = "assets/LogoClara.png"
-            temaImagem.src = "assets/icon-sol.png"
-            setaImg.src = "assets/icon-seta.png";
-            temaClaro = false;
-        } else {
-            tema.style.backgroundColor = "#FFF";
-            cadastroTitulo.style.color = "#000000";
-            cadastroTitulo02.style.color = "#000000";
-            cadastroTitulo03.style.color = "#000000";
-            labelNome01.style.color = "#000000";
-            labelNome02.style.color = "#000000";
-            labelNome03.style.color = "#000000";
-            labelNome04.style.color = "#000000";
-            labelNome05.style.color = "#000000";
-            labelNome06.style.color = "#000000";
-            labelNome07.style.color = "#000000";
-            labelNome08.style.color = "#000000";
-            labelNome09.style.color = "#000000";
-            labelNome10.style.color = "#000000";
-            labelNome11.style.color = "#000000";
-            labelNome12.style.color = "#000000";
-            labelNome13.style.color = "#000000";
-            logo.src = "assets/logoEscura.png"
-            logo02.src = "assets/logoEscura.png"
-            logo03.src = "assets/logoEscura.png"
-            temaImagem.src = "assets/icon-lua.png"
-            setaImg.src = "assets/icon-setaEscura.png";
-            temaClaro = true;
-        }
-
-    }
-
-    function continuarCad() {
-        cadastroEmpresa.style.display = "none";
-        cadastroEmpresa2.style.display = "flex";
-    }
-
-    function continuarCad02() {
-        cadastroEmpresa2.style.display = "none";
-        cadastroEmpresa3.style.display = "flex";
-    }
-
-    function voltarHome() {
-        window.location = "home.html"
-    }
-</script>

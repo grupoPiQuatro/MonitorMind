@@ -106,6 +106,10 @@ body {
     border-top: solid 2px #4EABE9;
 }
 
+.msgErro {
+    color: red;
+}
+
 .campos01 {
     height: 48vh;
     width: 100%;
@@ -114,6 +118,7 @@ body {
     justify-content: space-between;
     align-items: center;
 }
+
 
 .campos01 .parteUmCad {
     height: 48vh;
