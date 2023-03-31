@@ -1,0 +1,124 @@
+body {
+    margin: 0;
+    height: 100vh;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+}
+
+nav {
+    height: 100%;
+    width: 12%;
+    background-color: #4EABE9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav .container{
+    height: 90%;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+nav img {  
+    width: 100px;
+}
+
+.geral {
+    width: 88%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.listaUsuario {
+    height: 90%;
+    width: 44%;
+    display: flex;
+    align-items: center;
+    border: 1px black solid;
+}
+
+.listaUsuario .container{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.listaUsuario #tabela {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid black;
+    background-color: #f2f2f2;
+    overflow: auto;
+}
+
+#tabela table, thead {
+    border-collapse: collapse;
+}
+
+table td {
+    width: 10vw;
+    padding: 0px;
+    border: 1px solid black;
+}
+
+.crudUsuario {
+    height: 90%;
+    width: 44%;
+    display: flex;
+    justify-content: center;
+    border: 1px black solid;
+}
+
+.crudUsuario .container{
+    height: 62vh;
+    width: 100%;
+    margin-top: 5vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.crudUsuario .container .adicionarUsuarioCrud {
+    height: 56vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.boxEntrada {
+    height: 46vh;
+    width: 14vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.boxEntrada .entrada {
+    height: 12vh;
+    display: flex;
+    flex-direction: column;
+    font-size: 1.4rem;
+}
+
+.boxEntrada .entrada input{
+    height: 3vh;
+}
+
+.boxEntrada .entrada select {
+    height: 3.7vh;
+}
+
+.crudUsuario .container .msgErro {
+    color: red;
+    font-size: 1rem;
+    margin-top: 2px;
+}

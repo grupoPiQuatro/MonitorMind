@@ -80,19 +80,14 @@
 <script>
 
 function entrar() {
-        aguardar();
 
-        var emailVar = email.value;
-        var senhaVar = senha.value;
+        var emailVar = ipt_email.value;
+        var senhaVar = ipt_senha.value;
 
         console.log("FORM LOGIN: ", emailVar);
 
         if (emailVar == "" || senhaVar == "") {
-            swal({
-            title: "Ops...",
-            text: "CAMPO EM BRANCO, PREENCHA CORRETAMENTE",
-            icon: "error",
-        });
+            alert('Campos vazios')
 
             finalizarAguardar();
             return false;
@@ -122,24 +117,22 @@ function entrar() {
                     console.log(json);
                     console.log(JSON.stringify(json));
 
-                    sessionStorage.EMAIL_USUARIO = json.email;
-                    sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.idUsuario;
+                    sessionStorage.NOME_USUARIO = json.nomeUsuario;
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.TIPO_USUARIO = json.tipo;
+                    sessionStorage.FK_EMPRESA = json.fkEmpresa;
 
                     setTimeout(function () {
                         
-                        window.location = "login.html";
+                        window.location = "usuarioAdmin.html";
                         
-                    }, 1000); // apenas para exibir o loading
+                    }, 1000); 
 
                 });
 
             } else {
-                swal({
-                title: "Ops...",
-                text: "HOUVE UM ERRO AO REALIZAR O LOGIN!",
-                icon: "error",
-                });
+                alert('Erro na resposta');
                 // alert("Houve um erro ao tentar realizar o login!");
 
                 resposta.text().then(texto => {

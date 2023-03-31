@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adm - Users</title>
+    <link rel="stylesheet" href="CSS/usuarioAdmin.css">
+    <script src="js/usuarioAdmin.js"></script>
+</head>
+
+<body>
+    <nav>
+        <div class="container">
+            <img src="assets/usuarioFoto.png" alt="">
+        </div>
+    </nav>
+
+    <div class="geral">
+
+        <section class="listaUsuario">
+            <div class="container">
+                <h2>Lista de usuários</h2>
+                <div id="tabela"></div>
+            </div>
+        </section>
+
+        <section class="crudUsuario">
+            <div class="container">
+                <div class="botoes">
+                    <button>Adicionar</button>
+                    <button>Deletar</button>
+                </div>
+
+                <div class="adicionarUsuarioCrud">
+                    <h2>Adicionar Usuário</h2>
+
+                    <div class="boxEntrada">
+                        <div class="entrada">
+                            <label for="ipt_usuario" id="label01">Usuário:</label>
+                            <input id="ipt_usuario" placeholder="Henrique Macedo">
+                            <div style="display: none;" id="msgUsuario"><span class="msgErro">Usuário vazio</span></div>
+                        </div>
+                        <div class="entrada">
+                            <label for="ipt_email" id="label02">Email:</label>
+                            <input id="ipt_email" placeholder="monitor@email.com">
+                            <div style="display: none;" id="msgEmail"><span class="msgErro">Email no padrão
+                                    incorreto</span></div>
+                        </div>
+                        <div class="entrada">
+                            <label for="ipt_senha" id="label03">Senha:</label>
+                            <input id="ipt_senha">
+                            <div style="display: none;" id="msgSenha"><span class="msgErro">Senha vazia</span></div>
+                        </div>
+                        <div class="entrada">
+                            <label for="ipt_senhaConfirmar" id="label04">Confirmação de senha:</label>
+                            <input id="ipt_senhaConfirmar">
+                            <div style="display: none;" id="msgConfirmarSenha"><span class="msgErro">Senhas não
+                                    coincidem</span></div>
+                        </div>
+                        <div class="entrada">
+                            <label for="sel_tipo" id="label04">Tipo de usuário:</label>
+                            <select id="sel_tipo">
+                                <option value="admin">Admin</option>
+                                <option value="normal" selected>Normal</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <button onclick="validarAdicionarUsuario()">Adicionar</button>
+                    </div>
+                </div>
+
+                <div class="DeletarUsuarioCrud" style="display: none;">
+                    <h2>Deletar Usuário</h2>
+                    <div class="entrada">
+                        <label for="ipt_Id" id="label05">Id:</label>
+                        <input id="ipt_Id" placeholder="Henrique Macedo">
+                        <div style="display: none;" id="msgId"><span class="msgErro">Usuário vazio</span></div>
+                    </div>
+                    <div class="entrada">
+                        <label for="ipt_confirmarId" id="label06">Confirmar Id:</label>
+                        <input id="ipt_confirmarId" placeholder="monitor@email.com">
+                        <div style="display: none;" id="msgConfirmarId"><span class="msgErro">Email no padrão
+                                incorreto</span>
+                        </div>
+                    </div>
+                    <div>
+                        <button onclick="validarAdicionarUsuario()">Deletar</button>
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+    </div>
+
+</body>
+
+</html>
