@@ -9,6 +9,7 @@ import com.github.britooo.looca.api.group.discos.Disco;
 import com.github.britooo.looca.api.group.discos.Volume;
 import com.github.britooo.looca.api.group.memoria.Memoria;
 import com.github.britooo.looca.api.group.sistema.Sistema;
+import com.github.britooo.looca.api.util.Conversor;
 import java.util.List;
 
 /**
@@ -23,7 +24,7 @@ public class InfoHardware {
     private final Long frequenciaCPU;
     private final Integer nucleoFisico;
     private final Integer nucleoLogico;
-    private final Memoria ram;
+    private final String ramTotal;
     private final List<Disco> disco;
     private final List<Volume> volumeDisco;
     private final Sistema sistema;
@@ -37,7 +38,7 @@ public class InfoHardware {
         this.frequenciaCPU = looca.getProcessador().getFrequencia();
         this.nucleoFisico = looca.getProcessador().getNumeroCpusFisicas();
         this.nucleoLogico = looca.getProcessador().getNumeroCpusLogicas();
-        this.ram = looca.getMemoria();
+        this.ramTotal = Conversor.formatarBytes(looca.getMemoria().getTotal());
         this.disco = looca.getGrupoDeDiscos().getDiscos();
         this.volumeDisco = looca.getGrupoDeDiscos().getVolumes();
         this.sistema = looca.getSistema();
@@ -55,7 +56,8 @@ public class InfoHardware {
                 + "Frequência: %d \n"
                 + "Núcleos físicos: %d \n"
                 + "Núcleos lógicos: %d \n\n"
-                + "-- RAM -- \n%s \n"
+                + "-- RAM -- \n"
+                + "Total: %s \n"
                 + "-- Disco -- \n%s \n"
                 + "volumeDisco: \n%s \n\n"
                 + "-- Informações do sistema --\n%s",
@@ -65,7 +67,7 @@ public class InfoHardware {
                 frequenciaCPU,
                 nucleoFisico,
                 nucleoLogico,
-                ram,
+                ramTotal,
                 disco,
                 volumeDisco,
                 sistema);
