@@ -29,16 +29,27 @@ constraint ctFkEmpresaEnd foreign key (fkEmpresa) references Empresa (idEmpresa)
 primary key (idEndereco, fkEmpresa)
 ); 
 
+create table Computador (
+idComputador int primary key auto_increment,
+sistemaOperacional varchar(45),
+nomeCpu varchar(45),
+qtdRam long,
+qtdArmazenamento long,
+fkEmpresa int,
+constraint ctFkEmpresa foreign key (fkEmpresa) references Empresa (idEmpresa)
+);
+
 drop database monitormind;
 
 select * from Empresa;
 select * from Endereco;
 select * from Usuario;
+select * from Computador;
 
 truncate empresa;
 truncate endereco;
 truncate usuario;
 
-INSERT INTO Usuario (nomeUsuario, email, senha, tipo, fkEmpresa) VALUES ('Nathan David','123', '123', 'admin', 1);
-INSERT INTO Empresa (nomeEmpresa, cnpj, telefone) values ('Empresa boa', );
+INSERT INTO Usuario (nomeUsuario, email, senha, tipo, fkEmpresa) VALUES ('Nathan David','123', '123', 'Owner', 1);
+INSERT INTO Empresa (nomeEmpresa, cnpj, telefone) values ('Contax', '12345678901234', '1187878787');
 INSERT INTO Endereco (cep, numero, fkEmpresa) VALUES ('05163020', '8', 1);
