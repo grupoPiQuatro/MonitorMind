@@ -30,11 +30,16 @@ primary key (idEndereco, fkEmpresa)
 ); 
 
 create table Computador (
-idComputador int primary key auto_increment,
+serialComputador varchar(15) primary key,
 sistemaOperacional varchar(45),
 nomeCpu varchar(45),
+nucleoFisico int,
+nucleoLogico int,
 qtdRam long,
 qtdArmazenamento long,
+tipoDisco varchar(3),
+status varchar(15),
+constraint ctStatus check (status in ('Operando', 'Manutenção', 'Interrompido')),
 fkEmpresa int,
 constraint ctFkEmpresa foreign key (fkEmpresa) references Empresa (idEmpresa)
 );
@@ -49,6 +54,7 @@ select * from Computador;
 truncate empresa;
 truncate endereco;
 truncate usuario;
+truncate computador;
 
 INSERT INTO Usuario (nomeUsuario, email, senha, tipo, fkEmpresa) VALUES ('Nathan David','123', '123', 'Owner', 1);
 INSERT INTO Empresa (nomeEmpresa, cnpj, telefone) values ('Contax', '12345678901234', '1187878787');
