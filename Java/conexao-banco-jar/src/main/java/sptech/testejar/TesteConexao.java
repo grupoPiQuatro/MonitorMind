@@ -17,18 +17,17 @@ public class TesteConexao {
     public static void main(String[] args) throws IOException {
         Conexao conexao = new Conexao();
         InfoPc infoPc = new InfoPc();
-        
+
         String numeroSerial = null;
-        
+
         // DESCOMENTE ESSE CÓDIGO PARA TESTAR O CÓDIGO MAIS DE UMA VEZ NA MESMA MÁQUINA, POIS ELE GERA IDS DIFERENTES
         // SE AS DUAS LINHAS ABAIXO ESTIVEREM COMENTADAS A LINHA 28 DEVE ESTAR DESCOMENTADA
-        Integer numeroAleatorio = ThreadLocalRandom.current().nextInt(1, 10001);
-        numeroSerial = String.valueOf(numeroAleatorio);
-        
-//        numeroSerial = infoPc.numeroSerial();
-        
+//        Integer numeroAleatorio = ThreadLocalRandom.current().nextInt(1, 10001);
+//        numeroSerial = String.valueOf(numeroAleatorio);
+        numeroSerial = infoPc.numeroSerial();
+
         String so = infoPc.sistemaOperacional();
-        String nomeCpu = infoPc.nomeCPU();
+        String nomeCpu = infoPc.nomeCPU().trim();
         Integer nucleoFisico = infoPc.nucleoFisico();
         Integer nucleoLogico = infoPc.nucleoLogico();
         Long qtdRam = infoPc.qtdRam();
@@ -39,24 +38,30 @@ public class TesteConexao {
 
         JdbcTemplate con = conexao.getConnection();
 
-        int linhasInseridas = con.update("insert into computador values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                numeroSerial,
-                so,
-                nomeCpu,
-                nucleoFisico,
-                nucleoLogico,
-                qtdRam,
-                qtdArmazenamento,
-                tipoDisco,
-                status,
-                fkEmpresa
-        );
+        try {
+            int linhasInseridas = con.update("insert into computador values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                    numeroSerial,
+                    so,
+                    nomeCpu,
+                    nucleoFisico,
+                    nucleoLogico,
+                    qtdRam,
+                    qtdArmazenamento,
+                    tipoDisco,
+                    status,
+                    fkEmpresa
+            );
+            
+            System.out.println("Query concluída com sucesso");
+        } catch (Exception e) {
+            System.out.println("Pc existente");
+        }
 
-       if (linhasInseridas > 0) {
-           System.out.println("Query concluída com sucesso");
-       } else {
-           System.out.println("Falha na query do banco");
-       }
+//        if (linhasInseridas > 0) {;
+//           System.out.println("Query concluída com sucesso");
+//        } else {
+//            System.out.println("Falha na query do banco");
+//        }
 
     }
 }

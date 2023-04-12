@@ -48,7 +48,7 @@ drop database monitormind;
 
 select * from Empresa;
 select * from Endereco;
-select * from Usuario;
+select * from Usuario where email = '123' and senha = '123';
 select * from Computador;
 
 truncate empresa;
