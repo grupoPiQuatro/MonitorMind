@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home-dashboard</title>
+    <link rel="stylesheet" href="../css/geral.css">
+    <link rel="stylesheet" href="../css/home.css">
+</head>
+<body>
+    
+    <section class="left-side-window">
+        <div class="container">
+
+            <div class="user-info">
+                <span id="nome_emrpesa">Monitor mind</span><img src="../assets/home/imagem-do-usuario-com-fundo-preto.png">
+            </div>
+
+            <div class="nav-itens">
+                <div>Visão geral</div>
+                <div><a>Computadores</a></div>
+                <div><a>Usuários</a></div>
+                <div><a>Analytics</a></div>
+            </div>
+
+            <div class="sair-button">
+                <button>SAIR</button>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="right-side-window">
+        <div class="container">
+
+            <nav>
+                <li><img src="../assets/home/logoEscura.png" alt=""></li>
+            </nav>
+
+            <div class="kpi-dados">
+                <div class="topo">
+
+                    <div class="titulos">
+                        <li class="titulo-topo">Componente em alerta</li>
+                        <li class="dados-topo">Componentes sendo monitorados: <span id="maquinas_monitoradas_agora">0</span>/<span class="maquinas_monitoradas_total">0</span></li>
+                    </div>
+
+                    <div class="legenda">
+                        legenda <button><img src="../assets/home/simbolo-de-informacao.png"></button>
+                    </div>
+
+                </div>
+                
+                <div class="kpi-corpo">
+                    <div class="kpi-dados-item rede">
+
+                        <div class="box">
+                            <img class="icone rede" src="../assets/home/ethernet.png">
+                            <span id="rede_vermelho">0</span>
+                        </div>
+        
+                        <div class="box">
+                            <img class="icone rede" src="../assets/home/ethernet.png">
+                            <span id="rede_amarelo">0</span>
+                        </div>
+
+                        <span>Rede</span>
+                    </div>
+        
+                    <div class="kpi-dados-item disco">
+
+                        <div class="box">
+                            <img class="icone disco" src="../assets/home/disco-rigido.png">
+                            <span id="disco_vermelho">0</span>
+                        </div>
+        
+                        <div class="box">
+                            <img class="icone rede" src="../assets/home/ethernet.png">
+                            <span id="disco_amarelo">0</span>
+                        </div>
+
+                        <span>Disco</span>
+                    </div>
+        
+                    <div class="kpi-dados-item cpu">
+
+                        <div class="box">
+                            <img class="icone cpu" src="../assets/home/processador.png">
+                            <span id="cpu_vermelho">0</span>
+                        </div>
+        
+                        <div class="box">
+                            <img class="icone rede" src="../assets/home/processador.png">
+                            <span id="cpu_amarelo">0</span>
+                        </div>
+
+                        <span>CPU</span>
+                    </div>
+        
+                    <div class="kpi-dados-item memoria">
+
+                        <div class="box">
+                            <img class="icone memoria" src="../assets/home/memoria-ram.png">
+                            <span id="memoria_vermelho">0</span>
+                        </div>
+        
+                        <div class="box">
+                            <img class="icone memoria" src="../assets/home/memoria-ram.png">
+                            <span id="memoria_amarelo">0</span>
+                        </div>
+
+                        <span>Memoria</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="kpi-analises">
+
+                <div class="box-analise">
+                    <img class="icone rede" src="../assets/home/trabalho-em-progresso.png">
+                    <span id="rede_vermelho">0</span>
+                </div>
+
+                <div class="box-analise">
+                    <img class="icone rede" src="../assets/home/alerta.png">
+                    <span id="rede_vermelho">0</span>
+                </div>
+
+                <div class="box-analise">
+                    Grafico aqui
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+</body>
+</html>

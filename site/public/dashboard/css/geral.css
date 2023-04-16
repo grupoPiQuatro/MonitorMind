@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+
+* {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;    
+}
+
+li {
+    list-style: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+img{ 
+    width: 50px;
+    height: 50px;
+}
+
+body {
+    margin: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    font-size: 15pt;
+}
+
+.container {
+    margin: auto;
+    width: 80%;
+}
+
+.left-side-window {
+    width: 20%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-right: #4EABE9 solid 3px;
+    border-radius: 0px 30px 30px 0px;
+    background-color: #D3D3D3;
+    font-weight: 500;
+}
+
+.left-side-window .container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.left-side-window .container .user-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+}
+
+.left-side-window .container .nav-itens {
+    height: 40%;
+    display: flex;
+}
+
+.left-side-window .container .nav-itens {
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.left-side-window .container .nav-itens div {
+    display: flex;
+    height: 25px;
+    cursor: pointer;
+}
+
+.left-side-window .container button {
+    font-size: 15pt;
+    background-color: transparent;
+    border: none;
+    font-weight: 500;
+}
