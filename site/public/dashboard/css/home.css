@@ -1,23 +1,131 @@
-/* Arrumar esse doc */
+.icone {
+    width: 80px;
+    height: 80px;
+    -webkit-filter: drop-shadow(5px 5px 5px #00000079);
+    filter: drop-shadow(5px 5px 5px #424242bb);
+}
 
-img{ 
+.icone-alerta {
+    width: 100px;
+    height: 100px;
+}
+
+.icone-tema {
     width: 50px;
     height: 50px;
+    cursor: pointer;
 }
 
-.kpi-dados{
-    display: flex;
-    flex-direction: column;
+.valores-kpi{
+    font-size: 30pt;
 }
 
-.kpi-corpo{
-    display: flex;
+.valores-kpi-alerta{
+    font-size: 40pt;
 }
 
-.right-side-window{
-    height: 100vh;
+.titulo {
+    font-size: 30pt;
+}
+
+.right-side-window .container {
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+.right-side-window .kpi-dados{
+    width: 99.7%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: space-between;
+}
+
+.right-side-window .kpi-dados .topo {
+    width: 98%;
+    height: 20%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.right-side-window .kpi-dados .topo .legenda {
+    display: flex;
+    align-items: center;
+}
+
+.right-side-window .kpi-dados .topo .legenda button {
+    height: 30px;
+    width: 40px;
+    border: none;
+    background-color: transparent;
+}
+
+.right-side-window .kpi-dados .topo .legenda img {
+    height: 100%;
+    width: 100%;
+}
+
+.right-side-window .kpi-dados .kpi-corpo{
+    height: 80%;
+    width: 98%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.right-side-window .kpi-dados .kpi-corpo .kpi-dados-item{
+    width: 23%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.right-side-window .kpi-dados .kpi-corpo .box{
+    border: #000000 solid 3px;
+    border-radius: 20px;
+    width: 60%;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-weight: 700;
+    transition: 0.3s ease;
+    box-shadow: 5px 5px 5px #00000080;
+}
+
+.right-side-window .kpi-dados .kpi-corpo .box:first-child{
+    width: 90%;
+    height: 45%;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.right-side-window .kpi-dados .kpi-corpo .box:hover {
+    transition: 0.2s;
+    box-shadow: 5px 10px 10px #2e5c7c75;
+    cursor: pointer;
+    transform: scale(1.02);
+}
+
+.right-side-window .kpi-analises {
+    width: 100%;
+    height: 30%;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 30px;
+}
+
+.right-side-window .kpi-analises .caixa {
+    width: 25%;
+    height: 98%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
 }

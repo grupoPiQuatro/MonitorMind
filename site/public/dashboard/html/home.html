@@ -4,28 +4,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>home-dashboard</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="../css/geral.css">
     <link rel="stylesheet" href="../css/home.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body>
+<body onload="trocarTema()">
     
-    <section class="left-side-window">
+    <section class="left-side-window" id="caixa1">
         <div class="container">
 
             <div class="user-info">
-                <span id="nome_emrpesa">Monitor mind</span><img src="../assets/home/imagem-do-usuario-com-fundo-preto.png">
+                <span id="nome_empresa" class="text-geral">Monitor mind</span><img src="../assets/home/imagem-do-usuario-com-fundo-preto.png">
             </div>
 
             <div class="nav-itens">
-                <div>Visão geral</div>
-                <div><a>Computadores</a></div>
-                <div><a>Usuários</a></div>
-                <div><a>Analytics</a></div>
+                <div style="color: #4eabe9"><span class="text-geral" id="text-geral13">Visão geral</span></div>
+                <div><a href="computadores.html"><span class="text-geral" id="text-geral14">Computadores</span></a></div>
+                <div><a href="usuarios.html"><span class="text-geral" id="text-geral15">Usuários</span></a></div>
+                <div><a href="analytcs.html"><span class="text-geral" id="text-geral16">Analytics</span></a></div>
             </div>
 
             <div class="sair-button">
-                <button>SAIR</button>
+                <a href="../../index.html"><span class="text-geral" id="text-geral1">SAIR</span></a>
             </div>
         </div>
 
@@ -35,100 +36,103 @@
         <div class="container">
 
             <nav>
-                <li><img src="../assets/home/logoEscura.png" alt=""></li>
+                <li><img src="../assets/home/icon-lua.png" class="icone-tema" id="tema" onclick="trocarTema()"></li>
+                <li><img src="../assets/home/logoEscura.png" class="logo" id="logo"></li>
             </nav>
 
-            <div class="kpi-dados">
+            <div class="kpi-dados caixa" id="caixa2">
                 <div class="topo">
 
                     <div class="titulos">
-                        <li class="titulo-topo">Componente em alerta</li>
-                        <li class="dados-topo">Componentes sendo monitorados: <span id="maquinas_monitoradas_agora">0</span>/<span class="maquinas_monitoradas_total">0</span></li>
+                        <div class="titulo" id="titulo">Componente em alerta por computador</div>
+                        <div class="text-geral" id="text-geral2">Computadores sendo monitorados: <span id="maquinas_monitoradas_agora">0</span>/<span class="maquinas_monitoradas_total">0</span></div>
                     </div>
 
-                    <div class="legenda">
-                        legenda <button><img src="../assets/home/simbolo-de-informacao.png"></button>
+                    <div class="legenda text-geral" id="text-geral3">
+                        <span id="text-geral4">Legenda</span><button onclick="legenda_box() "><img src="../assets/home/simbolo-de-informacao.png"></button>
                     </div>
 
                 </div>
                 
                 <div class="kpi-corpo">
-                    <div class="kpi-dados-item rede">
+                    <div class="kpi-dados-item">
 
-                        <div class="box">
-                            <img class="icone rede" src="../assets/home/ethernet.png">
-                            <span id="rede_vermelho">0</span>
+                        <div class="box" id="box">
+                            <img class="icone" src="../assets/home/ethernet-vermelho.png">
+                            <span id="rede_vermelho" class="valores-kpi-alerta">0</span>
                         </div>
         
-                        <div class="box">
-                            <img class="icone rede" src="../assets/home/ethernet.png">
-                            <span id="rede_amarelo">0</span>
+                        <div class="box" id="box">
+                            <img class="icone" src="../assets/home/ethernet-amarelo.png">
+                            <span id="rede_amarelo" class="valores-kpi">0</span>
                         </div>
 
-                        <span>Rede</span>
+                        <span class="text-geral" id="text-geral5">Rede</span>
                     </div>
         
-                    <div class="kpi-dados-item disco">
+                    <div class="kpi-dados-item">
 
-                        <div class="box">
-                            <img class="icone disco" src="../assets/home/disco-rigido.png">
-                            <span id="disco_vermelho">0</span>
+                        <div class="box" id="box">
+                            <img class="icone" src="../assets/home/disco-rigido-vermelho.png">
+                            <span id="disco_vermelho" class="valores-kpi-alerta">0</span>
                         </div>
         
-                        <div class="box">
-                            <img class="icone rede" src="../assets/home/ethernet.png">
-                            <span id="disco_amarelo">0</span>
+                        <div class="box" id="box">
+                            <img class="icone" src="../assets/home/disco-rigido-amarelo.png">
+                            <span id="disco_amarelo" class="valores-kpi">0</span>
                         </div>
 
-                        <span>Disco</span>
+                        <span class="text-geral" id="text-geral6">Disco</span>
                     </div>
         
-                    <div class="kpi-dados-item cpu">
+                    <div class="kpi-dados-item">
 
-                        <div class="box">
-                            <img class="icone cpu" src="../assets/home/processador.png">
-                            <span id="cpu_vermelho">0</span>
+                        <div class="box" id="box">
+                            <img class="icone" src="../assets/home/processador-vermelho.png">
+                            <span id="cpu_vermelho" class="valores-kpi-alerta">0</span>
                         </div>
         
-                        <div class="box">
-                            <img class="icone rede" src="../assets/home/processador.png">
-                            <span id="cpu_amarelo">0</span>
+                        <div class="box" id="box">
+                            <img class="icone" src="../assets/home/processador-amarelo.png">
+                            <span id="cpu_amarelo" class="valores-kpi">0</span>
                         </div>
 
-                        <span>CPU</span>
+                        <span class="text-geral" id="text-geral7">CPU</span>
                     </div>
         
-                    <div class="kpi-dados-item memoria">
+                    <div class="kpi-dados-item">
 
-                        <div class="box">
-                            <img class="icone memoria" src="../assets/home/memoria-ram.png">
-                            <span id="memoria_vermelho">0</span>
+                        <div class="box" id="box">
+                            <img class="icone" src="../assets/home/memoria-ram-vermelho.png">
+                            <span id="memoria_vermelho"  class="valores-kpi-alerta">0</span>
                         </div>
         
-                        <div class="box">
-                            <img class="icone memoria" src="../assets/home/memoria-ram.png">
-                            <span id="memoria_amarelo">0</span>
+                        <div class="box" id="box">
+                            <img class="icone" src="../assets/home/memoria-ram-amarelo.png">
+                            <span id="memoria_amarelo" class="valores-kpi">0</span>
                         </div>
 
-                        <span>Memoria</span>
+                        <span class="text-geral" id="text-geral8">Memoria</span>
                     </div>
                 </div>
             </div>
 
             <div class="kpi-analises">
 
-                <div class="box-analise">
-                    <img class="icone rede" src="../assets/home/trabalho-em-progresso.png">
-                    <span id="rede_vermelho">0</span>
+                <div class="box-analise caixa" id="caixa3">
+                    <span class="text-geral" id="text-geral9">Computadores sem retorno</span>
+                    <img class="icone-alerta" id="icone-pc" src="../assets/home/trabalho-em-progresso.png">
+                    <span id="vka2" class="valores-kpi-alerta">0</span>
                 </div>
 
-                <div class="box-analise">
-                    <img class="icone rede" src="../assets/home/alerta.png">
-                    <span id="rede_vermelho">0</span>
+                <div class="box-analise caixa" id="caixa4">
+                    <span class="text-geral" id="text-geral10">Computadores com 2+ alertas vermelhos</span>
+                    <img class="icone-alerta" id="icone-alerta" src="../assets/home/alerta.png">
+                    <span id="vka1" class="valores-kpi-alerta">0</span>
                 </div>
 
-                <div class="box-analise">
-                    Grafico aqui
+                <div class="box-analise caixa" id="caixa5">
+                    <span class="text-geral" id="text-geral11">Grafico aqui</span>
                 </div>
 
             </div>
@@ -137,3 +141,4 @@
     </section>
 </body>
 </html>
+<script src="../js/home.js"></script>
