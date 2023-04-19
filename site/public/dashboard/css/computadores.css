@@ -1,0 +1,131 @@
+.right-side-window {
+    display: flex;
+    justify-content: center;
+}
+
+.right-side-window .container {
+    width: 90%;
+    height: 95vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.titulo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.titulo h1 {
+    margin-left: 10px;
+    font-size: 2rem;
+    text-align: center  ;
+    width: 260px;
+    color: #4EABE9;
+    border-bottom: solid 1px #4EABE9;
+}
+
+.titulo img {
+    width: 130px;
+}
+
+.filtro {
+    height: 18vh;
+    border: solid 2px #4EABE9;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.filtro .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: unset;
+    height: 14vh;
+    width: 95%;
+    gap: 10px;
+}
+
+.tituloFiltro {
+    width: 100%;
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+
+.filtroSelect {
+    display: flex;
+    gap: 50px;
+}
+
+.filtroSelect .campoFiltro {
+    display: flex;
+    flex-direction: column;
+    height: 7.5vh;
+    font-size: 1.2rem;  
+    gap: 10px;
+}
+
+.campoFiltro p{
+    font-weight: 500;
+}
+
+.filtroSelect select{
+    height: 40px;
+    width: 270px;
+    background-color: #D3D3D3;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 1.1rem;
+}
+
+.botaoFiltro {
+    display: flex;
+    align-items: flex-end;
+}
+
+.botaoFiltro button {
+    height: 40px;
+    width: 100px;
+    background-color: #4EABE9;
+    border: none;
+    border-radius: 7px;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.pc {
+    height: 50vh;
+    border: solid 2px #4EABE9;
+    border-radius: 10px;
+}
+
+.gerenciar {
+    border: solid 2px #4EABE9;
+    border-radius: 10px;
+    height: 10vh;
+    display: flex;
+}
+
+.gerenciar .container {
+    height: 50%;
+    margin: auto;
+    display: flex;
+    flex-direction: unset;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.gerenciar button {
+    height: 40px;
+    width: 140px;
+    background-color: #4EABE9;
+    border: none;
+    border-radius: 7px;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
