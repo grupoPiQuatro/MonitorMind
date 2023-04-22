@@ -23,6 +23,7 @@ for (let i = 0; i < quantidadeDivs; i++) {
 
   // Cria a primeira div filha da divBox com a imagem
   const divImg = document.createElement('div');
+  divImg.classList.add('imgBox');
   const novaImg = document.createElement('img');
   novaImg.src = '../assets/computador/iconPc.png';
   novaImg.alt = '';
