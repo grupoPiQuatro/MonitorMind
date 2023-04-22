@@ -3,13 +3,12 @@
 * {
     margin: 0;
     font-family: 'Roboto', sans-serif;
-    color: white;
 }
 
 a {
     text-decoration: none;
-    color: black;
     font-weight: 400;
+    color: white;
 }
 
 body {
