@@ -118,6 +118,9 @@ body {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     gap: 10px;
   }
+  .pc-container :hover{
+    cursor: pointer;
+  }
 
 .pc .pcIndiv {
     background-color: #2C2B2B;
