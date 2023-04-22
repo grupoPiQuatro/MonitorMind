@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuários</title>
+    <link rel="stylesheet" href="../css/geral.css">
+    <link rel="stylesheet" href="../css/usuarios.css">
+</head>
+<body>
+    <section class="left-side-window" id="caixa1">
+        <div class="container">
+
+            <div class="user-info">
+                <span id="nome_empresa" class="text-geral">Monitor mind</span><img src="../assets/home/imagem-do-usuario-com-fundo-preto.png">
+            </div>
+
+            <div class="nav-itens">
+                <div><a href="home.html"><span class="text-geral" id="text-geral13">Visão geral</span></a></div>
+                <div><a href="computadores.html"><span class="text-geral" id="text-geral14">Computadores</span></a></div>
+                <div><span style="color: #4eabe9" class="text-geral" id="text-geral15">Usuários</span></div>
+                <div><a href="analytcs.html"><span class="text-geral" id="text-geral16">Analytics</span></a></div>
+            </div>
+
+            <div class="sair-button">
+                <a href="../../index.html"><span class="text-geral" id="text-geral1">SAIR</span></a>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="right-side-window">
+        <div class="container">
+            <nav>
+                <li><img src="../../assets/icon-lua.png" class="icone-tema" id="tema" style="display: none;"></li>
+                <li><img class="logo" src="../assets/home/logoClara.png" alt="logo-mm"></li>
+            </nav>
+    
+            <div class="corpo">
+                <div class="caixa">
+                    <div class="conteudo-caixa">
+                        <div class="content-topo">
+                            <span>Gerenciar usuários</span>
+                            <div class="itens-topo">
+                                <div>
+                                    <input type="text" id="busca" onchange="buscar_usuario()" >
+                                    <button class="busca-botao" onclick="buscar_usuario()"><img class="pesquisa_imagem" src="../assets/usuarios/lupa-branca.png"></button>
+                                </div>
+                                <div>
+                                    <button class="adicionar-botao" onclick="adicionar_usuario()">adicionar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="content-corpo">
+                           <div class="infos-topo-tabela">
+                                <div class="info-item id">ID</div>
+                                <div class="info-item">USUARIO</div>
+                                <div class="info-item">EMAIL</div>
+                                <div class="info-item">TIPO</div>
+                                <div class="info-item tools"></div>
+                           </div>
+                           <div class="linha-tabela">
+                                <div class="info-item table">1</div>
+                                <div class="info-item table">Lucas</div>
+                                <div class="info-item table">lucas@email</div>
+                                <div class="info-item table">comum</div>
+                                <div class="info-item tools">
+                                    <img src="../assets/usuarios/lapis.png">
+                                    <img src="../assets/usuarios/lixeira.png">
+                                </div>
+                           </div>
+                        </div>
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
