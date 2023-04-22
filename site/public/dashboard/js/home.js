@@ -2,7 +2,7 @@ var temaClaro = true;
 function trocarTema() {
     let body = document.querySelector("body")
     let temaImg = document.getElementById("tema")
-    let logo = document.getElementById("logo")
+    let logo = document.getElementById("logoImagem")
     let caixa1 = document.getElementById("caixa1");
     let caixa2 = document.getElementById("caixa2");
     let caixa3 = document.getElementById("caixa3");
@@ -46,8 +46,8 @@ function trocarTema() {
 
     if (temaClaro) {
         logo.src = "../assets/home/logoEscura.png";
-        temaImg.src = "../assets/home/icon-lua.png";
-        iconPc.src = "../assets/home/simbolo-de-informação.png";
+        temaImg.src = "../../assets/icon-lua.png";
+        iconPc.src = "../assets/home/trabalho-em-progresso.png";
         iconAlerta.src = "../assets/home/alerta.png";
         body.style.backgroundColor = "#FFF";
         caixa1.style.backgroundColor = "#D3D3D3";
@@ -91,8 +91,8 @@ function trocarTema() {
         temaClaro = false;
     } else {
         logo.src = "../assets/home/logoClara.png"
-        temaImg.src = "../assets/home/icon-sol.png"
-        iconPc.src = "../assets/home/simbolo-de-informação-branco.png"
+        temaImg.src = "../../assets/icon-sol.png"
+        iconPc.src = "../assets/home/trabalho-em-progresso-branco.png"
         iconAlerta.src = "../assets/home/alerta-branco.png"
         body.style.backgroundColor = "#1a1a1a";
         caixa1.style.backgroundColor = "#2C2B2B";

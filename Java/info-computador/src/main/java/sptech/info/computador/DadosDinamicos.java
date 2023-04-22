@@ -87,8 +87,8 @@ public class DadosDinamicos {
         this.threadsTotal = looca.getGrupoDeProcessos().getTotalThreads();
         this.processoExecTotal = looca.getGrupoDeProcessos().getTotalProcessos();
         this.listaProcessoExec = looca.getGrupoDeProcessos().getProcessos();
-        this.listaJanelas = looca.getGrupoDeJanelas().getJanelas();
-        this.listaUsbConectado = looca.getDispositivosUsbGrupo().getDispositivosUsbConectados();
+        this.listaJanelas = looca.getGrupoDeJanelas().getJanelasVisiveis();
+        this.listaUsbConectado = looca.getDispositivosUsbGrupo().getDispositivosUsb();
     }
 
     @Override
