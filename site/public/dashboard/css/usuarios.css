@@ -26,7 +26,7 @@ body {
 .right-side-window .caixa{
     /* border: green 3px solid; */
     width: 100%;
-    height: 90%;
+    height: 95%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -50,7 +50,7 @@ body {
 }
 
 .right-side-window .caixa .conteudo-caixa .content .box-itens {
-    height: 100%;
+    height: 95%;
     width: 50%;
     display: flex;
     flex-direction: column;
@@ -59,12 +59,64 @@ body {
 }
 
 .right-side-window .caixa .conteudo-caixa .content .left-side {
-    background-color: white;
+    background-color: #4EABE9;
     color: black;
     border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, #0000001f 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.right-side-window .caixa .conteudo-caixa .content .left-side .topo {
+/* .right-side-window .caixa .conteudo-caixa .content .left-side .tabela-pessoas{
+    width: 90%;
+    text-align: center;
+    border-collapse: collapse;
+} */
+
+.tabela {
+    width: 90%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+}
+
+.topo {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 5px 15px;
+    background-color: #2C2B2B;
+}
+
+/* .tabelas{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+th {
+    background-color: #b7d7ec;
+    padding: 20px;            
+    color: white;
+}
+
+td {
+    height: 60px;
+    background-color: white;
+    box-shadow: 5px 5px 5px #00000086;
+    font-size: 19pt;
+}
+
+td:first-child {
+    border-radius: 7px 0px 0px 7px;
+}
+
+td:last-child {
+    border-radius: 0px 7px 7px 0px;
+} */
+
+/* .right-side-window .caixa .conteudo-caixa .content .left-side .topo {
     width: 100%;
     height: 7%;
     display: flex;
@@ -89,7 +141,6 @@ body {
 }
 
 .right-side-window .caixa .conteudo-caixa .content .left-side .table-corpo .campos {
-    /* border: red solid; */
     width: 100%;
     height: 30px;
     display: flex;
@@ -104,18 +155,14 @@ body {
     padding-right: 5px;
     border-left: solid black 3px;
     border-right: solid black 3px;
-}
-
-.right-side-window .caixa .conteudo-caixa .content .right-side {
-    border: red solid;
-}
+} */
 
 .right-side-window .caixa .conteudo-caixa .content .right-side .add-user-corpo {
-    border: green solid;
+    /* border: green solid; */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 70%;
+    height: 75%;
     width: 50%;
 }
 
@@ -130,6 +177,38 @@ body {
 }
 
 .right-side-window .caixa .conteudo-caixa .content .right-side .add-user-corpo .formulario input {
-    border-radius: 5px;
     height: 30px;
+    border-radius: 5px;
+    border: none;
+}
+
+.right-side-window .caixa .conteudo-caixa .content .right-side .add-user-corpo .formulario select {
+    height: 35px;
+}
+
+.right-side-window .caixa .conteudo-caixa .content .right-side .add-user-corpo .formulario select .opt {
+    color: black ;
+    border-radius: 5px;
+}
+
+.right-side-window .caixa .conteudo-caixa .content .right-side .local-botao .botoes {
+    width: 100%;
+    display: flex;
+    justify-content:center;
+}
+
+.right-side-window .caixa .conteudo-caixa .content .right-side .local-botao .botoes button {
+    margin-top: 20px;
+    background-color: #4EABE9;
+    font-size: 16pt;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    color: white;
+}
+
+.add-user-bot {
+    display: flex;
+    align-self: flex-end;
+    cursor: pointer;
 }
