@@ -135,6 +135,14 @@ body {
 
 .pcIndiv .box {
     display: flex;
+    height: 9vh;
+}
+
+.box div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
 }
 
 .pcIndiv .boxStatus {
