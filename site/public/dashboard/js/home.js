@@ -56,8 +56,6 @@ function trocarTema() {
         caixa4.style.backgroundColor = "#D3D3D3";
         caixa5.style.backgroundColor = "#D3D3D3";
 
-        box.style.backgroundColor = "#D3D3D3";
-
         text1.style.color = "#000";
         text2.style.color = "#000";
         text3.style.color = "#000";
@@ -101,8 +99,6 @@ function trocarTema() {
         caixa4.style.backgroundColor = "#2C2B2B";
         caixa5.style.backgroundColor = "#2C2B2B";
         
-        box.style.backgroundColor = "#2C2B2B";
-
         text1.style.color = "#FFF";
         text2.style.color = "#FFF";
         text3.style.color = "#FFF";
