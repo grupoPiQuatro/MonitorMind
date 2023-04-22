@@ -33,182 +33,107 @@ body {
 }
 
 .right-side-window .caixa .conteudo-caixa{
+    /* border: pink solid; */
     width: 95%;
     height: 95%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    /* border: pink solid; */
 }
 
-.right-side-window .caixa .conteudo-caixa .content {
+.right-side-window .caixa .conteudo-caixa .content-topo {
+    /* border: red solid; */
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.right-side-window .caixa .conteudo-caixa .content-topo .itens-topo {
+    /* height: 50%; */
+    display: flex;
+    justify-content: space-between;
+}
+
+.right-side-window .caixa .conteudo-caixa .content-topo .itens-topo div:first-child {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 20%;
+}
+
+.right-side-window .caixa .conteudo-caixa .content-topo .itens-topo input {
+    height: 23px;
+    width: 75%;
+    font-size: 18pt;
+    padding: 2px;
+    border-radius: 5px;
+}
+
+.right-side-window .caixa .conteudo-caixa .content-topo .itens-topo button {
+    background-color: transparent;
+    border: none;
+}
+
+.right-side-window .caixa .conteudo-caixa .content-topo .itens-topo .pesquisa_imagem   {
+    width: 20px;
+    height: 20px;
+    margin: 0px 5px;
+}
+
+.right-side-window .caixa .conteudo-caixa .content-topo .itens-topo .adicionar-botao {
+    padding: 5px 15px;
+    font-size: 15pt;
+    border-radius: 5px;
+    background-color: #4EABE9;
+    color: white;
+    font-weight: 400;
+    border: none;
+}
+
+.right-side-window .caixa .conteudo-caixa .content-corpo {
+    font-size: 18pt;
     /* border: red solid; */
     width: 100%;
-    height: 90%;
-    display: flex;
-    justify-content: space-between;
-}
-
-.right-side-window .caixa .conteudo-caixa .content .box-itens {
-    height: 95%;
-    width: 50%;
+    height: 80%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+    /* justify-content: space-between; */
+    margin-bottom: 2%;
 }
 
-.right-side-window .caixa .conteudo-caixa .content .left-side {
+.infos-topo-tabela {
+    /* border: green solid; */
     background-color: #4EABE9;
-    color: black;
-    border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, #0000001f 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* .right-side-window .caixa .conteudo-caixa .content .left-side .tabela-pessoas{
-    width: 90%;
-    text-align: center;
-    border-collapse: collapse;
-} */
-
-.tabela {
-    width: 90%;
-    height: 90%;
-    display: flex;
-    flex-direction: column;
-}
-
-.topo {
-    display: flex;
+    padding: 20px 0px;
     width: 100%;
-    justify-content: space-between;
-    padding: 5px 15px;
-    background-color: #2C2B2B;
-}
-
-/* .tabelas{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-th {
-    background-color: #b7d7ec;
-    padding: 20px;            
-    color: white;
-}
-
-td {
-    height: 60px;
-    background-color: white;
-    box-shadow: 5px 5px 5px #00000086;
-    font-size: 19pt;
-}
-
-td:first-child {
-    border-radius: 7px 0px 0px 7px;
-}
-
-td:last-child {
-    border-radius: 0px 7px 7px 0px;
-} */
-
-/* .right-side-window .caixa .conteudo-caixa .content .left-side .topo {
-    width: 100%;
-    height: 7%;
     display: flex;
     justify-content: space-around;
-    align-items: center;
-    font-weight: 700;
-    border-bottom: solid black;
+    border-radius: 7px 7px 0px 0px;
 }
 
-.right-side-window .caixa .conteudo-caixa .content .left-side .table-corpo {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    cursor: pointer;
-}
-
-.right-side-window .caixa .conteudo-caixa .content .left-side .table-corpo .item {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.right-side-window .caixa .conteudo-caixa .content .left-side .table-corpo .campos {
-    width: 100%;
-    height: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 15pt;
-    border-bottom: solid black;
-
-}
-.right-side-window .caixa .conteudo-caixa .content .left-side .table-corpo .campos #email {
-    padding-left: 5px;
-    padding-right: 5px;
-    border-left: solid black 3px;
-    border-right: solid black 3px;
-} */
-
-.right-side-window .caixa .conteudo-caixa .content .right-side .add-user-corpo {
-    /* border: green solid; */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 75%;
-    width: 50%;
-}
-
-.right-side-window .caixa .conteudo-caixa .content .right-side .add-user-corpo .formulario {
+.linha-tabela {
     /* border: red solid; */
     width: 100%;
-    height: 16%;
-    font-size: 18pt;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    margin-top: 7px;
+    background-color: #fff;
+    color: black;
 }
 
-.right-side-window .caixa .conteudo-caixa .content .right-side .add-user-corpo .formulario input {
-    height: 30px;
-    border-radius: 5px;
-    border: none;
-}
-
-.right-side-window .caixa .conteudo-caixa .content .right-side .add-user-corpo .formulario select {
-    height: 35px;
-}
-
-.right-side-window .caixa .conteudo-caixa .content .right-side .add-user-corpo .formulario select .opt {
-    color: black ;
-    border-radius: 5px;
-}
-
-.right-side-window .caixa .conteudo-caixa .content .right-side .local-botao .botoes {
-    width: 100%;
+.info-item {
+    /* border: red solid; */
+    width: 20%;
     display: flex;
-    justify-content:center;
+    justify-content: center;
+    align-items: center;
 }
 
-.right-side-window .caixa .conteudo-caixa .content .right-side .local-botao .botoes button {
-    margin-top: 20px;
-    background-color: #4EABE9;
-    font-size: 16pt;
-    border: none;
-    border-radius: 5px;
-    padding: 5px 10px;
-    color: white;
-}
-
-.add-user-bot {
+.tools {
     display: flex;
-    align-self: flex-end;
+    justify-content: space-around;
+}
+
+.tools img {
     cursor: pointer;
 }
