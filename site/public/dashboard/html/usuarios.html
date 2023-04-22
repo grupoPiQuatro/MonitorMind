@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Usuários</title>
     <link rel="stylesheet" href="../css/geral.css">
+    <link rel="stylesheet" href="../css/usuarios.css">
 </head>
 <body>
     <section class="left-side-window" id="caixa1">
@@ -30,7 +31,111 @@
     </section>
 
     <section class="right-side-window">
-        
+        <div class="container">
+            <nav>
+                <li><img src="../../assets/icon-lua.png" class="icone-tema" id="tema" style="display: none;"></li>
+                <li><img class="logo" src="../assets/home/logoClara.png" alt="logo-mm"></li>
+            </nav>
+    
+            <div class="corpo">
+                <div class="caixa">
+                    <div class="conteudo-caixa">
+                        <span>Gerenciar usuários</span>
+
+                        <div class="content">
+                            <div class="left-side box-itens">
+                                <div class="topo">
+                                    <span>Usuario</span>
+                                    <span>Email</span>
+                                    <span>Tipo</span>
+                                </div>
+                                <div class="table-corpo">
+                                    <div class="campos">
+                                        <div id="nome" class="item">
+                                            <span>Monitor mind</span>
+                                        </div>
+                                        <div id="email" class="item">
+                                            <span>mm@email.com</span>
+                                        </div>
+                                        <div id="tipo" class="item">
+                                            <span>administrador</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="campos">
+                                        <div id="nome" class="item">
+                                            <span>Monitor mind</span>
+                                        </div>
+                                        <div id="email" class="item">
+                                            <span>mm@email.com</span>
+                                        </div>
+                                        <div id="tipo" class="item">
+                                            <span>administrador</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="right-side box-itens">
+                                <div class="add-user-topo">
+                                    <span id="text-title">Usuário</span>
+                                </div>
+                                
+                                <div class="add-user-corpo">
+                                    
+                                    <div class="formulario">
+                                        <label class="usuario">Usuário:</label>
+                                        <input id="usuario">
+                                    </div>
+    
+                                    <div class="formulario">
+                                        <label class="email">Email:</label>
+                                        <input id="email">
+                                    </div>
+    
+                                    <div class="formulario">
+                                        <label class="tipo">Tipo:</label>
+                                        <select id="tipo">
+                                            <option value="- select -"></option>
+                                            <option value="comum"></option>
+                                            <option value="administrador"></option>
+                                        </select>
+                                    </div>
+    
+                                    <div class="formulario">
+                                        <label class="senha">Senha:</label>
+                                        <input id="senha">
+                                    </div>
+    
+                                    <div class="formulario">
+                                        <label class="confirma-senha">Confirmação de senha</label>
+                                        <input id="confirma-senha">
+                                    </div>
+    
+                                    <div class="local-botao">
+                                        <div class="botoes" id="botao1">
+                                            <button>Adicionar</button>
+                                        </div>
+                                        <div class="botoes" id="botao2" style="display: none;">
+                                            <button>Editar</button>
+                                            <button>Remover</button>
+                                        </div> 
+                                    </div>
+                                </div>
+    
+                                <div class="add-user-bot">
+                                    <img src="../assets/usuarios/Arrow 2.png">
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="aviso-delete" id="aviso-delete" style="display: none;">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 </body>
 </html>
