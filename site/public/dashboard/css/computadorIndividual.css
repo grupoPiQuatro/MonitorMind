@@ -5,20 +5,20 @@
 .pc-info{
     margin: auto;
     width: 98%;
-    height: 20%;
+    height: 16%;
     display: flex;
     flex-direction: column;
     background-color: #1a1a1a;
 }
 .title1{
-    margin-top: 1%;
+    margin-top: 1vh;
     width: 60%;
     margin-left: 3%;
     justify-content:space-between;
     display: flex;
 }
 .title2{
-    margin-top: 2%;
+    margin-top: 1%;
     width: 95%;
     margin-left: 3%;
     justify-content:space-between;
@@ -26,7 +26,7 @@
 }
 .grafics{
     width: 98%;
-    height: 70%;
+    height: 77%;
     display: flex;
     flex-direction: column;
 
