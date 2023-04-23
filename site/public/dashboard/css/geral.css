@@ -39,6 +39,19 @@ li {
     list-style: none;
 }
 
+.destaque {
+    width: 160%;
+    height: 60px;
+    margin-left: 14%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px 0px 0px 50px;
+    border: solid #4EABE9;
+    border-right: none;
+    background-color: #1a1a1a;
+}
+
 .text-geral {
     font-size: 19pt;
 }

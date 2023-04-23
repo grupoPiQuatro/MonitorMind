@@ -2,6 +2,10 @@ body {
     color: white;
 }
 
+.destaque {
+    margin-left: 11%;
+}
+
 .right-side-window {
     display: flex;
     justify-content: center;
