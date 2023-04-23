@@ -132,3 +132,8 @@ function trocarTema() {
         temaClaro = true;
     }
 }
+
+
+function legenda_box(){
+    
+}

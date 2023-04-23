@@ -81,7 +81,7 @@ body {
     margin: 0px 5px;
 }
 
-.right-side-window .caixa .conteudo-caixa .content-topo .itens-topo .adicionar-botao {
+.right-side-window .caixa .conteudo-caixa .content-topo .itens-topo .adicionar-botao, .botao {
     padding: 5px 15px;
     font-size: 15pt;
     border-radius: 5px;
@@ -114,11 +114,17 @@ body {
 
 .linha-tabela {
     /* border: red solid; */
+    height: 40px;
     width: 100%;
     display: flex;
     margin-top: 7px;
     background-color: #fff;
     color: black;
+    border-radius: 3px;
+}
+
+.linha-tabela img {
+    width: 30px;
 }
 
 .info-item {
@@ -136,4 +142,117 @@ body {
 
 .tools img {
     cursor: pointer;
+}
+
+/* Modal */
+#edit_tipo {
+    font-size: 18pt;
+}
+
+.modal {
+    height: 100vh;
+    width: 100vw;
+    display: none;
+    background-color: #0000006b;
+    z-index: 100;
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 0 auto;
+}
+
+.modal .caixa {
+    margin-left: 40%;
+    margin-top: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal .adicionar {
+    margin-top: 5%;
+    height: 700px;
+    width: 500px;
+}
+
+.modal .adicionar .form {
+    height: 70%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.modal .adicionar .form .formulario{
+    height: 16%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.modal .adicionar .form .formulario #add_tipo {
+    font-size: 17pt;
+}
+
+.modal .adicionar .form .formulario input {
+    height: 20px;
+    padding: 5px;
+    font-size: 17pt;
+}
+
+.confirmacao_adicionar_usuario {
+    width: 60%;
+    height: 10%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.modal .deletar {
+    width: 500px;
+    height: 400px;
+}
+
+.modal .caixa .aviso-alerta-modal {
+    height: 60%;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+}
+
+.modal .caixa .confirmacao-alerta-modal {
+    width: 60%;
+    height: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.modal .caixa div img {
+    width: 150px;
+}
+
+.modal .editar {
+    margin-top: 5%;
+    height: 500px;
+    width: 500px;
+}
+
+.modal .editar .form {
+    height: 70%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.modal .editar .form .formulario{
+    height: 23%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
