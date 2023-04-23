@@ -36,8 +36,7 @@
         <div class="container">
 
             <nav>
-                <li><img src="../../assets/icon-lua.png" class="icone-tema" id="tema" style="display: none;"></li>
-                <li><img src="../assets/home/logoEscura.png" class="logo" id="logoImagem"></li>
+                
             </nav>
 
             <div class="kpi-dados caixa" id="caixa2">
@@ -48,9 +47,9 @@
                         <div class="text-geral" id="text-geral2">Computadores sendo monitorados: <span id="maquinas_monitoradas_agora">0</span>/<span class="maquinas_monitoradas_total">0</span></div>
                     </div>
 
-                    <div class="legenda text-geral" id="text-geral3">
-                        <span id="text-geral4">Legenda</span><button onclick="legenda_box() "><img src="../assets/home/simbolo-de-informacao.png"></button>
-                    </div>
+                    <!-- <div class="legenda text-geral" id="text-geral3">
+                        <span id="text-geral4" onclick="legenda_box()">Legenda</span><button onclick="legenda_box() "><img src="../assets/home/simbolo-de-informacao-branco.png"></button>
+                    </div> -->
 
                 </div>
                 
@@ -121,19 +120,25 @@
 
                 <div class="box-analise caixa" id="caixa3">
                     <span class="text-geral" id="text-geral9">Computadores sem retorno</span>
-                    <img class="icone-alerta" id="icone-pc" src="../assets/home/trabalho-em-progresso.png">
+                    <img class="icone-alerta" id="icone-pc" src="../assets/home/trabalho-em-progresso-branco.png">
                     <span id="vka2" class="valores-kpi-alerta">0</span>
                 </div>
 
                 <div class="box-analise caixa" id="caixa4">
                     <span class="text-geral" id="text-geral10">Computadores com 2+ alertas vermelhos</span>
-                    <img class="icone-alerta" id="icone-alerta" src="../assets/home/alerta.png">
+                    <img class="icone-alerta" id="icone-alerta" src="../assets/home/alerta-branco.png">
                     <span id="vka1" class="valores-kpi-alerta">0</span>
                 </div>
 
                 <div class="box-analise caixa" id="caixa5">
                     <span class="text-geral" id="text-geral11">Grafico aqui</span>
                 </div>
+
+            </div>
+        </div>
+
+        <div id="modal_legenda_capturas" class="modal">
+            <div class="caixa captura">
 
             </div>
         </div>

@@ -120,6 +120,7 @@ body {
     margin-top: 7px;
     background-color: #fff;
     color: black;
+    border-radius: 3px;
 }
 
 .linha-tabela img {
