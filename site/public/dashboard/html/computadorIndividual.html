@@ -8,7 +8,6 @@
     <title>PCindividual</title>
     <link rel="stylesheet" href="../css/geral.css">
     <link rel="stylesheet" href="../css/computadorIndividual.css">
-    <script src="../js/computadores.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
@@ -23,7 +22,7 @@
 
             <div class="nav-itens">
                 <div><a href="home.html"><span class="text-geral" id="text-geral13">Visão geral</span></a></div>
-                <div><a href="computadores.html"><span style="color: #4eabe9" class="text-geral"
+                <div class="destaque"><a href="computadores.html"><span style="color: #4eabe9" class="text-geral"
                             id="text-geral14">Computadores</span></a></div>
                 <div><a href="usuarios.html"><span class="text-geral" id="text-geral15">Usuários</span></a></div>
                 <div><a href="analytcs.html"><span class="text-geral" id="text-geral16">Analytics</span></a></div>
@@ -60,60 +59,92 @@
                         <span class="text-geral" id="text-geral14">TIPO DISCO: SSD</span>
                     </div>
 
-
+                    <div class="contentTitleImg">
+                        <img src="../assets/home/logoClara.png" alt="">
+                    </div>
                 </div>
             </div>
 
             <div class="graficos">
                 <div class="boxGraficos">
 
-                    <div class="graficBox">
-                        <div class="titleChart">
-                            <h3>Latência da internet durantes os últimos 30 minutos</h3>
+                    <div class="boxLegendaGrafico">
+                        <div class="graficBox">
+                            <div class="titleChart">
+                                <h3>Latência da internet durantes os últimos 30 minutos</h3>
+                            </div>
+                            <div class="graficoSolo">
+                                <canvas id="redeChart"></canvas>
+                            </div>
                         </div>
-                        <div class="graficoSolo">
-                            <canvas id="redeChart"></canvas>
+
+                        <div class="fundoLegenda">
+                            <img src="../assets/dashboard/vermelho.png" alt="">
                         </div>
                     </div>
 
-                    <div class="graficBox">
-                        <div class="titleChart">
-                            <h3>Uso (%) da memória RAM durante os últimos 30 minutos</h3>
+                    <div class="boxLegendaGrafico2">
+
+                        <div class="fundoLegenda2">
+                            <img src="../assets/dashboard/verde.png" alt="">
                         </div>
-                        <div class="graficoSolo">
-                            <canvas id="ramChart"></canvas>
+                        <div class="graficBox">
+                            <div class="titleChart">
+                                <h3>Uso (%) da memória RAM durante os últimos 30 minutos</h3>
+                            </div>
+                            <div class="graficoSolo">
+                                <canvas id="ramChart"></canvas>
+                            </div>
+
                         </div>
 
+
+                        
+
                     </div>
+
                 </div>
 
                 <div class="boxGraficos">
-                    <div class="graficBox">
-                        <div class="titleChart">
-                            <h3>Uso (%) da CPU durante os últimos 30 minutos</h3>
-                        </div>
-                        <div class="graficoSolo">
-                            <canvas id="cpuChart"></canvas>
-                        </div>
-                    </div>
-                    <div class="graficBox">
-                        <div class="titleChart">
-                            <h3>Uso do disco</h3>
-                        </div>
-                        <div class="graficoRosca">
-                            <div class="porcenRosca">
-                                <h3>78%</h3>
-                                <p>de uso</p>
+                    <div class="boxLegendaGrafico">
+                        <div class="graficBox">
+                            <div class="titleChart">
+                                <h3>Uso (%) da CPU durante os últimos 30 minutos</h3>
                             </div>
-
-                            <div class="graficoSolo roscaGrafic">
-                                <canvas id="discoChart"></canvas>
+                            <div class="graficoSolo">
+                                <canvas id="cpuChart"></canvas>
                             </div>
                         </div>
 
+                        <div class="fundoLegenda">
+                            <img src="../assets/dashboard/verde.png" alt="">
+                        </div>
+                    </div>
 
+                    <div class="boxLegendaGrafico2">
+
+                        <div class="fundoLegenda2">
+                            <img src="../assets/dashboard/amarelo.png" alt="">
+                        </div>
+                        <div class="graficBox">
+                            <div class="titleChart">
+                                <h3>Uso do disco</h3>
+                            </div>
+                            <div class="graficoRosca">
+                                <div class="porcenRosca">
+                                    <h3>78%</h3>
+                                    <p>de uso</p>
+                                </div>
+
+                                <div class="graficoSolo roscaGrafic">
+                                    <canvas id="discoChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
+
+
                 </div>
             </div>
 
