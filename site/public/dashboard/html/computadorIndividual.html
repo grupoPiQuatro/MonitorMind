@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PCindividual</title>
     <link rel="stylesheet" href="../css/geral.css">
-    <link rel="stylesheet" href="../css/computadores.css">
     <link rel="stylesheet" href="../css/computadorIndividual.css">
     <script src="../js/computadores.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
     <section class="left-side-window" id="caixa1">
         <div class="container">
@@ -34,46 +36,93 @@
 
     </section>
     <section class="right-side-window">
-        <div class="container" id="PcInd">
+        <div class="container PcInd">
+
             <div class="pc-info">
-                <div class="title1">
-                    <span style="color: white" class="text-geral"
-                            id="text-geral14">IDENTIFICADOR:</span>
+                <div class="title">
+                    <div class="contentTitle">
+                        <span class="text-geral" id="text-geral14">IDENTIFICADOR: PE34343433</span>
 
-                    <span style="color: white" class="text-geral"
-                            id="text-geral14">Setor:</span>        
+                        <span class="text-geral" id="text-geral14">CPU: I5-10400F</span>
+                    </div>
+
+
+                    <div class="contentTitle">
+                        <span class="text-geral" id="text-geral14">Setor: A</span>
+
+                        <span class="text-geral" id="text-geral14">RAM: 8gb</span>
+                    </div>
+
+
+                    <div class="contentTitle">
+                        <span class="text-geral" id="text-geral14">Tempo atividade: 01:09:23:20</span>
+
+                        <span class="text-geral" id="text-geral14">TIPO DISCO: SSD</span>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="graficos">
+                <div class="boxGraficos">
+
+                    <div class="graficBox">
+                        <div class="titleChart">
+                            <h3>Latência da internet durantes os últimos 30 minutos</h3>
+                        </div>
+                        <div class="graficoSolo">
+                            <canvas id="redeChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="graficBox">
+                        <div class="titleChart">
+                            <h3>Uso (%) da memória RAM durante os últimos 30 minutos</h3>
+                        </div>
+                        <div class="graficoSolo">
+                            <canvas id="ramChart"></canvas>
+                        </div>
+
+                    </div>
                 </div>
 
-                <div class="title2">
-                    <span style="color: white" class="text-geral"
-                            id="text-geral14">REDE:</span>
+                <div class="boxGraficos">
+                    <div class="graficBox">
+                        <div class="titleChart">
+                            <h3>Uso (%) da CPU durante os últimos 30 minutos</h3>
+                        </div>
+                        <div class="graficoSolo">
+                            <canvas id="cpuChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="graficBox">
+                        <div class="titleChart">
+                            <h3>Uso do disco</h3>
+                        </div>
+                        <div class="graficoRosca">
+                            <div class="porcenRosca">
+                                <h3>78%</h3>
+                                <p>de uso</p>
+                            </div>
 
-                    <span style="color: white" class="text-geral"
-                            id="text-geral14">RAM:</span> 
+                            <div class="graficoSolo roscaGrafic">
+                                <canvas id="discoChart"></canvas>
+                            </div>
+                        </div>
 
-                    <span style="color: white" class="text-geral"
-                            id="text-geral14">TIPO  UNIDADE MEMORIA</span>   
+
+
+                    </div>
                 </div>
             </div>
-            <div class="grafics">
-            <div class="grafics1">
-                <div class="grafico1"></div>
-                <div class="grafico2"></div>
-            </div>
-            <div class="grafics2">
-                <div class="grafico3"></div>
-                <div class="grafico4"></div>
-            </div>
 
-
-            </div>
         </div>
 
 
 
-
-
-        </div>  
     </section>
 </body>
+
 </html>
+<script src="../js/computadorIndiv.js"></script>

@@ -1,74 +1,117 @@
-#PcInd{
-    background-color: #2C2B2B;
-    
+body {
+    color: white;
+    background-color: white;
 }
-.pc-info{
-    margin: auto;
-    width: 98%;
-    height: 16%;
-    display: flex;
-    flex-direction: column;
-    background-color: #1a1a1a;
-}
-.title1{
-    margin-top: 1vh;
-    width: 60%;
-    margin-left: 3%;
-    justify-content:space-between;
-    display: flex;
-}
-.title2{
-    margin-top: 1%;
-    width: 95%;
-    margin-left: 3%;
-    justify-content:space-between;
-    display: flex;
-}
-.grafics{
-    width: 98%;
-    height: 77%;
-    display: flex;
-    flex-direction: column;
 
-    margin: auto;
+.left-side-window {
+    /* background-color: #4EABE9; */
 }
-.grafics1{
-    margin: auto;
-    width: 100%;
-    height: 100%;
+
+.right-side-window {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.PcInd{
+    height: 95vh;
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pc-info{
+    color: white;
+    width: 98%;
+    height: 11vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background-color: #4EABE9;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;}
+
+.title {
+    margin-left: 30px;
+    height: 8vh;
+    width: 50vw;
     display: flex;
     justify-content: space-between;
-    
+    align-items: center;
 }
-.grafics2{
-    margin: auto;
-    width: 100%;
-    height: 100%;
+
+.contentTitle {
+    height: 90%;
     display: flex;
-    
-      
+    flex-direction: column;
+    justify-content: space-between;
 }
-.grafico1{
-    margin: auto;
-    width: 48%;
-    height: 90%;
-    background-color: #1a1a1a;
+
+.contentTitle span {
+    font-size: 1.2rem;
 }
-.grafico2{
-    margin: auto;
-    width: 48%;
-    height: 90%;
-    background-color: #1a1a1a;
+
+
+.graficos {
+    height: 78vh;
+    width: 98%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
-.grafico3{
-    margin: auto;
-    width: 48%;
-    height: 90%;
-    background-color: #1a1a1a;
+
+.boxGraficos {
+    display: flex;
+    justify-content: space-between;
 }
-.grafico4{
-    margin: auto;
-    width: 48%;
-    height: 90%;
-    background-color: #1a1a1a;
+
+.graficBox {
+    /* background-color: #2C2B2B; */
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;    
+    height: 37vh;
+    width: 32vw;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.titleChart {
+    color: black;
+    width: 30vw;
+}
+
+.graficoRosca {
+    display: flex;
+    align-items: center;
+    font-size: 3rem;
+}
+
+.graficoSolo {
+    display: flex;
+    justify-content: center;
+    height: 15vw;
+    width: 60vh;
+}
+
+.roscaGrafic {
+    width: 20vw;
+}
+
+.porcenRosca {
+    height: 15vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    font-size: 4rem;
+    color: black;
+}
+
+.porcenRosca p {
+    font-size: 3.2rem;
 }

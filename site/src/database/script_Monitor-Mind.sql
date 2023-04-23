@@ -14,7 +14,7 @@ nomeUsuario varchar (45),
 email varchar (45),
 senha varchar (45),
 tipo varchar(6),
-constraint ctTipo check (tipo in ('Admin', 'Normal')),
+constraint ctTipo check (tipo in ('Owner', 'Admin', 'Normal')),
 fkEmpresa int, 
 constraint ctFkEmpresaUser foreign key (fkEmpresa) references Empresa (idEmpresa),
 primary key (idUsuario, fkEmpresa)
@@ -31,15 +31,20 @@ primary key (idEndereco, fkEmpresa)
 
 create table Localizacao (
 idLocalizacao int primary key auto_increment,
-setor varchar(45),
-andar varchar(45)
+setor varchar(45)
+);
+
+create table tipoComponente (
+idTipoComponente int primary key auto_increment,
+nome varchar(45)
 );
 
 create table Componente (
 idComponente int primary key auto_increment,
-tipo varchar(45),
 numeroChave double,
-unidadeMedida varchar(45)
+unidadeMedida varchar(45),
+fkTipo int,
+foreign key (fkTipo) references tipoComponente (idTipoComponente)
 );
 
 create table Computador (
@@ -58,6 +63,7 @@ select * from Endereco;
 select * from Usuario where email = '123' and senha = '123';
 select * from Computador;
 select * from Componente;
+select * from tipoComponente;
 select * from Localizacao;
 
 truncate empresa;
@@ -67,10 +73,16 @@ truncate computador;
 truncate componente;
 truncate Localizacao;
 
+drop table componente;
+drop table tipoComponente;
 drop table computador;
 drop table localizacao;
 
-INSERT INTO Usuario (nomeUsuario, email, senha, tipo, fkEmpresa) VALUES ('Nathan David','123', '123', 'Owner', 1);
 INSERT INTO Empresa (nomeEmpresa, cnpj, telefone) values ('Contax', '12345678901234', '1187878787');
+INSERT INTO Usuario (nomeUsuario, email, senha, tipo, fkEmpresa) VALUES ('Nathan David','123', '123', 'Owner', 1);
 INSERT INTO Endereco (cep, numero, fkEmpresa) VALUES ('05163020', '8', 1);
-INSERT INTO Componente (tipo, numeroChave, unidadeMedida) values ('rede', null, 'ms');
+INSERT INTO tipoComponente (nome) values ('rede');
+INSERT INTO tipoComponente (nome) values ('ram');
+INSERT INTO tipoComponente (nome) values ('cpu');
+INSERT INTO tipoComponente (nome) values ('ssd');
+INSERT INTO tipoComponente (nome) values ('hd');
