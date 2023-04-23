@@ -40,16 +40,15 @@ li {
 }
 
 .destaque {
-    width: 160%;
-    height: 60px;
-    margin-left: 14%;
+    width: 123%;
+    height: 50px;
+    margin: -32px 0px 0px 14%;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 50px 0px 0px 50px;
-    border: solid #4EABE9;
     border-right: none;
-    background-color: #1a1a1a;
+    background-color: #FFF;
 }
 
 .text-geral {
@@ -109,6 +108,10 @@ li {
     align-items: center;
     font-weight: 600;
     /* width: 125%; Isso vai ser util caso tenha o efeito de borda arredondada quando selecionado*/
+}
+
+.left-side-window .container .nav-itens div {
+    height: 60px;
 }
 
 .left-side-window .container .user-info img{
