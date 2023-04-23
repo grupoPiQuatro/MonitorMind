@@ -4,7 +4,7 @@ body {
 }
 
 .left-side-window {
-    background-color: #4EABE9;
+    /* background-color: #4EABE9; */
 }
 
 .right-side-window {
@@ -31,12 +31,14 @@ body {
     justify-content: space-evenly;
     background-color: #4EABE9;
     border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;}
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    background-color: #2C2B2B;
+}
 
 .title {
     margin-left: 30px;
     height: 8vh;
-    width: 50vw;
+    width: 95%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -47,6 +49,10 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+.contentTitleImg img{
+    width: 130px;
 }
 
 .contentTitle span {
@@ -68,6 +74,45 @@ body {
     justify-content: space-between;
 }
 
+.boxLegendaGrafico {
+    display: flex;
+    width: 36vw;
+}
+
+.boxLegendaGrafico2 {
+    display: flex;
+    justify-content: end;
+    width: 36vw;
+}
+
+.fundoLegenda {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 100;
+    right: 50px;
+    bottom: 25px;
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    background-color: #4EABE9;
+}
+
+.fundoLegenda2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 100;
+    left: 50px;
+    bottom: 25px;
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    background-color: #4EABE9;
+}
+
 .graficBox {
     /* background-color: #2C2B2B; */
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;    
@@ -82,7 +127,7 @@ body {
 
 .titleChart {
     color: black;
-    width: 30vw;
+    width: 26vw;
 }
 
 .graficoRosca {
