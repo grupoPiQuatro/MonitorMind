@@ -4,7 +4,9 @@ body {
 }
 
 .left-side-window {
-    /* background-color: #4EABE9; */
+    /* background-color: #16527b;      */
+    background-color: #2C2B2B;   
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 
 .right-side-window {
@@ -29,10 +31,10 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    background-color: #4EABE9;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
     background-color: #2C2B2B;
+    /* background-color: #16527b; */
 }
 
 .title {
@@ -97,6 +99,7 @@ body {
     width: 70px;
     border-radius: 50%;
     background-color: #4EABE9;
+    /* background-color: #2C2B2B; */
 }
 
 .fundoLegenda2 {
@@ -111,6 +114,7 @@ body {
     width: 70px;
     border-radius: 50%;
     background-color: #4EABE9;
+    /* background-color: #2C2B2B; */
 }
 
 .graficBox {
