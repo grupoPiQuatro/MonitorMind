@@ -9,63 +9,105 @@
     <link rel="stylesheet" href="../css/geral.css">
     <link rel="stylesheet" href="../css/analytics.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://kit.fontawesome.com/c06dcecf1f.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <section class="left-side-window" id="caixa1">
-        <div class="container">
+    <section class="left-side-window">
 
-            <div class="user-info">
-                <span id="nome_empresa" class="text-geral">Monitor mind</span><img
-                    src="../assets/home/imagem-do-usuario-com-fundo-preto.png">
-            </div>
-
-            <div class="nav-itens">
-                <div><a href="home.html"><span class="text-geral" id="text-geral13">Visão geral</span></a></div>
-                <div><a href="computadores.html"><span class="text-geral"
-                            id="text-geral14">Computadores</span></a></div>
-                <div><a href="usuarios.html"><span class="text-geral" id="text-geral15">Usuários</span></a></div>
-                <div class="destaque"><a href="analytcs.html"><span class="text-geral" id="text-geral16" style="color: #4eabe9">Analytics</span></a></div>
-            </div>
-
-            <div class="sair-button">
-                <a href="../../index.html"><span class="text-geral" id="text-geral1">SAIR</span></a>
-            </div>
+        <div class="side-nav">
+            <a href="#" class="logo">
+                <img src="../assets/home/logoClara.png" alt="" class="logo-img">
+            </a>
+            <ul class="nav-links">
+                <li><a href="home.html"><i class="fa-solid fa-house-user"></i><p>Visão Geral</p></a></li>
+                <li><a href="computadores.html"><i class="fa-solid fa-desktop"></i><p>Computadores</p></a></li>
+                <li><a href="usuarios.html"><i class="fa-solid fa-users"></i><p>Usuários</p></a></li>
+                <li><a href="analytics.html"><i class="fa-sharp fa-solid fa-chart-column"></i><p>Analytics</p></a></li>
+                <li><a href="../../index.html"><i class="fa-solid fa-arrow-right-from-bracket"></i><p>Sair</p></a></li>
+                <div class="active"></div>
+            </ul>
         </div>
 
     </section>
 
     <section class="right-side-window">
+
+        
+
         <div class="container-analytics">
-            
+
             <div class="topGrafics">
-                
+
                 <div class="boxKpi">
                     <div class="topKpi">
                         <div class="kpi">
-
+                            <div class="kpiContentTop">
+                                <img src="../assets/analytics/sem-wi-fi.png" alt="">
+                                <p>Máquinas que ficaram sem resposta de ping por mais de 5 minutos no dia</p>
+                            </div>
+                            <div class="kpiContentPorcen">
+                                <p>7%</p>
+                            </div>
+                            <div class="kpiContentTime">
+                                <p>Por 5 minutos</p>
+                            </div>
                         </div>
 
                         <div class="kpi">
+                            <div class="kpiContentTop">
+                                <img src="../assets/analytics/reiniciar.png" alt="">
+                                <p>Máquinas que reiniciaram mais de umas vez</p>
+                            </div>
 
+                            <div class="kpiContentPorcen">
+                                <p>5%</p>
+                            </div>
+                            <div class="kpiContentTime">
+                                <p>Últimos 7 dias</p>
+                            </div>
 
                         </div>
                     </div>
 
                     <div class="bottomKpi">
                         <div class="kpi">
+                            <div class="kpiContentTop">
+                                <img src="../assets/analytics/cpu.png" alt="">
+                                <p>Máquinas que ficaram com o uso médio diário acima de 80%s</p>
+                            </div>
 
+                            <div class="kpiContentPorcen">
+                                <p>10%</p>
+                            </div>
+                            <div class="kpiContentTime">
+                                <p>2 dias consecutivos</p>
+                            </div>
+                            
                         </div>
 
                         <div class="kpi">
+                            <div class="kpiContentTop">
+                                <img src="../assets/analytics/disco-rigido.png" alt="">
+                                <p>Máquinas que que estão com risco de preenchimento total de disco</p>
+                            </div>
 
+                            <div class="kpiContentPorcen">
+                                <p>20%</p>
+                            </div>
+                            <div class="kpiContentTime">
+                                <p> Próximos 7 dias</p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="lineGrafic">
+                    <div class="graficTitle">
+                        <h3>Percentual de computadores que foram reiniciados por dia, nos últimos 7 dias:</h3>
+                    </div>
                     <div class="lineContainer">
-
+                        <canvas id="lineChart"></canvas>
                     </div>
                 </div>
 
@@ -75,14 +117,20 @@
 
             <div class="bottomGrafics">
                 <div class="barGrafic">
+                    <div class="graficTitle">
+                        <h3>Quantidade de computadores que mais deram problemas nos últimos 30 dias por setor</h3>
+                    </div>
                     <div class="barContainer">
-
+                        <canvas id="barChart"></canvas>
                     </div>
                 </div>
 
                 <div class="pieGrafic">
+                    <div class="graficTitle">
+                        <h3>Porcentagem de tempo que as máquinas ficaram em cada status nos últimos 30 dias</h3>
+                    </div>
                     <div class="pieContainer">
-
+                        <canvas id="pieChart"></canvas>
                     </div>
                 </div>
             </div>
@@ -93,3 +141,5 @@
 </body>
 
 </html>
+
+<script src="../js/analytics.js"></script>
