@@ -170,12 +170,12 @@ function generateTable(data) {
 }
 
 var data = [
-{ id: 1, usuario: "Lucas", email: "lucas@email", tipo: "comum" },
-{ id: 2, usuario: "Nathan", email: "nathan@email", tipo: "admin" },
-{ id: 3, usuario: "Emille", email: "emille@email", tipo: "comum" },
-{ id: 4, usuario: "Andres", email: "Andres@email", tipo: "comum" },
-{ id: 5, usuario: "Tarciso", email: "Tarciso@email", tipo: "admin" },
-{ id: 5, usuario: "Carlos", email: "Carlos@email", tipo: "comum" },
+{ id: 1, usuario: "Lucas", email: "lucas@email", tipo: "Comum" },
+{ id: 2, usuario: "Nathan", email: "nathan@email", tipo: "Admin" },
+{ id: 3, usuario: "Emille", email: "emille@email", tipo: "Comum" },
+{ id: 4, usuario: "Andres", email: "Andres@email", tipo: "Comum" },
+{ id: 5, usuario: "Tarciso", email: "Tarciso@email", tipo: "Admin" },
+{ id: 5, usuario: "Carlos", email: "Carlos@email", tipo: "Comum" },
 ];
 
 generateTable(data);
