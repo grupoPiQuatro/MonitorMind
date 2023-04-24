@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerenciar</title>
     <link rel="stylesheet" href="../css/geral.css">
+    <link rel="stylesheet" href="../css/computadoresGerenciar.css">
 </head>
 <body>
     <section class="left-side-window" id="caixa1">
@@ -32,7 +33,139 @@
     </section>
 
     <section class="right-side-window">
-        Content
+        <div class="container">
+            <nav>
+                <li><img src="../../assets/icon-lua.png" class="icone-tema" id="tema" style="display: none;"></li>
+                <li><img class="logo" src="../assets/home/logoClara.png" alt="logo-mm"></li>
+            </nav>
+    
+            <div class="corpo">
+                <div class="caixa">
+                    <div class="conteudo-caixa">
+                        <div class="content-topo">
+                            <span>Gerenciar computadores</span>
+                            <div class="itens-topo">
+                                <div>
+                                    <input type="text" id="busca" onchange="buscar_usuario()" >
+                                    <button class="busca-botao" onclick="buscar_usuario()"><img class="pesquisa_imagem" src="../assets/usuarios/lupa-branca.png"></button>
+                                </div>
+                                <div>
+                                    <button class="adicionar-botao" onclick="adicionar_usuario()">adicionar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="content-corpo">
+                            <div class="infos-topo-tabela">
+                                    <div class="info-item">SERIAL</div>
+                                    <div class="info-item">SETOR</div>
+                                    <div class="info-item">STATUS</div>
+                                    <div class="info-item">TIPO ARMAZENAMENTO</div>
+                                    <div class="info-item tools"></div>
+                            </div>
+                            <div id="tabela-computadores">
+                            </div>
+
+                        </div>
+    
+                    </div>
+                </div>
+            </div>
+
+            <div id="modal_user" class="modal">
+                <div class="caixa adicionar">
+                    <div class="form">
+                        <div class="formulario">
+                            <label>Setor:</label>
+                            <input id="add_setor">
+                        </div>
+    
+                        <div class="formulario">
+                            <label>Status:</label>
+                            <input id="add_status">
+                        </div>
+    
+                        <div class="formulario">
+                            <label class="tipo">Tipo armazenamento:</label>
+                            <select id="add_tipo">
+                                <option value="">-select-</option>
+                                <option value="SSD">SSD</option>
+                                <option value="HD">HD</option>
+                            </select>
+                        </div>
+    
+                        <!-- <div class="formulario">
+                            <label class="senha">Senha:</label>
+                            <input id="add_senha">
+                        </div>
+    
+                        <div class="formulario">
+                            <label class="confirma-senha">Confirmação de senha</label>
+                            <input id="add_confirma-senha">
+                        </div> -->
+                    </div>
+
+                    <div class="confirmacao_adicionar_usuario">
+                        <button class="botao" onclick="sair_adicionar_usuario()">Cancelar</button>
+                        <button class="botao" onclick="confirmar_adicionar_usuario()">Confirmar</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="modal_editar_user" class="modal">
+                <div class="caixa editar adicionar">
+                    <div class="form">
+                        <div class="formulario">
+                            <label class="usuario">Setor:</label>
+                            <input id="edit_usuario">
+                        </div>
+    
+                        <div class="formulario">
+                            <label class="email">Status:</label>
+                            <input id="edit_email">
+                        </div>
+    
+                        <div class="formulario">
+                            <label class="tipo">Tipo de memoria:</label>
+                            <select id="edit_tipo">
+                                <option value="">-select-</option>
+                                <option value="SSD">SSD</option>
+                                <option value="HD">HD</option>
+                            </select>
+                        </div>
+<!--     
+                        <div class="formulario">
+                            <label class="senha">Senha:</label>
+                            <input id="edit_senha">
+                        </div>
+    
+                        <div class="formulario">
+                            <label class="confirma-senha">Confirmação de senha</label>
+                            <input id="edit_confirma-senha">
+                        </div> -->
+                    </div>
+
+                    <div class="confirmacao_adicionar_usuario">
+                        <button class="botao" onclick="sair_editar_usuario()">Cancelar</button>
+                        <button class="botao" onclick="confirmar_editar_usuario()">Confirmar</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="modal_delete" class="modal">
+                <div class="caixa deletar">
+                    <div class="aviso-alerta-modal">
+                        <img src="../assets/usuarios/alert.png">
+                        <span>Remover uma máquina é uma ação permanente, deseja continuar?</span>
+                    </div>
+                    <div class="confirmacao-alerta-modal">
+                        <button class="botao" onclick="sair_deletar()">Cancelar</button>
+                        <button class="botao" style="background-color: rgb(218, 40, 40);" onclick="confirmar_deletar_usuario()">Confirmar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 </body>
 </html>
+<script src="../js/computadores_gerenciar.js"></script>
