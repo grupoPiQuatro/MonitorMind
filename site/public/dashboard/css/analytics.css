@@ -1,0 +1,80 @@
+.right-side-window {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+.container-analytics {
+    height: 92vh;
+    width: 84vw;
+    border: solid 1px red;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.topGrafics {
+    height: 44vh;
+    width: 84vw;
+    border: solid 1px blueviolet;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.boxKpi {
+    height: 44vh;
+    width: 42vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.topKpi {
+    height: 21vh;
+    width: 42vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bottomKpi {
+    height: 21vh;
+    width: 42vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.kpi {
+    border: solid 1px black;
+    height: 100%;
+    width: 20vw;
+}
+
+.lineGrafic {
+    border: solid 1px red;
+    height: 44vh;
+    width: 39vw;
+}
+
+.bottomGrafics {
+    border: solid 1px green;
+    height: 44vh;
+    width: 84vw;
+    display: flex;
+    justify-content: space-between;
+}
+
+.barGrafic {
+    border: solid 1px black;
+    height: 44vh;
+    width: 42vw;
+}
+
+.pieGrafic {
+    border: solid 1px black;
+    height: 44vh;
+    width: 39vw;
+}
