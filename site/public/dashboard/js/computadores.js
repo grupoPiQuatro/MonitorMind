@@ -14,6 +14,10 @@ for (let i = 0; i < quantidadeDivs; i++) {
   const novaDiv = document.createElement('div');
   novaDiv.classList.add('pcIndiv');
 
+  novaDiv.addEventListener('click', function() {
+    pcIndiv_window();
+  });
+
   // Cria a primeira div filha com a classe "box"
   const divBox = document.createElement('div');
   divBox.classList.add('box');
@@ -78,5 +82,9 @@ for (let i = 0; i < quantidadeDivs; i++) {
 }
 
 function gerenciar_window(){
-  window.location = "../html/computadores_gerenciar.html"
+  window.location = "../html/computadores_gerenciar.html";
+}
+
+function pcIndiv_window() {
+  window.location = "../html/computadorIndividual.html";
 }
