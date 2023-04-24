@@ -133,7 +133,24 @@ function trocarTema() {
     }
 }
 
+const disco = document.getElementById('grafico');
 
-function legenda_box(){
-    
-}
+new Chart(disco, {
+    type: 'doughnut',
+    data: {
+        labels: ['Operando', 'Inativo', 'Manutenção'],
+        datasets: [{
+            label: '# of Votes',
+            data: [80, 15, 5],
+            borderWidth: 2,
+            cutout: '50%',
+        }]
+    },
+    options: {
+        cutoutPercentage: 70,
+        legend: {
+            position: 'bottom',
+        }
+    }
+});
+

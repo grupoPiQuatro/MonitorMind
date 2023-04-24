@@ -133,5 +133,18 @@ new Chart(disco, {
     }
 });
 
+function modal1() {
 
+}
 
+function modal2() {
+
+}
+
+function modal3() {
+
+}
+
+function modal4() {
+
+}
