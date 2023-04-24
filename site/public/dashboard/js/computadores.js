@@ -76,3 +76,7 @@ for (let i = 0; i < quantidadeDivs; i++) {
   pai.appendChild(novaDiv);
 }
 }
+
+function gerenciar_window(){
+  window.location = "../html/computadores_gerenciar.html"
+}

@@ -1,0 +1,263 @@
+body {
+    color: white;
+}
+
+.right-side-window {
+    font-size: 22pt;
+}
+
+.right-side-window .container{
+    height: 100%;
+}
+
+.right-side-window nav {
+    /* border: solid red 3px; */
+    /* padding: 3px 0px; */
+    width: 100%;
+    height: 10%;
+}
+
+.right-side-window .corpo{
+    /* border: green 3px solid; */
+    width: 100%;
+    height: 90%;
+}
+
+.right-side-window .caixa{
+    /* border: green 3px solid; */
+    width: 100%;
+    height: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.right-side-window .caixa .conteudo-caixa{
+    /* border: pink solid; */
+    width: 95%;
+    height: 95%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.right-side-window .caixa .conteudo-caixa .content-topo {
+    /* border: red solid; */
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.right-side-window .caixa .conteudo-caixa .content-topo .itens-topo {
+    /* height: 50%; */
+    display: flex;
+    justify-content: space-between;
+}
+
+.right-side-window .caixa .conteudo-caixa .content-topo .itens-topo div:first-child {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 20%;
+}
+
+.right-side-window .caixa .conteudo-caixa .content-topo .itens-topo input {
+    height: 23px;
+    width: 75%;
+    font-size: 18pt;
+    padding: 2px;
+    border-radius: 5px;
+}
+
+.right-side-window .caixa .conteudo-caixa .content-topo .itens-topo button {
+    background-color: transparent;
+    border: none;
+}
+
+.right-side-window .caixa .conteudo-caixa .content-topo .itens-topo .pesquisa_imagem   {
+    width: 20px;
+    height: 20px;
+    margin: 0px 5px;
+}
+
+.right-side-window .caixa .conteudo-caixa .content-topo .itens-topo .adicionar-botao, .botao {
+    padding: 5px 15px;
+    font-size: 15pt;
+    border-radius: 5px;
+    background-color: #4EABE9;
+    color: white;
+    font-weight: 400;
+    border: none;
+}
+
+.right-side-window .caixa .conteudo-caixa .content-corpo {
+    font-size: 18pt;
+    /* border: red solid; */
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    margin-bottom: 2%;
+}
+
+.infos-topo-tabela {
+    /* border: green solid; */
+    background-color: #4EABE9;
+    padding: 20px 0px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    border-radius: 7px 7px 0px 0px;
+}
+
+.linha-tabela {
+    /* border: red solid; */
+    height: 40px;
+    width: 100%;
+    display: flex;
+    margin-top: 7px;
+    background-color: #fff;
+    color: black;
+    border-radius: 3px;
+}
+
+.linha-tabela img {
+    width: 30px;
+}
+
+.info-item {
+    /* border: red solid; */
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tools {
+    display: flex;
+    justify-content: space-around;
+}
+
+.tools img {
+    cursor: pointer;
+}
+
+/* Modal */
+#edit_tipo {
+    font-size: 18pt;
+}
+
+.modal {
+    height: 100vh;
+    width: 100vw;
+    display: none;
+    background-color: #0000006b;
+    z-index: 100;
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 0 auto;
+}
+
+.modal .caixa {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal .form {
+    height: 70%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.modal .form .formulario{
+    height: 16%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.modal .form .formulario #add_tipo {
+    font-size: 17pt;
+}
+
+.modal .form .formulario input {
+    height: 20px;
+    padding: 5px;
+    font-size: 17pt;
+}
+
+.confirmacao_adicionar_usuario {
+    width: 60%;
+    height: 10%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.modal .deletar {
+    width: 500px;
+    height: 400px;
+}
+
+.modal .caixa .aviso-alerta-modal {
+    height: 60%;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+}
+
+.modal .caixa .confirmacao-alerta-modal {
+    width: 60%;
+    height: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.modal .caixa div img {
+    width: 150px;
+}
+
+.modal .editar {
+    margin-top: 5%;
+    height: 500px;
+    width: 500px;
+}
+
+.modal .editar .form {
+    height: 70%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.modal .editar .form .formulario{
+    height: 23%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* ADICIONAR PC */
+.modal .adicionar {
+    margin: auto;
+    margin-top: 5%;
+    height: 700px;
+    width: 800px;
+}
+
+.modal .deletar {
+    margin-top: 10%;
+}
