@@ -7,8 +7,6 @@
     font-family: poppins, sans-serif;
 }
 
-/* SIDE BAR */
-
 .side-nav{
     width: 180px;
     height: 100%;
@@ -91,80 +89,4 @@
 
 .nav-links li:nth-child(5):hover ~ .active{
     top: 82.5%;
-}
-
-
-
-/* RIGHT BAR */
-
-a {
-    text-decoration: none;
-    font-weight: 400;
-    color: white;
-}
-
-body {
-    margin: 0;
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    background-color: #fff;
-}
-
-button {
-    cursor: pointer;
-}
-
-.caixa {
-    background-color: #2C2B2B;
-    border-radius: 20px;
-}
-
-.container {
-    margin: auto;
-    width: 90%;
-}
-
-li {
-    list-style: none;
-}
-
-.destaque {
-    width: 123%;
-    height: 50px;
-    margin: -32px 0px 0px 14%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50px 0px 0px 50px;
-    border-right: none;
-    background-color: #FFF;
-}
-
-.text-geral {
-    font-size: 19pt;
-}
-
-.right-side-window {
-    width: 88%;
-    height: 100vh;
-    background-color: #f6f6f9;
-}
-
-.right-side-window nav {
-    height: 10%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.right-side-window nav .logo {
-    width: 120px;
-    height: 70%;
-}
-
-.left-side-window {
-    width: 12%;
-    height: 100vh;
-    background-color: #2C2B2B;
 }

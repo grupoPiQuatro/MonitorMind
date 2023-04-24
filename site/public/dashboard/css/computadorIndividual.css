@@ -1,6 +1,5 @@
 body {
     color: white;
-    background-color: white;
 }
 
 .left-side-window {
@@ -118,7 +117,7 @@ body {
 }
 
 .graficBox {
-    /* background-color: #2C2B2B; */
+    background-color: #ffff;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;    
     height: 37vh;
     width: 32vw;

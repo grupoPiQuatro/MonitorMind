@@ -2,22 +2,31 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: white;
+    background-color: #f6f6f9;
 }
 
 .container-analytics {
     height: 92vh;
     width: 84vw;
-    border: solid 1px red;
+    /* border: solid 1px red; */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
+.graficTitle {
+    display: flex;
+    justify-content: center;
+}
+
+.graficTitle h3{
+    width: 95%;
+}
+
 .topGrafics {
     height: 44vh;
     width: 84vw;
-    border: solid 1px blueviolet;
+    /* border: solid 1px blueviolet; */
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -48,19 +57,75 @@
 }
 
 .kpi {
-    border: solid 1px black;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px; 
+    /* border: solid 1px black; */
     height: 100%;
     width: 20vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.kpi .kpiContentTop {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+}
+
+.kpi img {
+    width: 50px;
+}
+
+.kpi .kpiContentPorcen{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 95%;
+    font-size: 4rem;
+    font-weight: 500;
+}
+
+.kpi .kpiContentTime {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 95%;
+}
+
+.kpi .kpiContentTime p{
+    display: flex;
+    justify-content: flex-start;
+    margin-right: 40px;
+}
+
+.kpi p {
+    width: 16vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .lineGrafic {
-    border: solid 1px red;
+    background-color: white;
+    /* border: solid 1px red; */
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
     height: 44vh;
     width: 39vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.lineGrafic .lineContainer {
+    width: 650px;
 }
 
 .bottomGrafics {
-    border: solid 1px green;
+    /* border: solid 1px green; */
     height: 44vh;
     width: 84vw;
     display: flex;
@@ -68,13 +133,34 @@
 }
 
 .barGrafic {
-    border: solid 1px black;
+    background-color: white;
+    /* border: solid 1px black; */
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
     height: 44vh;
     width: 42vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
+.barGrafic .barContainer {
+    width: 650px;
+}
+
+
 .pieGrafic {
-    border: solid 1px black;
+    background-color: white;
+    /* border: solid 1px black; */
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
     height: 44vh;
     width: 39vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.pieGrafic .pieContainer {
+    width: 320px;
 }
