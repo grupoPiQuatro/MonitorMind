@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,18 +10,22 @@
     <link rel="stylesheet" href="../css/home.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
-    
+
     <section class="left-side-window" id="caixa1">
         <div class="container">
 
             <div class="user-info">
-                <span id="nome_empresa" class="text-geral">Monitor mind</span><img src="../assets/home/imagem-do-usuario-com-fundo-preto.png">
+                <span id="nome_empresa" class="text-geral">Monitor mind</span><img
+                    src="../assets/home/imagem-do-usuario-com-fundo-preto.png">
             </div>
 
             <div class="nav-itens">
-                <div class="destaque"><span class="text-geral" id="text-geral13" style="color: #4eabe9">Visão geral</span></div>
-                <div><a href="computadores.html"><span class="text-geral" id="text-geral14">Computadores</span></a></div>
+                <div class="destaque"><span class="text-geral" id="text-geral13" style="color: #4eabe9">Visão
+                        geral</span></div>
+                <div><a href="computadores.html"><span class="text-geral" id="text-geral14">Computadores</span></a>
+                </div>
                 <div><a href="usuarios.html"><span class="text-geral" id="text-geral15">Usuários</span></a></div>
                 <div><a href="analytcs.html"><span class="text-geral" id="text-geral16">Analytics</span></a></div>
             </div>
@@ -36,7 +41,15 @@
         <div class="container">
 
             <nav>
-                
+                <div class="caixa destaque_caixa">
+                    <span>Operando 0</span>
+                </div>
+                <div class="caixa destaque_caixa">
+                    
+                </div>
+                <div class="caixa destaque_caixa">
+                    
+                </div>
             </nav>
 
             <div class="kpi-dados caixa" id="caixa2">
@@ -44,7 +57,9 @@
 
                     <div class="titulos">
                         <div class="titulo" id="titulo">Componente em alerta por computador</div>
-                        <div class="text-geral" id="text-geral2">Computadores sendo monitorados: <span id="maquinas_monitoradas_agora">0</span>/<span class="maquinas_monitoradas_total">0</span></div>
+                        <!-- <div class="text-geral" id="text-geral2"><span
+                                id="maquinas_monitoradas_agora">0</span>/<span
+                                class="maquinas_monitoradas_total">0</span></div> -->
                     </div>
 
                     <!-- <div class="legenda text-geral" id="text-geral3">
@@ -52,66 +67,66 @@
                     </div> -->
 
                 </div>
-                
+
                 <div class="kpi-corpo">
                     <div class="kpi-dados-item">
+                        <span class="titulo" id="text-geral5">Rede</span>
 
-                        <div class="box" id="box">
+                        <div class="box primeiro" id="box">
                             <img class="icone" src="../assets/home/ethernet-vermelho.png">
                             <span id="rede_vermelho" class="valores-kpi-alerta">0</span>
                         </div>
-        
+
                         <div class="box" id="box">
                             <img class="icone" src="../assets/home/ethernet-amarelo.png">
                             <span id="rede_amarelo" class="valores-kpi">0</span>
                         </div>
 
-                        <span class="text-geral" id="text-geral5">Rede</span>
                     </div>
-        
-                    <div class="kpi-dados-item">
 
-                        <div class="box" id="box">
+                    <div class="kpi-dados-item">
+                        <span class="titulo" id="text-geral6">Disco</span>
+
+                        <div class="box primeiro" id="box">
                             <img class="icone" src="../assets/home/disco-rigido-vermelho.png">
                             <span id="disco_vermelho" class="valores-kpi-alerta">0</span>
                         </div>
-        
+
                         <div class="box" id="box">
                             <img class="icone" src="../assets/home/disco-rigido-amarelo.png">
                             <span id="disco_amarelo" class="valores-kpi">0</span>
                         </div>
 
-                        <span class="text-geral" id="text-geral6">Disco</span>
                     </div>
-        
-                    <div class="kpi-dados-item">
 
-                        <div class="box" id="box">
+                    <div class="kpi-dados-item">
+                        <span class="titulo" id="text-geral7">CPU</span>
+
+                        <div class="box primeiro" id="box">
                             <img class="icone" src="../assets/home/processador-vermelho.png">
                             <span id="cpu_vermelho" class="valores-kpi-alerta">0</span>
                         </div>
-        
+
                         <div class="box" id="box">
                             <img class="icone" src="../assets/home/processador-amarelo.png">
                             <span id="cpu_amarelo" class="valores-kpi">0</span>
                         </div>
 
-                        <span class="text-geral" id="text-geral7">CPU</span>
                     </div>
-        
-                    <div class="kpi-dados-item">
 
-                        <div class="box" id="box">
+                    <div class="kpi-dados-item">
+                        <span class="titulo" id="text-geral8">Memoria</span>
+
+                        <div class="box primeiro" id="box">
                             <img class="icone" src="../assets/home/memoria-ram-vermelho.png">
-                            <span id="memoria_vermelho"  class="valores-kpi-alerta">0</span>
+                            <span id="memoria_vermelho" class="valores-kpi-alerta">0</span>
                         </div>
-        
+
                         <div class="box" id="box">
                             <img class="icone" src="../assets/home/memoria-ram-amarelo.png">
                             <span id="memoria_amarelo" class="valores-kpi">0</span>
                         </div>
 
-                        <span class="text-geral" id="text-geral8">Memoria</span>
                     </div>
                 </div>
             </div>
@@ -131,7 +146,9 @@
                 </div>
 
                 <div class="box-analise caixa" id="caixa5">
-                    <span class="text-geral" id="text-geral11">Grafico aqui</span>
+                    <div class="grafico">
+                        <canvas id="grafico"></canvas>
+                    </div>
                 </div>
 
             </div>
@@ -145,5 +162,6 @@
 
     </section>
 </body>
+
 </html>
 <script src="../js/home.js"></script>
