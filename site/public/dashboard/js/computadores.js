@@ -84,6 +84,9 @@ function gerarPc() {
 function gerenciar_window() {
   window.location = "../html/computadores_gerenciar.html";
 }
+function reiniciar_window() {
+  window.location = "../html/computadores_reinicio.html";
+}
 
 function pcIndiv_window() {
   window.location = "../html/computadorIndividual.html";
