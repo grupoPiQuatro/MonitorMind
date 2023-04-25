@@ -143,7 +143,7 @@ new Chart(disco, {
             label: '# of Votes',
             data: [80, 15, 5],
             borderWidth: 2,
-            cutout: '50%',
+            cutout: '0%',
         }]
     },
     options: {

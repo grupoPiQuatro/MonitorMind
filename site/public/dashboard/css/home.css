@@ -207,5 +207,23 @@ nav .caixa {
 } */
 
 .grafico {
-    width: 250px;
+    /* border: solid green; */
+    width: 200px;
+}
+
+#caixa5{
+    font-size: 20pt;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    /* border: red solid; */
+}
+
+nav .caixa {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* border: solid green; */
+    color: #fff;
+    font-size: 25pt;
 }
