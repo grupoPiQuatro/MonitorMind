@@ -59,7 +59,8 @@
 .kpi {
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px; 
-    /* border: solid 1px black; */
+    border: solid 2px #2C2B2B;
+    border-radius: 10px;
     height: 100%;
     width: 20vw;
     display: flex;
@@ -115,7 +116,8 @@
 
 .lineGrafic {
     background-color: white;
-    /* border: solid 1px red; */
+    border: solid 2px #2C2B2B;
+    border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
     height: 44vh;
     width: 39vw;
@@ -139,7 +141,8 @@
 
 .barGrafic {
     background-color: white;
-    /* border: solid 1px black; */
+    border: solid 2px #2C2B2B;
+    border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
     height: 44vh;
     width: 42vw;
@@ -156,7 +159,8 @@
 
 .pieGrafic {
     background-color: white;
-    /* border: solid 1px black; */
+    border: solid 2px #2C2B2B;
+    border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
     height: 44vh;
     width: 39vw;

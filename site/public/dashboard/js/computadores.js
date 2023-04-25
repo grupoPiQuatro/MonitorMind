@@ -29,7 +29,7 @@ function gerarPc() {
     const divImg = document.createElement('div');
     divImg.classList.add('imgBox');
     const novaImg = document.createElement('img');
-    novaImg.src = '../assets/computador/iconPc.png';
+    novaImg.src = '../assets/computador/pc.png';
     novaImg.alt = '';
     divImg.appendChild(novaImg);
 

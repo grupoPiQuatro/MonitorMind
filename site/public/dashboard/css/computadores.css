@@ -1,5 +1,5 @@
 body {
-    color: white;
+    color: black;
 }
 
 .right-side-window {
@@ -24,7 +24,7 @@ body {
 .titulo h1 {
     margin-left: 10px;
     font-size: 2rem;
-    text-align: center  ;
+    text-align: center;
     width: 260px;
     color: #4EABE9;
     border-bottom: solid 1px #4EABE9;
@@ -35,9 +35,10 @@ body {
 }
 
 .filtro {
-    background-color: #2C2B2B;
+    background-color: #FFF;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
     height: 16vh;
-    border: solid 2px #4EABE9;
+    border: solid 2px #2C2B2B;
     border-radius: 10px;
     display: flex;
     justify-content: center;
@@ -48,15 +49,20 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: unset;
-    height: 14vh;
+    height: 94%;
     width: 95%;
-    gap: 10px;
 }
 
 .tituloFiltro {
     width: 100%;
     font-size: 1.6rem;
     font-weight: 500;
+}
+
+.tituloFiltro p {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #4EABE9;
 }
 
 .filtroSelect {
@@ -67,7 +73,7 @@ body {
 .filtroSelect .campoFiltro {
     display: flex;
     flex-direction: column;
-    height: 7.5vh;
+    height: 100%;
     font-size: 1.2rem;  
     gap: 10px;
 }
@@ -123,9 +129,10 @@ body {
   }
 
 .pc .pcIndiv {
-    background-color: #2C2B2B;
-    border: solid 2px #4EABE9;
-    border-radius: 20px;
+    background-color: #FFF;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    border: solid 2px #2C2B2B;
+    border-radius: 10px;
     height: 20vh;
     width: 30vh;
     display: flex;
@@ -138,7 +145,13 @@ body {
 
 .pcIndiv .box {
     display: flex;
+    justify-content: space-between;
     height: 9vh;
+    width: 12.5vw;
+}
+
+.pcIndiv .box .imgBox img {
+    width: 65px;
 }
 
 .box div {
@@ -190,9 +203,10 @@ body {
 }
 
 .preFooter .botoes {
-    background-color: #2C2B2B;
-    border: solid 2px #4EABE9;
-    border-radius: 20px;
+    background-color: #FFF;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    border: solid 2px #2C2B2B;
+    border-radius: 10px;
     height: 7vh;
     width: 30vw;
     display: flex;
@@ -219,7 +233,7 @@ body {
 }
 
 .preFooter .trocarPag img {
-    width: 70px;
+    width: 50px;
 }
 
 .preFooter .botoes button {
