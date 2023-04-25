@@ -19,11 +19,21 @@
                 <img src="../assets/home/logoClara.png" alt="" class="logo-img">
             </a>
             <ul class="nav-links">
-                <li><a href="home.html"><i class="fa-solid fa-house-user"></i><p>Visão Geral</p></a></li>
-                <li><a href="computadores.html"><i class="fa-solid fa-desktop"></i><p>Computadores</p></a></li>
-                <li><a href="usuarios.html"><i class="fa-solid fa-users"></i><p>Usuários</p></a></li>
-                <li><a href="analytics.html"><i class="fa-sharp fa-solid fa-chart-column"></i><p>Analytics</p></a></li>
-                <li><a href="../../index.html"><i class="fa-solid fa-arrow-right-from-bracket"></i><p>Sair</p></a></li>
+                <li><a href="home.html"><i class="fa-solid fa-house-user"></i>
+                        <p>Visão Geral</p>
+                    </a></li>
+                <li><a href="computadores.html"><i class="fa-solid fa-desktop"></i>
+                        <p>Computadores</p>
+                    </a></li>
+                <li><a href="usuarios.html"><i class="fa-solid fa-users"></i>
+                        <p>Usuários</p>
+                    </a></li>
+                <li><a href="analytics.html"><i class="fa-sharp fa-solid fa-chart-column"></i>
+                        <p>Analytics</p>
+                    </a></li>
+                <li><a href="../../index.html"><i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        <p>Sair</p>
+                    </a></li>
                 <div class="active"></div>
             </ul>
         </div>
@@ -55,7 +65,7 @@
                     </div>
 
                     <div class="contentTitleImg">
-                        <img src="../assets/home/logoClara.png" alt="">
+                        <img src="../assets/home/logoEscura.png" alt="">
                     </div>
                 </div>
             </div>
@@ -73,18 +83,54 @@
                             </div>
                         </div>
 
-                        <div class="fundoLegenda" onmouseenter="modal1()">
+                        <div class="fundoLegenda" onmouseover="modal1()" onmousedown="a">
                             <img src="../assets/dashboard/vermelho.png" alt="">
+                        </div>
+                    </div>
+
+                    <div class="legendaRede">
+                        <div class="containerLegenda">
+                            <h4>REDE:</h4>
+                            <div class="boxLegenda">
+                                <p>> 90%</p>
+                                <img src="../assets/dashboard/vermelho.png" alt="">
+                            </div>
+                            <div class="boxLegenda">
+                                <p>> 80%</p>
+                                <img src="../assets/dashboard/amarelo.png" alt="">
+                            </div>
+                            <div class="boxLegenda">
+                                <p><= 80%</p>
+                                <img src="../assets/dashboard/verde.png" alt="" id="verdeL">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="legendaRam">
+                        <div class="containerLegenda">
+                            <h4>RAM:</h4>
+                            <div class="boxLegenda">
+                                <p>90%</p>
+                                <img src="../assets/dashboard/vermelho.png" alt="">
+                            </div>
+                            <div class="boxLegenda">
+                                <p>80%</p>
+                                <img src="../assets/dashboard/amarelo.png" alt="">
+                            </div>
+                            <div class="boxLegenda">
+                                <p><= 80%</p>
+                                <img src="../assets/dashboard/verde.png" alt="" id="verdeL">
+                            </div>
                         </div>
                     </div>
 
                     <div class="boxLegendaGrafico2">
 
-                        <div class="fundoLegenda2" onmouseenter="modal2()">
+                        <div class="fundoLegenda2" onmouseenter="mostrarLegendaRam()" onmouseleave="esconderLegendaRam()">
                             <img src="../assets/dashboard/verde.png" alt="">
                         </div>
                         <div class="graficBox">
-                            <div class="titleChart">
+                            <div class="titleChart2">
                                 <h3>Uso (%) da memória RAM durante os últimos 30 minutos</h3>
                             </div>
                             <div class="graficoSolo">
@@ -92,9 +138,6 @@
                             </div>
 
                         </div>
-
-
-                        
 
                     </div>
 
@@ -116,13 +159,49 @@
                         </div>
                     </div>
 
+                    <div class="legendaCpu">
+                        <div class="containerLegenda">
+                            <h4>CPU:</h4>
+                            <div class="boxLegenda">
+                                <p>> 90%</p>
+                                <img src="../assets/dashboard/vermelho.png" alt="">
+                            </div>
+                            <div class="boxLegenda">
+                                <p>> 80%</p>
+                                <img src="../assets/dashboard/amarelo.png" alt="">
+                            </div>
+                            <div class="boxLegenda">
+                                <p><= 80%</p>
+                                <img src="../assets/dashboard/verde.png" alt="" id="verdeL">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="legendaDisco">
+                        <div class="containerLegenda">
+                            <h4>DISCO:</h4>
+                            <div class="boxLegenda">
+                                <p>> 90%</p>
+                                <img src="../assets/dashboard/vermelho.png" alt="">
+                            </div>
+                            <div class="boxLegenda">
+                                <p>> 80%</p>
+                                <img src="../assets/dashboard/amarelo.png" alt="">
+                            </div>
+                            <div class="boxLegenda">
+                                <p><= 80%</p>
+                                <img src="../assets/dashboard/verde.png" alt="" id="verdeL">
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="boxLegendaGrafico2">
 
                         <div class="fundoLegenda2" onmouseenter="modal4()">
                             <img src="../assets/dashboard/amarelo.png" alt="">
                         </div>
                         <div class="graficBox">
-                            <div class="titleChart">
+                            <div class="titleChart2">
                                 <h3>Uso do disco</h3>
                             </div>
                             <div class="graficoRosca">

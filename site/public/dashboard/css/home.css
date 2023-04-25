@@ -1,21 +1,12 @@
-body {
-    color: white;
-}
-
 .box {
-    background-color: white;
-    color: #000000;
-}
-
-.right-side-window nav {
-    color: #000000;
+    background-color: #fff;
 }
 
 .icone {
     width: 80px;
     height: 80px;
-    -webkit-filter: drop-shadow(5px 5px 5px #00000079);
-    filter: drop-shadow(5px 5px 5px #424242bb);
+    /* -webkit-filter: drop-shadow(5px 5px 5px #00000079);
+    filter: drop-shadow(5px 5px 5px #424242bb); */
 }
 
 .icone-alerta {
@@ -48,12 +39,15 @@ nav {
 
 nav .caixa {
     width: 400px;
-    height: 100px
+    height: 100px;
 }
 
-#caixa2 {
-    color: black;
-    background-color: white;
+nav h1 {
+    color: #4EABE9;
+}
+
+.kpi-dados {
+    background-color: #fff;
     /* box-shadow: none; */
 }
 
@@ -64,6 +58,10 @@ nav .caixa {
     justify-content: space-between;
 }
 
+.destaque_caixa img{
+    width: 55px;
+}
+ 
 .right-side-window .kpi-dados{
     width: 99.7%;
     height: 50%;
@@ -71,6 +69,17 @@ nav .caixa {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+}
+
+.caixa {
+    background-color: #fff;
+    border-radius: 10px;
+    border: solid 2px #2C2B2B;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+.box {
+    border: solid 2px #2C2B2B;
 }
 
 .right-side-window .kpi-dados .topo {
@@ -219,11 +228,37 @@ nav .caixa {
     /* border: red solid; */
 }
 
+#caixa5 .grafico {
+    width: 170px;
+}
+
+#caixa5 p {
+    font-size: 1rem;
+}
+
 nav .caixa {
     display: flex;
     align-items: center;
     justify-content: center;
     /* border: solid green; */
-    color: #fff;
     font-size: 25pt;
+}
+
+nav .destaque_caixaEsquerda {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 49.5vw;
+}
+
+nav .destaque_caixaEsquerda p {
+    font-size: 1.2rem;
+}
+
+#text-geral2 {
+    font-size: 18px;
+}
+
+#titulo {
+    margin-top: 5px;
 }
