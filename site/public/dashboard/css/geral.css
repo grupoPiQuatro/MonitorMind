@@ -25,7 +25,8 @@
 }
 
 .logo-img{
-    width: 150px;
+    width: 120px;
+    margin-left: 40px;
 }
 
 .nav-links{
@@ -117,7 +118,7 @@ button {
 
 .caixa {
     background-color: #2C2B2B;
-    border-radius: 20px;
+    border-radius: 10px;
 }
 
 .container {

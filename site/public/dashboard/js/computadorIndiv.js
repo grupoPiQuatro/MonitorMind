@@ -133,9 +133,13 @@ new Chart(disco, {
     }
 });
 
-function modal1() {
+// function mostrarLegendaRam() {
+//     document.getElementById("ramLegenda").style.display = "flex";
+// }
 
-}
+// function esconderLegendaRam() {
+//     document.getElementById("ramLegenda").style.display = "none";
+// }
 
 function modal2() {
 
