@@ -160,12 +160,25 @@ function generateTable(data) {
 }
 
 var data = [
-{ serial: "vFJsboEW", setor: "A", status: "Operando", tipo: "SSD" },
-{ serial: "DoBb5HYU", setor: "D", status: "Interrompido", tipo: "SSD" },
-{ serial: "oc66mRW2", setor: "A", status: "Manutenção", tipo: "HD" },
-{ serial: "nTLMjU6w", setor: "A", status: "Operando", tipo: "comum" },
-// { serial: "W2NQb3wb", setor: "C", email: "Tarciso@email", tipo: "admin" },
-// { serial: "SLosBgK3", setor: "A", email: "Carlos@email", tipo: "comum" },
+    { serial: "vFJsboEW", setor: "A", status: "Operando", tipo: "SSD" },
+    { serial: "DoBb5HYU", setor: "D", status: "Interrompido", tipo: "SSD" },
+    { serial: "oc66mRW2", setor: "A", status: "Manutenção", tipo: "HD" },
+    { serial: "nTLMjU6w", setor: "A", status: "Operando", tipo: "SSD" },
+    //{ serial: "W2NQb3wb", setor: "C", email: "Tarciso@email", tipo: "admin" },
+    // { serial: "SLosBgK3", setor: "A", email: "Carlos@email", tipo: "comum" },
 ];
 
 generateTable(data);
+
+function buscar_computador() {
+    const search = busca.value;
+    const filteredData = data.filter(item => item.serial === search);
+    if (filteredData.length > 0) {
+      generateTable(filteredData);
+    }else{
+        generateTable(data);
+    }
+  }
+  
+
+
