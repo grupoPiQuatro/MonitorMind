@@ -38,8 +38,10 @@ public class DadosDinamicos {
     private List<Processo> listaProcessoExec;
     private List<Janela> listaJanelas;
     private List<DispositivoUsb> listaUsbConectado;   
+    private Long ping;
 
     public DadosDinamicos () {
+        Ping ping = new Ping();
         Looca looca = new Looca();
         Long escritaDisco = null;
         Long leituraDisco = null;;
@@ -83,12 +85,13 @@ public class DadosDinamicos {
         this.enviadoRede = Conversor.formatarBytes(enviadoRede);
         this.totalServicoAtivo = looca.getGrupoDeServicos().getTotalServicosAtivos();
         this.totalServicoInativo = looca.getGrupoDeServicos().getTotalServicosInativos();
-        this.listaServico = looca.getGrupoDeServicos().getServicos();
+        this.listaServico = looca.getGrupoDeServicos().getServicosAtivos();
         this.threadsTotal = looca.getGrupoDeProcessos().getTotalThreads();
         this.processoExecTotal = looca.getGrupoDeProcessos().getTotalProcessos();
         this.listaProcessoExec = looca.getGrupoDeProcessos().getProcessos();
         this.listaJanelas = looca.getGrupoDeJanelas().getJanelasVisiveis();
-        this.listaUsbConectado = looca.getDispositivosUsbGrupo().getDispositivosUsb();
+        this.listaUsbConectado = looca.getDispositivosUsbGrupo().getDispositivosUsbConectados();
+        this.ping = ping.valorPing();
     }
 
     @Override
@@ -110,14 +113,16 @@ public class DadosDinamicos {
                 + "Servicos Ativos: %d \n"
                 + "Servicos Inativos: %d \n"
                 + "Lista Servicos: %s \n\n"
-                + "-- Processos -- \n"
+                + "-- Processos ------------------------------------------------//////////////////////////////// \n"
                 + "Threads: %d \n"
                 + "Processos: %d \n"
                 + "Lista processos: %s \n\n"
-                + "-- JANELAS -- \n"
+                + "-- JANELAS ----------------------------------------------///////////////////////////////\n"
                 + "Lista janelas: %s \n\n"
-                + "-- USB -- \n"
-                + "Lista USB conectado: %s",
+                + "-- USB -----------------------------------------------------////////////////////// \n"
+                + "Lista USB conectado: %s \n\n"
+                + "-- PING -- \n"
+                + "Ping: %d ms",
                 usoCPU,
                 tempoAtividade,
                 usoRam,
@@ -133,7 +138,8 @@ public class DadosDinamicos {
                 processoExecTotal,
                 listaProcessoExec,
                 listaJanelas,
-                listaUsbConectado);
+                listaUsbConectado,
+                ping);
     }
     
     
