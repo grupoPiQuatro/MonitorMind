@@ -44,13 +44,13 @@
                         <div class="kpi">
                             <div class="kpiContentTop">
                                 <img src="../assets/analytics/sem-wi-fi.png" alt="">
-                                <p>Máquinas que ficaram sem resposta de ping por mais de 5 minutos no dia</p>
+                                <p id="pingText">Máquinas sem resposta de ping</p>
                             </div>
                             <div class="kpiContentPorcen">
                                 <p>7%</p>
                             </div>
                             <div class="kpiContentTime">
-                                <p>Por 5 minutos</p>
+                                <p>+5 minutos</p>
                             </div>
                         </div>
 
@@ -118,7 +118,7 @@
             <div class="bottomGrafics">
                 <div class="barGrafic">
                     <div class="graficTitle">
-                        <h3>Quantidade de computadores que mais deram problemas nos últimos 30 dias por setor</h3>
+                        <h3>Quantidade de alertas vermelhos por componente nos ultimos 30 dias</h3>
                     </div>
                     <div class="barContainer">
                         <canvas id="barChart"></canvas>
@@ -131,6 +131,7 @@
                     </div>
                     <div class="pieContainer">
                         <canvas id="pieChart"></canvas>
+                        <h5><b style="color: aquamarine;">Operando: 80%</b>, <b style="color: yellow;"> Manutenção: 13%</b>, <b style="color: orangered;"> Inativa: 7%</b></H5>
                     </div>
                 </div>
             </div>
