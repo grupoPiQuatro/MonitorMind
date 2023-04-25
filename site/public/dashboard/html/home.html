@@ -35,13 +35,29 @@
 
             <nav>
                 <div class="caixa destaque_caixa">
-                    <span>Operando 0</span>
+                    <h1>Visão Geral</h1>
                 </div>
-                <div class="caixa destaque_caixa">
-                    <span>Interrompido 0</span>
-                </div>
-                <div class="caixa destaque_caixa">
-                    <span>Manutenção 0</span>
+                <div class="caixa destaque_caixaEsquerda">
+                    <div>
+                        <h6>Rede</h6>
+                        <p>Vermelho > 100 ping</p>
+                        <p>Amarelho > 60</p>
+                    </div>
+                    <div>
+                        <h6>RAM</h6>
+                        <p>Vermelho > 90% uso</p>
+                        <p>Amarelho > 80% uso</p>
+                    </div>
+                    <div>
+                        <h6>CPU</h6>
+                        <p>Vermelho > 90% uso</p>
+                        <p>Amarelho > 80% uso</p>
+                    </div>
+                    <div>
+                        <h6>Disco</h6>
+                        <p>Vermelho > 90%</p>
+                        <p>Amarelho > 80%</p>
+                    </div>
                 </div>
             </nav>
 
@@ -50,9 +66,9 @@
 
                     <div class="titulos">
                         <div class="titulo" id="titulo">Componente em alerta por computador</div>
-                        <!-- <div class="text-geral" id="text-geral2"><span
+                        <div class="text-geral" id="text-geral2"><span
                                 id="maquinas_monitoradas_agora">0</span>/<span
-                                class="maquinas_monitoradas_total">0</span></div> -->
+                                class="maquinas_monitoradas_total">0</span> Máquinas operando</div>
                     </div>
 
                     <!-- <div class="legenda text-geral" id="text-geral3">
@@ -128,22 +144,25 @@
 
                 <div class="box-analise caixa" id="caixa3">
                     <span class="text-geral" id="text-geral9">Computadores sem retorno</span>
-                    <img class="icone-alerta" id="icone-pc" src="../assets/home/trabalho-em-progresso-branco.png">
+                    <img class="icone-alerta" id="icone-pc" src="../assets/home/trabalho-em-progresso.png">
                     <span id="vka2" class="valores-kpi-alerta">0</span>
                 </div>
 
                 <div class="box-analise caixa" id="caixa4">
                     <span class="text-geral" id="text-geral10">Computadores com 2+ alertas vermelhos</span>
-                    <img class="icone-alerta" id="icone-alerta" src="../assets/home/alerta-branco.png">
+                    <img class="icone-alerta" id="icone-alerta" src="../assets/home/alerta.png">
                     <span id="vka1" class="valores-kpi-alerta">0</span>
                 </div>
 
                 <div class="box-analise caixa" id="caixa5">
                     <div>
-                        Status dos computadores
+                        <span>Status dos computadores</span>
                     </div>
                     <div class="grafico">
                         <canvas id="grafico"></canvas>
+                    </div>
+                    <div>
+                        <p>Azul: Operando; Laranja : Manutenção; Vermelho : Interrompido</p>
                     </div>
                 </div>
 

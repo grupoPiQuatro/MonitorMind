@@ -138,19 +138,11 @@ const disco = document.getElementById('grafico');
 new Chart(disco, {
     type: 'doughnut',
     data: {
-        labels: ['Operando', 'Inativo', 'Manutenção'],
         datasets: [{
-            label: '# of Votes',
+            label: 'Quantidade de computadores',
             data: [80, 15, 5],
             borderWidth: 2,
             cutout: '0%',
         }]
-    },
-    options: {
-        cutoutPercentage: 70,
-        legend: {
-            position: 'bottom',
-        }
     }
 });
-
