@@ -3,11 +3,10 @@ const line = document.getElementById('lineChart');
 new Chart(line, {
     type: 'line',
     data: {
-        labels: ['12:02', '12:04', '12:06', '12:08', '12:10', '12:12', '12:14', '12:16', '12:18',
-            '12:20', '12:20', '12:20', '12:20', '12:20', '12:20',],
+        labels: ['SEGUNDA','TERÇA','QUARTA','QUINTA','SEXTA','SABADO','DOMINGO'],
         datasets: [{
             label: 'dasdas',
-            data: [12, 19, 3, 5, 2, 3, 12, 21, 3, 40, 30, 120, 40, 30, 128],
+            data: [10, 17, 14, 19, 20, 25, 13],
             borderWidth: 4,
             fill: true,
             tension: 0.4,
@@ -43,7 +42,7 @@ const bar = document.getElementById('barChart');
 new Chart(bar, {
     type: 'bar',
     data: {
-        labels: ['12:02', '12:04', '12:06', '12:08', '12:10'],
+        labels: ['RAM', 'CPU', 'Rede', 'Memória'],
         datasets: [{
             label: '# of Votes',
             data: [12, 19, 70, 53, 54],
@@ -81,10 +80,10 @@ const pie = document.getElementById('pieChart');
 new Chart(pie, {
     type: 'doughnut',
     data: {
-        labels: ['Uso', 'Disponível'],
+        labels: ['Operado', 'Manutenção', 'Inativa'],
         datasets: [{
             label: '# of Votes',
-            data: [80, 20],
+            data: [80, 13 ,7],
             borderWidth: 2,
             cutout: '60%',
         }]
