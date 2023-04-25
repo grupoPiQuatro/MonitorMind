@@ -80,72 +80,73 @@
 <script>
 
 function entrar() {
+    window.location = "dashboard/html/home.html"
 
-        var emailVar = ipt_email.value;
-        var senhaVar = ipt_senha.value;
+        // var emailVar = ipt_email.value;
+        // var senhaVar = ipt_senha.value;
 
-        console.log("FORM LOGIN: ", emailVar);
+        // console.log("FORM LOGIN: ", emailVar);
 
-        if (emailVar == "" || senhaVar == "") {
-            alert('Campos vazios')
+        // if (emailVar == "" || senhaVar == "") {
+        //     alert('Campos vazios')
 
-            finalizarAguardar();
-            return false;
-        }
+        //     finalizarAguardar();
+        //     return false;
+        // }
         
        
 
-        console.log("FORM LOGIN: ", emailVar);
-        console.log("FORM SENHA: ", senhaVar);
+        // console.log("FORM LOGIN: ", emailVar);
+        // console.log("FORM SENHA: ", senhaVar);
 
-        fetch("/usuarios/autenticar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                emailServer: emailVar,
-                senhaServer: senhaVar 
-            })
-        }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
+        // fetch("/usuarios/autenticar", {
+        //     method: "POST",
+        //     headers: {
+        //         "Content-Type": "application/json"
+        //     },
+        //     body: JSON.stringify({
+        //         emailServer: emailVar,
+        //         senhaServer: senhaVar 
+        //     })
+        // }).then(function (resposta) {
+        //     console.log("ESTOU NO THEN DO entrar()!")
 
-            if (resposta.ok) {
-                console.log(resposta);
+        //     if (resposta.ok) {
+        //         console.log(resposta);
 
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
+        //         resposta.json().then(json => {
+        //             console.log(json);
+        //             console.log(JSON.stringify(json));
 
-                    sessionStorage.ID_USUARIO = json.idUsuario;
-                    sessionStorage.NOME_USUARIO = json.nomeUsuario;
-                    sessionStorage.EMAIL_USUARIO = json.email;
-                    sessionStorage.TIPO_USUARIO = json.tipo;
-                    sessionStorage.FK_EMPRESA = json.fkEmpresa;
+        //             sessionStorage.ID_USUARIO = json.idUsuario;
+        //             sessionStorage.NOME_USUARIO = json.nomeUsuario;
+        //             sessionStorage.EMAIL_USUARIO = json.email;
+        //             sessionStorage.TIPO_USUARIO = json.tipo;
+        //             sessionStorage.FK_EMPRESA = json.fkEmpresa;
 
-                    setTimeout(function () {
+        //             setTimeout(function () {
                         
-                        window.location = "usuarioAdmin.html";
+        //                 window.location = "usuarioAdmin.html";
                         
-                    }, 1000); 
+        //             }, 1000); 
 
-                });
+        //         });
 
-            } else {
-                alert('Erro na resposta');
-                // alert("Houve um erro ao tentar realizar o login!");
+        //     } else {
+        //         alert('Erro na resposta');
+        //         // alert("Houve um erro ao tentar realizar o login!");
 
-                resposta.text().then(texto => {
-                    console.error(texto);
-                    finalizarAguardar(texto);
-                });
-            }
+        //         resposta.text().then(texto => {
+        //             console.error(texto);
+        //             finalizarAguardar(texto);
+        //         });
+        //     }
 
-        }).catch(function (erro) {
-            console.log(erro);
-        })
+        // }).catch(function (erro) {
+        //     console.log(erro);
+        // })
 
-        return false;
+        // return false;
     }
 
     var temaClaro = true;
