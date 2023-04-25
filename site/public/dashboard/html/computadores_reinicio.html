@@ -95,30 +95,14 @@
 
             <div id="modal_editar_user" class="modal">
                 <div class="caixa editar">
-                    <div class="form">
-                        <div class="formulario">
-                            <label class="usuario">Setor:</label>
-                            <input id="edit_usuario">
-                        </div>
-    
-                        <div class="formulario">
-                            <label class="email">Status:</label>
-                            <input id="edit_email">
-                        </div>
-    
-                        <div class="formulario">
-                            <label class="tipo">Tipo de memoria:</label>
-                            <select id="edit_tipo">
-                                <option value="">-select-</option>
-                                <option value="SSD">SSD</option>
-                                <option value="HD">HD</option>
-                            </select>
-                        </div>
+                    <div class="aviso-alerta-modal">
+                        Essa ação adiara o reinicio do computador em 5 min.
+                        Continuar?
                     </div>
 
                     <div class="confirmacao_adicionar_usuario">
-                        <button class="botao" onclick="sair_editar_usuario()">Cancelar</button>
-                        <button class="botao" onclick="confirmar_editar_usuario()">Confirmar</button>
+                        <button class="botao" onclick="confirmar_editar_usuario()">SIM</button>
+                        <button class="botao" onclick="sair_editar_usuario()">NÂO</button>
                     </div>
                 </div>
             </div>
