@@ -108,13 +108,13 @@ function confirmar_deletar_usuario() {
 
 // 
 
-function generateTable(data) {
+function generateTable(data1) {
     const tableContainer = document.getElementById("tabela-usuarios");
 
     tableContainer.innerHTML = "";
 
-    for (let i = 0; i < data.length; i++) {
-    const item = data[i];
+    for (let i = 0; i < data1.length; i++) {
+    const item = data1[i];
     const row = document.createElement("div");
     row.classList.add("linha-tabela");
 
@@ -169,13 +169,24 @@ function generateTable(data) {
     }
 }
 
-var data = [
-{ id: 1, usuario: "Lucas", email: "lucas@email", tipo: "Comum" },
-{ id: 2, usuario: "Nathan", email: "nathan@email", tipo: "Admin" },
-{ id: 3, usuario: "Emille", email: "emille@email", tipo: "Comum" },
-{ id: 4, usuario: "Andres", email: "Andres@email", tipo: "Comum" },
-{ id: 5, usuario: "Tarciso", email: "Tarciso@email", tipo: "Admin" },
-{ id: 5, usuario: "Carlos", email: "Carlos@email", tipo: "Comum" },
+var data1 = [
+{ id: 01, usuario: "Lucas", email: "lucas@email", tipo: "Comum" },
+{ id: 02, usuario: "Nathan", email: "nathan@email", tipo: "Admin" },
+{ id: 03, usuario: "Emille", email: "emille@email", tipo: "Comum" },
+{ id: 04, usuario: "Andres", email: "Andres@email", tipo: "Comum" },
+{ id: 05, usuario: "Tarciso", email: "Tarciso@email", tipo: "Admin" },
+{ id: 06, usuario: "Carlos", email: "Carlos@email", tipo: "Comum" },
+{ id: 07, usuario: "Carlos", email: "Carlos@email", tipo: "Comum" }
 ];
 
-generateTable(data);
+function buscar_usuario() {
+    const search = busca.value;
+    let filteredData = data1.filter(item => item.usuario === search);
+    console.log(filteredData)
+    if (filteredData.length > 0) {
+        generateTable(filteredData);
+    }else{
+        generateTable(data1);
+    }
+  }
+generateTable(data1);

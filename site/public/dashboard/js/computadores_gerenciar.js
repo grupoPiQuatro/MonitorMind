@@ -180,3 +180,12 @@ var data = [
 ];
 
 generateTable(data);
+function buscar_computador() {
+    const search = busca.value;
+    const filteredData = data.filter(item => item.serial === search);
+    if (filteredData.length > 0) {
+      generateTable(filteredData);
+    }else{
+        generateTable(data);
+    }
+  }
