@@ -45,24 +45,30 @@
                         <div class="campoFiltro">
                             <p>Componente em alerta:</p>
                             <select name="" id="">
+                                <option value="">-</option>
+                                <option value="">REDE</option>
+                                <option value="">RAM</option>
                                 <option value="">CPU</option>
+                                <option value="">DISCO</option>
                             </select>
                         </div>
                         <div class="campoFiltro">
                             <p>Tipo de alerta:</p>
                             <select name="" id="">
+                                <option value="">-</option>
                                 <option value="">Vermelho</option>
+                                <option value="">Amarelo</option>
+                                <option value="">Verde</option>
                             </select>
                         </div>
                         <div class="campoFiltro">
                             <p>Número Identificação:</p>
-                            <select name="" id="">
-                                <option value="">PE21424</option>
-                            </select>
+                            <input type="text">
                         </div>
                         <div class="campoFiltro">
                             <p>Setor:</p>
                             <select name="" id="">
+                                <option value="">-</option>
                                 <option value="">Vendas</option>
                             </select>
                         </div>
@@ -105,7 +111,7 @@
                     <p>Opções:</p>
                     <div class="botoesFooter">
                         <button onclick="gerenciar_window()">Gerenciar</button>
-                        <button>Reiniciar</button>
+                        <button onclick="reiniciar_window()">Reiniciar</button>
                     </div>
                 </div>
 

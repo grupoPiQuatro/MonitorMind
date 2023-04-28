@@ -26,18 +26,7 @@ function confirmar_adicionar_usuario() {
 
 // EDITAR
 
-function editar(usuario, email, tipo) {
-    var edit_usuario = document.getElementById("edit_usuario");
-    var edit_email = document.getElementById("edit_email");
-    var edit_tipo = document.getElementById("edit_tipo");
-    var edit_senha = document.getElementById("edit_senha");
-    var edit_confirma_senha = document.getElementById("edit_confirma-senha");
-
-    edit_usuario.value = usuario;
-    edit_email.value = email;
-    edit_tipo.value = tipo;
-    // edit_senha.value = user.senha;
-    // edit_confirma_senha.value = user.senha;
+function delayFive() {
 
     // Abra o modal
     var modal_editar_user = document.getElementById("modal_editar_user");
@@ -150,19 +139,19 @@ function generateTable(data) {
     //   editButton.src = "../assets/usuarios/lapis.png";
     //   editButton.onclick = editar;
 
-    const iconEditar = document.createElement("img");
-    iconEditar.setAttribute("src", "../assets/usuarios/lapis.png");
-    iconEditar.addEventListener("click", function() {
-        editar(item.setor, item.status, item.tipo);
+    const fiveMinButton = document.createElement("img");
+    fiveMinButton.setAttribute("src", "../assets/usuarios/plus-five.png");
+    fiveMinButton.addEventListener("click", function() {
+        delayFive();
     });
 
     const deleteButton = document.createElement("img");
-    deleteButton.setAttribute("src", "../assets/usuarios/lixeira.png");
+    deleteButton.setAttribute("src", "../assets/usuarios/cancel-button.png");
     deleteButton.addEventListener("click", function() {
         deletar_usuario(i);
     });
 
-    toolsColumn.appendChild(iconEditar);
+    toolsColumn.appendChild(fiveMinButton);
     toolsColumn.appendChild(deleteButton);
     row.appendChild(toolsColumn);
 
@@ -171,15 +160,16 @@ function generateTable(data) {
 }
 
 var data = [
-{ serial: "vFJsboEW", setor: "A", status: "Operando", tipo: "SSD" },
-{ serial: "DoBb5HYU", setor: "D", status: "Interrompido", tipo: "SSD" },
-{ serial: "oc66mRW2", setor: "A", status: "Manutenção", tipo: "HD" },
-// { serial: "nTLMjU6w", setor: "A", email: "Andres@email", tipo: "comum" },
-// { serial: "W2NQb3wb", setor: "C", email: "Tarciso@email", tipo: "admin" },
-// { serial: "SLosBgK3", setor: "A", email: "Carlos@email", tipo: "comum" },
+    { serial: "vFJsboEW", setor: "A", status: "Operando", tipo: "SSD" },
+    { serial: "DoBb5HYU", setor: "D", status: "Interrompido", tipo: "SSD" },
+    { serial: "oc66mRW2", setor: "A", status: "Manutenção", tipo: "HD" },
+    { serial: "nTLMjU6w", setor: "A", status: "Operando", tipo: "SSD" },
+    //{ serial: "W2NQb3wb", setor: "C", email: "Tarciso@email", tipo: "admin" },
+    // { serial: "SLosBgK3", setor: "A", email: "Carlos@email", tipo: "comum" },
 ];
 
 generateTable(data);
+
 function buscar_computador() {
     const search = busca.value;
     const filteredData = data.filter(item => item.serial === search);
@@ -189,3 +179,6 @@ function buscar_computador() {
         generateTable(data);
     }
   }
+  
+
+

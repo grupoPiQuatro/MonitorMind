@@ -92,6 +92,16 @@ body {
     font-size: 1.1rem;
 }
 
+.filtroSelect input{
+    height: 2   0px;
+    width: 270px;
+    background-color: #D3D3D3;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 1.1rem;
+}
+
 .botaoFiltro {
     display: flex;
     align-items: flex-end;
@@ -193,7 +203,7 @@ body {
 }
 
 .boxStatus .disco {
-    background-color: green;
+    background-color: red;
 }
 
 .preFooter {
