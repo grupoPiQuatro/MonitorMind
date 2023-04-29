@@ -145,10 +145,6 @@ function generateTable(data1) {
     const toolsColumn = document.createElement("div");
     toolsColumn.classList.add("info-item", "tools");
 
-    //   const editButton = document.createElement("img");
-    //   editButton.src = "../assets/usuarios/lapis.png";
-    //   editButton.onclick = editar;
-
     const iconEditar = document.createElement("img");
     iconEditar.setAttribute("src", "../assets/usuarios/lapis.png");
     iconEditar.addEventListener("click", function() {

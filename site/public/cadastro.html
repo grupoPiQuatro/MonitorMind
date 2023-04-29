@@ -41,17 +41,17 @@
                         <div class="parteUmCad">
                             <div class="entrada">
                                 <label for="ipt_nome" id="label01">Nome da empresa:</label>
-                                <input id="ipt_nome" placeholder="Nome Empresa">
+                                <input id="ipt_nome" placeholder="Nome Empresa" maxlength="45">
                                 <div style="display: none;" id="msgNomeEmpresa"><span class="msgErro">Nome da empresa vazio</span></div>
                             </div>
                             <div class="entrada">
                                 <label for="ipt_cnpj" id="label02">CNPJ:</label>
-                                <input id="ipt_cnpj" placeholder="XX. XXX. XXX/0001-XX">
+                                <input id="ipt_cnpj" placeholder="XX. XXX. XXX/0001-XX" maxlength="14">
                                 <div style="display: none;" id="msgCNPJ"><span class="msgErro">CNPJ deve conter 14 dígitos</span></div>
                             </div>
                             <div class="entrada">
                                 <label for="ipt_telefone" id="label03">Telefone:</label>
-                                <input id="ipt_telefone" placeholder="(XX) XXXX-XXXX">
+                                <input id="ipt_telefone" placeholder="(XX) XXXX-XXXX" maxlength="10">
                                 <div style="display: none;" id="msgTelefone"><span class="msgErro">Telefone deve conter 10 dígitos</span></div>
                             </div>
 
@@ -78,7 +78,7 @@
                         <div class="parteDoisCad">
                             <div class="entrada">
                                 <label for="ipt_cep" id="label04">CEP:</label>
-                                <input id="ipt_cep" placeholder="00000-000" onkeyup="validarCEP()">
+                                <input id="ipt_cep" placeholder="00000-000" onkeyup="validarCEP()" maxlength="8">
                                 <div style="display: none;" id="msgCep"><span class="msgErro">CEP deve conter 8 dígitos</span></div>
                             </div>
                             <div class="entrada">

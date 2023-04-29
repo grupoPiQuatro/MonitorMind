@@ -30,7 +30,7 @@ andar VARCHAR(45)
 );
 
 CREATE TABLE tipoComponente (
-idUsuario INT PRIMARY KEY IDENTITY,
+idTipoComponente INT PRIMARY KEY IDENTITY,
 nome VARCHAR(45)
 );
 
@@ -66,15 +66,6 @@ fkComputador VARCHAR(45),
 fkComponente INT,
 foreign key (fkComputador) REFERENCES computador(serialComputador),
 foreign key (fkComponente) REFERENCES componente(idComponente)
-);
-
-CREATE TABLE metrica (
-idMetrica INT PRIMARY KEY IDENTITY,
-valor FLOAT,
-unidade VARCHAR(10),
-dtCaptura DATETIME,
-fkConfig INT,
-foreign key (fkConfig) REFERENCES config(idConfig)
 );
 
 CREATE TABLE alerta (
