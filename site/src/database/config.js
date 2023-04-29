@@ -5,7 +5,7 @@ var sql = require('mssql');
 var sqlServerConfig = {
     server: "servidor-monitor-mind.database.windows.net",
     database: "bd-monitor-mind",
-    user: "servidor-monitor-mind.database.windows.net",
+    user: "admin-monitor-mind",
     password: "#Gfgrupo4",
     pool: {
         max: 10,
