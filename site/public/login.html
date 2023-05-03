@@ -13,14 +13,14 @@
 
 <body>
     <div class="geral">
-        
+
 
         <div class="formulario" id="forms">
 
             <div class="tema">
-                
+
                 <img src="assets/icon-setaEscura.png" id="seta" alt="voltar" onclick="voltarHome()">
-                
+
                 <img src="assets/icon-lua.png" alt="" id="temaImg" onclick="trocarTema()">
             </div>
 
@@ -46,22 +46,23 @@
                                 <input type="password" id="ipt_senha">
                             </div>
                         </div>
-                            <div class="buttons">
-                                <button class="botaoEntrar" href="" onclick="entrar()">Entrar</button>
-                                <div>
-                                    <a class="botaoCadastro" href="cadastro.html">Esqueceu a senha? | <a class="botaoCadastro" href="cadastro.html">Não tem uma conta?</a>
-                                </div>    
+                        <div class="buttons">
+                            <button class="botaoEntrar" href="" onclick="entrar()">Entrar</button>
+                            <div>
+                                <a class="botaoCadastro" href="cadastro.html">Esqueceu a senha? | <a
+                                        class="botaoCadastro" href="cadastro.html">Não tem uma conta?</a>
                             </div>
-
-                        
-                        
-                    </div>
+                        </div>
 
                     
+
+                    </div>
+
+
                 </div>
 
-                
-                
+
+
             </div>
 
         </div>
@@ -71,7 +72,7 @@
 
     </div>
 
- 
+
     </div>
 </body>
 
@@ -79,74 +80,72 @@
 
 <script>
 
-function entrar() {
-    window.location = "dashboard/html/home.html"
+    function entrar() {
+        var emailVar = ipt_email.value; 
+        var senhaVar = ipt_senha.value;
 
-        // var emailVar = ipt_email.value;
-        // var senhaVar = ipt_senha.value;
+        console.log("FORM LOGIN: ", emailVar);
 
-        // console.log("FORM LOGIN: ", emailVar);
+        if (emailVar == "" || senhaVar == "") {
+            alert('Campos vazios')
 
-        // if (emailVar == "" || senhaVar == "") {
-        //     alert('Campos vazios')
+            finalizarAguardar();
+            return false;
+        }
 
-        //     finalizarAguardar();
-        //     return false;
-        // }
-        
-       
 
-        // console.log("FORM LOGIN: ", emailVar);
-        // console.log("FORM SENHA: ", senhaVar);
 
-        // fetch("/usuarios/autenticar", {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": "application/json"
-        //     },
-        //     body: JSON.stringify({
-        //         emailServer: emailVar,
-        //         senhaServer: senhaVar 
-        //     })
-        // }).then(function (resposta) {
-        //     console.log("ESTOU NO THEN DO entrar()!")
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
 
-        //     if (resposta.ok) {
-        //         console.log(resposta);
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
 
-        //         resposta.json().then(json => {
-        //             console.log(json);
-        //             console.log(JSON.stringify(json));
+            if (resposta.ok) {
+                console.log(resposta);
 
-        //             sessionStorage.ID_USUARIO = json.idUsuario;
-        //             sessionStorage.NOME_USUARIO = json.nomeUsuario;
-        //             sessionStorage.EMAIL_USUARIO = json.email;
-        //             sessionStorage.TIPO_USUARIO = json.tipo;
-        //             sessionStorage.FK_EMPRESA = json.fkEmpresa;
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
 
-        //             setTimeout(function () {
-                        
-        //                 window.location = "usuarioAdmin.html";
-                        
-        //             }, 1000); 
+                    sessionStorage.ID_USUARIO = json.idUsuario;
+                    sessionStorage.NOME_USUARIO = json.nomeUsuario;
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.TIPO_USUARIO = json.tipo;
+                    sessionStorage.FK_EMPRESA = json.fkEmpresa;
 
-        //         });
+                    setTimeout(function () {
 
-        //     } else {
-        //         alert('Erro na resposta');
-        //         // alert("Houve um erro ao tentar realizar o login!");
+                        window.location = "dashboard/html/home.html";
 
-        //         resposta.text().then(texto => {
-        //             console.error(texto);
-        //             finalizarAguardar(texto);
-        //         });
-        //     }
+                    }, 1000);
 
-        // }).catch(function (erro) {
-        //     console.log(erro);
-        // })
+                });
 
-        // return false;
+            } else {
+                alert('Erro na resposta');
+                // alert("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
     }
 
     var temaClaro = true;
