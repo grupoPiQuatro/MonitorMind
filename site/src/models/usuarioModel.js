@@ -25,7 +25,7 @@ function cadastrarEmpresa(nomeEmpresa, cnpj, telefone) {
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucao = `
-        INSERT INTO Empresa (nomeEmpresa, cnpj, telefone) VALUES ('${nomeEmpresa}', '${cnpj}', '${telefone}');
+        INSERT INTO Empresa (nome, cnpj, telefone) VALUES ('${nomeEmpresa}', '${cnpj}', '${telefone}');
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -49,7 +49,7 @@ function cadastrarUsuario(usuario, email, senha) {
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucao = `
-        INSERT INTO Usuario (nomeUsuario, email, senha, tipo, fkEmpresa) VALUES ('${usuario}', '${email}', '${senha}', 'Owner', 1);
+        INSERT INTO Usuario (nome, email, senha, tipo, fkEmpresa) VALUES ('${usuario}', '${email}', '${senha}', 'Owner', 1);
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
