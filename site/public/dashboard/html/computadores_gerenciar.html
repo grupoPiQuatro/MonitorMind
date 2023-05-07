@@ -48,7 +48,7 @@
 
                         <div class="content-corpo">
                             <div class="infos-topo-tabela">
-                                    <div class="info-item">SERIAL</div>
+                                    <div class="info-item">HOST NAME</div>
                                     <div class="info-item">SETOR</div>
                                     <div class="info-item">STATUS</div>
                                     <div class="info-item">TIPO ARMAZENAMENTO</div>
@@ -63,62 +63,98 @@
                 </div>
             </div>
 
-            <div id="modal_user" class="modal">
+            <div id="modal_adicionar" class="modal">
                 <div class="caixa adicionar">
                     <div class="form">
                         <div class="formulario">
                             <label>Setor:</label>
-                            <input id="add_setor">
+                            <input id="add_setor" oninput='changed("label_erro1")' maxlength="45">
+                            <span class="text-erro" id="label_erro1" style="display: none;">Valor inválido</span>
                         </div>
-    
+                        
                         <div class="formulario">
-                            <label>Status:</label>
-                            <input id="add_status">
+                            <label>Hostname</label>
+                            <input id="add_hostname" oninput='changed("label_erro2")' maxlength="45">
+                            <span class="text-erro" id="label_erro2" style="display: none;">Valor inválido</span>
                         </div>
-    
-                        <div class="formulario">
+                        
+                        <div class="formulario" onchange='changed("label_erro3")'>
                             <label class="tipo">Tipo armazenamento:</label>
                             <select id="add_tipo">
-                                <option value="">-select-</option>
+                                <option value="">-selecione-</option>
                                 <option value="SSD">SSD</option>
                                 <option value="HD">HD</option>
                             </select>
+                            <span class="text-erro" id="label_erro3" style="display: none;">Selecione uma opição</span>
                         </div>
-                    </div>
 
-                    <div class="confirmacao_adicionar_usuario">
-                        <button class="botao" onclick="sair_adicionar_usuario()">Cancelar</button>
-                        <button class="botao" onclick="confirmar_adicionar_usuario()">Confirmar</button>
+                        <div class="formulario" onchange='changed("label_erro4")'>
+                            <label class="tipo">Tamanho da RAM(GB):</label>
+                            <select id="add_ram">
+                                <option value="">-selecione-</option>
+                                <option value="4">4</option>
+                                <option value="8">8</option>
+                                <option value="16">16</option>
+                                <option value="32">32</option>
+                                <option value="32">64</option>
+                            </select>
+                            <span class="text-erro" id="label_erro4" style="display: none;">Selecione uma opição</span>
+                        </div>
+
+                        <div class="formulario" onchange='changed("label_erro5")'>
+                            <label class="tipo">Sistema operacional:</label>
+                            <select id="add_so">
+                                <option value="">-selecione-</option>
+                                <option value="windows">windows</option>
+                                <option value="linux">linux</option>
+                                <option value="mac">mac</option>
+                            </select>
+                            <span class="text-erro" id="label_erro5" style="display: none;">Selecione uma opição</span>
+                        </div>
+
+                        <div class="formulario">
+                            <label>GHz do processador</label>
+                            <input type="number" id="add_cpu" oninput='changed("label_erro6")' maxlength="3" placeholder="0.0">
+                            <span class="text-erro" id="label_erro6" style="display: none;">Insira pelo menos 3 digitos</span>
+                        </div>
+
+                        <div class="confirmacao_adicionar_usuario">
+                            <button class="botao" onclick="cancelar()">Cancelar</button>
+                            <button class="botao" onclick="confirmar_adicionar_maquina()">Confirmar</button>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div id="modal_editar_user" class="modal">
+            <div id="modal_editar" class="modal">
                 <div class="caixa editar">
                     <div class="form">
                         <div class="formulario">
                             <label class="usuario">Setor:</label>
-                            <input id="edit_usuario">
+                            <input id="edit_setor" oninput='changed("label_erro7")'>
+                            <span class="text-erro" id="label_erro7" style="display: none;">Valor inválido</span>
                         </div>
-    
+                        
                         <div class="formulario">
                             <label class="email">Status:</label>
-                            <input id="edit_email">
+                            <input id="edit_status" oninput='changed("label_erro8")'>
+                            <span class="text-erro" id="label_erro8" style="display: none;">Valor inválido</span>
                         </div>
-    
+                        
                         <div class="formulario">
                             <label class="tipo">Tipo de memoria:</label>
-                            <select id="edit_tipo">
+                            <select id="edit_tipo" oninput='changed("label_erro9")'>
                                 <option value="">-select-</option>
                                 <option value="SSD">SSD</option>
                                 <option value="HD">HD</option>
                             </select>
+                            <span class="text-erro" id="label_erro9" style="display: none;">Selecione uma opição</span>
                         </div>
                     </div>
 
                     <div class="confirmacao_adicionar_usuario">
-                        <button class="botao" onclick="sair_editar_usuario()">Cancelar</button>
-                        <button class="botao" onclick="confirmar_editar_usuario()">Confirmar</button>
+                        <button class="botao" onclick="cancelar()">Cancelar</button>
+                        <button class="botao" onclick="confirmar_editar_maquina()">Confirmar</button>
                     </div>
                 </div>
             </div>
@@ -131,7 +167,7 @@
                     </div>
                     <div class="confirmacao-alerta-modal">
                         <button class="botao" onclick="sair_deletar()">Cancelar</button>
-                        <button class="botao" style="background-color: rgb(218, 40, 40);" onclick="confirmar_deletar_usuario()">Confirmar</button>
+                        <button class="botao" style="background-color: rgb(218, 40, 40);" onclick="confirmar_deletar_maquina(this)">Confirmar</button>
                     </div>
                 </div>
             </div>

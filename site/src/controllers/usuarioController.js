@@ -152,6 +152,7 @@ function cadastrarUsuario(req, res) {
             );
     }
 }
+// 
 
 module.exports = {
     entrar,
@@ -159,5 +160,6 @@ module.exports = {
     cadastrarEndereco,
     cadastrarUsuario,
     listar,
-    testar
+    testar,
+    cadastrarMaquina
 }
