@@ -1,112 +1,276 @@
 // ADICIONAR
 
 function adicionar_usuario() {
-    var modal = document.getElementById("modal_user")
+    var modal = document.getElementById("modal_adicionar")
 
     modal.style.display = "block"
 }
 
-function sair_adicionar_usuario() {
-    var modal = document.getElementById("modal_user")
+function cancelar() {
+    let modal_add = document.getElementById("modal_adicionar")
+    let modal_editar = document.getElementById("modal_editar")
+    let erro1 = document.getElementById("label_erro1");
+    let erro2 = document.getElementById("label_erro2");
+    let erro3 = document.getElementById("label_erro3");
+    let erro4 = document.getElementById("label_erro4");
+    let erro5 = document.getElementById("label_erro5");
+    let erro6 = document.getElementById("label_erro6");
+    let erro7 = document.getElementById("label_erro7");
+    let erro8 = document.getElementById("label_erro8");
+    let erro9 = document.getElementById("label_erro8");
 
-    modal.style.display = "none"
+    erro1.style.display = "none"
+    erro2.style.display = "none"
+    erro3.style.display = "none"
+    erro4.style.display = "none"
+    erro5.style.display = "none"
+    erro6.style.display = "none"
+    erro7.style.display = "none"
+    erro8.style.display = "none"
+    erro9.style.display = "none"
+
+    modal_add.style.display = "none"
+    modal_editar.style.display = "none"
 }
 
-function sair_adicionar_usuario() {
-    var modal = document.getElementById("modal_user")
-
-    modal.style.display = "none"
+function confirmar_adicionar_maquina() {
+    let modal = document.getElementById("modal_adicionar")
+    let add_setor = document.getElementById("add_setor");
+    let add_status = document.getElementById("add_hostname");
+    let add_tipo = document.getElementById("add_tipo");
+    let add_ram = document.getElementById("add_ram");
+    let add_so = document.getElementById("add_so");
+    let add_cpu = document.getElementById("add_cpu");
+    
+    verificaValoresAdd(add_setor, add_status, add_tipo, add_ram, add_so, add_cpu)
+    
+    if (validacao) {
+        cadastrarMaquina()
+        modal.style.display = "none"
+    }
 }
 
-function confirmar_adicionar_usuario() {
-    var modal = document.getElementById("modal_user")
+function verificaValoresAdd(add_setor, add_status, add_tipo, add_ram, add_so, add_cpu){
+    validacao = true;
+    if (add_setor.value == "" ) {
+        let erro1 = document.getElementById("label_erro1");
+        erro1.style.display = "block"
+        validacao = false;
+    }
+    
+    if (add_status.value == "") {
+        let erro2 = document.getElementById("label_erro2")
+        erro2.style.display = "block"
+        validacao = false;
+    }
+    
+    if (add_tipo.value == "") {
+        let erro3 = document.getElementById("label_erro3")
+        erro3.style.display = "block"
+        validacao = false;
+    }
+    console.log(add_tipo.value)
 
-    modal.style.display = "none"
+    if (add_ram.value == "") {
+        let erro4 = document.getElementById("label_erro4")
+        erro4.style.display = "block"
+        validacao = false;
+    }
+    if (add_so.value.length == 0) {
+        let erro5 = document.getElementById("label_erro5")
+        erro5.style.display = "block"
+        validacao = false;
+    }
+
+    if (add_cpu.value.length == 0) {
+        let erro6 = document.getElementById("label_erro6")
+        erro6.style.display = "block"
+        validacao = false;
+    }
+    return validacao
 }
+
+
+const ipt_num = document.getElementById("add_cpu");
+ipt_num.addEventListener("input", () => {
+    const maxLength = 3;
+    if (ipt_num.value.length > maxLength) {
+    ipt_num.value = ipt_num.value.slice(0, maxLength);
+    }
+    let valor = ipt_num.value.replace(/\D/g, '');
+    if (valor.length > 1) {
+    valor = valor.slice(0, -1) + '.' + valor.slice(-1);
+    ipt_num.value = valor;
+    }
+});
+
+function changed(text) {
+    let erroEsconder = document.getElementById(text)
+    erroEsconder.style.display = "none";
+}
+
+//arrumar esse ctrl+c ctrl+v
+function cadastrarMaquina() {
+    //variaveis da maquina
+
+    var setorVar = add_setor.value;
+    var hostnameVar = add_hostname.value;
+    var tipoVar = add_tipo.value;
+    var ramVar = add_ram.value;
+    var soVar = add_so.value;
+    var cpuVar = add_cpu.value.replace(',', '.');
+
+    // Enviando o valor da nova input
+    fetch("/maquina/cadastrarMaquina", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            // crie um atributo que recebe o valor recuperado aqui
+            // Agora vá para o arquivo routes/usuario.js
+            setorServer: setorVar,
+            hostnameServer: hostnameVar,
+            tipoServer: tipoVar,
+            ramServer: ramVar,
+            soServer: soVar,
+            cpuServer: cpuVar
+        })
+    }).then(function (resposta) {
+
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+
+            cadastrarUsuarioDados();
+
+        } else {
+            throw ("Houve um erro ao tentar realizar o cadastro!");
+        }
+    }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+    });
+
+    return false;
+}
+
+
 
 // EDITAR
 
-function editar(usuario, email, tipo) {
-    var edit_usuario = document.getElementById("edit_usuario");
-    var edit_email = document.getElementById("edit_email");
+function editar(setor, status, tipo) {
+    var modal = document.getElementById("modal_editar")
+    var edit_setor = document.getElementById("edit_setor");
+    var edit_status = document.getElementById("edit_status");
     var edit_tipo = document.getElementById("edit_tipo");
-    var edit_senha = document.getElementById("edit_senha");
-    var edit_confirma_senha = document.getElementById("edit_confirma-senha");
 
-    edit_usuario.value = usuario;
-    edit_email.value = email;
+    edit_setor.value = setor;
+    edit_status.value = status;
     edit_tipo.value = tipo;
-    // edit_senha.value = user.senha;
-    // edit_confirma_senha.value = user.senha;
 
-    // Abra o modal
-    var modal_editar_user = document.getElementById("modal_editar_user");
-    modal_editar_user.style.display = "block";
-}
-
-// function editar() {
-//     let modal = document.getElementById("modal_user")
-
-//     let id0 = document.getElementById("id0").value
-//     let usuario0 = document.getElementById("usuario0").value
-//     let email0 = document.getElementById("email0").value
-//     let tipo0 = document.getElementById("tipo0").value
-
-//     let id = document.getElementById("edit_usuario").value = id0
-//     let usuario = document.getElementById("edit_email").value = usuario0
-//     let email = document.getElementById("edit_tipo")
-//     let tipo = document.getElementById("edit_senha").value = email0
-
-//     // id.value = id0
-//     // usuario.value = usuario0
-//     // email.value = email0
-
-//     modal.style.display = "block"
-// }
-
-function sair_editar_usuario() {
-    var modal = document.getElementById("modal_editar_user")
-
-    modal.style.display = "none"
+    modal.style.display = "block";
 }
 
 
-function confirmar_editar_usuario() {
-    var modal = document.getElementById("modal_editar_user")
+function confirmar_editar_maquina() {
+    let modal = document.getElementById("modal_editar")
+    let edit_setor = document.getElementById("edit_setor");
+    let edit_status = document.getElementById("edit_status");
+    let edit_tipo = document.getElementById("edit_tipo");
 
-    modal.style.display = "none"
+    verificaValoresEditar(edit_setor, edit_status, edit_tipo)
+    if (validacao) {
+        editarMaquina()
+        modal.style.display = "none"
+    }
 }
+
+function verificaValoresEditar(edit_setor, edit_status, edit_tipo){
+    validacao = true;
+    if (edit_setor.value == "" ) {
+        let erro7 = document.getElementById("label_erro7");
+        erro7.style.display = "block"
+        validacao = false;
+    }
+    
+    if (edit_status.value == "") {
+        let erro8 = document.getElementById("label_erro8")
+        erro8.style.display = "block"
+        validacao = false;
+    }
+    
+    if (edit_tipo.value == "") {
+        let erro9 = document.getElementById("label_erro9")
+        erro9.style.display = "block"
+        validacao = false;
+    }
+
+    return validacao
+}
+
+//arrumar esse ctrl+c ctrl+v
+function editarMaquina() {
+    //variaveis da maquina
+    var cepVar = ipt_cep.value;
+    var numeroVar = ipt_numero.value;
+
+    if (nomeVar == "" || cnpjVar == "") {
+        alert("Erro: dados do endereco vazios")
+        return false;
+    }
+
+    // Enviando o valor da nova input
+    fetch("/usuarios/cadastrarEndereco", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            // crie um atributo que recebe o valor recuperado aqui
+            // Agora vá para o arquivo routes/usuario.js
+            cepServer: cepVar,
+            numeroServer: numeroVar,
+        })
+    }).then(function (resposta) {
+
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+
+            cadastrarUsuarioDados();
+
+        } else {
+            throw ("Houve um erro ao tentar realizar o cadastro!");
+        }
+    }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+    });
+
+    return false;
+}
+
+
 
 // DELETAR
-var user_delete = -1;
 
-function deletar_usuario(i) {
+let indice;
+
+function modal_deletar(i) {
+    indice = i;
     var modal = document.getElementById("modal_delete")
-    user_delete = i
     modal.style.display = "block"
 }
 
 function sair_deletar() {
     var modal = document.getElementById("modal_delete")
-
     modal.style.display = "none"
-    user_delete = -1
 }
 
-function confirmar_deletar_usuario() {
-    var modal = document.getElementById("modal_delete")
-
-    if (user_delete > -1) {
-        data.splice(data.indexOf(user_delete), 1);
-    }
-    user_delete = -1
-
+function confirmar_deletar_maquina() {
+    data.splice(indice, 1);
+    sair_deletar()
     generateTable(data)
-    modal.style.display = "none"
 }
-
-
-// 
 
 function generateTable(data) {
     const tableContainer = document.getElementById("tabela-computadores");
@@ -159,7 +323,7 @@ function generateTable(data) {
     const deleteButton = document.createElement("img");
     deleteButton.setAttribute("src", "../assets/usuarios/lixeira.png");
     deleteButton.addEventListener("click", function() {
-        deletar_usuario(i);
+        modal_deletar(i);
     });
 
     toolsColumn.appendChild(iconEditar);
