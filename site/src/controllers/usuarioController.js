@@ -160,6 +160,5 @@ module.exports = {
     cadastrarEndereco,
     cadastrarUsuario,
     listar,
-    testar,
-    cadastrarMaquina
+    testar
 }
