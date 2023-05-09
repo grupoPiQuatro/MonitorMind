@@ -171,6 +171,10 @@ body {
     align-items: flex-start;
 }
 
+.box .textoBox {
+    width: 160px;
+}
+
 .pcIndiv .boxStatus {
     display: flex;
     justify-content: space-evenly;

@@ -14,6 +14,7 @@ var avisosRouter = require("./src/routes/avisos");
 var medidasRouter = require("./src/routes/medidas");
 var usuarioAdminRouter = require("./src/routes/usuariosAdmin");
 var maquinaRouter = require("./src/routes/maquina");
+var pcRouter = require("./src/routes/pc");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -24,9 +25,10 @@ app.use(cors());
 app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/avisos", avisosRouter);
-app.use("/medidas", medidasRouter)
-app.use("/usuarioAdmin", usuarioAdminRouter)
-app.use("/maquina", maquinaRouter)
+app.use("/medidas", medidasRouter);
+app.use("/usuarioAdmin", usuarioAdminRouter);
+app.use("/maquina", maquinaRouter);
+app.use("/pc", pcRouter);
 
 app.listen(PORTA, function () {
     console.log(`Servidor do seu site já está rodando! Acesse o caminho a seguir para visualizar: http://localhost:${PORTA} \n

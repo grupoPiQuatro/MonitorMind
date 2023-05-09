@@ -1,12 +1,212 @@
 window.addEventListener("load", function () {
-  gerarPc();
+  buscarParametro();
 });
 
-function gerarPc() {
+var amarRede;
+var amarRam;
+var amarCpu;
+var amarDisco;
+var vermRede;
+var vermRam;
+var vermCpu;
+var vermDisco;
+
+function buscarParametro() {
+  // fkEmpresa = sessionStorage.FK_EMPRESA;
+  fkEmpresa = 1;
+
+  fetch(`/pc/buscarParametro/${fkEmpresa}`, { cache: 'no-store' }).then(function (resposta) {
+    if (resposta.ok) {
+
+      resposta.json().then(function (resposta) {
+        console.log("PARAMETROS: ", JSON.stringify(resposta));
+        amarRede = resposta[0].valor;
+        amarRam = resposta[1].valor;
+        amarCpu = resposta[2].valor;
+        amarDisco = resposta[3].valor;
+        vermRede = resposta[4].valor;
+        vermRam = resposta[5].valor;
+        vermCpu = resposta[6].valor;
+        vermDisco = resposta[7].valor;
+        listarPc();
+      });
+    } else {
+      throw ('Houve um erro na API!');
+    }
+  }).catch(function (resposta) {
+    console.error(resposta);
+
+  });
+}
+
+
+function listarPc() {
+  var computadores = [];
+
+  fetch(`/pc/buscarPc/${fkEmpresa}`, { cache: 'no-store' }).then(function (resposta) {
+    if (resposta.ok) {
+
+      resposta.json().then(function (resposta) {
+        console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+        var qtdPc = resposta.length;
+        var ax01 = 0;
+        var ax02 = 1;
+        var ax03 = 2;
+        var ax04 = 3;
+
+        for (let i = 0; i < qtdPc; i++) {
+          var registro = resposta[i];
+
+          if (i == ax01) {
+            var pc = {
+              setor: registro.setor,
+              hostname: registro.hostname,
+              mac: registro.mac,
+              rede: registro.valor,
+              vRede: 0,
+              vRam: 0,
+              vCpu: 0,
+              vDisco: 0,
+              aRede: 0,
+              aRam: 0,
+              aCpu: 0,
+              aDisco: 0,
+              alertasAmar: 0,
+              alertasVerm: 0
+            }
+
+            if (registro.valor >= vermRede) {
+              pc.vRede += 1;
+              pc.alertasVerm += 1;
+            } else if (registro.valor > amarRede) {
+              pc.aRede += 1;
+              pc.alertasAmar += 1;
+            }
+            ax01 += 4;
+          }
+
+
+          if (i == ax02) {
+            pc["ram"] = registro.valor;
+            ax02 += 4;
+
+            ramVer = (vermRam / 100) * registro.numeroChave;
+            ramAmar = (amarRam / 100) * registro.numeroChave;
+
+            if (registro.valor >= ramVer) {
+              pc.vRam += 1;
+              pc.alertasVerm += 1;
+            } else if (registro.valor > ramAmar) {
+              pc.aRam += 1;
+              pc.alertasAmar += 1;
+            }
+          }
+
+          if (i == ax03) {
+            pc["cpu"] = registro.valor;
+            ax03 += 4;
+
+            if (registro.valor >= vermCpu) {
+              pc.vCpu += 1;
+              pc.alertasVerm += 1;
+            } else if (registro.valor > amarCpu) {
+              pc.aCpu += 1;
+              pc.alertasAmar += 1;
+            }
+          }
+
+          if (i == ax04) {
+            pc["disco"] = registro.valor;
+            ax04 += 4;
+
+            discoVer = (vermDisco / 100) * registro.numeroChave;
+            discoAmar = (amarDisco / 100) * registro.numeroChave;
+
+            if (registro.valor >= discoVer) {
+              pc.vDisco += 1;
+              pc.alertasVerm += 1;
+            } else if (registro.valor > discoAmar) {
+              pc.aDisco += 1;
+              pc.alertasAmar += 1;
+            }
+
+            computadores.push(pc);
+          }
+        }
+
+        console.log("PC: ", JSON.stringify(computadores));
+        ordenarPc(computadores);
+      });
+    } else {
+      throw ('Houve um erro na API!');
+    }
+  }).catch(function (resposta) {
+    console.error(resposta);
+
+  });
+
+}
+
+function ordenarPc(computadores) {
+  var computadoresOrdenados = [];
+
+  for (let i = 0; i < computadores.length; i++) {
+    pcAtual = computadores[i];
+    var adicionado = false;
+
+    if (i == 0) {
+
+      computadoresOrdenados.push(pcAtual);
+
+    } else {
+
+      for (let c = 0; c < computadoresOrdenados.length; c++) {
+        pcOrdenado = computadoresOrdenados[c];
+
+        if (adicionado == false) {
+          if (pcAtual.alertasVerm > pcOrdenado.alertasVerm) {
+            computadoresOrdenados.splice((c), 0, pcAtual)
+            adicionado = true;
+          } 
+        }
+
+        if (adicionado == false) {
+          if (pcAtual.alertasAmar > pcOrdenado.alertasAmar) {
+            computadoresOrdenados.splice(c, 0, pcAtual)
+            adicionado = true;
+          }
+        }
+
+        if (adicionado == false) {
+          if (pcAtual.alertasVerm == pcOrdenado.alertasVerm) {
+            computadoresOrdenados.splice((c + 1), 0, pcAtual)
+            adicionado = true;
+          }
+        }
+
+        if (adicionado == false) {
+          if (pcAtual.alertasAmar == pcOrdenado.alertasAmar) {
+            computadoresOrdenados.splice((c + 1), 0, pcAtual)
+            adicionado = true;
+          }
+        }
+
+      }
+    }
+  }
+
+  console.log("PC ORDENADOS: ", JSON.stringify(computadoresOrdenados));
+
+}
+
+
+function criarCards() {
+
   const pai = document.querySelector('.pc-container');
 
   // Define a quantidade de divs que você deseja criar
-  const quantidadeDivs = 15;
+  const quantidadeDivs = 5;
 
   // Loop for para criar as novas divs
   for (let i = 0; i < quantidadeDivs; i++) {
@@ -39,9 +239,9 @@ function gerarPc() {
     const p1 = document.createElement('p');
     p1.textContent = 'Setor: A';
     const p2 = document.createElement('p');
-    p2.textContent = 'Número identificado';
+    p2.textContent = 'HOSTNAME:';
     const p3 = document.createElement('p');
-    p3.textContent = 'PE21323DACB';
+    p3.textContent = 'MAC:';
     divTexto.appendChild(p1);
     divTexto.appendChild(p2);
     divTexto.appendChild(p3);
