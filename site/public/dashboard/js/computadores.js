@@ -1,17 +1,19 @@
 window.addEventListener("load", function () {
-  gerarPc();
+  buscarParametro();
 });
 
-function gerarPc() {
-  fkEmpresa = sessionStorage.FK_EMPRESA;
-  var amarRede;
-  var amarRam;
-  var amarCpu;
-  var amarDisco;
-  var vermRede;
-  var vermRam;
-  var vermCpu;
-  var vermDisco;
+var amarRede;
+var amarRam;
+var amarCpu;
+var amarDisco;
+var vermRede;
+var vermRam;
+var vermCpu;
+var vermDisco;
+
+function buscarParametro() {
+  // fkEmpresa = sessionStorage.FK_EMPRESA;
+  fkEmpresa = 1;
 
   fetch(`/pc/buscarParametro/${fkEmpresa}`, { cache: 'no-store' }).then(function (resposta) {
     if (resposta.ok) {
@@ -26,6 +28,7 @@ function gerarPc() {
         vermRam = resposta[5].valor;
         vermCpu = resposta[6].valor;
         vermDisco = resposta[7].valor;
+        listarPc();
       });
     } else {
       throw ('Houve um erro na API!');
@@ -34,10 +37,11 @@ function gerarPc() {
     console.error(resposta);
 
   });
+}
 
 
+function listarPc() {
   var computadores = [];
-  var alertas = [];
 
   fetch(`/pc/buscarPc/${fkEmpresa}`, { cache: 'no-store' }).then(function (resposta) {
     if (resposta.ok) {
@@ -67,13 +71,17 @@ function gerarPc() {
               aRede: 0,
               aRam: 0,
               aCpu: 0,
-              aDisco: 0
+              aDisco: 0,
+              alertasAmar: 0,
+              alertasVerm: 0
             }
 
             if (registro.valor >= vermRede) {
               pc.vRede += 1;
+              pc.alertasVerm += 1;
             } else if (registro.valor > amarRede) {
               pc.aRede += 1;
+              pc.alertasAmar += 1;
             }
             ax01 += 4;
           }
@@ -88,8 +96,10 @@ function gerarPc() {
 
             if (registro.valor >= ramVer) {
               pc.vRam += 1;
+              pc.alertasVerm += 1;
             } else if (registro.valor > ramAmar) {
               pc.aRam += 1;
+              pc.alertasAmar += 1;
             }
           }
 
@@ -99,8 +109,10 @@ function gerarPc() {
 
             if (registro.valor >= vermCpu) {
               pc.vCpu += 1;
+              pc.alertasVerm += 1;
             } else if (registro.valor > amarCpu) {
               pc.aCpu += 1;
+              pc.alertasAmar += 1;
             }
           }
 
@@ -113,8 +125,10 @@ function gerarPc() {
 
             if (registro.valor >= discoVer) {
               pc.vDisco += 1;
+              pc.alertasVerm += 1;
             } else if (registro.valor > discoAmar) {
               pc.aDisco += 1;
+              pc.alertasAmar += 1;
             }
 
             computadores.push(pc);
@@ -122,7 +136,7 @@ function gerarPc() {
         }
 
         console.log("PC: ", JSON.stringify(computadores));
-        console.log("ALERTAS: ", JSON.stringify(alertas));
+        ordenarPc(computadores);
       });
     } else {
       throw ('Houve um erro na API!');
@@ -132,14 +146,62 @@ function gerarPc() {
 
   });
 
+}
+
+function ordenarPc(computadores) {
   var computadoresOrdenados = [];
+
   for (let i = 0; i < computadores.length; i++) {
-    pc = computadores[i];
+    pcAtual = computadores[i];
+    var adicionado = false;
+
     if (i == 0) {
-      computadoresOrdenados.push(pc);
+
+      computadoresOrdenados.push(pcAtual);
+
+    } else {
+
+      for (let c = 0; c < computadoresOrdenados.length; c++) {
+        pcOrdenado = computadoresOrdenados[c];
+
+        if (adicionado == false) {
+          if (pcAtual.alertasVerm > pcOrdenado.alertasVerm) {
+            computadoresOrdenados.splice((c), 0, pcAtual)
+            adicionado = true;
+          } 
+        }
+
+        if (adicionado == false) {
+          if (pcAtual.alertasAmar > pcOrdenado.alertasAmar) {
+            computadoresOrdenados.splice(c, 0, pcAtual)
+            adicionado = true;
+          }
+        }
+
+        if (adicionado == false) {
+          if (pcAtual.alertasVerm == pcOrdenado.alertasVerm) {
+            computadoresOrdenados.splice((c + 1), 0, pcAtual)
+            adicionado = true;
+          }
+        }
+
+        if (adicionado == false) {
+          if (pcAtual.alertasAmar == pcOrdenado.alertasAmar) {
+            computadoresOrdenados.splice((c + 1), 0, pcAtual)
+            adicionado = true;
+          }
+        }
+
+      }
     }
   }
 
+  console.log("PC ORDENADOS: ", JSON.stringify(computadoresOrdenados));
+
+}
+
+
+function criarCards() {
 
   const pai = document.querySelector('.pc-container');
 
