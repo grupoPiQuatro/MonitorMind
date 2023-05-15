@@ -194,21 +194,18 @@ body {
     font-size: 0.9rem;
 }
 
-.boxStatus .rede {
+.boxStatus .verde {
     background-color: green;
 }
 
-.boxStatus .ram {
+.boxStatus .amarelo {
     background-color: yellow;
 }
 
-.boxStatus .cpu {
-    background-color: yellow;
-}
-
-.boxStatus .disco {
+.boxStatus .vermelho {
     background-color: red;
 }
+
 
 .preFooter {
     height: 9vh;
@@ -248,6 +245,10 @@ body {
 
 .preFooter .trocarPag img {
     width: 50px;
+}
+
+.preFooter .trocarPag img:hover {
+    cursor: pointer;
 }
 
 .preFooter .botoes button {
