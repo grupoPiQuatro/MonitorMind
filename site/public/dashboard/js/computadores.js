@@ -2,14 +2,14 @@ window.addEventListener("load", function () {
   buscarParametro();
 });
 
-var amarRede;
-var amarRam;
-var amarCpu;
-var amarDisco;
-var vermRede;
-var vermRam;
-var vermCpu;
-var vermDisco;
+var amarRedeParam;
+var amarRamParam;
+var amarCpuParam;
+var amarDiscoParam;
+var vermRedeParam;
+var vermRamParam;
+var vermCpuParam;
+var vermDiscoParam;
 
 function buscarParametro() {
   // fkEmpresa = sessionStorage.FK_EMPRESA;
@@ -20,14 +20,14 @@ function buscarParametro() {
 
       resposta.json().then(function (resposta) {
         console.log("PARAMETROS: ", JSON.stringify(resposta));
-        amarRede = resposta[0].valor;
-        amarRam = resposta[1].valor;
-        amarCpu = resposta[2].valor;
-        amarDisco = resposta[3].valor;
-        vermRede = resposta[4].valor;
-        vermRam = resposta[5].valor;
-        vermCpu = resposta[6].valor;
-        vermDisco = resposta[7].valor;
+        amarRedeParam = resposta[0].valor;
+        amarRamParam = resposta[1].valor;
+        amarCpuParam = resposta[2].valor;
+        amarDiscoParam = resposta[3].valor;
+        vermRedeParam = resposta[4].valor;
+        vermRamParam = resposta[5].valor;
+        vermCpuParam = resposta[6].valor;
+        vermDiscoParam = resposta[7].valor;
         listarPc();
       });
     } else {
@@ -76,10 +76,10 @@ function listarPc() {
               alertasVerm: 0
             }
 
-            if (registro.valor >= vermRede) {
+            if (registro.valor >= vermRedeParam) {
               pc.vRede += 1;
               pc.alertasVerm += 1;
-            } else if (registro.valor > amarRede) {
+            } else if (registro.valor > amarRedeParam) {
               pc.aRede += 1;
               pc.alertasAmar += 1;
             }
@@ -91,8 +91,8 @@ function listarPc() {
             pc["ram"] = registro.valor;
             ax02 += 4;
 
-            ramVer = (vermRam / 100) * registro.numeroChave;
-            ramAmar = (amarRam / 100) * registro.numeroChave;
+            ramVer = (vermRamParam / 100) * registro.numeroChave;
+            ramAmar = (amarRamParam / 100) * registro.numeroChave;
 
             if (registro.valor >= ramVer) {
               pc.vRam += 1;
@@ -107,10 +107,10 @@ function listarPc() {
             pc["cpu"] = registro.valor;
             ax03 += 4;
 
-            if (registro.valor >= vermCpu) {
+            if (registro.valor >= vermCpuParam) {
               pc.vCpu += 1;
               pc.alertasVerm += 1;
-            } else if (registro.valor > amarCpu) {
+            } else if (registro.valor > amarCpuParam) {
               pc.aCpu += 1;
               pc.alertasAmar += 1;
             }
@@ -120,8 +120,8 @@ function listarPc() {
             pc["disco"] = registro.valor;
             ax04 += 4;
 
-            discoVer = (vermDisco / 100) * registro.numeroChave;
-            discoAmar = (amarDisco / 100) * registro.numeroChave;
+            discoVer = (vermDiscoParam / 100) * registro.numeroChave;
+            discoAmar = (amarDiscoParam / 100) * registro.numeroChave;
 
             if (registro.valor >= discoVer) {
               pc.vDisco += 1;
@@ -148,68 +148,150 @@ function listarPc() {
 
 }
 
+const pcPorPagina = 15;
+var indicePaginaAtual = 0;
+var pcOrdenadoGlobal = null;
+
 function ordenarPc(computadores) {
-  var computadoresOrdenados = [];
+  var computadoresVerm = [];
+  var adicionarVerm = true;
+
+  var computadoresAmar = [];
+  var adicionarAmar = true;
+
+  var computadoresVerd = [];
+
 
   for (let i = 0; i < computadores.length; i++) {
+    var adicionarMaior = true;
+    var adicionarIgual = true;
+    var adicionarMenor = true;
     pcAtual = computadores[i];
-    var adicionado = false;
 
-    if (i == 0) {
+    if (pcAtual.alertasVerm > 0) {
+      if (adicionarVerm) {
+        computadoresVerm.push(pcAtual);
+        adicionarVerm = false;
+      } else {
+        for (let v = 0; v < computadoresVerm.length; v++) {
+          pcVerm = computadoresVerm[v];
 
-      computadoresOrdenados.push(pcAtual);
+          if (adicionarMaior) {
+            if (pcAtual.alertasVerm > pcVerm.alertasVerm) {
+              computadoresVerm.splice(v, 0, pcAtual)
+              adicionarMaior = false;
+              adicionarIgual = false;
+              adicionarMenor = false;
+            }
+          }
 
-    } else {
+          if (adicionarIgual) {
+            if (pcAtual.alertasVerm == pcVerm.alertasVerm) {
+              adicionarMaior = false;
+              adicionarMenor = false;
+              if (v == (computadoresVerm.length - 1)) {
+                computadoresVerm.splice((v + 1), 0, pcAtual);
+                adicionarIgual = false;
+              } else if (pcAtual.alertasVerm != computadoresVerm[v + 1].alertasVerm) {
+                computadoresVerm.splice((v + 1), 0, pcAtual);
+                adicionarIgual = false;
+              }
+            }
+          }
 
-      for (let c = 0; c < computadoresOrdenados.length; c++) {
-        pcOrdenado = computadoresOrdenados[c];
-
-        if (adicionado == false) {
-          if (pcAtual.alertasVerm > pcOrdenado.alertasVerm) {
-            computadoresOrdenados.splice((c), 0, pcAtual)
-            adicionado = true;
-          } 
-        }
-
-        if (adicionado == false) {
-          if (pcAtual.alertasAmar > pcOrdenado.alertasAmar) {
-            computadoresOrdenados.splice(c, 0, pcAtual)
-            adicionado = true;
+          if (adicionarMenor) {
+            if (pcAtual.alertasVerm < pcVerm.alertasVerm) {
+              adicionarMaior = false;
+              adicionarIgual = false;
+              if (v == (computadoresVerm.length - 1)) {
+                computadoresVerm.splice((v + 1), 0, pcAtual);
+                adicionarMenor = false;
+              } else if (pcAtual.alertasVerm >= computadoresVerm[v + 1].alertasVerm) {
+                computadoresVerm.splice((v + 1), 0, pcAtual);
+                adicionarMenor = false;
+              }
+            }
           }
         }
-
-        if (adicionado == false) {
-          if (pcAtual.alertasVerm == pcOrdenado.alertasVerm) {
-            computadoresOrdenados.splice((c + 1), 0, pcAtual)
-            adicionado = true;
-          }
-        }
-
-        if (adicionado == false) {
-          if (pcAtual.alertasAmar == pcOrdenado.alertasAmar) {
-            computadoresOrdenados.splice((c + 1), 0, pcAtual)
-            adicionado = true;
-          }
-        }
-
       }
     }
+
+
+    if (pcAtual.alertasAmar > 0) {
+      if (adicionarAmar) {
+        computadoresAmar.push(pcAtual);
+        adicionarAmar = false;
+      } else {
+        for (let v = 0; v < computadoresAmar.length; v++) {
+          pcAmar = computadoresAmar[v];
+
+          if (adicionarMaior) {
+            if (pcAtual.alertasAmar > pcAmar.alertasAmar) {
+              computadoresAmar.splice(v, 0, pcAtual)
+              adicionarMaior = false;
+              adicionarIgual = false;
+              adicionarMenor = false;
+            }
+          }
+
+          if (adicionarIgual) {
+            if (pcAtual.alertasAmar == pcAmar.alertasAmar) {
+              adicionarMaior = false;
+              adicionarMenor = false;
+              if (v == (computadoresAmar.length - 1)) {
+                computadoresAmar.splice((v + 1), 0, pcAtual);
+                adicionarIgual = false;
+              } else if (pcAtual.alertasAmar != computadoresAmar[v + 1].alertasAmar) {
+                computadoresAmar.splice((v + 1), 0, pcAtual);
+                adicionarIgual = false;
+              }
+            }
+          }
+
+          if (adicionarMenor) {
+            if (pcAtual.alertasAmar < pcAmar.alertasAmar) {
+              adicionarMaior = false;
+              adicionarIgual = false;
+              if (v == (computadoresAmar.length - 1)) {
+                computadoresAmar.splice((v + 1), 0, pcAtual);
+                adicionarMenor = false;
+              } else if (pcAtual.alertasAmar >= computadoresAmar[v + 1].alertasAmar) {
+                computadoresAmar.splice((v + 1), 0, pcAtual);
+                adicionarMenor = false;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    if (pcAtual.alertasAmar == 0 && pcAtual.alertasVerm == 0) {
+      computadoresVerd.push(pcAtual);
+    }
+
   }
 
-  console.log("PC ORDENADOS: ", JSON.stringify(computadoresOrdenados));
+  console.log("PC VERMELHOS: ", JSON.stringify(computadoresVerm));
+  console.log("PC AMARELO: ", JSON.stringify(computadoresAmar));
+  console.log("PC VERDE: ", JSON.stringify(computadoresVerd));
 
+  var pcOrdenado = computadoresVerm.concat(computadoresAmar, computadoresVerd);
+  console.log("PC VERDE: ", JSON.stringify(pcOrdenado));
+  pcOrdenadoGlobal = pcOrdenado;
+  criarCards(indicePaginaAtual, pcOrdenado);
 }
 
 
-function criarCards() {
+function criarCards(indiceInicial, pcOrdenado) {
+  pcDivId.innerHTML = '';
 
   const pai = document.querySelector('.pc-container');
 
   // Define a quantidade de divs que você deseja criar
-  const quantidadeDivs = 5;
+  const quantidadePcs = pcOrdenado.length;
 
   // Loop for para criar as novas divs
-  for (let i = 0; i < quantidadeDivs; i++) {
+  for (let i = indiceInicial; i < quantidadePcs && i < (indiceInicial + pcPorPagina); i++) {
     // Cria uma nova div com a classe "pcIndiv"
     const novaDiv = document.createElement('div');
     novaDiv.classList.add('pcIndiv');
@@ -237,11 +319,12 @@ function criarCards() {
     const divTexto = document.createElement('div');
     divTexto.classList.add('textoBox');
     const p1 = document.createElement('p');
-    p1.textContent = 'Setor: A';
+    p1.innerHTML = '<b>Setor:</b> ' + pcOrdenado[i].setor;
     const p2 = document.createElement('p');
-    p2.textContent = 'HOSTNAME:';
+    p2.innerHTML = '<b>HOSTNAME:</b> ' + pcOrdenado[i].hostname;
+    // p2.textContent = 'HOSTNAME: ' + pcOrdenado[i].hostname;
     const p3 = document.createElement('p');
-    p3.textContent = 'MAC:';
+    p3.innerHTML = '<b>MAC: </b>' + pcOrdenado[i].mac;
     divTexto.appendChild(p1);
     divTexto.appendChild(p2);
     divTexto.appendChild(p3);
@@ -269,6 +352,38 @@ function criarCards() {
     divCpu.innerHTML = "CPU";
     divDisco.innerHTML = "Disco";
 
+    if (pcOrdenado[i].aRede != 0) {
+      divRede.style.backgroundColor = 'yellow'
+    } else if (pcOrdenado[i].vRede != 0) {
+      divRede.style.backgroundColor = 'red'
+    } else {
+      divRede.style.backgroundColor = 'green'
+    }
+
+    if (pcOrdenado[i].aRam != 0) {
+      divRam.style.backgroundColor = 'yellow'
+    } else if (pcOrdenado[i].vRam != 0) {
+      divRam.style.backgroundColor = 'red'
+    } else {
+      divRam.style.backgroundColor = 'green'
+    }
+
+    if (pcOrdenado[i].aCpu != 0) {
+      divCpu.style.backgroundColor = 'yellow'
+    } else if (pcOrdenado[i].vCpu != 0) {
+      divCpu.style.backgroundColor = 'red'
+    } else {
+      divCpu.style.backgroundColor = 'green'
+    }
+
+    if (pcOrdenado[i].aDisco != 0) {
+      divDisco.style.backgroundColor = 'yellow'
+    } else if (pcOrdenado[i].vDisco != 0) {
+      divDisco.style.backgroundColor = 'red'
+    } else {
+      divDisco.style.backgroundColor = 'green'
+    }
+
     // Adiciona as quatro divs filhas a segunda div filha da novaDiv
     divStatus.appendChild(divRede);
     divStatus.appendChild(divRam);
@@ -280,6 +395,31 @@ function criarCards() {
     pai.appendChild(novaDiv);
   }
 }
+
+
+function proxPag() {
+  indicePaginaAtual += pcPorPagina;
+  if (indicePaginaAtual >= pcOrdenadoGlobal.length) {
+    indicePaginaAtual -= pcPorPagina;
+  }
+
+  if (pcOrdenadoGlobal - indicePaginaAtual <= 15) {
+    direitaSeta.style.visibility = "hidden";
+  }
+
+  esquerdaSeta.style.visibility = "visible";
+  criarCards(indicePaginaAtual, pcOrdenadoGlobal);
+}
+
+function antigPag() {
+  indicePaginaAtual -= pcPorPagina;
+  if (indicePaginaAtual <= 0) {
+    indicePaginaAtual = 0;
+    esquerdaSeta.style.visibility = "hidden";
+  }
+  criarCards(indicePaginaAtual, pcOrdenadoGlobal);
+}
+
 
 function gerenciar_window() {
   window.location = "../html/computadores_gerenciar.html";

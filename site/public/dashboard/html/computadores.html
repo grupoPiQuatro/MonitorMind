@@ -83,7 +83,7 @@
 
             <div class="pc">
 
-                <div class="pc-container"> 
+                <div class="pc-container" id="pcDivId"> 
                     <!-- <div class="pcIndiv">
                         <div class="box">
                             <div class="imgBox">
@@ -116,8 +116,9 @@
                 </div>
 
                 <div class="trocarPag">
-                    <p><span>1</span> de <span>2</span></p>
-                    <img src="../assets/computador/seta-direita.png" alt="">
+                    <img src="../assets/computador/seta-esquerda.png" alt="" onclick="antigPag()" id="esquerdaSeta" style="visibility: hidden;">
+                    <p><span id="paginaAtual">1</span> de <span id="totalPaginas">2</span></p>
+                    <img src="../assets/computador/seta-direita.png" alt="" onclick="proxPag()" id="direitaSeta">
                 </div>
             </div>
 
