@@ -15,4 +15,12 @@ router.get("/buscarParametro/:fkEmpresa", function (req, res) {
     pcController.buscarParametro(req, res);
 })
 
+router.get("/buscarStatus/:fkEmpresa", function (req, res) {
+    pcController.buscarStatus(req, res);
+})
+
+router.get("/buscarPcSemRetorno/:fkEmpresa", function (req, res) {
+    pcController.buscarPcSemRetorno(req, res);
+})
+
 module.exports = router;
