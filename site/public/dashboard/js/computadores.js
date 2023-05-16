@@ -12,8 +12,8 @@ var vermCpuParam;
 var vermDiscoParam;
 
 function buscarParametro() {
-  // fkEmpresa = sessionStorage.FK_EMPRESA;
-  fkEmpresa = 1;
+  fkEmpresa = sessionStorage.FK_EMPRESA;
+  // fkEmpresa = 1;
 
   fetch(`/pc/buscarParametro/${fkEmpresa}`, { cache: 'no-store' }).then(function (resposta) {
     if (resposta.ok) {
@@ -271,16 +271,22 @@ function ordenarPc(computadores) {
 
   }
 
+  // PRINT DOS VETORES DE JASON REFERENTES A CADA COR
+
   console.log("PC VERMELHOS: ", JSON.stringify(computadoresVerm));
   console.log("PC AMARELO: ", JSON.stringify(computadoresAmar));
   console.log("PC VERDE: ", JSON.stringify(computadoresVerd));
 
+  // JUNÇÃO DOS VETORES EM UM SÓ PARA PLOT NO GRÁFICO
+
   var pcOrdenado = computadoresVerm.concat(computadoresAmar, computadoresVerd);
+  
   console.log("PC VERDE: ", JSON.stringify(pcOrdenado));
   pcOrdenadoGlobal = pcOrdenado;
   criarCards(indicePaginaAtual, pcOrdenado);
 }
 
+var atualPagina = 1;
 
 function criarCards(indiceInicial, pcOrdenado) {
   pcDivId.innerHTML = '';
@@ -394,16 +400,22 @@ function criarCards(indiceInicial, pcOrdenado) {
     // Adiciona a novaDiv ao elemento pai
     pai.appendChild(novaDiv);
   }
+
+  var numeroPaginas = Math.ceil(pcOrdenadoGlobal.length / 15);
+  totalPaginas.innerHTML = numeroPaginas;
+
+  paginaAtual.innerHTML = atualPagina; 
 }
 
-
 function proxPag() {
+  paginaAtual.innerHTML = atualPagina++; 
+  
   indicePaginaAtual += pcPorPagina;
   if (indicePaginaAtual >= pcOrdenadoGlobal.length) {
     indicePaginaAtual -= pcPorPagina;
   }
 
-  if (pcOrdenadoGlobal - indicePaginaAtual <= 15) {
+  if (pcOrdenadoGlobal.length - indicePaginaAtual <= 15) {
     direitaSeta.style.visibility = "hidden";
   }
 
@@ -412,6 +424,9 @@ function proxPag() {
 }
 
 function antigPag() {
+  paginaAtual.innerHTML = atualPagina--;
+
+  direitaSeta.style.visibility = "visible";
   indicePaginaAtual -= pcPorPagina;
   if (indicePaginaAtual <= 0) {
     indicePaginaAtual = 0;
