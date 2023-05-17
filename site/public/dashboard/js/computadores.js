@@ -135,7 +135,8 @@ function listarPc() {
           }
         }
 
-        console.log("PC: ", JSON.stringify(computadores));
+        console.log("COMPUTADORES ENCONTRADOS: ", JSON.stringify(computadores));
+        console.log("COMPUTADORES QUANTIDADE: ", JSON.stringify(computadores.length));
         ordenarPc(computadores);
       });
     } else {
@@ -161,114 +162,120 @@ function ordenarPc(computadores) {
 
   var computadoresVerd = [];
 
-
   for (let i = 0; i < computadores.length; i++) {
     var adicionarMaior = true;
     var adicionarIgual = true;
     var adicionarMenor = true;
+    var adicionado = false;
     pcAtual = computadores[i];
 
-    if (pcAtual.alertasVerm > 0) {
-      if (adicionarVerm) {
-        computadoresVerm.push(pcAtual);
-        adicionarVerm = false;
-      } else {
-        for (let v = 0; v < computadoresVerm.length; v++) {
-          pcVerm = computadoresVerm[v];
-
-          if (adicionarMaior) {
-            if (pcAtual.alertasVerm > pcVerm.alertasVerm) {
-              computadoresVerm.splice(v, 0, pcAtual)
-              adicionarMaior = false;
-              adicionarIgual = false;
-              adicionarMenor = false;
-            }
-          }
-
-          if (adicionarIgual) {
-            if (pcAtual.alertasVerm == pcVerm.alertasVerm) {
-              adicionarMaior = false;
-              adicionarMenor = false;
-              if (v == (computadoresVerm.length - 1)) {
-                computadoresVerm.splice((v + 1), 0, pcAtual);
+    if (!adicionado) {
+      if (pcAtual.alertasVerm > 0) {
+        if (adicionarVerm) {
+          computadoresVerm.push(pcAtual);
+          adicionarVerm = false;
+        } else {
+          for (let v = 0; v < computadoresVerm.length; v++) {
+            pcVerm = computadoresVerm[v];
+  
+            if (adicionarMaior) {
+              if (pcAtual.alertasVerm > pcVerm.alertasVerm) {
+                computadoresVerm.splice(v, 0, pcAtual)
+                adicionarMaior = false;
                 adicionarIgual = false;
-              } else if (pcAtual.alertasVerm != computadoresVerm[v + 1].alertasVerm) {
-                computadoresVerm.splice((v + 1), 0, pcAtual);
-                adicionarIgual = false;
+                adicionarMenor = false;
               }
             }
-          }
-
-          if (adicionarMenor) {
-            if (pcAtual.alertasVerm < pcVerm.alertasVerm) {
-              adicionarMaior = false;
-              adicionarIgual = false;
-              if (v == (computadoresVerm.length - 1)) {
-                computadoresVerm.splice((v + 1), 0, pcAtual);
+  
+            if (adicionarIgual) {
+              if (pcAtual.alertasVerm == pcVerm.alertasVerm) {
+                adicionarMaior = false;
                 adicionarMenor = false;
-              } else if (pcAtual.alertasVerm >= computadoresVerm[v + 1].alertasVerm) {
-                computadoresVerm.splice((v + 1), 0, pcAtual);
-                adicionarMenor = false;
+                if (v == (computadoresVerm.length - 1)) {
+                  computadoresVerm.splice((v + 1), 0, pcAtual);
+                  adicionarIgual = false;
+                } else if (pcAtual.alertasVerm != computadoresVerm[v + 1].alertasVerm) {
+                  computadoresVerm.splice((v + 1), 0, pcAtual);
+                  adicionarIgual = false;
+                }
+              }
+            }
+  
+            if (adicionarMenor) {
+              if (pcAtual.alertasVerm < pcVerm.alertasVerm) {
+                adicionarMaior = false;
+                adicionarIgual = false;
+                if (v == (computadoresVerm.length - 1)) {
+                  computadoresVerm.splice((v + 1), 0, pcAtual);
+                  adicionarMenor = false;
+                } else if (pcAtual.alertasVerm >= computadoresVerm[v + 1].alertasVerm) {
+                  computadoresVerm.splice((v + 1), 0, pcAtual);
+                  adicionarMenor = false;
+                }
               }
             }
           }
         }
+        adicionado = true;
       }
     }
 
+    if (!adicionado) {
+      if (pcAtual.alertasAmar > 0) {
+        if (adicionarAmar) {
+          computadoresAmar.push(pcAtual);
+          adicionarAmar = false;
+        } else {
+          for (let v = 0; v < computadoresAmar.length; v++) {
+            pcAmar = computadoresAmar[v];
 
-    if (pcAtual.alertasAmar > 0) {
-      if (adicionarAmar) {
-        computadoresAmar.push(pcAtual);
-        adicionarAmar = false;
-      } else {
-        for (let v = 0; v < computadoresAmar.length; v++) {
-          pcAmar = computadoresAmar[v];
-
-          if (adicionarMaior) {
-            if (pcAtual.alertasAmar > pcAmar.alertasAmar) {
-              computadoresAmar.splice(v, 0, pcAtual)
-              adicionarMaior = false;
-              adicionarIgual = false;
-              adicionarMenor = false;
-            }
-          }
-
-          if (adicionarIgual) {
-            if (pcAtual.alertasAmar == pcAmar.alertasAmar) {
-              adicionarMaior = false;
-              adicionarMenor = false;
-              if (v == (computadoresAmar.length - 1)) {
-                computadoresAmar.splice((v + 1), 0, pcAtual);
+            if (adicionarMaior) {
+              if (pcAtual.alertasAmar > pcAmar.alertasAmar) {
+                computadoresAmar.splice(v, 0, pcAtual)
+                adicionarMaior = false;
                 adicionarIgual = false;
-              } else if (pcAtual.alertasAmar != computadoresAmar[v + 1].alertasAmar) {
-                computadoresAmar.splice((v + 1), 0, pcAtual);
-                adicionarIgual = false;
+                adicionarMenor = false;
               }
             }
-          }
 
-          if (adicionarMenor) {
-            if (pcAtual.alertasAmar < pcAmar.alertasAmar) {
-              adicionarMaior = false;
-              adicionarIgual = false;
-              if (v == (computadoresAmar.length - 1)) {
-                computadoresAmar.splice((v + 1), 0, pcAtual);
+            if (adicionarIgual) {
+              if (pcAtual.alertasAmar == pcAmar.alertasAmar) {
+                adicionarMaior = false;
                 adicionarMenor = false;
-              } else if (pcAtual.alertasAmar >= computadoresAmar[v + 1].alertasAmar) {
-                computadoresAmar.splice((v + 1), 0, pcAtual);
-                adicionarMenor = false;
+                if (v == (computadoresAmar.length - 1)) {
+                  computadoresAmar.splice((v + 1), 0, pcAtual);
+                  adicionarIgual = false;
+                } else if (pcAtual.alertasAmar != computadoresAmar[v + 1].alertasAmar) {
+                  computadoresAmar.splice((v + 1), 0, pcAtual);
+                  adicionarIgual = false;
+                }
+              }
+            }
+
+            if (adicionarMenor) {
+              if (pcAtual.alertasAmar < pcAmar.alertasAmar) {
+                adicionarMaior = false;
+                adicionarIgual = false;
+                if (v == (computadoresAmar.length - 1)) {
+                  computadoresAmar.splice((v + 1), 0, pcAtual);
+                  adicionarMenor = false;
+                } else if (pcAtual.alertasAmar >= computadoresAmar[v + 1].alertasAmar) {
+                  computadoresAmar.splice((v + 1), 0, pcAtual);
+                  adicionarMenor = false;
+                }
               }
             }
           }
         }
+        adicionado = true;
       }
     }
 
     if (pcAtual.alertasAmar == 0 && pcAtual.alertasVerm == 0) {
       computadoresVerd.push(pcAtual);
+      adicionado = true;
     }
-
+    
   }
 
   // PRINT DOS VETORES DE JASON REFERENTES A CADA COR
@@ -280,7 +287,7 @@ function ordenarPc(computadores) {
   // JUNÇÃO DOS VETORES EM UM SÓ PARA PLOT NO GRÁFICO
 
   var pcOrdenado = computadoresVerm.concat(computadoresAmar, computadoresVerd);
-  
+
   console.log("PC VERDE: ", JSON.stringify(pcOrdenado));
   pcOrdenadoGlobal = pcOrdenado;
   criarCards(indicePaginaAtual, pcOrdenado);
@@ -404,12 +411,12 @@ function criarCards(indiceInicial, pcOrdenado) {
   var numeroPaginas = Math.ceil(pcOrdenadoGlobal.length / 15);
   totalPaginas.innerHTML = numeroPaginas;
 
-  paginaAtual.innerHTML = atualPagina; 
+  paginaAtual.innerHTML = atualPagina;
 }
 
 function proxPag() {
-  paginaAtual.innerHTML = atualPagina++; 
-  
+  paginaAtual.innerHTML = atualPagina++;
+
   indicePaginaAtual += pcPorPagina;
   if (indicePaginaAtual >= pcOrdenadoGlobal.length) {
     indicePaginaAtual -= pcPorPagina;
