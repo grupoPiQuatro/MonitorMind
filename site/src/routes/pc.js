@@ -23,4 +23,8 @@ router.get("/buscarPcSemRetorno/:fkEmpresa", function (req, res) {
     pcController.buscarPcSemRetorno(req, res);
 })
 
+router.get("/dadosRede/:fkEmpresa", function (req, res) {
+    pcController.dadosRede(req, res);
+})
+
 module.exports = router;

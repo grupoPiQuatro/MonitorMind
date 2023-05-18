@@ -1,3 +1,35 @@
+window.addEventListener("load", function () {
+    graficoStatus()
+});
+
+function graficoRede() {
+    fkEmpresa = sessionStorage.FK_EMPRESA;
+
+    fetch(`/pc/dadosRede/${fkEmpresa}`, { cache: 'no-store' }).then(function (resposta) {
+        if (resposta.ok) {
+
+            resposta.json().then(function (resposta) {
+                console.log("STATUS: ", JSON.stringify(resposta));
+                
+                separarStatus(resposta);
+                
+            });
+        } else {
+            throw ('Houve um erro na API!');
+        }
+    }).catch(function (resposta) {
+        console.error(resposta);
+
+    });
+}
+
+
+
+
+
+
+
+
 const rede = document.getElementById('redeChart');
 
 new Chart(rede, {

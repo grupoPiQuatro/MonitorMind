@@ -10,23 +10,23 @@ function listar(fkEmpresa) {
         SELECT *
         FROM (
             SELECT *,
-                ROW_NUMBER() OVER (PARTITION BY c.hostname ORDER BY m.dtCaptura DESC) AS rn
-            FROM [dbo].[computador] AS c
-            JOIN [dbo].[localizacao] AS l ON c.fkLocalizacao = l.idLocalizacao
-            JOIN [dbo].[config] AS cfg ON c.hostname = cfg.fkComputador
-            JOIN [dbo].[componente] AS comp ON cfg.fkComponente = comp.idComponente
+                ROW_NUMBER() OVER (PARTITION BY c.hostname, cfg.fkComponente ORDER BY m.dtCaptura DESC) AS rn
+            FROM computador AS c
+            JOIN localizacao AS l ON c.fkLocalizacao = l.idLocalizacao
+            JOIN config AS cfg ON c.hostname = cfg.fkComputador
+            JOIN componente AS comp ON cfg.fkComponente = comp.idComponente
             JOIN metrica AS m ON m.fkConfig = cfg.idConfig
             WHERE c.fkEmpresa = ${fkEmpresa}
         ) AS subquery
-        WHERE rn IN (1, 2, 3, 4)
-        ORDER BY subquery.dtCaptura DESC;
+        WHERE rn = 1
+        ORDER BY subquery.hostname;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
 
 function buscarParametro(fkEmpresa) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function buscarParametro()");
     var instrucao = `
         select idParametro, valor from parametros where fkEmpresa = ${fkEmpresa};
     `;
@@ -35,7 +35,7 @@ function buscarParametro(fkEmpresa) {
 }
 
 function buscarStatus(fkEmpresa) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function buscarStatus()");
     var instrucao = `
         select hostname, status from computador where fkEmpresa = ${fkEmpresa};
     `;
@@ -44,7 +44,7 @@ function buscarStatus(fkEmpresa) {
 }
 
 function buscarPcSemRetorno(fkEmpresa) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function buscarPcSemRetorno");
     var instrucao = `
     SELECT count(hostname)
     FROM (
@@ -61,9 +61,20 @@ function buscarPcSemRetorno(fkEmpresa) {
     return database.executar(instrucao);
 }
 
+function dadosRede(hostname) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function dadosRede()");
+    var instrucao = `
+        SELECT * FROM metrica JOIN config ON fkConfig = idConfig WHERE fkComputador = ${hostname} AND fkComponente = 1 
+	    AND dtCaptura >= DATEADD(DAY, -7, GETDATE()) ORDER BY dtCaptura DESC;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
     listar,
     buscarParametro,
     buscarStatus,
-    buscarPcSemRetorno
+    buscarPcSemRetorno,
+    dadosRede
 };
