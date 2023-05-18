@@ -31,4 +31,13 @@ router.delete("/deletar/:idAviso", function (req, res) {
     avisoController.deletar(req, res);
 });
 
+router.get("/puxar/:fkEmpresa", function (req, res) {
+    avisoController.puxar(req, res);
+});
+
+router.get("/comptotal/:fkEmpresa", function (req, res) {
+    avisoController.comptotal(req, res);
+});
+
+
 module.exports = router;
