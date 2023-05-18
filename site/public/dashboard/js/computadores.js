@@ -309,8 +309,9 @@ function criarCards(indiceInicial, pcOrdenado) {
     const novaDiv = document.createElement('div');
     novaDiv.classList.add('pcIndiv');
 
+    novaDiv.id = `pc${i}`;
     novaDiv.addEventListener('click', function () {
-      pcIndiv_window();
+      pcIndiv_window(this);
     });
 
     // Cria a primeira div filha com a classe "box"
@@ -450,6 +451,9 @@ function reiniciar_window() {
   window.location = "../html/computadores_reinicio.html";
 }
 
-function pcIndiv_window() {
+function pcIndiv_window(elementoDiv) {
+  var terceiroPContent = elementoDiv.querySelector('.textoBox p:nth-child(2)').textContent;
+  var hostname = terceiroPContent.split(':')[1].trim();
+  sessionStorage.COMPUTADOR = hostname;
   window.location = "../html/computadorIndividual.html";
 }
