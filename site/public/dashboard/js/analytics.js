@@ -1,3 +1,81 @@
+window.addEventListener("load", function () {
+    TrazerDados();
+    ComputadoresTotais();
+  });
+
+var totalComputador = 0;
+function ComputadoresTotais(){
+    var fkEmpresa = sessionStorage.FK_EMPRESA;
+    fetch(`/avisos/comptotal/${fkEmpresa}`, { cache: 'no-store' }).then(function (respostaaa) {
+        if (respostaaa.ok) {
+    
+            respostaaa.json().then(function (respostaaa) {
+            console.log("Resposta Grafico: ", JSON.stringify(respostaaa));
+            totalComputador = respostaaa[0].total
+            
+
+          });
+        } else {
+          throw ('Houve um erro na API!');
+        }
+      }).catch(function (respostaaa) {
+        console.error(respostaaa);
+    
+      });
+
+}
+
+
+
+function TrazerDados(){
+    var fkEmpresa = sessionStorage.FK_EMPRESA;
+    var resultadoGraficoCpu
+    fetch(`/avisos/puxar/${fkEmpresa}`, { cache: 'no-store' }).then(function (resposta) {
+        if (resposta.ok) {
+    
+            resposta.json().then(function (resposta) {
+            console.log("Resposta Grafico: ", JSON.stringify(resposta));
+            resultadoGraficoCpu = resposta[0].total_linhas  
+            var sla = (Number(resultadoGraficoCpu) / (Number(totalComputador)) * 100);
+            respostaCPU.innerHTML = sla.toFixed(0) + "%";
+
+          });
+        } else {
+          throw ('Houve um erro na API!');
+        }
+      }).catch(function (resposta) {
+        console.error(resposta);
+    
+      });
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const line = document.getElementById('lineChart');
 
 new Chart(line, {
