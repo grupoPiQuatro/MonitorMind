@@ -1,6 +1,12 @@
 window.addEventListener("load", function () {
     TrazerDados();
     ComputadoresTotais();
+    semRespostaPing();
+    reinicioMaiorQueUm();
+    riscoPreenchimento();
+    alertaPorComponente();
+    percentPcReinicio();
+    tempoStatus();
   });
 
 var totalComputador = 0;
@@ -22,10 +28,7 @@ function ComputadoresTotais(){
         console.error(respostaaa);
     
       });
-
 }
-
-
 
 function TrazerDados(){
     var fkEmpresa = sessionStorage.FK_EMPRESA;
@@ -47,9 +50,126 @@ function TrazerDados(){
         console.error(resposta);
     
       });
+}
 
+function semRespostaPing(){
+    var fkEmpresa = sessionStorage.FK_EMPRESA;
+    var resultadoGraficoCpu
+    fetch(`/avisos/semRespostaPing/${fkEmpresa}`, { cache: 'no-store' }).then(function (resposta) {
+        if (resposta.ok) {
+    
+            resposta.json().then(function (resposta) {
+            console.log("Resposta Grafico: ", JSON.stringify(resposta));
+            
 
+          });
+        } else {
+          throw ('Houve um erro na API!');
+        }
+      }).catch(function (resposta) {
+        console.error(resposta);
+    
+      });
+}
 
+function reinicioMaiorQueUm(){
+    var fkEmpresa = sessionStorage.FK_EMPRESA;
+    var resultadoGraficoCpu
+    fetch(`/avisos/reinicioMaiorQueUm/${fkEmpresa}`, { cache: 'no-store' }).then(function (resposta) {
+        if (resposta.ok) {
+    
+            resposta.json().then(function (resposta) {
+            console.log("Resposta Grafico: ", JSON.stringify(resposta));
+            
+
+          });
+        } else {
+          throw ('Houve um erro na API!');
+        }
+      }).catch(function (resposta) {
+        console.error(resposta);
+    
+      });
+}
+
+function riscoPreenchimento(){
+    var fkEmpresa = sessionStorage.FK_EMPRESA;
+    var resultadoGraficoCpu
+    fetch(`/avisos/riscoPreenchimento/${fkEmpresa}`, { cache: 'no-store' }).then(function (resposta) {
+        if (resposta.ok) {
+    
+            resposta.json().then(function (resposta) {
+            console.log("Resposta Grafico: ", JSON.stringify(resposta));
+            
+
+          });
+        } else {
+          throw ('Houve um erro na API!');
+        }
+      }).catch(function (resposta) {
+        console.error(resposta);
+    
+      });
+}
+
+function alertaPorComponente(){
+    var fkEmpresa = sessionStorage.FK_EMPRESA;
+    var resultadoGraficoCpu
+    fetch(`/avisos/alertaPorComponente/${fkEmpresa}`, { cache: 'no-store' }).then(function (resposta) {
+        if (resposta.ok) {
+    
+            resposta.json().then(function (resposta) {
+            console.log("Resposta Grafico: ", JSON.stringify(resposta));
+            
+
+          });
+        } else {
+          throw ('Houve um erro na API!');
+        }
+      }).catch(function (resposta) {
+        console.error(resposta);
+    
+      });
+}
+
+function percentPcReinicio(){
+    var fkEmpresa = sessionStorage.FK_EMPRESA;
+    var resultadoGraficoCpu
+    fetch(`/avisos/percentPcReinicio/${fkEmpresa}`, { cache: 'no-store' }).then(function (resposta) {
+        if (resposta.ok) {
+    
+            resposta.json().then(function (resposta) {
+            console.log("Resposta Grafico: ", JSON.stringify(resposta));
+            
+
+          });
+        } else {
+          throw ('Houve um erro na API!');
+        }
+      }).catch(function (resposta) {
+        console.error(resposta);
+    
+      });
+}
+
+function tempoStatus(){
+    var fkEmpresa = sessionStorage.FK_EMPRESA;
+    var resultadoGraficoCpu
+    fetch(`/avisos/tempoStatus/${fkEmpresa}`, { cache: 'no-store' }).then(function (resposta) {
+        if (resposta.ok) {
+    
+            resposta.json().then(function (resposta) {
+            console.log("Resposta Grafico: ", JSON.stringify(resposta));
+            
+
+          });
+        } else {
+          throw ('Houve um erro na API!');
+        }
+      }).catch(function (resposta) {
+        console.error(resposta);
+    
+      });
 }
 
 
