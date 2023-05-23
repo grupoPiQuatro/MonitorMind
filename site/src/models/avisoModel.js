@@ -120,6 +120,66 @@ function comptotal(fkEmpresa) {
     return database.executar(instrucao);
 }
 
+function semRespostaPing(fkEmpresa) {
+    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar():");
+    var instrucao = `
+    SELECT COUNT(*) as total from [dbo].[computador] c where c.fkEmpresa = ${fkEmpresa} and hostname = 'AA';
+    
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function reinicioMaiorQueUm(fkEmpresa) {
+    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar():");
+    var instrucao = `
+    SELECT COUNT(*) as total from [dbo].[computador] c where c.fkEmpresa = ${fkEmpresa} and hostname = 'AA';
+    
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function riscoPreenchimento(fkEmpresa) {
+    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar():");
+    var instrucao = `
+    SELECT COUNT(*) as total from [dbo].[computador] c where c.fkEmpresa = ${fkEmpresa} and hostname = 'AA';
+    
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function alertaPorComponente(fkEmpresa) {
+    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar():");
+    var instrucao = `
+    SELECT COUNT(*) as total from [dbo].[computador] c where c.fkEmpresa = ${fkEmpresa} and hostname = 'AA';
+    
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function percentPcReinicio(fkEmpresa) {
+    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar():");
+    var instrucao = `
+    SELECT COUNT(*) as total from [dbo].[computador] c where c.fkEmpresa = ${fkEmpresa} and hostname = 'AA';
+    
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function tempoStatus(fkEmpresa) {
+    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar():");
+    var instrucao = `
+    SELECT COUNT(*) as total from [dbo].[computador] c where c.fkEmpresa = ${fkEmpresa} and hostname = 'AA';
+    
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
     listar,
     listarPorUsuario,
@@ -128,5 +188,11 @@ module.exports = {
     editar,
     deletar,
     puxar,
-    comptotal
+    comptotal,
+    semRespostaPing,
+    reinicioMaiorQueUm,
+    riscoPreenchimento,
+    alertaPorComponente,
+    percentPcReinicio,
+    tempoStatus
 }

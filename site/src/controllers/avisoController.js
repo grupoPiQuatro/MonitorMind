@@ -166,6 +166,113 @@ function comptotal(req, res) {
         );
 }
 
+function semRespostaPing(req, res) {
+    var fkEmpresa = req.params.fkEmpresa;
+
+    avisoModel.semRespostaPing(fkEmpresa)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao deletar o post: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+function reinicioMaiorQueUm(req, res) {
+    var fkEmpresa = req.params.fkEmpresa;
+
+    avisoModel.reinicioMaiorQueUm(fkEmpresa)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao deletar o post: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+function riscoPreenchimento(req, res) {
+    var fkEmpresa = req.params.fkEmpresa;
+
+    avisoModel.riscoPreenchimento(fkEmpresa)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao deletar o post: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+function alertaPorComponente(req, res) {
+    var fkEmpresa = req.params.fkEmpresa;
+
+    avisoModel.alertaPorComponente(fkEmpresa)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao deletar o post: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+function percentPcReinicio(req, res) {
+    var fkEmpresa = req.params.fkEmpresa;
+
+    avisoModel.percentPcReinicio(fkEmpresa)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao deletar o post: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+function tempoStatus(req, res) {
+    var fkEmpresa = req.params.fkEmpresa;
+
+    avisoModel.tempoStatus(fkEmpresa)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao deletar o post: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
 module.exports = {
     testar,
     listar,
@@ -175,5 +282,12 @@ module.exports = {
     editar,
     deletar,
     puxar,
-    comptotal
+    comptotal,
+    semRespostaPing,
+    reinicioMaiorQueUm,
+    riscoPreenchimento,
+    alertaPorComponente,
+    percentPcReinicio,
+    tempoStatus
+
 }

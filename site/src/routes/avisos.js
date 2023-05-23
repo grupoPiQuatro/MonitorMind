@@ -39,5 +39,23 @@ router.get("/comptotal/:fkEmpresa", function (req, res) {
     avisoController.comptotal(req, res);
 });
 
+router.get("/semRespostaPing/:fkEmpresa", function (req, res) {
+    avisoController.semRespostaPing(req, res);
+});
+router.get("/reinicioMaiorQueUm/:fkEmpresa", function (req, res) {
+    avisoController.reinicioMaiorQueUm(req, res);
+});
+router.get("/riscoPreenchimento/:fkEmpresa", function (req, res) {
+    avisoController.riscoPreenchimento(req, res);
+});
+router.get("/alertaPorComponente/:fkEmpresa", function (req, res) {
+    avisoController.alertaPorComponente(req, res);
+});
+router.get("/percentPcReinicio/:fkEmpresa", function (req, res) {
+    avisoController.percentPcReinicio(req, res);
+});
+router.get("/tempoStatus/:fkEmpresa", function (req, res) {
+    avisoController.tempoStatus(req, res);
+});
 
 module.exports = router;
