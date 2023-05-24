@@ -12,7 +12,6 @@ var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
 var avisosRouter = require("./src/routes/avisos");
 var medidasRouter = require("./src/routes/medidas");
-var usuarioAdminRouter = require("./src/routes/usuariosAdmin");
 var maquinaRouter = require("./src/routes/maquina");
 var pcRouter = require("./src/routes/pc");
 
@@ -26,7 +25,6 @@ app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/avisos", avisosRouter);
 app.use("/medidas", medidasRouter);
-app.use("/usuarioAdmin", usuarioAdminRouter);
 app.use("/maquina", maquinaRouter);
 app.use("/pc", pcRouter);
 
