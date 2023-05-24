@@ -64,7 +64,7 @@ function buscarPcSemRetorno(fkEmpresa) {
 function dadosRede(hostname) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function dadosRede()");
     var instrucao = `
-        SELECT * FROM metrica JOIN config ON fkConfig = idConfig WHERE fkComputador = ${hostname} AND fkComponente = 1 
+        SELECT valor, FORMAT(dtCaptura, 'HH:mm:ss') as momento FROM metrica JOIN config ON fkConfig = idConfig WHERE fkComputador = '${hostname}' AND fkComponente = 1 
 	    AND dtCaptura >= DATEADD(DAY, -7, GETDATE()) ORDER BY dtCaptura DESC;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);

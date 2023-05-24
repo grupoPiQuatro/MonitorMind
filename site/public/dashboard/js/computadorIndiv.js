@@ -1,18 +1,21 @@
 window.addEventListener("load", function () {
-    graficoStatus()
+    pegarComponentes();
+    graficoRede();
 });
 
-function graficoRede() {
-    fkEmpresa = sessionStorage.FK_EMPRESA;
+var hostname = sessionStorage.COMPUTADOR;
 
-    fetch(`/pc/dadosRede/${fkEmpresa}`, { cache: 'no-store' }).then(function (resposta) {
+function pegarComponentes() {
+    
+    fetch(`/pc/pegarComp/${hostname}`, { cache: 'no-store' }).then(function (resposta) {
         if (resposta.ok) {
 
             resposta.json().then(function (resposta) {
                 console.log("STATUS: ", JSON.stringify(resposta));
                 
-                separarStatus(resposta);
-                
+                graficoRam();
+                graficoCpu();
+                graficoDisco();
             });
         } else {
             throw ('Houve um erro na API!');
@@ -23,52 +26,79 @@ function graficoRede() {
     });
 }
 
+function graficoRede() {
+    fetch(`/pc/dadosRede/${hostname}`, { cache: 'no-store' }).then(function (resposta) {
+        if (resposta.ok) {
 
+            resposta.json().then(function (resposta) {
+                console.log("STATUS: ", JSON.stringify(resposta));
+                resposta.reverse();
+                plotarGrafico(resposta);
+            });
+        } else {
+            throw ('Houve um erro na API!');
+        }
+    }).catch(function (resposta) {
+        console.error(resposta);
 
+    });
+}
 
+function plotarGrafico(resposta) {
+    const labelsLine = []
+    const dados = [];
 
-
-
-
-const rede = document.getElementById('redeChart');
-
-new Chart(rede, {
-    type: 'line',
-    data: {
-        labels: ['12:02', '12:04', '12:06', '12:08', '12:10', '12:12', '12:14', '12:16', '12:18',
-            '12:20', '12:20', '12:20', '12:20', '12:20', '12:20',],
-        datasets: [{
-            label: 'dasdas',
-            data: [12, 19, 3, 5, 2, 3, 12, 21, 3, 40, 30, 120, 40, 30, 128],
-            borderWidth: 4,
-            fill: true,
-            tension: 0.4,
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true,
-                ticks: {
-                    color: 'black',
-                },
-                grid: {
-                    color: 'black',
-                },
-
-            },
-            x: {
-                beginAtZero: true,
-                ticks: {
-                    color: 'black',
-                },
-                grid: {
-                    color: 'white',
-                },
-            }
-        },
+    for (i = 0; i < resposta.length; i++) {
+        var registro = resposta[i];
+        labelsLine.push(registro.momento);
+        dados.push(registro.valor);
     }
-});
+
+    const rede = document.getElementById('redeChart');
+
+    new Chart(rede, {
+        type: 'line',
+        data: {
+            labels: labelsLine,
+            datasets: [{
+                label: 'Ping',
+                data: dados,
+                borderWidth: 4,
+                fill: true,
+                tension: 0.4,
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        color: 'black',
+                    },
+                    grid: {
+                        color: 'black',
+                    },
+
+                },
+                x: {
+                    beginAtZero: true,
+                    ticks: {
+                        color: 'black',
+                    },
+                    grid: {
+                        color: 'white',
+                    },
+                }
+            },
+        }
+    });
+
+    setTimeout(() => atualizarGraficoRede(dados, rede), 2000);
+}
+
+
+
+
 
 const ram = document.getElementById('ramChart');
 
