@@ -7,6 +7,10 @@ body {
     color: rgb(226, 68, 68);
 }
 
+.tabela-computadores{
+    overflow: auto;
+}
+
 .right-side-window {
     font-size: 22pt;
 }
