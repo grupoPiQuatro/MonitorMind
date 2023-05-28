@@ -156,23 +156,17 @@ function buscarCEP(cep) {
 
 function cadastrarEmpresaDados() {
 
-    //Recupere o valor da nova input pelo nome do id
-    // Agora vá para o método fetch logo abaixo
-
     if (nomeVar == "" || cnpjVar == "") {
         alert("Erro: dados da empresa vazios")
         return false;
     }
 
-    // Enviando o valor da nova input
     fetch("/usuarios/cadastrarEmpresa", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            // crie um atributo que recebe o valor recuperado aqui
-            // Agora vá para o arquivo routes/usuario.js
             nomeServer: nomeVar,
             cnpjServer: cnpjVar,
             telefoneServer: telefoneVar,
@@ -184,8 +178,7 @@ function cadastrarEmpresaDados() {
 
         if (resposta.ok) {
 
-            console.log('Eba');
-            cadastrarEnderecoDados();
+            pegarEmpresaId();
 
         } else {
             throw ("Houve um erro ao tentar realizar o cadastro!");
@@ -196,12 +189,27 @@ function cadastrarEmpresaDados() {
 
 }
 
+function pegarEmpresaId() {
+    fetch("/usuarios/pegarEmpresaId",{ cache: 'no-store' }).then(function (resposta) {
+        if (resposta.ok) {
+            resposta.json().then(function (resposta) {
+                console.log(resposta[0].idEmpresa);
+                var empresaId = resposta[0].idEmpresa;
+                cadastrarEnderecoDados(empresaId);
+            });
+        } else {
+            throw ("Houve um erro ao tentar realizar o cadastro!");
+        }
+    }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+    });
+
+    return false;
+}
+
 // API CADASTRAR TABELA ENDERECO
 
-function cadastrarEnderecoDados() {
-
-    //Recupere o valor da nova input pelo nome do id
-    // Agora vá para o método fetch logo abaixo
+function cadastrarEnderecoDados(idEmpresa) {
     var cepVar = ipt_cep.value;
     var numeroVar = ipt_numero.value;
 
@@ -217,8 +225,7 @@ function cadastrarEnderecoDados() {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            // crie um atributo que recebe o valor recuperado aqui
-            // Agora vá para o arquivo routes/usuario.js
+            idEmpresaServer: idEmpresa,
             cepServer: cepVar,
             numeroServer: numeroVar,
         })
@@ -228,7 +235,7 @@ function cadastrarEnderecoDados() {
 
         if (resposta.ok) {
 
-            cadastrarUsuarioDados();
+            cadastrarUsuarioDados(idEmpresa);
 
         } else {
             throw ("Houve um erro ao tentar realizar o cadastro!");
@@ -242,25 +249,14 @@ function cadastrarEnderecoDados() {
 
 // API CADASTRAR TABELA USUARIO
 
-function cadastrarUsuarioDados() {
-
-    //Recupere o valor da nova input pelo nome do id
-    // Agora vá para o método fetch logo abaixo
-
-    if (usuarioVar == "" || emailVar == "" || senhaVar == "") {
-        alert("Erro: dados do usuario vazios")
-        return false;
-    }
-
-    // Enviando o valor da nova input
+function cadastrarUsuarioDados(idEmpresa) {
     fetch("/usuarios/cadastrarUsuario", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            // crie um atributo que recebe o valor recuperado aqui
-            // Agora vá para o arquivo routes/usuario.js
+            idEmpresaServer: idEmpresa,
             usuarioServer: usuarioVar,
             emailServer: emailVar,
             senhaServer: senhaVar
