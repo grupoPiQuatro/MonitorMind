@@ -109,9 +109,18 @@ function changed(text) {
     erroEsconder.style.display = "none";
 }
 
-//arrumar esse ctrl+c ctrl+v
+
+// Etapas do cadastro
+
+
+function verificarComponentes() {
+
+
+
+}
+
+
 function cadastrarMaquina() {
-    //variaveis da maquina
 
     var setorVar = add_setor.value;
     var hostnameVar = add_hostname.value;
@@ -268,88 +277,124 @@ function sair_deletar() {
 
 function confirmar_deletar_maquina() {
     data.splice(indice, 1);
+    listarMaquina()
     sair_deletar()
-    generateTable(data)
 }
 
-function generateTable(data) {
+
+
+
+// Geração de tabela
+
+function generateTable(resposta) {
+    console.log(`Resposta: ${resposta}`)
+
     const tableContainer = document.getElementById("tabela-computadores");
-
+    
     tableContainer.innerHTML = "";
-
-    for (let i = 0; i < data.length; i++) {
-    const item = data[i];
-    const row = document.createElement("div");
-    row.classList.add("linha-tabela");
     
-    
-    const idColumn = document.createElement("div");
-    idColumn.classList.add("info-item", "table");
-    idColumn.id = "serial" + i;
-    idColumn.textContent = item.serial;
-    row.appendChild(idColumn);
-
-    const userColumn = document.createElement("div");
-    userColumn.classList.add("info-item", "table");
-    userColumn.id = "setor" + i;
-    userColumn.textContent = item.setor;
-    row.appendChild(userColumn);
-
-    const emailColumn = document.createElement("div");
-    emailColumn.classList.add("info-item", "table");
-    emailColumn.id = "status" + i;
-    emailColumn.textContent = item.status;
-    row.appendChild(emailColumn);
-
-    const typeColumn = document.createElement("div");
-    typeColumn.classList.add("info-item", "table");
-    typeColumn.id = "tipo" + i;
-    typeColumn.textContent = item.tipo;
-    row.appendChild(typeColumn);
-
-    const toolsColumn = document.createElement("div");
-    toolsColumn.classList.add("info-item", "tools");
-
-    //   const editButton = document.createElement("img");
-    //   editButton.src = "../assets/usuarios/lapis.png";
-    //   editButton.onclick = editar;
-
-    const iconEditar = document.createElement("img");
-    iconEditar.setAttribute("src", "../assets/usuarios/lapis.png");
-    iconEditar.addEventListener("click", function() {
-        editar(item.setor, item.status, item.tipo);
-    });
-
-    const deleteButton = document.createElement("img");
-    deleteButton.setAttribute("src", "../assets/usuarios/lixeira.png");
-    deleteButton.addEventListener("click", function() {
-        modal_deletar(i);
-    });
-
-    toolsColumn.appendChild(iconEditar);
-    toolsColumn.appendChild(deleteButton);
-    row.appendChild(toolsColumn);
-
-    tableContainer.appendChild(row);
+    for (let i = 0; i < resposta.length; i++) {
+        console.log(`Criando div para linha`)
+        
+        const item = resposta[i];
+        const row = document.createElement("div");
+        row.classList.add("linha-tabela");
+        
+        
+        console.log(`Obtendo hostname`)
+        const hostnameColumn = document.createElement("div");
+        hostnameColumn.classList.add("info-item", "table");
+        hostnameColumn.id = "serial" + i;
+        hostnameColumn.textContent = item.hostname;
+        row.appendChild(hostnameColumn);
+        
+        console.log(`Obtendo setor`)
+        const setorColumn = document.createElement("div");
+        setorColumn.classList.add("info-item", "table");
+        setorColumn.id = "setor" + i;
+        setorColumn.textContent = item.setor;
+        row.appendChild(setorColumn);
+        
+        console.log(`Obtendo status`)
+        const statusColumn = document.createElement("div");
+        statusColumn.classList.add("info-item", "table");
+        statusColumn.id = "status" + i;
+        statusColumn.textContent = item.status;
+        row.appendChild(statusColumn);
+        
+        console.log(`Obtendo tipo`)
+        const typeColumn = document.createElement("div");
+        typeColumn.classList.add("info-item", "table");
+        typeColumn.id = "tipo" + i;
+        typeColumn.textContent = item.tipo;
+        row.appendChild(typeColumn);
+        
+        const toolsColumn = document.createElement("div");
+        toolsColumn.classList.add("info-item", "tools");
+        
+        //   const editButton = document.createElement("img");
+        //   editButton.src = "../assets/usuarios/lapis.png";
+        //   editButton.onclick = editar;
+        
+        console.log(`Criando area de edição`)
+        const iconEditar = document.createElement("img");
+        iconEditar.setAttribute("src", "../assets/usuarios/lapis.png");
+        iconEditar.addEventListener("click", function() {
+            editar(item.setor, item.status, item.tipo);
+        });
+        
+        const deleteButton = document.createElement("img");
+        deleteButton.setAttribute("src", "../assets/usuarios/lixeira.png");
+        deleteButton.addEventListener("click", function() {
+            modal_deletar(i);
+        });
+        
+        toolsColumn.appendChild(iconEditar);
+        toolsColumn.appendChild(deleteButton);
+        row.appendChild(toolsColumn);
+        
+        tableContainer.appendChild(row);
+        console.log(`Tabela sendo criada`)
     }
 }
 
-var data = [
-{ serial: "vFJsboEW", setor: "A", status: "Operando", tipo: "SSD" },
-{ serial: "DoBb5HYU", setor: "D", status: "Interrompido", tipo: "SSD" },
-{ serial: "oc66mRW2", setor: "A", status: "Manutenção", tipo: "HD" },
-// { serial: "nTLMjU6w", setor: "A", email: "Andres@email", tipo: "comum" },
-// { serial: "W2NQb3wb", setor: "C", email: "Tarciso@email", tipo: "admin" },
-// { serial: "SLosBgK3", setor: "A", email: "Carlos@email", tipo: "comum" },
-];
+var data;
 
-generateTable(data);
 function buscar_computador() {
-    const search = busca.value;
-    const filteredData = data.filter(item => item.serial === search);
+    let search = busca.value;
+    console.log(`Buscando por: "${search}"`)
+    let filteredData = data.filter(item => item.hostname == search);
     if (filteredData.length > 0) {
       generateTable(filteredData);
     }else{
         generateTable(data);
     }
-  }
+}
+
+function listarMaquina() {
+    console.log('Entrando em listar maquina!')
+    fkEmpresa = sessionStorage.FK_EMPRESA;
+    
+    fetch(`/maquina/listarMaquina/${fkEmpresa}`, {
+    }).then(function (resposta) {
+        
+        console.log("resposta: ", resposta);
+        
+        if (resposta.ok) {
+
+            resposta.json().then(function (resposta) {
+                console.log({"response": "ok"})
+                console.log(`Response: ${resposta}`)
+                data = resposta
+                generateTable(resposta);
+            });
+
+        } else {
+            throw ("Houve um erro ao tentar buscar lista de computadores!");
+        }
+    }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+    });
+
+    return false;
+}

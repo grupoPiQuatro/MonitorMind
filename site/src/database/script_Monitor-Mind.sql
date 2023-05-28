@@ -47,16 +47,59 @@ fkTipo int,
 foreign key (fkTipo) references tipoComponente (idTipoComponente)
 );
 
+CREATE TABLE historicoReiniciar (
+idReiniciar INT PRIMARY KEY auto_increment,
+tempoReiniciar DATETIME,
+dtCaptura VARCHAR(45),
+fkComputador VARCHAR(45),
+foreign key (fkComputador) REFERENCES computador(serialComputador)
+);
+
 create table Computador (
 hostname varchar(45) primary key,
 status varchar(15),
-constraint ctStatus check (status in ('Operando', 'Manutenção', 'Interrompido')),
+constraint ctStatus check (status in ('Operando', 'Manutenção', 'Interrompido', )),
 sistemaOperacional varchar(45),
 mac varchar(45),
 fkLocalizacao int,
 foreign key (fkLocalizacao) references Localizacao (idLocalizacao),
 fkEmpresa int,
 foreign key (fkEmpresa) references Empresa (idEmpresa)
+);
+
+CREATE TABLE config (
+idConfig INT PRIMARY KEY auto_increment,
+fkComputador VARCHAR(45),
+fkComponente INT,
+foreign key (fkComputador) REFERENCES computador(serialComputador),
+foreign key (fkComponente) REFERENCES componente(idComponente)
+);
+
+CREATE TABLE alerta (
+idAlerta INT PRIMARY KEY auto_increment,
+tipoAlerta VARCHAR(45)
+);
+
+CREATE TABLE alertaHistorico (
+idAlertaHistorico INT PRIMARY KEY auto_increment,
+fkMetrica INT,
+fkConfig INT,
+fkAlerta INT,
+dtCaptura datetime,
+foreign key (fkMetrica) REFERENCES metrica(idMetrica),
+foreign key (fkConfig) REFERENCES config(idConfig),
+foreign key (fkAlerta) REFERENCES alerta(idAlerta)
+);
+
+CREATE TABLE parametros (
+idParametro INT PRIMARY KEY auto_increment,
+fkEmpresa INT,
+fkComponente INT,
+fkAlerta INT,
+valor float,
+foreign key (fkEmpresa) REFERENCES empresa(idEmpresa),
+foreign key (fkComponente) REFERENCES componente(idComponente),
+foreign key (fkAlerta) REFERENCES alerta(idAlerta)
 );
 
 select * from Empresa;
