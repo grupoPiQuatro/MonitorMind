@@ -5,6 +5,11 @@ cnpj VARCHAR(45),
 telefone VARCHAR(10)
 );
 
+create table cargo (
+idCargo int primary key IDENTITY,
+nivel int
+); 
+
 CREATE TABLE endereco (
 idEndereco INT PRIMARY KEY IDENTITY,
 cep VARCHAR(45),
@@ -46,7 +51,7 @@ foreign key (fkLocalizacao) REFERENCES localizacao(idLocalizacao)
 
 CREATE TABLE historicoReiniciar (
 idReiniciar INT PRIMARY KEY IDENTITY,
-tempoReiniciar DATETIME,
+tempoReiniciar INT,
 dtCaptura VARCHAR(45),
 fkComputador VARCHAR(45),
 foreign key (fkComputador) REFERENCES computador(serialComputador)
@@ -68,6 +73,15 @@ foreign key (fkComputador) REFERENCES computador(serialComputador),
 foreign key (fkComponente) REFERENCES componente(idComponente)
 );
 
+create table metrica(
+idMetrica int primary key IDENTITY,
+valor float,
+unidade varchar(45),
+dtCaptura datetime,
+fkConfig int,
+foreign key (fkConfig) references Config(idConfig)
+);
+
 CREATE TABLE alerta (
 idAlerta INT PRIMARY KEY IDENTITY,
 tipoAlerta VARCHAR(45)
@@ -76,11 +90,9 @@ tipoAlerta VARCHAR(45)
 CREATE TABLE alertaHistorico (
 idAlertaHistorico INT PRIMARY KEY IDENTITY,
 fkMetrica INT,
-fkConfig INT,
 fkAlerta INT,
 dtCaptura datetime,
 foreign key (fkMetrica) REFERENCES metrica(idMetrica),
-foreign key (fkConfig) REFERENCES config(idConfig),
 foreign key (fkAlerta) REFERENCES alerta(idAlerta)
 );
 
