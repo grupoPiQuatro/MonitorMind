@@ -58,7 +58,7 @@ foreign key (fkComputador) REFERENCES computador(serialComputador)
 create table Computador (
 hostname varchar(45) primary key,
 status varchar(15),
-constraint ctStatus check (status in ('Operando', 'Manutenção', 'Interrompido', )),
+constraint ctStatus check (status in ('Operando', 'Manutenção', 'Interrompido')),
 sistemaOperacional varchar(45),
 mac varchar(45),
 fkLocalizacao int,

@@ -276,9 +276,35 @@ function sair_deletar() {
 }
 
 function confirmar_deletar_maquina() {
+    hostnameDelete = document.getElementById(`hostname${indice}`).textContent;
     data.splice(indice, 1);
+    deletarMaquina(hostnameDelete)
     listarMaquina()
     sair_deletar()
+}
+
+function deletarMaquina(hostnameDelete){
+
+    fetch(`/maquina/deletarMaquina/${hostnameDelete}`, {
+
+
+    }).then(function (resposta) {
+
+        if (resposta.ok) {
+            resposta.json().then(function (resposta) {
+                console.log("resposta: ", resposta);
+            });
+
+            console.log(`Maquina com hostname ${hostnameDelete} deletada`)            
+
+        } else {
+            throw ("Houve um erro ao tentar deletar maquina!");
+        }
+    }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+    });
+
+    return false;
 }
 
 
@@ -294,35 +320,29 @@ function generateTable(resposta) {
     tableContainer.innerHTML = "";
     
     for (let i = 0; i < resposta.length; i++) {
-        console.log(`Criando div para linha`)
-        
         const item = resposta[i];
         const row = document.createElement("div");
         row.classList.add("linha-tabela");
         
-        
-        console.log(`Obtendo hostname`)
         const hostnameColumn = document.createElement("div");
         hostnameColumn.classList.add("info-item", "table");
-        hostnameColumn.id = "serial" + i;
+        hostnameColumn.id = "hostname" + i;
         hostnameColumn.textContent = item.hostname;
+        // console.log(hostnameColumn)
         row.appendChild(hostnameColumn);
         
-        console.log(`Obtendo setor`)
         const setorColumn = document.createElement("div");
         setorColumn.classList.add("info-item", "table");
         setorColumn.id = "setor" + i;
         setorColumn.textContent = item.setor;
         row.appendChild(setorColumn);
         
-        console.log(`Obtendo status`)
         const statusColumn = document.createElement("div");
         statusColumn.classList.add("info-item", "table");
         statusColumn.id = "status" + i;
         statusColumn.textContent = item.status;
         row.appendChild(statusColumn);
         
-        console.log(`Obtendo tipo`)
         const typeColumn = document.createElement("div");
         typeColumn.classList.add("info-item", "table");
         typeColumn.id = "tipo" + i;
@@ -336,7 +356,6 @@ function generateTable(resposta) {
         //   editButton.src = "../assets/usuarios/lapis.png";
         //   editButton.onclick = editar;
         
-        console.log(`Criando area de edição`)
         const iconEditar = document.createElement("img");
         iconEditar.setAttribute("src", "../assets/usuarios/lapis.png");
         iconEditar.addEventListener("click", function() {
@@ -354,7 +373,6 @@ function generateTable(resposta) {
         row.appendChild(toolsColumn);
         
         tableContainer.appendChild(row);
-        console.log(`Tabela sendo criada`)
     }
 }
 
@@ -372,19 +390,14 @@ function buscar_computador() {
 }
 
 function listarMaquina() {
-    console.log('Entrando em listar maquina!')
     fkEmpresa = sessionStorage.FK_EMPRESA;
     
     fetch(`/maquina/listarMaquina/${fkEmpresa}`, {
     }).then(function (resposta) {
         
-        console.log("resposta: ", resposta);
-        
         if (resposta.ok) {
 
             resposta.json().then(function (resposta) {
-                console.log({"response": "ok"})
-                console.log(`Response: ${resposta}`)
                 data = resposta
                 generateTable(resposta);
             });

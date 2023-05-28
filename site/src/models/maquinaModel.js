@@ -13,7 +13,7 @@ function listarMaquinas(fkEmpresa) {
 			join Componente on config.fkComponente = Componente.idComponente
 				join tipoComponente as t on t.idTipoComponente = Componente.fkTipo
 					join Localizacao as l on l.idLocalizacao = c.fkLocalizacao
-						where t.idTipoComponente = 4 or t.idTipoComponente = 5 and c.fkEmpresa = 1 and c.fkEmpresa = ${fkEmpresa};
+						where t.idTipoComponente = 4 and c.fkEmpresa = ${fkEmpresa} and c.status IN ('Operando', 'Manutenção', 'Interrompido') or t.idTipoComponente = 5 and c.fkEmpresa = ${fkEmpresa} and c.status IN ('Operando', 'Manutenção', 'Interrompido');
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -39,12 +39,20 @@ function listarComponentes() {
     return database.executar(instrucao);
 }
 
-function deletarMaquina(){
+function deletarMaquina(hostname){
     // Computador > historicoReiniciar > config > metrica > alertaHistorico > parametros
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+    //Precisa de um select com join para receber os computadores
+    var instrucao = `
+        update Computador set status = 'Desativado' where hostname = '${hostname}';
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
 }
 
 module.exports = {
     listarMaquinas,
     cadastrarMaquina,
     listarComponentes,
+    deletarMaquina,
 };
