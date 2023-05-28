@@ -1,42 +1,45 @@
 window.addEventListener("load", function () {
     pegarComponentes();
     buscarParametro();
-    graficoRede();
 });
 
 function buscarParametro() {
     fkEmpresa = sessionStorage.FK_EMPRESA;
-  
+
     fetch(`/pc/buscarParametro/${fkEmpresa}`, { cache: 'no-store' }).then(function (resposta) {
-      if (resposta.ok) {
-  
-        resposta.json().then(function (resposta) {
-          console.log("PARAMETROS: ", JSON.stringify(resposta));
-          amarRede.innerHTML = resposta[0].valor;
-          amarRam.innerHTML = resposta[1].valor;
-          amarCpu.innerHTML = resposta[2].valor;
-          amarDisco.innerHTML = resposta[3].valor;
+        if (resposta.ok) {
 
-          vermRede.innerHTML = resposta[4].valor;
-          vermRam.innerHTML = resposta[5].valor;
-          vermCpu.innerHTML = resposta[6].valor;
-          vermDisco.innerHTML = resposta[7].valor;
+            resposta.json().then(function (resposta) {
+                console.log("PARAMETROS: ", JSON.stringify(resposta));
+                amarRede.innerHTML = resposta[0].valor;
+                amarRam.innerHTML = resposta[1].valor;
+                amarCpu.innerHTML = resposta[2].valor;
+                amarDisco.innerHTML = resposta[3].valor;
 
-          verdeRede.innerHTML = resposta[0].valor;
-          verdeRam.innerHTML = resposta[1].valor;
-          verdeCpu.innerHTML = resposta[2].valor;
-          verdeDisco.innerHTML = resposta[3].valor;
-        });
-      } else {
-        throw ('Houve um erro na API!');
-      }
+                vermRede.innerHTML = resposta[4].valor;
+                vermRam.innerHTML = resposta[5].valor;
+                vermCpu.innerHTML = resposta[6].valor;
+                vermDisco.innerHTML = resposta[7].valor;
+
+                verdeRede.innerHTML = resposta[0].valor;
+                verdeRam.innerHTML = resposta[1].valor;
+                verdeCpu.innerHTML = resposta[2].valor;
+                verdeDisco.innerHTML = resposta[3].valor;
+            });
+        } else {
+            throw ('Houve um erro na API!');
+        }
     }).catch(function (resposta) {
-      console.error(resposta);
-  
+        console.error(resposta);
+
     });
-  }
+}
 
 var hostname = sessionStorage.COMPUTADOR;
+var idRam = null;
+var idCpu = null;
+var idDisco = null;
+var porcenUso = null;
 
 function pegarComponentes() {
 
@@ -47,38 +50,39 @@ function pegarComponentes() {
                 console.log("COMPONENTES: ", JSON.stringify(resposta));
 
                 hostnameCampo.innerHTML = `HOSTNAME: ${hostname}`;
-                
+
                 setorCampo.innerHTML = `SETOR: ${resposta[0].setor}`;
-                
+
                 macCampo.innerHTML = `MAC: ${resposta[0].mac}`;
-                 
+
 
                 for (let i = 0; i < resposta.length; i++) {
                     var configDaVez = resposta[i];
 
                     if (configDaVez.fkTipo == 2) {
-                        var idRam = configDaVez.idConfig;
+                        idRam = configDaVez.idConfig;
                         ramCampo.innerHTML = `RAM: ${configDaVez.numeroChave}`;
                     }
 
                     if (configDaVez.fkTipo == 3) {
-                        var idCpu = configDaVez.idConfig;
+                        idCpu = configDaVez.idConfig;
                         cpuCampo.innerHTML = `CPU: ${configDaVez.numeroChave}`;
                     }
 
                     if (configDaVez.fkTipo == 4) {
-                        var idDisco = configDaVez.idConfig;
+                        idDisco = configDaVez.idConfig;
                         var capacidade = configDaVez.numeroChave;
                         discoCampo.innerHTML = `DISCO: ${configDaVez.numeroChave}`;
                     }
 
                     if (configDaVez.fkTipo == 5) {
-                        var idDisco = configDaVez.idConfig;
+                        idDisco = configDaVez.idConfig;
                         var capacidade = configDaVez.numeroChave;
                         discoCampo.innerHTML = `DISCO: ${configDaVez.numeroChave}`;
                     }
                 }
 
+                graficoRede();
                 graficoRam(idRam);
                 graficoCpu(idCpu);
                 graficoDisco(idDisco, capacidade);
@@ -120,6 +124,19 @@ function plotarGraficoRede(resposta) {
         dados.push(registro.valor);
     }
 
+    var alerta = resposta[resposta.length - 1];
+    var imagemAlerta = document.getElementById("alertaRede");
+    var alertaVerm = Number(document.getElementById("vermRede"));
+    var alertaAmar = Number(document.getElementById("amarRede"));
+
+    if (alerta >= alertaVerm) {
+        imagemAlerta.src = '../assets/dashboard/vermelho.png'
+    } else if (alerta >= alertaAmar) {
+        imagemAlerta.src = '../assets/dashboard/amarelo.png'
+    } else {
+        imagemAlerta.src = '../assets/dashboard/verde.png'
+    }
+
     const rede = document.getElementById('redeChart');
 
     new Chart(rede, {
@@ -159,7 +176,68 @@ function plotarGraficoRede(resposta) {
         }
     });
 
-    // setTimeout(() => atualizarGraficoRede(dados, rede), 2000);
+    setTimeout(() => atualizarGraficoRede(dados, labelsLine, rede), 2000);
+}
+
+let proximaAtualizacao;
+
+function atualizarGraficoRede(dadosRede, dataRede, rede) {
+
+    fetch(`/pc/atualizarRede/${hostname}`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (novoRegistro) {
+
+                console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                console.log(`Dados atuais do gráfico:`);
+                console.log(dadosRede);
+
+                if (novoRegistro[0].momento == dataRede[dataRede.length - 1]) {
+                    console.log("---------------------------------------------------------------")
+                    console.log("Como não há dados novos para captura, o gráfico não atualizará.")
+                    // avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
+                    console.log("Horário do novo dado capturado:")
+                    console.log(novoRegistro[0].momento)
+                    console.log("Horário do último dado capturado:")
+                    console.log(dataRede[dataRede.length - 1])
+                    console.log("---------------------------------------------------------------")
+                } else {
+                    // tirando e colocando valores no gráfico
+
+                    dataRede.shift(); // apagar o primeiro
+                    dataRede.push(novoRegistro[0].momento); // incluir um novo momento
+
+                    dadosRede.shift();  // apagar o primeiro de Temperatura
+                    dadosRede.push(novoRegistro[0].valor); // incluir uma nova medida de Temperatura
+
+                    var alerta = novoRegistro[0].valor;
+                    var imagemAlerta = document.getElementById("alertaRede");
+                    var alertaVerm = Number(document.getElementById("vermRede"));
+                    var alertaAmar = Number(document.getElementById("amarRede"));
+
+                    if (alerta >= alertaVerm) {
+                        imagemAlerta.src = '../assets/dashboard/vermelho.png'
+                    } else if (alerta >= alertaAmar) {
+                        imagemAlerta.src = '../assets/dashboard/amarelo.png'
+                    } else {
+                        imagemAlerta.src = '../assets/dashboard/verde.png'
+                    }
+
+                    rede.update();
+                }
+
+                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                proximaAtualizacao = setTimeout(() => atualizarGraficoRede(dadosRede, dataRede, rede), 2000);
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+            // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+            proximaAtualizacao = setTimeout(() => atualizarGraficoRede(dadosRede, dataRede, rede), 2000);
+        }
+    })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+
 }
 
 function graficoRam(idRam) {
@@ -189,6 +267,19 @@ function plotarGraficoRam(resposta) {
         var registro = resposta[i];
         labelsLine.push(registro.momento);
         dados.push(registro.valor);
+    }
+
+    var alerta = resposta[resposta.length - 1];
+    var imagemAlerta = document.getElementById("alertaRam");
+    var alertaVerm = Number(document.getElementById("vermRam"));
+    var alertaAmar = Number(document.getElementById("amarRam"));
+
+    if (alerta >= alertaVerm) {
+        imagemAlerta.src = '../assets/dashboard/vermelho.png'
+    } else if (alerta >= alertaAmar) {
+        imagemAlerta.src = '../assets/dashboard/amarelo.png'
+    } else {
+        imagemAlerta.src = '../assets/dashboard/verde.png'
     }
 
     const ram = document.getElementById('ramChart');
@@ -230,7 +321,68 @@ function plotarGraficoRam(resposta) {
         }
     });
 
-    // setTimeout(() => atualizarGraficoRede(dados, rede), 2000);
+    setTimeout(() => atualizarGraficoRam(dados, labelsLine, ram), 2000);
+}
+
+let proximaAtualizacao2;
+
+function atualizarGraficoRam(dados, data, ram) {
+
+    fetch(`/pc/atualizarRam/${hostname}/${idRam}`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (novoRegistro) {
+
+                console.log(`Dados recebidos RAM: ${JSON.stringify(novoRegistro)}`);
+                console.log(`Dados atuais do gráfico de RAM:`);
+                console.log(dados);
+
+                if (novoRegistro[0].momento == data[data.length - 1]) {
+                    console.log("---------------------------------------------------------------")
+                    console.log("Como não há dados novos para captura, o gráfico não atualizará.")
+                    // avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
+                    console.log("Horário do novo dado capturado:")
+                    console.log(novoRegistro[0].momento)
+                    console.log("Horário do último dado capturado:")
+                    console.log(data[data.length - 1])
+                    console.log("---------------------------------------------------------------")
+                } else {
+                    // tirando e colocando valores no gráfico
+
+                    data.shift(); // apagar o primeiro
+                    data.push(novoRegistro[0].momento); // incluir um novo momento
+
+                    dados.shift();  // apagar o primeiro de Temperatura
+                    dados.push(novoRegistro[0].valor); // incluir uma nova medida de Temperatura
+
+                    var alerta = novoRegistro[0].valor;
+                    var imagemAlerta = document.getElementById("alertaRam");
+                    var alertaVerm = Number(document.getElementById("vermRam"));
+                    var alertaAmar = Number(document.getElementById("amarRam"));
+
+                    if (alerta >= alertaVerm) {
+                        imagemAlerta.src = '../assets/dashboard/vermelho.png'
+                    } else if (alerta >= alertaAmar) {
+                        imagemAlerta.src = '../assets/dashboard/amarelo.png'
+                    } else {
+                        imagemAlerta.src = '../assets/dashboard/verde.png'
+                    }
+
+                    ram.update();
+                }
+
+                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                proximaAtualizacao2 = setTimeout(() => atualizarGraficoRam(dados, data, ram), 2000);
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+            // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+            proximaAtualizacao2 = setTimeout(() => atualizarGraficoRam(dados, data, ram), 2000);
+        }
+    })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+
 }
 
 // CPU GRAFICO
@@ -262,6 +414,19 @@ function plotarGraficoCpu(resposta) {
         var registro = resposta[i];
         labelsLine.push(registro.momento);
         dados.push(registro.valor);
+    }
+
+    var alerta = resposta[resposta.length - 1];
+    var imagemAlerta = document.getElementById("alertaCpu");
+    var alertaVerm = Number(document.getElementById("vermCpu"));
+    var alertaAmar = Number(document.getElementById("amarCpu"));
+
+    if (alerta >= alertaVerm) {
+        imagemAlerta.src = '../assets/dashboard/vermelho.png'
+    } else if (alerta >= alertaAmar) {
+        imagemAlerta.src = '../assets/dashboard/amarelo.png'
+    } else {
+        imagemAlerta.src = '../assets/dashboard/verde.png'
     }
 
     const cpu = document.getElementById('cpuChart');
@@ -302,7 +467,68 @@ function plotarGraficoCpu(resposta) {
         }
     });
 
-    // setTimeout(() => atualizarGraficoRede(dados, rede), 2000);
+    setTimeout(() => atualizarGraficoCpu(dados, labelsLine, cpu), 2000);
+}
+
+let proximaAtualizacao3;
+
+function atualizarGraficoCpu(dados, data, cpu) {
+
+    fetch(`/pc/atualizarCpu/${hostname}/${idCpu}`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (novoRegistro) {
+
+                console.log(`Dados recebidos RAM: ${JSON.stringify(novoRegistro)}`);
+                console.log(`Dados atuais do gráfico de RAM:`);
+                console.log(dados);
+
+                if (novoRegistro[0].momento == data[data.length - 1]) {
+                    console.log("---------------------------------------------------------------")
+                    console.log("Como não há dados novos para captura, o gráfico não atualizará.")
+                    // avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
+                    console.log("Horário do novo dado capturado:")
+                    console.log(novoRegistro[0].momento)
+                    console.log("Horário do último dado capturado:")
+                    console.log(data[data.length - 1])
+                    console.log("---------------------------------------------------------------")
+                } else {
+                    // tirando e colocando valores no gráfico
+
+                    data.shift(); // apagar o primeiro
+                    data.push(novoRegistro[0].momento); // incluir um novo momento
+
+                    dados.shift();  // apagar o primeiro de Temperatura
+                    dados.push(novoRegistro[0].valor); // incluir uma nova medida de Temperatura
+
+                    var alerta = novoRegistro[0].valor;
+                    var imagemAlerta = document.getElementById("alertaCpu");
+                    var alertaVerm = Number(document.getElementById("vermCpu"));
+                    var alertaAmar = Number(document.getElementById("amarCpu"));
+
+                    if (alerta >= alertaVerm) {
+                        imagemAlerta.src = '../assets/dashboard/vermelho.png'
+                    } else if (alerta >= alertaAmar) {
+                        imagemAlerta.src = '../assets/dashboard/amarelo.png'
+                    } else {
+                        imagemAlerta.src = '../assets/dashboard/verde.png'
+                    }
+
+                    cpu.update();
+                }
+
+                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                proximaAtualizacao3 = setTimeout(() => atualizarGraficoCpu(dados, data, cpu), 2000);
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+            // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+            proximaAtualizacao3 = setTimeout(() => atualizarGraficoCpu(dados, data, cpu), 2000);
+        }
+    })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+
 }
 
 
@@ -315,7 +541,7 @@ function graficoDisco(idDisco, capacidade) {
 
             resposta.json().then(function (resposta) {
                 console.log("DADOS DISCO: ", JSON.stringify(resposta));
-                
+
                 plotarGraficoDisco(resposta, capacidade);
             });
         } else {
@@ -329,13 +555,26 @@ function graficoDisco(idDisco, capacidade) {
 
 function plotarGraficoDisco(resposta, capacidade) {
     const disco = document.getElementById('discoChart');
-    
+
     var uso = resposta[0].valor;
-    var disponivel = capacidade - uso; 
-    var porcenUso = (uso * 100) / capacidade
+    var disponivel = capacidade - uso;
+    porcenUso = (uso * 100) / capacidade
     porcenUsoDisco.innerHTML = `${porcenUso.toFixed(1)}%`;
 
-    new Chart(disco, {
+    var alerta = resposta[resposta.length - 1];
+    var imagemAlerta = document.getElementById("alertaDisco");
+    var alertaVerm = Number(document.getElementById("vermDisco"));
+    var alertaAmar = Number(document.getElementById("amarDisco"));
+
+    if (alerta >= alertaVerm) {
+        imagemAlerta.src = '../assets/dashboard/vermelho.png'
+    } else if (alerta >= alertaAmar) {
+        imagemAlerta.src = '../assets/dashboard/amarelo.png'
+    } else {
+        imagemAlerta.src = '../assets/dashboard/verde.png'
+    }
+
+    var chart = new Chart(disco, {
         type: 'doughnut',
         data: {
             labels: ['Uso', 'Disponível'],
@@ -350,7 +589,68 @@ function plotarGraficoDisco(resposta, capacidade) {
         }
     });
 
-    // setTimeout(() => atualizarGraficoRede(dados, rede), 2000);
+    setTimeout(() => atualizarGraficoDisco(chart, uso, capacidade, disco), 2000);
+}
+
+let proximaAtualizacao4;
+
+function atualizarGraficoDisco(chart, uso, capacidade, disco) {
+
+    fetch(`/pc/atualizarDisco/${hostname}/${idDisco}`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (novoRegistro) {
+
+                console.log(`NOVO USO DO DISCO: ${JSON.stringify(novoRegistro)}`);
+                console.log(`USO ATUAL DO DISCO:`);
+                console.log(uso);
+
+                if (novoRegistro[0].valor == uso) {
+                    console.log("---------------------------------------------------------------")
+                    console.log("Como não há dados novos para captura, o gráfico não atualizará.")
+                    // avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
+                    console.log("Novo dado capturado:")
+                    console.log(novoRegistro[0].valor)
+                    console.log("Último dado capturado:")
+                    console.log(uso)
+                    console.log("---------------------------------------------------------------")
+                } else {
+                    // tirando e colocando valores no gráfico
+
+                    var dadosDisco = chart.data.datasets[0].data;
+                    dadosDisco.splice(0);
+                    dadosDisco.push(novoRegistro[0].valor);
+                    var disponivel = capacidade - novoRegistro[0].valor;
+                    dadosDisco.push(disponivel);
+
+                    var alerta = novoRegistro[0].valor;
+                    var imagemAlerta = document.getElementById("alertaDisco");
+                    var alertaVerm = Number(document.getElementById("vermDisco"));
+                    var alertaAmar = Number(document.getElementById("amarDisco"));
+
+                    if (alerta >= alertaVerm) {
+                        imagemAlerta.src = '../assets/dashboard/vermelho.png'
+                    } else if (alerta >= alertaAmar) {
+                        imagemAlerta.src = '../assets/dashboard/amarelo.png'
+                    } else {
+                        imagemAlerta.src = '../assets/dashboard/verde.png'
+                    }
+
+                    disco.update();
+                }
+
+                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                proximaAtualizacao4 = setTimeout(() => atualizarGraficoDisco(chart, uso, capacidade, disco), 2000);
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+            // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+            proximaAtualizacao4 = setTimeout(() => atualizarGraficoDisco(chart, uso, capacidade, disco), 2000);
+        }
+    })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+
 }
 
 

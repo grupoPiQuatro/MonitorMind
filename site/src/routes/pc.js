@@ -43,4 +43,24 @@ router.get("/dadosDisco/:hostname/:idDisco", function (req, res) {
     pcController.dadosDisco(req, res);
 })
 
+router.get("/dadosDisco/:hostname/:idDisco", function (req, res) {
+    pcController.dadosDisco(req, res);
+})
+
+router.get("/atualizarRede/:hostname", function (req, res) {
+    pcController.atualizarRede(req, res);
+})
+
+router.get("/atualizarRam/:hostname/:idRam", function (req, res) {
+    pcController.atualizarRam(req, res);
+})
+
+router.get("/atualizarCpu/:hostname/:idCpu", function (req, res) {
+    pcController.atualizarCpu(req, res);
+})
+
+router.get("/atualizarDisco/:hostname/:idDisco", function (req, res) {
+    pcController.atualizarDisco(req, res);
+})
+
 module.exports = router;

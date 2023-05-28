@@ -180,6 +180,85 @@ function dadosDisco(req, res) {
         );
 }
 
+function atualizarRede(req, res) {
+    var hostname = req.params.hostname;
+
+    pcModel.atualizarRede(hostname)
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado! DADOS PEGAR COMP")
+            }
+        }).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+function atualizarRam(req, res) {
+    var hostname = req.params.hostname;
+    var idRam = req.params.idRam;
+
+    pcModel.atualizarRam(hostname, idRam)
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado! DADOS PEGAR COMP")
+            }
+        }).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+function atualizarCpu(req, res) {
+    var hostname = req.params.hostname;
+    var idCpu = req.params.idCpu;
+
+    pcModel.atualizarCpu(hostname, idCpu)
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado! DADOS PEGAR COMP")
+            }
+        }).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+function atualizarDisco(req, res) {
+    var hostname = req.params.hostname;
+    var idDisco = req.params.idDisco;
+
+    pcModel.atualizarDisco(hostname, idDisco)
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado! DADOS PEGAR COMP")
+            }
+        }).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
 module.exports = {
     listar,
     buscarParametro,
@@ -189,5 +268,9 @@ module.exports = {
     pegarComp,
     dadosRam,
     dadosCpu,
-    dadosDisco
+    dadosDisco,
+    atualizarRede,
+    atualizarRam,
+    atualizarCpu,
+    atualizarDisco
 }
