@@ -23,8 +23,24 @@ router.get("/buscarPcSemRetorno/:fkEmpresa", function (req, res) {
     pcController.buscarPcSemRetorno(req, res);
 })
 
-router.get("/dadosRede/:fkEmpresa", function (req, res) {
+router.get("/dadosRede/:hostname", function (req, res) {
     pcController.dadosRede(req, res);
+})
+
+router.get("/pegarComp/:hostname", function (req, res) {
+    pcController.pegarComp(req, res);
+})
+
+router.get("/dadosRam/:hostname/:idRam", function (req, res) {
+    pcController.dadosRam(req, res);
+})
+
+router.get("/dadosRam/:hostname/:idCpu", function (req, res) {
+    pcController.dadosCpu(req, res);
+})
+
+router.get("/dadosDisco/:hostname/:idDisco", function (req, res) {
+    pcController.dadosDisco(req, res);
 })
 
 module.exports = router;

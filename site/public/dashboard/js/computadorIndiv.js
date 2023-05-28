@@ -1,21 +1,87 @@
 window.addEventListener("load", function () {
     pegarComponentes();
+    buscarParametro();
     graficoRede();
 });
+
+function buscarParametro() {
+    fkEmpresa = sessionStorage.FK_EMPRESA;
+  
+    fetch(`/pc/buscarParametro/${fkEmpresa}`, { cache: 'no-store' }).then(function (resposta) {
+      if (resposta.ok) {
+  
+        resposta.json().then(function (resposta) {
+          console.log("PARAMETROS: ", JSON.stringify(resposta));
+          amarRede.innerHTML = resposta[0].valor;
+          amarRam.innerHTML = resposta[1].valor;
+          amarCpu.innerHTML = resposta[2].valor;
+          amarDisco.innerHTML = resposta[3].valor;
+
+          vermRede.innerHTML = resposta[4].valor;
+          vermRam.innerHTML = resposta[5].valor;
+          vermCpu.innerHTML = resposta[6].valor;
+          vermDisco.innerHTML = resposta[7].valor;
+
+          verdeRede.innerHTML = resposta[0].valor;
+          verdeRam.innerHTML = resposta[1].valor;
+          verdeCpu.innerHTML = resposta[2].valor;
+          verdeDisco.innerHTML = resposta[3].valor;
+        });
+      } else {
+        throw ('Houve um erro na API!');
+      }
+    }).catch(function (resposta) {
+      console.error(resposta);
+  
+    });
+  }
 
 var hostname = sessionStorage.COMPUTADOR;
 
 function pegarComponentes() {
-    
+
     fetch(`/pc/pegarComp/${hostname}`, { cache: 'no-store' }).then(function (resposta) {
         if (resposta.ok) {
 
             resposta.json().then(function (resposta) {
-                console.log("STATUS: ", JSON.stringify(resposta));
+                console.log("COMPONENTES: ", JSON.stringify(resposta));
+
+                hostnameCampo.innerHTML = `HOSTNAME: ${hostname}`;
                 
-                graficoRam();
-                graficoCpu();
-                graficoDisco();
+                setorCampo.innerHTML = `SETOR: ${resposta[0].setor}`;
+                
+                macCampo.innerHTML = `MAC: ${resposta[0].mac}`;
+                 
+
+                for (let i = 0; i < resposta.length; i++) {
+                    var configDaVez = resposta[i];
+
+                    if (configDaVez.fkTipo == 2) {
+                        var idRam = configDaVez.idConfig;
+                        ramCampo.innerHTML = `RAM: ${configDaVez.numeroChave}`;
+                    }
+
+                    if (configDaVez.fkTipo == 3) {
+                        var idCpu = configDaVez.idConfig;
+                        cpuCampo.innerHTML = `CPU: ${configDaVez.numeroChave}`;
+                    }
+
+                    if (configDaVez.fkTipo == 4) {
+                        var idDisco = configDaVez.idConfig;
+                        var capacidade = configDaVez.numeroChave;
+                        discoCampo.innerHTML = `DISCO: ${configDaVez.numeroChave}`;
+                    }
+
+                    if (configDaVez.fkTipo == 5) {
+                        var idDisco = configDaVez.idConfig;
+                        var capacidade = configDaVez.numeroChave;
+                        discoCampo.innerHTML = `DISCO: ${configDaVez.numeroChave}`;
+                    }
+                }
+
+                graficoRam(idRam);
+                graficoCpu(idCpu);
+                graficoDisco(idDisco, capacidade);
             });
         } else {
             throw ('Houve um erro na API!');
@@ -31,9 +97,9 @@ function graficoRede() {
         if (resposta.ok) {
 
             resposta.json().then(function (resposta) {
-                console.log("STATUS: ", JSON.stringify(resposta));
+                console.log("DADOS REDE: ", JSON.stringify(resposta));
                 resposta.reverse();
-                plotarGrafico(resposta);
+                plotarGraficoRede(resposta);
             });
         } else {
             throw ('Houve um erro na API!');
@@ -44,7 +110,7 @@ function graficoRede() {
     });
 }
 
-function plotarGrafico(resposta) {
+function plotarGraficoRede(resposta) {
     const labelsLine = []
     const dados = [];
 
@@ -93,107 +159,201 @@ function plotarGrafico(resposta) {
         }
     });
 
-    setTimeout(() => atualizarGraficoRede(dados, rede), 2000);
+    // setTimeout(() => atualizarGraficoRede(dados, rede), 2000);
+}
+
+function graficoRam(idRam) {
+    fetch(`/pc/dadosRam/${hostname}/${idRam}`, { cache: 'no-store' }).then(function (resposta) {
+
+        if (resposta.ok) {
+
+            resposta.json().then(function (resposta) {
+                console.log("DADOS RAM: ", JSON.stringify(resposta));
+                resposta.reverse();
+                plotarGraficoRam(resposta);
+            });
+        } else {
+            throw ('Houve um erro na API!');
+        }
+    }).catch(function (resposta) {
+        console.error(resposta);
+
+    });
+}
+
+function plotarGraficoRam(resposta) {
+    const labelsLine = []
+    const dados = [];
+
+    for (i = 0; i < resposta.length; i++) {
+        var registro = resposta[i];
+        labelsLine.push(registro.momento);
+        dados.push(registro.valor);
+    }
+
+    const ram = document.getElementById('ramChart');
+
+    new Chart(ram, {
+        type: 'line',
+        data: {
+            labels: labelsLine,
+            datasets: [{
+                label: 'Uso da RAM',
+                data: dados,
+                borderWidth: 4,
+                fill: true,
+                tension: 0.4,
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        color: 'black',
+                    },
+                    grid: {
+                        color: 'black',
+                    },
+
+                },
+                x: {
+                    beginAtZero: true,
+                    ticks: {
+                        color: 'black',
+                    },
+                    grid: {
+                        color: 'white',
+                    },
+                }
+            },
+        }
+    });
+
+    // setTimeout(() => atualizarGraficoRede(dados, rede), 2000);
+}
+
+// CPU GRAFICO
+
+function graficoCpu(idCpu) {
+    fetch(`/pc/dadosRam/${hostname}/${idCpu}`, { cache: 'no-store' }).then(function (resposta) {
+
+        if (resposta.ok) {
+
+            resposta.json().then(function (resposta) {
+                console.log("DADOS CPU: ", JSON.stringify(resposta));
+                resposta.reverse();
+                plotarGraficoCpu(resposta);
+            });
+        } else {
+            throw ('Houve um erro na API!');
+        }
+    }).catch(function (resposta) {
+        console.error(resposta);
+
+    });
+}
+
+function plotarGraficoCpu(resposta) {
+    const labelsLine = []
+    const dados = [];
+
+    for (i = 0; i < resposta.length; i++) {
+        var registro = resposta[i];
+        labelsLine.push(registro.momento);
+        dados.push(registro.valor);
+    }
+
+    const cpu = document.getElementById('cpuChart');
+
+    new Chart(cpu, {
+        type: 'line',
+        data: {
+            labels: labelsLine,
+            datasets: [{
+                label: '# of Votes',
+                data: dados,
+                borderWidth: 4,
+                fill: true,
+                tension: 0.4
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        color: 'black',
+                    },
+                    grid: {
+                        color: 'black',
+                    },
+                },
+                x: {
+                    beginAtZero: true,
+                    ticks: {
+                        color: 'black',
+                    },
+                    grid: {
+                        color: 'white',
+                    },
+                }
+            }
+        }
+    });
+
+    // setTimeout(() => atualizarGraficoRede(dados, rede), 2000);
 }
 
 
+// DISCO GRAFICO
 
+function graficoDisco(idDisco, capacidade) {
+    fetch(`/pc/dadosDisco/${hostname}/${idDisco}`, { cache: 'no-store' }).then(function (resposta) {
 
+        if (resposta.ok) {
 
-const ram = document.getElementById('ramChart');
-
-new Chart(ram, {
-    type: 'line',
-    data: {
-        labels: ['12:02', '12:04', '12:06', '12:08', '12:10', '12:12', '12:14', '12:16', '12:18',
-            '12:20', '12:20', '12:20', '12:20', '12:20', '12:20',],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 70, 53, 54, 35, 52, 81, 93, 40, 30, 40, 40, 30, 25, 28],
-            borderWidth: 4,
-            fill: true,
-            tension: 0.4
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true,
-                ticks: {
-                    color: 'black',
-                },
-                grid: {
-                    color: 'black',
-                }
-            },
-            x: {
-                beginAtZero: true,
-                ticks: {
-                    color: 'black',
-                },
-                grid: {
-                    color: 'white',
-                },
-            }
+            resposta.json().then(function (resposta) {
+                console.log("DADOS DISCO: ", JSON.stringify(resposta));
+                
+                plotarGraficoDisco(resposta, capacidade);
+            });
+        } else {
+            throw ('Houve um erro na API!');
         }
-    }
-});
+    }).catch(function (resposta) {
+        console.error(resposta);
 
-const cpu = document.getElementById('cpuChart');
+    });
+}
 
-new Chart(cpu, {
-    type: 'line',
-    data: {
-        labels: ['12:02', '12:04', '12:06', '12:08', '12:10', '12:12', '12:14', '12:16', '12:18',
-            '12:20', '12:20', '12:20', '12:20', '12:20', '12:20',],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 39, 69, 90, 87, 75, 21, 3, 40, 30, 10, 40, 30, 25, 28],
-            borderWidth: 4,
-            fill: true,
-            tension: 0.4
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true,
-                ticks: {
-                    color: 'black',
-                },
-                grid: {
-                    color: 'black',
-                },
-            },
-            x: {
-                beginAtZero: true,
-                ticks: {
-                    color: 'black',
-                },
-                grid: {
-                    color: 'white',
-                },
-            }
+function plotarGraficoDisco(resposta, capacidade) {
+    const disco = document.getElementById('discoChart');
+    
+    var uso = resposta[0].valor;
+    var disponivel = capacidade - uso; 
+    var porcenUso = (uso * 100) / capacidade
+    porcenUsoDisco.innerHTML = `${porcenUso.toFixed(1)}%`;
+
+    new Chart(disco, {
+        type: 'doughnut',
+        data: {
+            labels: ['Uso', 'Disponível'],
+            datasets: [{
+                label: '# of Votes',
+                data: [uso, disponivel],
+                borderWidth: 2,
+                cutout: '50%',
+            }]
+        },
+        options: {
         }
-    }
-});
+    });
 
-const disco = document.getElementById('discoChart');
+    // setTimeout(() => atualizarGraficoRede(dados, rede), 2000);
+}
 
-new Chart(disco, {
-    type: 'doughnut',
-    data: {
-        labels: ['Uso', 'Disponível'],
-        datasets: [{
-            label: '# of Votes',
-            data: [80, 20],
-            borderWidth: 2,
-            cutout: '60%',
-        }]
-    },
-    options: {
-    }
-});
+
 
 // function mostrarLegendaRam() {
 //     document.getElementById("ramLegenda").style.display = "flex";
