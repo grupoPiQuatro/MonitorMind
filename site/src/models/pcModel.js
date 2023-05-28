@@ -110,6 +110,46 @@ function dadosDisco(hostname, idDisco) {
     return database.executar(instrucao);
 }
 
+function atualizarRede(hostname) {
+    console.log("ACESSEI O PCMODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function atualizarRede()");
+    var instrucao = `
+        SELECT TOP 1 valor, FORMAT(dtCaptura, 'HH:mm:ss') as momento FROM metrica JOIN config ON fkConfig = idConfig WHERE fkComputador = '${hostname}' AND fkComponente = 1 
+        AND dtCaptura >= DATEADD(DAY, -7, GETDATE()) ORDER BY dtCaptura DESC;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function atualizarRam(hostname, idRam) {
+    console.log("ACESSEI O PCMODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function atualizarRam()");
+    var instrucao = `
+        SELECT TOP 1 valor, FORMAT(dtCaptura, 'HH:mm:ss') as momento FROM metrica JOIN config ON fkConfig = idConfig WHERE fkComputador = '${hostname}' AND idConfig = ${idRam}
+        AND dtCaptura >= DATEADD(DAY, -7, GETDATE()) ORDER BY dtCaptura DESC;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function atualizarCpu(hostname, idCpu) {
+    console.log("ACESSEI O PCMODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function atualizarCpu()");
+    var instrucao = `
+        SELECT TOP 1 valor, FORMAT(dtCaptura, 'HH:mm:ss') as momento FROM metrica JOIN config ON fkConfig = idConfig WHERE fkComputador = '${hostname}' AND idConfig = ${idCpu}
+        AND dtCaptura >= DATEADD(DAY, -7, GETDATE()) ORDER BY dtCaptura DESC;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function atualizarDisco(hostname, idDisco) {
+    console.log("ACESSEI O PCMODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function atualizarDisco()");
+    var instrucao = `
+        SELECT TOP 1 valor FROM metrica JOIN config ON fkConfig = idConfig WHERE fkComputador = '${hostname}' AND idConfig = ${idDisco}
+        AND dtCaptura >= DATEADD(DAY, -7, GETDATE()) ORDER BY dtCaptura DESC;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
     listar,
     buscarParametro,
@@ -119,5 +159,9 @@ module.exports = {
     pegarComp,
     dadosRam,
     dadosCpu,
-    dadosDisco
+    dadosDisco,
+    atualizarRede,
+    atualizarRam,
+    atualizarCpu,
+    atualizarDisco
 };
