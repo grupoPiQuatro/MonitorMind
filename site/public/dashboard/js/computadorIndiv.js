@@ -139,7 +139,7 @@ function plotarGraficoRede(resposta) {
 
     const rede = document.getElementById('redeChart');
 
-    new Chart(rede, {
+    var chartRede = new Chart(rede, {
         type: 'line',
         data: {
             labels: labelsLine,
@@ -176,7 +176,7 @@ function plotarGraficoRede(resposta) {
         }
     });
 
-    setTimeout(() => atualizarGraficoRede(dados, labelsLine, rede), 2000);
+    setTimeout(() => atualizarGraficoRede(dados, labelsLine, chartRede), 2000);
 }
 
 let proximaAtualizacao;
@@ -284,7 +284,7 @@ function plotarGraficoRam(resposta) {
 
     const ram = document.getElementById('ramChart');
 
-    new Chart(ram, {
+    var chartRam = new Chart(ram, {
         type: 'line',
         data: {
             labels: labelsLine,
@@ -321,7 +321,7 @@ function plotarGraficoRam(resposta) {
         }
     });
 
-    setTimeout(() => atualizarGraficoRam(dados, labelsLine, ram), 2000);
+    setTimeout(() => atualizarGraficoRam(dados, labelsLine, chartRam), 2000);
 }
 
 let proximaAtualizacao2;
@@ -431,7 +431,7 @@ function plotarGraficoCpu(resposta) {
 
     const cpu = document.getElementById('cpuChart');
 
-    new Chart(cpu, {
+    var chartCpu = new Chart(cpu, {
         type: 'line',
         data: {
             labels: labelsLine,
@@ -467,7 +467,7 @@ function plotarGraficoCpu(resposta) {
         }
     });
 
-    setTimeout(() => atualizarGraficoCpu(dados, labelsLine, cpu), 2000);
+    setTimeout(() => atualizarGraficoCpu(dados, labelsLine, chartCpu), 2000);
 }
 
 let proximaAtualizacao3;
@@ -635,7 +635,7 @@ function atualizarGraficoDisco(chart, uso, capacidade, disco) {
                         imagemAlerta.src = '../assets/dashboard/verde.png'
                     }
 
-                    disco.update();
+                    chart.update();
                 }
 
                 // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
