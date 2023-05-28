@@ -45,23 +45,23 @@
             <div class="pc-info">
                 <div class="title">
                     <div class="contentTitle">
-                        <span class="text-geral" id="text-geral14">IDENTIFICADOR: #</span>
+                        <span class="text-geral" id="hostnameCampo">HOSTNAME: #</span>
 
-                        <span class="text-geral" id="text-geral14">CPU: #</span>
+                        <span class="text-geral" id="cpuCampo">CPU: #</span>
                     </div>
 
 
                     <div class="contentTitle">
-                        <span class="text-geral" id="text-geral14">Setor: #</span>
+                        <span class="text-geral" id="setorCampo">Setor: #</span>
 
-                        <span class="text-geral" id="text-geral14">RAM: #</span>
+                        <span class="text-geral" id="ramCampo">RAM: #</span>
                     </div>
 
 
                     <div class="contentTitle">
-                        <span class="text-geral" id="text-geral14">MAC: #</span>
+                        <span class="text-geral" id="macCampo">MAC: #</span>
 
-                        <span class="text-geral" id="text-geral14">TIPO DISCO: #</span>
+                        <span class="text-geral" id="discoCampo">TIPO DISCO: #</span>
                     </div>
 
                     <div class="contentTitleImg">
@@ -83,7 +83,7 @@
                             </div>
                         </div>
 
-                        <div class="fundoLegenda" onmouseover="modal1()" onmousedown="a">
+                        <div class="fundoLegenda">
                             <img src="../assets/dashboard/vermelho.png" alt="">
                         </div>
                     </div>
@@ -92,15 +92,15 @@
                         <div class="containerLegenda">
                             <h4>REDE:</h4>
                             <div class="boxLegenda">
-                                <p>> #%</p>
+                                <p>> <span id="vermRede"></span>ms</p>
                                 <img src="../assets/dashboard/vermelho.png" alt="">
                             </div>
                             <div class="boxLegenda">
-                                <p>> #%</p>
+                                <p>> <span id="amarRede"></span>ms</p>
                                 <img src="../assets/dashboard/amarelo.png" alt="">
                             </div>
                             <div class="boxLegenda">
-                                <p><= #%</p>
+                                <p><= <span id="verdeRede"></span>ms</p>
                                 <img src="../assets/dashboard/verde.png" alt="" id="verdeL">
                             </div>
                         </div>
@@ -110,15 +110,15 @@
                         <div class="containerLegenda">
                             <h4>RAM:</h4>
                             <div class="boxLegenda">
-                                <p>> #%</p>
+                                <p>> <span id="vermRam"></span>%</p>
                                 <img src="../assets/dashboard/vermelho.png" alt="">
                             </div>
                             <div class="boxLegenda">
-                                <p>> #%</p>
+                                <p>> <span id="amarRam"></span>%</p>
                                 <img src="../assets/dashboard/amarelo.png" alt="">
                             </div>
                             <div class="boxLegenda">
-                                <p><= #%</p>
+                                <p><= <span id="verdeRam"></span>%</p>
                                 <img src="../assets/dashboard/verde.png" alt="" id="verdeL">
                             </div>
                         </div>
@@ -126,7 +126,7 @@
 
                     <div class="boxLegendaGrafico2">
 
-                        <div class="fundoLegenda2" onmouseenter="mostrarLegendaRam()" onmouseleave="esconderLegendaRam()">
+                        <div class="fundoLegenda2">
                             <img src="../assets/dashboard/verde.png" alt="">
                         </div>
                         <div class="graficBox">
@@ -154,7 +154,7 @@
                             </div>
                         </div>
 
-                        <div class="fundoLegenda" onmouseenter="modal3()">
+                        <div class="fundoLegenda">
                             <img src="../assets/dashboard/verde.png" alt="">
                         </div>
                     </div>
@@ -163,15 +163,15 @@
                         <div class="containerLegenda">
                             <h4>CPU:</h4>
                             <div class="boxLegenda">
-                                <p>> #%</p>
+                                <p>> <span id="vermCpu"></span>%</p>
                                 <img src="../assets/dashboard/vermelho.png" alt="">
                             </div>
                             <div class="boxLegenda">
-                                <p>> #%</p>
+                                <p>> <span id="amarCpu"></span>%</p>
                                 <img src="../assets/dashboard/amarelo.png" alt="">
                             </div>
                             <div class="boxLegenda">
-                                <p><= #%</p>
+                                <p><= <span id="verdeCpu"></span>%</p>
                                 <img src="../assets/dashboard/verde.png" alt="" id="verdeL">
                             </div>
                         </div>
@@ -181,15 +181,15 @@
                         <div class="containerLegenda">
                             <h4>DISCO:</h4>
                             <div class="boxLegenda">
-                                <p>> #%</p>
+                                <p>> <span id="vermDisco"></span>%</p>
                                 <img src="../assets/dashboard/vermelho.png" alt="">
                             </div>
                             <div class="boxLegenda">
-                                <p>> #%</p>
+                                <p>> <span id="amarDisco"></span>%</p>
                                 <img src="../assets/dashboard/amarelo.png" alt="">
                             </div>
                             <div class="boxLegenda">
-                                <p><= #%</p>
+                                <p><= <span id="verdeDisco"></span>%</p>
                                 <img src="../assets/dashboard/verde.png" alt="" id="verdeL">
                             </div>
                         </div>
@@ -197,7 +197,7 @@
 
                     <div class="boxLegendaGrafico2">
 
-                        <div class="fundoLegenda2" onmouseenter="modal4()">
+                        <div class="fundoLegenda2">
                             <img src="../assets/dashboard/amarelo.png" alt="">
                         </div>
                         <div class="graficBox">
@@ -206,7 +206,7 @@
                             </div>
                             <div class="graficoRosca">
                                 <div class="porcenRosca">
-                                    <h3>78%</h3>
+                                    <h3 id="porcenUsoDisco">#</h3>
                                     <p>de uso</p>
                                 </div>
 

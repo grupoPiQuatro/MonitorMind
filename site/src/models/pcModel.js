@@ -26,7 +26,7 @@ function listar(fkEmpresa) {
 }
 
 function buscarParametro(fkEmpresa) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function buscarParametro()");
+    console.log("ACESSEI O PCMODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function buscarParametro()");
     var instrucao = `
         select idParametro, valor from parametros where fkEmpresa = ${fkEmpresa};
     `;
@@ -35,7 +35,7 @@ function buscarParametro(fkEmpresa) {
 }
 
 function buscarStatus(fkEmpresa) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function buscarStatus()");
+    console.log("ACESSEI O PCMODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function buscarStatus()");
     var instrucao = `
         select hostname, status from computador where fkEmpresa = ${fkEmpresa};
     `;
@@ -44,7 +44,7 @@ function buscarStatus(fkEmpresa) {
 }
 
 function buscarPcSemRetorno(fkEmpresa) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function buscarPcSemRetorno");
+    console.log("ACESSEI O PCMODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function buscarPcSemRetorno");
     var instrucao = `
     SELECT count(hostname)
     FROM (
@@ -62,9 +62,48 @@ function buscarPcSemRetorno(fkEmpresa) {
 }
 
 function dadosRede(hostname) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function dadosRede()");
+    console.log("ACESSEI O PCMODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function dadosRede()");
     var instrucao = `
         SELECT valor, FORMAT(dtCaptura, 'HH:mm:ss') as momento FROM metrica JOIN config ON fkConfig = idConfig WHERE fkComputador = '${hostname}' AND fkComponente = 1 
+	    AND dtCaptura >= DATEADD(DAY, -7, GETDATE()) ORDER BY dtCaptura DESC;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function pegarComp(hostname) {
+    console.log("ACESSEI O PCMODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function dadosRede()");
+    var instrucao = `
+        SELECT * from computador join config on hostname = fkComputador join localizacao on fkLocalizacao = idLocalizacao join componente on fkComponente = idComponente where fkComputador = '${hostname}';
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function dadosRam(hostname, idRam) {
+    console.log("ACESSEI O PCMODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function dadosRam()");
+    var instrucao = `
+        SELECT valor, FORMAT(dtCaptura, 'HH:mm:ss') as momento FROM metrica JOIN config ON fkConfig = idConfig WHERE fkComputador = '${hostname}' AND idConfig = ${idRam}
+	    AND dtCaptura >= DATEADD(DAY, -7, GETDATE()) ORDER BY dtCaptura DESC;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function dadosCpu(hostname, idCpu) {
+    console.log("ACESSEI O PCMODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function dadosCpu()");
+    var instrucao = `
+        SELECT valor, FORMAT(dtCaptura, 'HH:mm:ss') as momento FROM metrica JOIN config ON fkConfig = idConfig WHERE fkComputador = '${hostname}' AND idConfig = ${idCpu}
+	    AND dtCaptura >= DATEADD(DAY, -7, GETDATE()) ORDER BY dtCaptura DESC;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function dadosDisco(hostname, idDisco) {
+    console.log("ACESSEI O PCMODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function dadosDisco()");
+    var instrucao = `
+        SELECT TOP 1 valor FROM metrica JOIN config ON fkConfig = idConfig WHERE fkComputador = '${hostname}' AND idConfig = ${idDisco}
 	    AND dtCaptura >= DATEADD(DAY, -7, GETDATE()) ORDER BY dtCaptura DESC;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
@@ -76,5 +115,9 @@ module.exports = {
     buscarParametro,
     buscarStatus,
     buscarPcSemRetorno,
-    dadosRede
+    dadosRede,
+    pegarComp,
+    dadosRam,
+    dadosCpu,
+    dadosDisco
 };

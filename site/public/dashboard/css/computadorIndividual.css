@@ -319,6 +319,7 @@
 }
 
 .porcenRosca {
+    margin-left: 2vw;
     height: 20vh;
     display: flex;
     align-items: center;
