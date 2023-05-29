@@ -308,8 +308,6 @@ function deletarMaquina(hostnameDelete){
 }
 
 
-
-
 // Geração de tabela
 
 function generateTable(resposta) {

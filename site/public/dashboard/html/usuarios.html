@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../css/usuarios.css">
     <script src="https://kit.fontawesome.com/c06dcecf1f.js" crossorigin="anonymous"></script>
 </head>
-<body>
+<body onload="listarUsuarios()">
     <section class="left-side-window" id="caixa1">
         <div class="side-nav">
             <a href="#" class="logo">
@@ -79,8 +79,8 @@
                             <label class="tipo">Tipo:</label>
                             <select id="add_tipo">
                                 <option value="">-select-</option>
-                                <option value="comum">Comum</option>
-                                <option value="adm">Administrador</option>
+                                <option value="Normal">Normal</option>
+                                <option value="Admin">Administrador</option>
                             </select>
                         </div>
     
@@ -91,7 +91,7 @@
     
                         <div class="formulario">
                             <label class="confirma-senha">Confirmação de senha</label>
-                            <input id="add_confirma-senha">
+                            <input id="add_confirmaSenha">
                         </div>
                     </div>
 
@@ -118,12 +118,13 @@
                         <div class="formulario">
                             <label class="tipo">Tipo:</label>
                             <select id="edit_tipo">
-                                <option value="">-select-</option>
-                                <option value="comum">Comum</option>
-                                <option value="admin">Administrador</option>
+                                <option value="">--select--</option>
+                                <option value="Normal">Normal</option>
+                                <option value="Admin">Administrador</option>
+                                <option value="Owner">Owner</option>
                             </select>
                         </div>
-<!--     
+    
                         <div class="formulario">
                             <label class="senha">Senha:</label>
                             <input id="edit_senha">
@@ -131,8 +132,8 @@
     
                         <div class="formulario">
                             <label class="confirma-senha">Confirmação de senha</label>
-                            <input id="edit_confirma-senha">
-                        </div> -->
+                            <input id="edit_confirma_senha">
+                        </div>
                     </div>
 
                     <div class="confirmacao_adicionar_usuario">
