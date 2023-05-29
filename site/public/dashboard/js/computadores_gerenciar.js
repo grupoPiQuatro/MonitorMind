@@ -69,7 +69,6 @@ function verificaValoresAdd(add_setor, add_status, add_tipo, add_ram, add_so, ad
         erro3.style.display = "block"
         validacao = false;
     }
-    console.log(add_tipo.value)
 
     if (add_ram.value == "") {
         let erro4 = document.getElementById("label_erro4")
@@ -166,8 +165,10 @@ function cadastrarMaquina() {
 
 
 // EDITAR
+var hostnameVar;
 
-function editar(setor, status, tipo) {
+function editar(setor, status, tipo, i) {
+    hostnameVar = document.getElementById(`hostname${i}`).textContent;
     var modal = document.getElementById("modal_editar")
     var edit_setor = document.getElementById("edit_setor");
     var edit_status = document.getElementById("edit_status");
@@ -180,17 +181,27 @@ function editar(setor, status, tipo) {
     modal.style.display = "block";
 }
 
+function sleep(ms) {
+    const startTime = Date.now();
+    while (Date.now() - startTime < ms) {}
+}
 
+var response;
 function confirmar_editar_maquina() {
     let modal = document.getElementById("modal_editar")
-    let edit_setor = document.getElementById("edit_setor");
-    let edit_status = document.getElementById("edit_status");
-    let edit_tipo = document.getElementById("edit_tipo");
+    let edit_setor = document.getElementById("edit_setor").value;
+    let edit_status = document.getElementById("edit_status").value;
+    let edit_tipo = document.getElementById("edit_tipo").value.toLowerCase();
 
     verificaValoresEditar(edit_setor, edit_status, edit_tipo)
     if (validacao) {
-        editarMaquina()
+        encontrarSetor(edit_setor, edit_status, edit_tipo)
+        
+        // editarMaquina(idLocalizacao, edit_status, edit_tipo)
+        listarMaquina()
         modal.style.display = "none"
+    }else{
+        alert('Existem compos a serem preenchidos')
     }
 }
 
@@ -217,37 +228,64 @@ function verificaValoresEditar(edit_setor, edit_status, edit_tipo){
     return validacao
 }
 
-//arrumar esse ctrl+c ctrl+v
-function editarMaquina() {
-    //variaveis da maquina
-    var cepVar = ipt_cep.value;
-    var numeroVar = ipt_numero.value;
+function encontrarSetor(edit_setor, edit_status, edit_tipo) {
+    fetch(`/maquina/encontrarSetor/${edit_setor}`, {
+    }).then(function (resposta) {
 
-    if (nomeVar == "" || cnpjVar == "") {
-        alert("Erro: dados do endereco vazios")
-        return false;
-    }
+        if (resposta.ok) {
+            resposta.json().then(function (resposta) {
+                console.log("resposta: ", resposta);
+                response = resposta[0].idLocalizacao
+                econtrarConfig(resposta[0].idLocalizacao, edit_status, edit_tipo)
+            });            
+        } else {
+            throw ("Houve um erro ao tentar encontar setor!");
+        }
+    }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+    });
 
-    // Enviando o valor da nova input
+    return false;
+}
+
+function econtrarConfig(fkSetor, edit_status, edit_tipo){
+    fetch(`/maquina/encontrarDisco?tipo=${edit_tipo}&hostname=${hostnameVar}`, {
+    }).then(function (resposta) {
+
+        if (resposta.ok) {
+            resposta.json().then(function (resposta) {
+                console.log("resposta: ", resposta);
+                // editarMaquina(fkSetor, edit_status, resposta[0].idComponente)
+            });            
+        } else {
+            throw ("Houve um erro ao tentar encontar setor!");
+        }
+    }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+    });
+
+    return false;
+}
+
+function editarMaquina(fkSetor, edit_status, fkDisco) {
+    var fkSetorVar = fkSetor
+    var statusVar = edit_status
+    var dicoVar = fkDisco
+
     fetch("/usuarios/cadastrarEndereco", {
-        method: "POST",
+        method: "PUT",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            // crie um atributo que recebe o valor recuperado aqui
-            // Agora vá para o arquivo routes/usuario.js
-            cepServer: cepVar,
-            numeroServer: numeroVar,
+            fkSetorServer: fkSetorVar,
+            statusServer: statusVar,
+            discoServer: dicoVar,
         })
     }).then(function (resposta) {
 
-        console.log("resposta: ", resposta);
-
         if (resposta.ok) {
-
-            cadastrarUsuarioDados();
-
+            console.log("resposta: ", resposta);
         } else {
             throw ("Houve um erro ao tentar realizar o cadastro!");
         }
@@ -284,17 +322,21 @@ function confirmar_deletar_maquina() {
 }
 
 function deletarMaquina(hostnameDelete){
+    var hostnameVar = hostnameDelete
 
-    fetch(`/maquina/deletarMaquina/${hostnameDelete}`, {
-
+    fetch(`/maquina/deletarMaquina`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            hostnameDelete: hostnameVar,
+        })
 
     }).then(function (resposta) {
 
         if (resposta.ok) {
-            resposta.json().then(function (resposta) {
                 console.log("resposta: ", resposta);
-            });
-
             console.log(`Maquina com hostname ${hostnameDelete} deletada`)            
 
         } else {
@@ -357,7 +399,7 @@ function generateTable(resposta) {
         const iconEditar = document.createElement("img");
         iconEditar.setAttribute("src", "../assets/usuarios/lapis.png");
         iconEditar.addEventListener("click", function() {
-            editar(item.setor, item.status, item.tipo);
+            editar(item.setor, item.status, item.tipo, i);
         });
         
         const deleteButton = document.createElement("img");
