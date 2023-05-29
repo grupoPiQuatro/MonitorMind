@@ -7,23 +7,6 @@ function testar(req, res) {
     res.json("ESTAMOS FUNCIONANDO!");
 }
 
-function listar(req, res) {
-    usuarioModel.listar()
-        .then(function (resultado) {
-            if (resultado.length > 0) {
-                res.status(200).json(resultado);
-            } else {
-                res.status(204).send("Nenhum resultado encontrado!")
-            }
-        }).catch(
-            function (erro) {
-                console.log(erro);
-                console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
-                res.status(500).json(erro.sqlMessage);
-            }
-        );
-}
-
 function entrar(req, res) {
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
@@ -76,7 +59,7 @@ function cadastrarEmpresa(req, res) {
             .then(
                 function (resultado) {
                     res.json(resultado);
-                    
+
                 }
             ).catch(
                 function (erro) {
@@ -125,7 +108,7 @@ function cadastrarEndereco(req, res) {
             .then(
                 function (resultado) {
                     res.json(resultado);
-                    
+
                 }
             ).catch(
                 function (erro) {
@@ -147,6 +130,7 @@ function cadastrarUsuario(req, res) {
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
     var idEmpresa = req.body.idEmpresaServer;
+    var fkCargo = req.body.fkCargoServer;
 
     // Faça as validações dos valores
     if (usuario == undefined) {
@@ -154,7 +138,7 @@ function cadastrarUsuario(req, res) {
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrarUsuario(usuario, email, senha, idEmpresa)
+        usuarioModel.cadastrarUsuario(usuario, email, senha, idEmpresa, fkCargo)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -171,14 +155,70 @@ function cadastrarUsuario(req, res) {
             );
     }
 }
-// 
+
+function listarUsuario(req, res) {
+    var fkEmpresa = req.params.fkEmpresa
+
+    usuarioModel.listarUsuario(fkEmpresa)
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+function deletarUsuario(req, res) {
+    var idUsuario = req.params.idUsuario
+
+    usuarioModel.deletarUsuario(idUsuario)
+        .then(function (resultado) {
+                res.json(resultado);
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao deletar o usuário: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+function atualizarDados(req, res) {
+    var coluna = req.body.colunaServer;
+    var alteracao = req.body.alteracaoServer;
+    var idUsuario = req.body.idUsuarioServer;
+
+    usuarioModel.atualizarDados(coluna, alteracao, idUsuario)
+        .then(function (resultado) {
+                res.json(resultado);
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao deletar o usuário: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
 
 module.exports = {
     entrar,
     cadastrarEmpresa,
     cadastrarEndereco,
     cadastrarUsuario,
-    listar,
+    listarUsuario,
     testar,
-    pegarEmpresa
+    pegarEmpresa,
+    deletarUsuario,
+    atualizarDados
 }

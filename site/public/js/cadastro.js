@@ -259,7 +259,8 @@ function cadastrarUsuarioDados(idEmpresa) {
             idEmpresaServer: idEmpresa,
             usuarioServer: usuarioVar,
             emailServer: emailVar,
-            senhaServer: senhaVar
+            senhaServer: senhaVar,
+            fkCargoServer: 1
         })
     }).then(function (resposta) {
 
