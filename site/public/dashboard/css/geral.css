@@ -169,3 +169,8 @@ li {
     height: 100vh;
     background-color: #2C2B2B;
 }
+.suporte{
+    margin-top: 125%;
+    justify-content: center;
+    display: flex;
+}
