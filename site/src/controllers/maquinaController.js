@@ -86,6 +86,7 @@ function encontrarSetor(req, res) {
     var setor = req.params.edit_setor;
 
     maquinaModel.encontrarSetor(setor)
+
         .then(function (resultado) {
             if (resultado.length > 0) {
                 res.status(200).json(resultado);
@@ -103,9 +104,30 @@ function encontrarSetor(req, res) {
 
 function encontrarConfig(req, res) {
     var tipo = req.params.tipo;
-    // var hostname = req.params.hostname;
-    maquinaModel.encontrarConfig(tipo)
+    var volume = req.params.volume;
 
+    maquinaModel.encontrarConfig(tipo, volume)
+
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(200).json(resultado);
+            }
+        }).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+function inserirConfig(req, res) {
+    var tipo = req.params.edit_tipo
+    var volume = req.params.volume
+
+    maquinaModel.inserirConfig(tipo, volume)
         .then(function (resultado) {
             if (resultado.length > 0) {
                 res.status(200).json(resultado);
@@ -122,18 +144,14 @@ function encontrarConfig(req, res) {
 }
 
 function editarMaquina(req, res) {
-    var setor = fkSetorServer
-    var status = statusServer
-    var disco = discoServer
-    var hostname = hostnameServer
+    var hostname = req.body.hostnameServer
+    var setor = req.body.fkSetorServer
+    var status = req.body.statusServer
+    var fkComponente = req.body.fkComponenteServer
 
-    maquinaModel.editarMaquina(setor, status, disco, hostname)
+    maquinaModel.editarMaquina(hostname, setor, status, fkComponente)
         .then(function (resultado) {
-            if (resultado.length > 0) {
-                res.status(200).json(resultado);
-            } else {
-                res.status(204).send("Nenhum resultado encontrado!")
-            }
+            res.status(200).json(resultado);
         }).catch(
             function (erro) {
                 console.log(erro);
@@ -150,5 +168,6 @@ module.exports = {
     deletarMaquina,
     encontrarSetor,
     encontrarConfig,
+    inserirConfig,
     editarMaquina
 }

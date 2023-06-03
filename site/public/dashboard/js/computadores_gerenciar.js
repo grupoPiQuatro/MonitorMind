@@ -17,7 +17,8 @@ function cancelar() {
     let erro6 = document.getElementById("label_erro6");
     let erro7 = document.getElementById("label_erro7");
     let erro8 = document.getElementById("label_erro8");
-    let erro9 = document.getElementById("label_erro8");
+    let erro9 = document.getElementById("label_erro9");
+    let erro10 = document.getElementById("label_erro10");
 
     erro1.style.display = "none"
     erro2.style.display = "none"
@@ -28,6 +29,7 @@ function cancelar() {
     erro7.style.display = "none"
     erro8.style.display = "none"
     erro9.style.display = "none"
+    erro10.style.display = "none"
 
     modal_add.style.display = "none"
     modal_editar.style.display = "none"
@@ -166,17 +168,21 @@ function cadastrarMaquina() {
 
 // EDITAR
 var hostnameVar;
+var edit_volumeVar;
 
-function editar(setor, status, tipo, i) {
+function editar(setor, status, tipo, i, volume) {
     hostnameVar = document.getElementById(`hostname${i}`).textContent;
     var modal = document.getElementById("modal_editar")
     var edit_setor = document.getElementById("edit_setor");
     var edit_status = document.getElementById("edit_status");
     var edit_tipo = document.getElementById("edit_tipo");
+    var edit_volume = document.getElementById("edit_volume");
 
     edit_setor.value = setor;
     edit_status.value = status;
     edit_tipo.value = tipo;
+    edit_volume.value = volume;
+    edit_volumeVar = volume;
 
     modal.style.display = "block";
 }
@@ -192,20 +198,21 @@ function confirmar_editar_maquina() {
     let edit_setor = document.getElementById("edit_setor").value;
     let edit_status = document.getElementById("edit_status").value;
     let edit_tipo = document.getElementById("edit_tipo").value.toLowerCase();
+    let edit_volume = document.getElementById("edit_volume").value;
 
-    verificaValoresEditar(edit_setor, edit_status, edit_tipo)
+    verificaValoresEditar(edit_setor, edit_status, edit_tipo, edit_volume)
     if (validacao) {
-        encontrarSetor(edit_setor, edit_status, edit_tipo)
+        encontrarSetor(edit_setor, edit_status, edit_tipo, edit_volume)
         
         // editarMaquina(idLocalizacao, edit_status, edit_tipo)
-        listarMaquina()
+
         modal.style.display = "none"
     }else{
         alert('Existem compos a serem preenchidos')
     }
 }
 
-function verificaValoresEditar(edit_setor, edit_status, edit_tipo){
+function verificaValoresEditar(edit_setor, edit_status, edit_tipo, edit_volume){
     validacao = true;
     if (edit_setor.value == "" ) {
         let erro7 = document.getElementById("label_erro7");
@@ -225,36 +232,25 @@ function verificaValoresEditar(edit_setor, edit_status, edit_tipo){
         validacao = false;
     }
 
+    if (edit_volume.value == "") {
+        // let erro10 = document.getElementById("label_erro10")
+        // erro10.style.display = "block"
+        edit_volume.value = edit_volumeVar;
+        validacao = false;
+    }
+
     return validacao
 }
 
-function encontrarSetor(edit_setor, edit_status, edit_tipo) {
+function encontrarSetor(edit_setor, edit_status, edit_tipo, volume) {
     fetch(`/maquina/encontrarSetor/${edit_setor}`, {
     }).then(function (resposta) {
 
         if (resposta.ok) {
             resposta.json().then(function (resposta) {
                 console.log("resposta: ", resposta);
-                response = resposta[0].idLocalizacao
-                econtrarConfig(resposta[0].idLocalizacao, edit_status, edit_tipo)
-            });            
-        } else {
-            throw ("Houve um erro ao tentar encontar setor!");
-        }
-    }).catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-    });
-
-    return false;
-}
-
-function econtrarConfig(fkSetor, edit_status, edit_tipo){
-    fetch(`/maquina/encontrarDisco?tipo=${edit_tipo}&hostname=${hostnameVar}`, {
-    }).then(function (resposta) {
-
-        if (resposta.ok) {
-            resposta.json().then(function (resposta) {
-                console.log("resposta: ", resposta);
+                // response = resposta[0].idLocalizacao
+                econtrarConfig(resposta[0].idLocalizacao, edit_status, edit_tipo, volume)
                 // editarMaquina(fkSetor, edit_status, resposta[0].idComponente)
             });            
         } else {
@@ -267,27 +263,34 @@ function econtrarConfig(fkSetor, edit_status, edit_tipo){
     return false;
 }
 
-function editarMaquina(fkSetor, edit_status, fkDisco) {
-    var fkSetorVar = fkSetor
-    var statusVar = edit_status
-    var dicoVar = fkDisco
-
-    fetch("/usuarios/cadastrarEndereco", {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            fkSetorServer: fkSetorVar,
-            statusServer: statusVar,
-            discoServer: dicoVar,
-        })
+function econtrarConfig(fkSetor, edit_status, edit_tipo, volume){
+    let tipoNome;
+    if (Number(edit_tipo) == 4) {
+        tipoNome = 'ssd'
+    }else{
+        tipoNome = 'hd'
+    }
+    fetch(`/maquina/encontrarConfig/${tipoNome}/${volume}`, {
     }).then(function (resposta) {
-
+        
         if (resposta.ok) {
-            console.log("resposta: ", resposta);
+          
+            console.log("resposta config: ", resposta);
+          
+            resposta.json().then(function (resposta) {
+                
+                if (resposta.length <= 0) {
+                    console.log("Vai inserir um componente")
+                    console.log("resposta: ", resposta);
+                    inserirConfig(fkSetor, edit_status, edit_tipo, volume)
+                }else {
+                    console.log("Editando maquina")
+                    console.log("resposta: ", resposta);
+                    editarMaquina(fkSetor, edit_status, resposta[0].idComponente)
+                }
+            });            
         } else {
-            throw ("Houve um erro ao tentar realizar o cadastro!");
+            throw ("Houve um erro ao tentar encontrar config!");
         }
     }).catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
@@ -296,7 +299,57 @@ function editarMaquina(fkSetor, edit_status, fkDisco) {
     return false;
 }
 
+function editarMaquina(fkSetor, edit_status, fkComponente) {
+    var hostname = hostnameVar
+    var fkSetorVar = fkSetor
+    var statusVar = edit_status
+    var fkComponenteVar = fkComponente
 
+    fetch("/maquina/editarMaquina", {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            hostnameServer: hostname,
+            fkSetorServer: fkSetorVar,
+            statusServer: statusVar,
+            fkComponenteServer: fkComponenteVar,
+        })
+    }).then(function (resposta) {
+
+        if (resposta.ok) {
+            console.log("resposta: ", resposta);
+            sleep(2000)
+            listarMaquina()
+        } else {
+            throw ("Houve um erro ao tentar editar maquina!");
+        }
+    }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+    });
+
+    return false;
+}
+
+function inserirConfig(fkSetor, edit_status, edit_tipo, volume){
+    fetch(`/maquina/inserirConfig/${edit_tipo}/${volume}`, {
+    }).then(function (resposta) {
+
+        if (resposta.ok) {
+            resposta.json().then(function (resposta) {
+                console.log("resposta: ", resposta);
+                editarMaquina(fkSetor, edit_status, resposta[0].idComponente)                    
+            });            
+        } else {
+            throw ("Houve um erro ao tentar inserir config!");
+        }
+    }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+    });
+
+    return false;
+}
 
 // DELETAR
 
@@ -353,7 +406,7 @@ function deletarMaquina(hostnameDelete){
 // Geração de tabela
 
 function generateTable(resposta) {
-    console.log(`Resposta: ${resposta}`)
+    // console.log(`Resposta: ${resposta}`)
 
     const tableContainer = document.getElementById("tabela-computadores");
     
@@ -399,7 +452,7 @@ function generateTable(resposta) {
         const iconEditar = document.createElement("img");
         iconEditar.setAttribute("src", "../assets/usuarios/lapis.png");
         iconEditar.addEventListener("click", function() {
-            editar(item.setor, item.status, item.tipo, i);
+            editar(item.setor, item.status, item.tipo, i, item.volume);
         });
         
         const deleteButton = document.createElement("img");

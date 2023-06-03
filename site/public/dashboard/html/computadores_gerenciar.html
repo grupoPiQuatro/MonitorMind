@@ -145,10 +145,16 @@
                             <label class="tipo">Tipo de memoria:</label>
                             <select id="edit_tipo" oninput='changed("label_erro9")'>
                                 <option value="">-select-</option>
-                                <option value="SSD">SSD</option>
-                                <option value="HD">HD</option>
+                                <option value="4">SSD</option>
+                                <option value="5">HD</option>
                             </select>
                             <span class="text-erro" id="label_erro9" style="display: none;">Selecione uma opição</span>
+                        </div>
+
+                        <div class="formulario">
+                            <label class="tipo">Tamanho da memoria:</label>
+                            <input type="number" id="edit_volume">
+                            <span class="text-erro" id="label_erro10" style="display: none;">O campo não pode estar vazio</span>
                         </div>
                     </div>
 

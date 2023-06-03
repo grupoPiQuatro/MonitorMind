@@ -19,10 +19,12 @@ router.get("/encontrarSetor/:edit_setor", function (req, res) {
     maquinaController.encontrarSetor(req, res);
 })
 
-router.get("/encontrarConfig", function (req, res) {
-    var tipo = req.query.tipo;
-    // var hostname = req.query.hostname;
-    maquinaController.encontrarConfig(tipo, req, res);
+router.get("/encontrarConfig/:edit_tipo/:volume", function (req, res) {
+    maquinaController.encontrarConfig(req, res);
+})
+
+router.get("/inserirConfig/:edit_tipo/:volume", function (req, res) {
+    maquinaController.inserirConfig(req, res);
 })
 
 router.put("/editarMaquina", function (req, res) {
