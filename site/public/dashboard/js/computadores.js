@@ -10,9 +10,9 @@ var vermRedeParam;
 var vermRamParam;
 var vermCpuParam;
 var vermDiscoParam;
+var fkEmpresa = sessionStorage.FK_EMPRESA;
 
 function buscarParametro() {
-  fkEmpresa = sessionStorage.FK_EMPRESA;
   // fkEmpresa = 1;
 
   fetch(`/pc/buscarParametro/${fkEmpresa}`, { cache: 'no-store' }).then(function (resposta) {
@@ -41,103 +41,13 @@ function buscarParametro() {
 
 
 function listarPc() {
-  var computadores = [];
-
   fetch(`/pc/buscarPc/${fkEmpresa}`, { cache: 'no-store' }).then(function (resposta) {
     if (resposta.ok) {
 
       resposta.json().then(function (resposta) {
         console.log("Dados recebidos: ", JSON.stringify(resposta));
 
-        var qtdPc = resposta.length;
-        var ax01 = 0;
-        var ax02 = 1;
-        var ax03 = 2;
-        var ax04 = 3;
-
-        for (let i = 0; i < qtdPc; i++) {
-          var registro = resposta[i];
-
-          if (i == ax01) {
-            var pc = {
-              setor: registro.setor,
-              hostname: registro.hostname,
-              mac: registro.mac,
-              rede: registro.valor,
-              vRede: 0,
-              vRam: 0,
-              vCpu: 0,
-              vDisco: 0,
-              aRede: 0,
-              aRam: 0,
-              aCpu: 0,
-              aDisco: 0,
-              alertasAmar: 0,
-              alertasVerm: 0
-            }
-
-            if (registro.valor >= vermRedeParam) {
-              pc.vRede += 1;
-              pc.alertasVerm += 1;
-            } else if (registro.valor > amarRedeParam) {
-              pc.aRede += 1;
-              pc.alertasAmar += 1;
-            }
-            ax01 += 4;
-          }
-
-
-          if (i == ax02) {
-            pc["ram"] = registro.valor;
-            ax02 += 4;
-
-            ramVer = (vermRamParam / 100) * registro.numeroChave;
-            ramAmar = (amarRamParam / 100) * registro.numeroChave;
-
-            if (registro.valor >= ramVer) {
-              pc.vRam += 1;
-              pc.alertasVerm += 1;
-            } else if (registro.valor > ramAmar) {
-              pc.aRam += 1;
-              pc.alertasAmar += 1;
-            }
-          }
-
-          if (i == ax03) {
-            pc["cpu"] = registro.valor;
-            ax03 += 4;
-
-            if (registro.valor >= vermCpuParam) {
-              pc.vCpu += 1;
-              pc.alertasVerm += 1;
-            } else if (registro.valor > amarCpuParam) {
-              pc.aCpu += 1;
-              pc.alertasAmar += 1;
-            }
-          }
-
-          if (i == ax04) {
-            pc["disco"] = registro.valor;
-            ax04 += 4;
-
-            discoVer = (vermDiscoParam / 100) * registro.numeroChave;
-            discoAmar = (amarDiscoParam / 100) * registro.numeroChave;
-
-            if (registro.valor >= discoVer) {
-              pc.vDisco += 1;
-              pc.alertasVerm += 1;
-            } else if (registro.valor > discoAmar) {
-              pc.aDisco += 1;
-              pc.alertasAmar += 1;
-            }
-
-            computadores.push(pc);
-          }
-        }
-
-        console.log("COMPUTADORES ENCONTRADOS: ", JSON.stringify(computadores));
-        console.log("COMPUTADORES QUANTIDADE: ", JSON.stringify(computadores.length));
-        ordenarPc(computadores);
+        sintetizar(resposta)
       });
     } else {
       throw ('Houve um erro na API!');
@@ -147,6 +57,100 @@ function listarPc() {
 
   });
 
+}
+
+function sintetizar(resposta) {
+  var computadores = [];
+
+  var qtdPc = resposta.length;
+  var ax01 = 0;
+  var ax02 = 1;
+  var ax03 = 2;
+  var ax04 = 3;
+
+  for (let i = 0; i < qtdPc; i++) {
+    var registro = resposta[i];
+
+    if (i == ax01) {
+      var pc = {
+        setor: registro.setor,
+        hostname: registro.hostname,
+        mac: registro.mac,
+        rede: registro.valor,
+        vRede: 0,
+        vRam: 0,
+        vCpu: 0,
+        vDisco: 0,
+        aRede: 0,
+        aRam: 0,
+        aCpu: 0,
+        aDisco: 0,
+        alertasAmar: 0,
+        alertasVerm: 0
+      }
+
+      if (registro.valor >= vermRedeParam) {
+        pc.vRede += 1;
+        pc.alertasVerm += 1;
+      } else if (registro.valor > amarRedeParam) {
+        pc.aRede += 1;
+        pc.alertasAmar += 1;
+      }
+      ax01 += 4;
+    }
+
+
+    if (i == ax02) {
+      pc["ram"] = registro.valor;
+      ax02 += 4;
+
+      ramVer = vermRamParam
+      ramAmar = amarRamParam
+
+      if (registro.valor >= ramVer) {
+        pc.vRam += 1;
+        pc.alertasVerm += 1;
+      } else if (registro.valor > ramAmar) {
+        pc.aRam += 1;
+        pc.alertasAmar += 1;
+      }
+    }
+
+    if (i == ax03) {
+      pc["cpu"] = registro.valor;
+      ax03 += 4;
+
+      if (registro.valor >= vermCpuParam) {
+        pc.vCpu += 1;
+        pc.alertasVerm += 1;
+      } else if (registro.valor > amarCpuParam) {
+        pc.aCpu += 1;
+        pc.alertasAmar += 1;
+      }
+    }
+
+    if (i == ax04) {
+      pc["disco"] = registro.valor;
+      ax04 += 4;
+
+      discoVer = vermDiscoParam
+      discoAmar = amarDiscoParam
+
+      if (registro.valor >= discoVer) {
+        pc.vDisco += 1;
+        pc.alertasVerm += 1;
+      } else if (registro.valor > discoAmar) {
+        pc.aDisco += 1;
+        pc.alertasAmar += 1;
+      }
+
+      computadores.push(pc);
+    }
+  }
+
+  console.log("COMPUTADORES ENCONTRADOS: ", JSON.stringify(computadores));
+  console.log("COMPUTADORES QUANTIDADE: ", JSON.stringify(computadores.length));
+  ordenarPc(computadores);
 }
 
 const pcPorPagina = 15;
@@ -177,7 +181,7 @@ function ordenarPc(computadores) {
         } else {
           for (let v = 0; v < computadoresVerm.length; v++) {
             pcVerm = computadoresVerm[v];
-  
+
             if (adicionarMaior) {
               if (pcAtual.alertasVerm > pcVerm.alertasVerm) {
                 computadoresVerm.splice(v, 0, pcAtual)
@@ -186,7 +190,7 @@ function ordenarPc(computadores) {
                 adicionarMenor = false;
               }
             }
-  
+
             if (adicionarIgual) {
               if (pcAtual.alertasVerm == pcVerm.alertasVerm) {
                 adicionarMaior = false;
@@ -200,7 +204,7 @@ function ordenarPc(computadores) {
                 }
               }
             }
-  
+
             if (adicionarMenor) {
               if (pcAtual.alertasVerm < pcVerm.alertasVerm) {
                 adicionarMaior = false;
@@ -275,7 +279,7 @@ function ordenarPc(computadores) {
       computadoresVerd.push(pcAtual);
       adicionado = true;
     }
-    
+
   }
 
   // PRINT DOS VETORES DE JASON REFERENTES A CADA COR
@@ -288,7 +292,7 @@ function ordenarPc(computadores) {
 
   var pcOrdenado = computadoresVerm.concat(computadoresAmar, computadoresVerd);
 
-  console.log("PC VERDE: ", JSON.stringify(pcOrdenado));
+  console.log("PC ORDENADO: ", JSON.stringify(pcOrdenado));
   pcOrdenadoGlobal = pcOrdenado;
   criarCards(indicePaginaAtual, pcOrdenado);
 }
@@ -456,4 +460,126 @@ function pcIndiv_window(elementoDiv) {
   var hostname = terceiroPContent.split(':')[1].trim();
   sessionStorage.COMPUTADOR = hostname;
   window.location = "../html/computadorIndividual.html";
+}
+
+function filtrar() {
+  var hostname = hostnameCampo.value;
+  if (hostname != "") {
+    fetch(`/pc/buscarHostname/${hostname}`, { cache: 'no-store' }).then(function (resposta) {
+      if (resposta.ok) {
+        resposta.json().then(function (resposta) {
+          sintetizar(resposta)
+
+        });
+      } else {
+        throw ('Houve um erro na API!');
+      }
+    }).catch(function (resposta) {
+      console.error(resposta);
+
+    });
+  }
+
+  var comp = componenteSelect.value;
+  var alerta = alertaSelect.value;
+  var setor = setorCampo.value;
+
+  
+
+  if (comp != "" || alerta != "") {
+    var filtroPcOrdernado = [];
+
+    if (comp == "rede" && alerta == "amarelo") {
+      for (let i = 0; i < pcOrdenadoGlobal.length; i++) {
+        var pcDaVez = pcOrdenadoGlobal[i];
+        if (pcDaVez.aRede != 0) {
+          filtroPcOrdernado.push(pcDaVez)
+        }
+      }
+    }
+
+    if (comp == "rede" && alerta == "vermelho") {
+      for (let i = 0; i < pcOrdenadoGlobal.length; i++) {
+        var pcDaVez = pcOrdenadoGlobal[i];
+        if (pcDaVez.vRede != 0) {
+          filtroPcOrdernado.push(pcDaVez)
+        }
+      }
+    }
+
+    if (comp == "ram" && alerta == "amarelo") {
+      for (let i = 0; i < pcOrdenadoGlobal.length; i++) {
+        var pcDaVez = pcOrdenadoGlobal[i];
+        if (pcDaVez.aRam != 0) {
+          filtroPcOrdernado.push(pcDaVez)
+        }
+      }
+    }
+
+    if (comp == "ram" && alerta == "vermelho") {
+      for (let i = 0; i < pcOrdenadoGlobal.length; i++) {
+        var pcDaVez = pcOrdenadoGlobal[i];
+        if (pcDaVez.vRam != 0) {
+          filtroPcOrdernado.push(pcDaVez)
+        }
+      }
+    }
+
+    if (comp == "cpu" && alerta == "amarelo") {
+      for (let i = 0; i < pcOrdenadoGlobal.length; i++) {
+        var pcDaVez = pcOrdenadoGlobal[i];
+        if (pcDaVez.aCpu != 0) {
+          filtroPcOrdernado.push(pcDaVez)
+        }
+      }
+    }
+
+    if (comp == "cpu" && alerta == "vermelho") {
+      for (let i = 0; i < pcOrdenadoGlobal.length; i++) {
+        var pcDaVez = pcOrdenadoGlobal[i];
+        if (pcDaVez.vCpu != 0) {
+          filtroPcOrdernado.push(pcDaVez)
+        }
+      }
+    }
+
+    if (comp == "disco" && alerta == "amarelo") {
+      for (let i = 0; i < pcOrdenadoGlobal.length; i++) {
+        var pcDaVez = pcOrdenadoGlobal[i];
+        if (pcDaVez.aDisco != 0) {
+          filtroPcOrdernado.push(pcDaVez)
+        }
+      }
+    }
+
+    if (comp == "disco" && alerta == "vermelho") {
+      for (let i = 0; i < pcOrdenadoGlobal.length; i++) {
+        var pcDaVez = pcOrdenadoGlobal[i];
+        if (pcDaVez.vDisco != 0) {
+          filtroPcOrdernado.push(pcDaVez)
+        }
+      }
+    }
+    criarCards(0, filtroPcOrdernado);
+  }
+
+  if (setor != "") {
+    fetch(`/pc/buscarSetor/${setor}`, { cache: 'no-store' }).then(function (resposta) {
+      if (resposta.ok) {
+        resposta.json().then(function (resposta) {
+          sintetizar(resposta)
+
+        });
+      } else {
+        throw ('Houve um erro na API!');
+      }
+    }).catch(function (resposta) {
+      console.error(resposta);
+
+    });
+  }
+
+  if (hostname == "" && comp == "" && alerta == "" && setor == "") {
+    listarPc();
+  }
 }

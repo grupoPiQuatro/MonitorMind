@@ -51,6 +51,7 @@ body {
     justify-content: unset;
     height: 94%;
     width: 95%;
+    margin-top: 15px;
 }
 
 .tituloFiltro {
@@ -66,14 +67,17 @@ body {
 }
 
 .filtroSelect {
+    height: 9vh;
     display: flex;
+    align-items: flex-end;
     gap: 50px;
 }
 
 .filtroSelect .campoFiltro {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    justify-content: space-between;
+    height: 87%;
     font-size: 1.2rem;  
     gap: 10px;
 }
@@ -104,7 +108,9 @@ body {
 
 .botaoFiltro {
     display: flex;
-    align-items: flex-end;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
 }
 
 .botaoFiltro button {
@@ -259,4 +265,26 @@ body {
     border-radius: 7px;
     font-size: 1.2rem;
     font-weight: 500;
+}
+
+.active{
+    background-color: #ffff;
+    width: 110%;
+    height: 47px;
+    position: absolute;
+    left: 0;
+    top: 18.5%;
+    z-index: -1;
+    border-radius: 6px;
+    box-shadow: 0 5px 10px rgba(255, 255, 255, 0.4);
+    display: block;
+    transition: top 0.5s;
+}
+
+.nav-links li:nth-child(2) a{
+    color: #2C2B2B;
+}
+
+#paginaAtuall {
+    color: #4EABE9;
 }

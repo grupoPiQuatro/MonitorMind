@@ -63,4 +63,12 @@ router.get("/atualizarDisco/:hostname/:idDisco", function (req, res) {
     pcController.atualizarDisco(req, res);
 })
 
+router.get("/buscarHostname/:hostname", function (req, res) {
+    pcController.buscarHostname(req, res);
+})
+
+router.get("/buscarSetor/:setor", function (req, res) {
+    pcController.buscarSetor(req, res);
+})
+
 module.exports = router;

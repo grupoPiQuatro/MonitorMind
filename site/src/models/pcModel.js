@@ -16,7 +16,7 @@ function listar(fkEmpresa) {
             JOIN config AS cfg ON c.hostname = cfg.fkComputador
             JOIN componente AS comp ON cfg.fkComponente = comp.idComponente
             JOIN metrica AS m ON m.fkConfig = cfg.idConfig
-            WHERE c.fkEmpresa = ${fkEmpresa}
+            WHERE c.fkEmpresa = ${fkEmpresa} and c.status = 'Operando'
         ) AS subquery
         WHERE rn = 1
         ORDER BY subquery.hostname;
@@ -150,6 +150,48 @@ function atualizarDisco(hostname, idDisco) {
     return database.executar(instrucao);
 }
 
+function buscarHostname(hostname) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+    var instrucao = `
+        SELECT *
+        FROM (
+            SELECT *,
+                ROW_NUMBER() OVER (PARTITION BY c.hostname, cfg.fkComponente ORDER BY m.dtCaptura DESC) AS rn
+            FROM computador AS c
+            JOIN localizacao AS l ON c.fkLocalizacao = l.idLocalizacao
+            JOIN config AS cfg ON c.hostname = cfg.fkComputador
+            JOIN componente AS comp ON cfg.fkComponente = comp.idComponente
+            JOIN metrica AS m ON m.fkConfig = cfg.idConfig
+            WHERE c.Hostname = '${hostname}'
+        ) AS subquery
+        WHERE rn = 1
+        ORDER BY subquery.hostname;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function buscarSetor(setor) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+    var instrucao = `
+        SELECT *
+        FROM (
+            SELECT *,
+                ROW_NUMBER() OVER (PARTITION BY c.hostname, cfg.fkComponente ORDER BY m.dtCaptura DESC) AS rn
+            FROM computador AS c
+            JOIN localizacao AS l ON c.fkLocalizacao = l.idLocalizacao
+            JOIN config AS cfg ON c.hostname = cfg.fkComputador
+            JOIN componente AS comp ON cfg.fkComponente = comp.idComponente
+            JOIN metrica AS m ON m.fkConfig = cfg.idConfig
+            where c.status = 'operando' and l.setor = '${setor}'
+        ) AS subquery
+        WHERE rn = 1
+        ORDER BY subquery.hostname;`;
+    
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
     listar,
     buscarParametro,
@@ -163,5 +205,7 @@ module.exports = {
     atualizarRede,
     atualizarRam,
     atualizarCpu,
-    atualizarDisco
+    atualizarDisco,
+    buscarHostname,
+    buscarSetor
 };

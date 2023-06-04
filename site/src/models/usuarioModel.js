@@ -75,7 +75,9 @@ function deletarUsuario(idUsuario) {
 
 function atualizarDados(coluna, alteracao, idUsuario) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+    
     var instrucao = null;
+    
     if (isNaN(alteracao)) {
         instrucao = `
             UPDATE usuario SET ${coluna} = '${alteracao}' WHERE idUsuario = ${idUsuario};
