@@ -14,6 +14,7 @@ var avisosRouter = require("./src/routes/avisos");
 var medidasRouter = require("./src/routes/medidas");
 var maquinaRouter = require("./src/routes/maquina");
 var pcRouter = require("./src/routes/pc");
+var reinicioRouter = require("./src/routes/reinicio");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -27,6 +28,7 @@ app.use("/avisos", avisosRouter);
 app.use("/medidas", medidasRouter);
 app.use("/maquina", maquinaRouter);
 app.use("/pc", pcRouter);
+app.use("/reinicio", reinicioRouter);
 
 app.listen(PORTA, function () {
     console.log(`Servidor do seu site já está rodando! Acesse o caminho a seguir para visualizar: http://localhost:${PORTA} \n
