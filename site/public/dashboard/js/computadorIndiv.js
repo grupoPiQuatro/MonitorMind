@@ -557,9 +557,10 @@ function plotarGraficoDisco(resposta, capacidade) {
     const disco = document.getElementById('discoChart');
 
     var uso = resposta[0].valor;
-    var disponivel = capacidade - uso;
-    porcenUso = (uso * 100) / capacidade
-    porcenUsoDisco.innerHTML = `${porcenUso.toFixed(1)}%`;
+    porcenUsoDisco.innerHTML = `${uso.toFixed(1)}%`;
+
+    var usoConvertido = (uso / 100) * capacidade;
+    var disponivel = capacidade - usoConvertido;
 
     var alerta = resposta[resposta.length - 1];
     var imagemAlerta = document.getElementById("alertaDisco");
@@ -580,7 +581,7 @@ function plotarGraficoDisco(resposta, capacidade) {
             labels: ['Uso', 'Disponível'],
             datasets: [{
                 label: '# of Votes',
-                data: [uso, disponivel],
+                data: [usoConvertido, disponivel],
                 borderWidth: 2,
                 cutout: '50%',
             }]

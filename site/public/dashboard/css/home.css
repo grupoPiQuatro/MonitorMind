@@ -44,6 +44,7 @@ nav .caixa {
 
 nav h1 {
     color: #4EABE9;
+    font-size: 3rem;
 }
 
 .kpi-dados {
@@ -261,4 +262,29 @@ nav .destaque_caixaEsquerda p {
 
 #titulo {
     margin-top: 5px;
+}
+
+
+/* SIDE BAR */
+
+.active{
+    background-color: #ffff;
+    width: 110%;
+    height: 47px;
+    position: absolute;
+    left: 0;
+    top: 2.6%;
+    z-index: -1;
+    border-radius: 6px;
+    box-shadow: 0 5px 10px rgba(255, 255, 255, 0.4);
+    display: block;
+    transition: top 0.5s;
+}
+
+.nav-links li:nth-child(1) a{
+    color: #2C2B2B;
+}
+
+#paginaAtual {
+    color: #4EABE9;
 }

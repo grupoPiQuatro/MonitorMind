@@ -64,6 +64,7 @@ function listarPc() {
                 var ax02 = 1;
                 var ax03 = 2;
                 var ax04 = 3;
+                maquinas_monitoradas_agora.innerHTML = (resposta.length / 4);
 
                 for (let i = 0; i < qtdPc; i++) {
                     var registro = resposta[i];

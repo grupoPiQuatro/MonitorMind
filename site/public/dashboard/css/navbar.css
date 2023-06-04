@@ -90,3 +90,7 @@
 .nav-links li:nth-child(5):hover ~ .active{
     top: 82.5%;
 }
+
+#paginaAtual {
+    color: #4EABE9;
+}

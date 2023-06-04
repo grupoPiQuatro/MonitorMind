@@ -20,13 +20,14 @@
             </a>
             <ul class="nav-links">
                 <li><a href="home.html"><i class="fa-solid fa-house-user"></i><p>Visão Geral</p></a></li>
-                <li><a href="computadores.html"><i class="fa-solid fa-desktop"></i><p>Computadores</p></a></li>
+                <li><a href="computadores.html" id="paginaAtuall"><i class="fa-solid fa-desktop"></i><p>Computadores</p></a></li>
                 <li><a href="usuarios.html"><i class="fa-solid fa-users"></i><p>Usuários</p></a></li>
                 <li><a href="analytics.html"><i class="fa-sharp fa-solid fa-chart-column"></i><p>Analytics</p></a></li>
+                <li><a href="https://app.pipefy.com/public/form/VUNJN1lE"><i class="fa-sharp fa-solid fa-headset"></i><p>Suporte</p></a></li>
                 <li><a href="../../index.html"><i class="fa-solid fa-arrow-right-from-bracket"></i><p>Sair</p></a></li>
                 <div class="active"></div>
             </ul>
-            <li class="suporte"><a href="https://app.pipefy.com/public/form/VUNJN1lE"><i class = ""></i><p>Suporte</p></a></li>
+            
         </div>
 
     </section>
@@ -44,37 +45,34 @@
 
                     <div class="filtroSelect">
                         <div class="campoFiltro">
+                            <p>Hostname:</p>
+                            <input id="hostnameCampo">
+                        </div>
+                        <div class="campoFiltro">
                             <p>Componente em alerta:</p>
-                            <select name="" id="">
+                            <select name="" id="componenteSelect">
                                 <option value="">-</option>
-                                <option value="">REDE</option>
-                                <option value="">RAM</option>
-                                <option value="">CPU</option>
-                                <option value="">DISCO</option>
+                                <option value="rede">REDE</option>
+                                <option value="ram">RAM</option>
+                                <option value="cpu">CPU</option>
+                                <option value="disco">DISCO</option>
                             </select>
                         </div>
                         <div class="campoFiltro">
                             <p>Tipo de alerta:</p>
-                            <select name="" id="">
+                            <select name="" id="alertaSelect">
                                 <option value="">-</option>
-                                <option value="">Vermelho</option>
-                                <option value="">Amarelo</option>
-                                <option value="">Verde</option>
+                                <option value="vermelho">Vermelho</option>
+                                <option value="amarelo">Amarelo</option>
                             </select>
-                        </div>
-                        <div class="campoFiltro">
-                            <p>Número Identificação:</p>
-                            <input type="text">
                         </div>
                         <div class="campoFiltro">
                             <p>Setor:</p>
-                            <select name="" id="">
-                                <option value="">-</option>
-                                <option value="">Vendas</option>
-                            </select>
+                            <input id="setorCampo">
                         </div>
                         <div class="botaoFiltro">
-                            <button>Buscar</button>
+                            <button onclick="filtrar()">Buscar</button>
+                            <button onclick="listarPc()">Resetar</button>
                         </div>
                     </div>
 

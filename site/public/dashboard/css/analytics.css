@@ -173,3 +173,25 @@
 .pieGrafic .pieContainer {
     width: 320px;
 }
+
+.active{
+    background-color: #ffff;
+    width: 110%;
+    height: 47px;
+    position: absolute;
+    left: 0;
+    top: 51.5%;
+    z-index: -1;
+    border-radius: 6px;
+    box-shadow: 0 5px 10px rgba(255, 255, 255, 0.4);
+    display: block;
+    transition: top 0.5s;
+}
+
+.nav-links li:nth-child(4) a{
+    color: #2C2B2B;
+}
+
+#paginaAtual {
+    color: #4EABE9;
+}
