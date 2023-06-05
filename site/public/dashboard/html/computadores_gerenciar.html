@@ -42,7 +42,7 @@
                                     <button class="busca-botao" onclick="buscar_computador()"><img class="pesquisa_imagem" src="../assets/usuarios/lupa-branca.png"></button>
                                 </div>
                                 <div>
-                                    <button class="adicionar-botao" onclick="adicionar_usuario()">adicionar</button>
+                                    <button class="adicionar-botao" onclick="adicionar_computador()">adicionar</button>
                                 </div>
                             </div>
                         </div>
@@ -78,6 +78,12 @@
                             <input id="add_hostname" oninput='changed("label_erro2")' maxlength="45">
                             <span class="text-erro" id="label_erro2" style="display: none;">Valor inválido</span>
                         </div>
+
+                        <div class="formulario">
+                            <label>Mac</label>
+                            <input id="add_mac" oninput='changed("label_erro8")' maxlength="45">
+                            <span class="text-erro" id="label_erro8" style="display: none;">Valor inválido</span>
+                        </div>
                         
                         <div class="formulario" onchange='changed("label_erro3")'>
                             <label class="tipo">Tipo armazenamento:</label>
@@ -87,6 +93,19 @@
                                 <option value="HD">HD</option>
                             </select>
                             <span class="text-erro" id="label_erro3" style="display: none;">Selecione uma opição</span>
+                        </div>
+
+                        <div class="formulario" onchange='changed("label_erro7")'>
+                            <label class="tipo">Tamanho armazenamento:</label>
+                            <select id="add_tamanho">
+                                <option value="">-selecione-</option>
+                                <option value="120">120</option>
+                                <option value="240">240</option>
+                                <option value="512">512</option>
+                                <option value="1024">1024</option>
+                                <option value="2048">2048</option>
+                            </select>
+                            <span class="text-erro" id="label_erro7" style="display: none;">Selecione uma opição</span>
                         </div>
 
                         <div class="formulario" onchange='changed("label_erro4")'>

@@ -23,12 +23,24 @@ router.get("/encontrarConfig/:edit_tipo/:volume", function (req, res) {
     maquinaController.encontrarConfig(req, res);
 })
 
+router.get("/encontrarConfig2/:nome/:numeroChave", function (req, res) {
+    maquinaController.encontrarConfig2(req, res);
+})
+
 router.get("/inserirConfig/:edit_tipo/:volume", function (req, res) {
     maquinaController.inserirConfig(req, res);
 })
 
+router.get("/inserirComp2/:numeroChave/:unidadeMedida/:fkTipo", function (req, res) {
+    maquinaController.inserirComp2(req, res);
+})
+
 router.put("/editarMaquina", function (req, res) {
     maquinaController.editarMaquina(req, res);
+})
+
+router.post("/cadastrarConfig", function (req, res) {
+    maquinaController.cadastrarConfig(req, res);
 })
 
 module.exports = router;
