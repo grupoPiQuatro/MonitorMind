@@ -21,10 +21,10 @@ function listarMaquinas(fkEmpresa) {
 }
 
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucao
-function cadastrarMaquina(setor, hostName, tipoArmazenamento, tamanhoRam, so, ghzProcessador) {
+function cadastrarMaquina(hostname, so, mac, fkLocalizacao, fkEmpresa) {
     
     var instrucao = `
-        INSERT INTO Computador (nome, cnpj, telefone) VALUES ('${nomeEmpresa}', '${cnpj}', '${telefone}');
+        INSERT INTO Computador (hostname, status, sistemaOperacional, mac, fkLocalizacao, fkEmpresa) VALUES ('${hostname}', 'Operando', '${so}', '${mac}', ${fkLocalizacao}, ${fkEmpresa});
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -80,12 +80,37 @@ function encontrarConfig(tipo, volume){
     return database.executar(instrucao);
 }
 
+function encontrarConfig2(nome, numeroChave){
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function encontrarConfig()");
+
+    var instrucao = `
+        select 
+        c.idComponente, c.fkTipo
+            from componente c
+                join tipoComponente t
+                    on fkTipo = idTipoComponente where t.nome = '${nome}' and c.numeroChave = ${numeroChave};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 function inserirConfig(tipo, volume){
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function inserirConfig()");
 
     var instrucao = `
         insert into Componente (numeroChave, unidadeMedida, fkTipo) values (${volume}, 'GB', ${tipo}); 
-        select top 1 idComponente from componente order by idComponente desc;
+        select top 1 idComponente, fktipo from componente order by idComponente desc;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function inserirComp2(numeroChave, unidadeMedida, fkTipo){
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function inserirConfig()");
+
+    var instrucao = `
+        insert into Componente (numeroChave, unidadeMedida, fkTipo) values (${numeroChave}, '${unidadeMedida}', ${fkTipo});
+        select top 1 idComponente from componente order by idComponente desc; 
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -102,6 +127,16 @@ function editarMaquina(hostname, setor, status, fkComponente){
     return database.executar(instrucao);
 }
 
+function cadastrarConfig(hostname, fkComponente){
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function editarMaquina()");
+
+    var instrucao = `
+        INSERT INTO Config (fkComputador, fkComponente) VALUES ('${hostname}', ${fkComponente});
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
     listarMaquinas,
     cadastrarMaquina,
@@ -110,5 +145,8 @@ module.exports = {
     encontrarSetor,
     encontrarConfig,
     inserirConfig,
-    editarMaquina
+    editarMaquina,
+    encontrarConfig2,
+    inserirComp2,
+    cadastrarConfig
 };

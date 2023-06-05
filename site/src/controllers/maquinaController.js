@@ -23,30 +23,30 @@ function listarMaquina(req, res) {
 }
 
 function cadastrarMaquina(req, res) {
-    var setor = req.body.setorServer;
-    var hostName = req.body.hostnameServer;
-    var tipoArmazenamento = req.body.tipoServer;
-    var tamanhoRam = req.body.seramServer;
+    var fkLocalizacao = req.body.fkLocalizacaoServer;
+    var hostname = req.body.hostnameServer;
     var so = req.body.soServer;
-    cpu = req.body.cpuServer;
+    var mac = req.body.macServer;
+    var fkEmpresa = req.body.fkEmpresaServer;
 
-    maquinaModel.cadastrarMaquina(setor, hostName, tipoArmazenamento, tamanhoRam, so, cpu)
-        .then(function (resultado) {
-            if (resultado.length > 0) {
-                res.status(200).json(resultado);
-            } else {
-                res.status(204).send("Nenhum resultado encontrado!")
+    maquinaModel.cadastrarMaquina(hostname, so, mac, fkLocalizacao, fkEmpresa)
+        .then(
+            function (resultado) {
+                res.json(resultado);
             }
-        }).catch(
+        ).catch(
             function (erro) {
                 console.log(erro);
-                console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
                 res.status(500).json(erro.sqlMessage);
             }
         );
 }
 
-function listarComponentes(req, res){
+function listarComponentes(req, res) {
 
     maquinaModel.cadastrarMaquina()
         .then(function (resultado) {
@@ -123,11 +123,53 @@ function encontrarConfig(req, res) {
         );
 }
 
+function encontrarConfig2(req, res) {
+    var nome = req.params.nome;
+    var numeroChave = req.params.numeroChave;
+
+    maquinaModel.encontrarConfig2(nome, numeroChave)
+
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(200).json(resultado);
+            }
+        }).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
 function inserirConfig(req, res) {
     var tipo = req.params.edit_tipo
     var volume = req.params.volume
 
     maquinaModel.inserirConfig(tipo, volume)
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+function inserirComp2(req, res) {
+    var numeroChave = req.params.numeroChave
+    var unidadeMedida = req.params.unidadeMedida
+    var fkTipo = req.params.fkTipo
+
+    maquinaModel.inserirComp2(numeroChave, unidadeMedida, fkTipo)
         .then(function (resultado) {
             if (resultado.length > 0) {
                 res.status(200).json(resultado);
@@ -161,6 +203,28 @@ function editarMaquina(req, res) {
         );
 }
 
+function cadastrarConfig(req, res) {
+    var hostname = req.body.hostnameServer;
+    var fkComponente = req.body.fkComponenteServer;
+
+    maquinaModel.cadastrarConfig(hostname, fkComponente)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+
 module.exports = {
     listarMaquina,
     cadastrarMaquina,
@@ -169,5 +233,8 @@ module.exports = {
     encontrarSetor,
     encontrarConfig,
     inserirConfig,
-    editarMaquina
+    editarMaquina,
+    encontrarConfig2,
+    inserirComp2,
+    cadastrarConfig
 }
