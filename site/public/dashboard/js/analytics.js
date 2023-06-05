@@ -60,7 +60,8 @@ function semRespostaPing(){
     
             resposta.json().then(function (resposta) {
             console.log("Resposta Grafico: ", JSON.stringify(resposta));
-            
+            var mediaPing = resposta[0].mediaPing
+            ping.innerHTML = Number(mediaPing).toFixed(0) + " ms"
 
           });
         } else {
@@ -167,6 +168,24 @@ function percentPcReinicio(){
             resposta.json().then(function (resposta) {
             console.log("Resposta Grafico: ", JSON.stringify(resposta));
             
+            var dadosReinicio = [];
+            
+              
+              dadosReinicio.push(resposta[0].conta)
+              dadosReinicio.push(resposta[1].conta)
+              dadosReinicio.push(2)
+              dadosReinicio.push(2)
+              dadosReinicio.push(2)
+              dadosReinicio.push(2)
+              dadosReinicio.push(2)
+              // dadosReinicio.push(resposta[2].conta)
+              // dadosReinicio.push(resposta[3].conta)
+              // dadosReinicio.push(resposta[4].conta)
+              // dadosReinicio.push(resposta[5].conta)
+              // dadosReinicio.push(resposta[6].conta)
+            
+            dataReinicio(dadosReinicio);
+
 
           });
         } else {
@@ -201,7 +220,7 @@ function tempoStatus(){
 
 
 
-
+function dataReinicio(dadosReinicio){
 const line = document.getElementById('lineChart');
 
 new Chart(line, {
@@ -210,7 +229,7 @@ new Chart(line, {
         labels: ['SEGUNDA','TERÇA','QUARTA','QUINTA','SEXTA','SABADO','DOMINGO'],
         datasets: [{
             label: 'dasdas',
-            data: [10, 17, 14, 19, 20, 25, 13],
+            data: dadosReinicio,
             borderWidth: 4,
             fill: true,
             tension: 0.4,
@@ -240,7 +259,7 @@ new Chart(line, {
         },
     }
 });
-
+}
 function graficoBarra(dados){
 const bar = document.getElementById('barChart');
 

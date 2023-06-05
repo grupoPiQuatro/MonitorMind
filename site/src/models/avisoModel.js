@@ -123,7 +123,14 @@ function comptotal(fkEmpresa) {
 function semRespostaPing(fkEmpresa) {
     console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar():");
     var instrucao = `
-    SELECT COUNT(*) as total from [dbo].[computador] c where c.fkEmpresa = ${fkEmpresa} and hostname = 'AA';
+    select 
+    avg(valor) as mediaPing
+    from [dbo].[computador] c	
+    join [dbo].[config] cf on cf.fkComputador = c.hostname
+    join [dbo].[metrica] m on m.fkConfig = cf.idconfig
+    join [dbo].[componente] cp on cp.idComponente = cf.fkComponente
+    join [dbo].[tipoComponente] t on t.idTipoComponente = cp.fkTipo
+    where t.nome = 'rede';
     
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
@@ -190,7 +197,13 @@ function alertaPorComponente(fkEmpresa) {
 function percentPcReinicio(fkEmpresa) {
     console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar():");
     var instrucao = `
-    SELECT COUNT(*) as total from [dbo].[computador] c where c.fkEmpresa = ${fkEmpresa} and hostname = 'AA';
+    select 
+FORMAT(dtCaptura, 'yyyy-MM-dd') as data,
+count(id) as conta
+from [dbo].[historicoReiniciar] h 
+where h.dtCaptura >= DATEADD(day, -7, GETDATE())
+and tempoReiniciar = 0
+group by FORMAT(dtCaptura, 'yyyy-MM-dd');
     
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
