@@ -123,7 +123,14 @@ function comptotal(fkEmpresa) {
 function semRespostaPing(fkEmpresa) {
     console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar():");
     var instrucao = `
-    SELECT COUNT(*) as total from [dbo].[computador] c where c.fkEmpresa = ${fkEmpresa} and hostname = 'AA';
+    select 
+    avg(valor) as mediaPing
+    from [dbo].[computador] c	
+    join [dbo].[config] cf on cf.fkComputador = c.hostname
+    join [dbo].[metrica] m on m.fkConfig = cf.idconfig
+    join [dbo].[componente] cp on cp.idComponente = cf.fkComponente
+    join [dbo].[tipoComponente] t on t.idTipoComponente = cp.fkTipo
+    where t.nome = 'rede';
     
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
@@ -133,7 +140,12 @@ function semRespostaPing(fkEmpresa) {
 function reinicioMaiorQueUm(fkEmpresa) {
     console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar():");
     var instrucao = `
-    SELECT COUNT(*) as total from [dbo].[computador] c where c.fkEmpresa = ${fkEmpresa} and hostname = 'AA';
+        select count(*) as qtdReinicio from (
+        select fkComputador,count(id) as count from [dbo].[historicoReiniciar] h 
+        where h.dtCaptura >= DATEADD(day, -7, GETDATE())
+        and tempoReiniciar = 0
+        group by fkComputador
+        having count(id) > 2) as subquery;
     
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
@@ -143,7 +155,20 @@ function reinicioMaiorQueUm(fkEmpresa) {
 function riscoPreenchimento(fkEmpresa) {
     console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar():");
     var instrucao = `
-    SELECT COUNT(*) as total from [dbo].[computador] c where c.fkEmpresa = ${fkEmpresa} and hostname = 'AA';
+    select count(*) as qtdComputadores 
+    from (select  
+    cf.fkComputador,
+    m.valor,
+    m.unidade,
+    t.nome,
+    max(m.dtCaptura) as comp
+    from [dbo].[metrica] m
+    join [dbo].[config] cf on cf.idConfig = m.fkConfig
+    join [dbo].[componente] cp on cp.idComponente = cf.fkComponente
+    join [dbo].[tipoComponente] t on t.idTipoComponente = cp.fkTipo
+    where (t.nome like 'ssd' or t.nome like 'hd')
+    and valor > 95
+    group by cf.fkComputador, m.valor, m.unidade, t.nome) as subquery;
     
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
@@ -153,7 +178,16 @@ function riscoPreenchimento(fkEmpresa) {
 function alertaPorComponente(fkEmpresa) {
     console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar():");
     var instrucao = `
-    SELECT COUNT(*) as total from [dbo].[computador] c where c.fkEmpresa = ${fkEmpresa} and hostname = 'AA';
+    select 
+    Nome,
+    count(fkAlerta) as qtdAlerta
+    from [dbo].[historicoAlerta] ha 
+    join [dbo].[metrica] m on m.idMetrica = ha.fkMetrica
+    join [dbo].[config] cf on cf.idConfig = m.fkConfig
+    join [dbo].[componente] cp on cp.idComponente = cf.fkComponente
+    join [dbo].[tipoComponente] tc on tc.idTipoComponente = cp.fkTipo
+    where fkAlerta = 2
+    group by nome;
     
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
@@ -163,7 +197,13 @@ function alertaPorComponente(fkEmpresa) {
 function percentPcReinicio(fkEmpresa) {
     console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar():");
     var instrucao = `
-    SELECT COUNT(*) as total from [dbo].[computador] c where c.fkEmpresa = ${fkEmpresa} and hostname = 'AA';
+    select 
+FORMAT(dtCaptura, 'yyyy-MM-dd') as data,
+count(id) as conta
+from [dbo].[historicoReiniciar] h 
+where h.dtCaptura >= DATEADD(day, -7, GETDATE())
+and tempoReiniciar = 0
+group by FORMAT(dtCaptura, 'yyyy-MM-dd');
     
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);

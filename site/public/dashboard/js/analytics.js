@@ -60,7 +60,8 @@ function semRespostaPing(){
     
             resposta.json().then(function (resposta) {
             console.log("Resposta Grafico: ", JSON.stringify(resposta));
-            
+            var mediaPing = resposta[0].mediaPing
+            ping.innerHTML = Number(mediaPing).toFixed(0) + " ms"
 
           });
         } else {
@@ -80,7 +81,8 @@ function reinicioMaiorQueUm(){
     
             resposta.json().then(function (resposta) {
             console.log("Resposta Grafico: ", JSON.stringify(resposta));
-            
+            var reinicioMaiorQueUm = resposta[0].qtdReinicio
+            reinicio.innerHTML = reinicioMaiorQueUm + '%'
 
           });
         } else {
@@ -100,7 +102,8 @@ function riscoPreenchimento(){
     
             resposta.json().then(function (resposta) {
             console.log("Resposta Grafico: ", JSON.stringify(resposta));
-            
+            var riscoPreenchimento = resposta[0].qtdComputadores
+            riscoPreenchimentoo.innerHTML = riscoPreenchimento + '%'
 
           });
         } else {
@@ -120,7 +123,31 @@ function alertaPorComponente(){
     
             resposta.json().then(function (resposta) {
             console.log("Resposta Grafico: ", JSON.stringify(resposta));
-            
+            var cpu = 0;
+            var rede = 0;
+            var ram = 0;
+            var disco = 0;
+            var dados = []
+            for (let i = 0; i < resposta.length; i++) {
+              if(resposta[i].Nome == 'rede'){
+                rede += resposta[i].qtdAlerta
+              }
+              if(resposta[i].Nome == 'ram'){
+                ram += resposta[i].qtdAlerta
+              }
+              if(resposta[i].Nome == 'disco' || resposta[i].nome == 'ssd'){
+                disco += resposta[i].qtdAlerta
+              }
+              if(resposta[i].Nome == 'cpu'){
+                cpu += resposta[i].qtdAlerta
+              }
+              
+            }
+            dados.push(rede)
+            dados.push(ram)
+            dados.push(cpu)
+            dados.push(disco)      
+            graficoBarra(dados)
 
           });
         } else {
@@ -141,6 +168,24 @@ function percentPcReinicio(){
             resposta.json().then(function (resposta) {
             console.log("Resposta Grafico: ", JSON.stringify(resposta));
             
+            var dadosReinicio = [];
+            
+              
+              dadosReinicio.push(resposta[0].conta)
+              dadosReinicio.push(resposta[1].conta)
+              dadosReinicio.push(2)
+              dadosReinicio.push(2)
+              dadosReinicio.push(2)
+              dadosReinicio.push(2)
+              dadosReinicio.push(2)
+              // dadosReinicio.push(resposta[2].conta)
+              // dadosReinicio.push(resposta[3].conta)
+              // dadosReinicio.push(resposta[4].conta)
+              // dadosReinicio.push(resposta[5].conta)
+              // dadosReinicio.push(resposta[6].conta)
+            
+            dataReinicio(dadosReinicio);
+
 
           });
         } else {
@@ -175,27 +220,7 @@ function tempoStatus(){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+function dataReinicio(dadosReinicio){
 const line = document.getElementById('lineChart');
 
 new Chart(line, {
@@ -204,7 +229,7 @@ new Chart(line, {
         labels: ['SEGUNDA','TERÇA','QUARTA','QUINTA','SEXTA','SABADO','DOMINGO'],
         datasets: [{
             label: 'dasdas',
-            data: [10, 17, 14, 19, 20, 25, 13],
+            data: dadosReinicio,
             borderWidth: 4,
             fill: true,
             tension: 0.4,
@@ -234,16 +259,17 @@ new Chart(line, {
         },
     }
 });
-
+}
+function graficoBarra(dados){
 const bar = document.getElementById('barChart');
 
 new Chart(bar, {
     type: 'bar',
     data: {
-        labels: ['RAM', 'CPU', 'Rede', 'Memória'],
+        labels: ['REDE', 'CPU', 'RAM', 'DISCO'],
         datasets: [{
             label: '# of Votes',
-            data: [12, 19, 70, 53, 54],
+            data: dados,
             borderWidth: 4,
             fill: true,
             tension: 0.4
@@ -272,6 +298,8 @@ new Chart(bar, {
         }
     }
 });
+}
+
 
 const pie = document.getElementById('pieChart');
 

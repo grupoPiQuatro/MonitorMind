@@ -407,8 +407,6 @@ function verificaValoresEditar(edit_setor, edit_status, edit_tipo, edit_volume) 
     }
 
     if (edit_volume.value == "") {
-        // let erro10 = document.getElementById("label_erro10")
-        // erro10.style.display = "block"
         edit_volume.value = edit_volumeVar;
         validacao = false;
     }
@@ -423,10 +421,7 @@ function encontrarSetor(edit_setor, edit_status, edit_tipo, volume) {
         if (resposta.ok) {
             resposta.json().then(function (resposta) {
                 console.log("resposta: ", resposta);
-                // response = resposta[0].idLocalizacao
                 econtrarConfig(resposta[0].idLocalizacao, edit_status, edit_tipo, volume)
-                // editarMaquina(fkSetor, edit_status, resposta[0].idComponente)
-            });
         } else {
             throw ("Houve um erro ao tentar encontar setor!");
         }

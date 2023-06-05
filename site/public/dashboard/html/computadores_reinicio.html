@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reinicio</title>
     <link rel="stylesheet" href="../css/geral.css">
-    <link rel="stylesheet" href="../css/computadoresGerenciar.css">
+    <link rel="stylesheet" href="../css/computadoresReiniciar.css">
     <script src="https://kit.fontawesome.com/c06dcecf1f.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -39,11 +39,11 @@
                             <span>Gerenciar Reinicios</span>
                             <div class="itens-topo">
                                 <div>
-                                    <input type="text" id="busca" onchange="buscar_computador()">
-                                    <button class="busca-botao" onclick="buscar_computador()"><img class="pesquisa_imagem" src="../assets/usuarios/lupa-branca.png"></button>
+                                    <input type="text" id="busca" onchange="buscar_reinicio()">
+                                    <button class="busca-botao" onclick="buscar_reinicio()"><img class="pesquisa_imagem" src="../assets/usuarios/lupa-branca.png"></button>
                                 </div>
                                 <div>
-                                    <button class="adicionar-botao" onclick="adicionar_usuario()">adicionar</button>
+                                    <button class="adicionar-botao" onclick="adicionar_reinicio()">adicionar</button>
                                 </div>
                             </div>
                         </div>
@@ -53,7 +53,7 @@
                                     <div class="info-item">SERIAL</div>
                                     <div class="info-item">SETOR</div>
                                     <div class="info-item">STATUS</div>
-                                    <div class="info-item">TIPO ARMAZENAMENTO</div>
+                                    <div class="info-item">HORA CAPTURA</div>
                                     <div class="info-item">OPÇÔES</div>
                             </div>
                             <div id="tabela-computadores">
@@ -65,32 +65,19 @@
                 </div>
             </div>
 
-            <div id="modal_user" class="modal">
+            <div id="modal_add" class="modal">
                 <div class="caixa adicionar">
                     <div class="form">
                         <div class="formulario">
-                            <label>Setor:</label>
-                            <input id="add_setor">
+                            <label>Hostname:</label>
+                            <input id="add_hostname">
                         </div>
     
-                        <div class="formulario">
-                            <label>Status:</label>
-                            <input id="add_status">
-                        </div>
-    
-                        <div class="formulario">
-                            <label class="tipo">Tipo armazenamento:</label>
-                            <select id="add_tipo">
-                                <option value="">-select-</option>
-                                <option value="SSD">SSD</option>
-                                <option value="HD">HD</option>
-                            </select>
-                        </div>
                     </div>
 
                     <div class="confirmacao_adicionar_usuario">
-                        <button class="botao" onclick="sair_adicionar_usuario()">Cancelar</button>
-                        <button class="botao" onclick="confirmar_adicionar_usuario()">Confirmar</button>
+                        <button class="botao" onclick="sair_adicionar_reinicio()">Cancelar</button>
+                        <button class="botao" onclick="confirmar_adicionar_reinicio()">Confirmar</button>
                     </div>
                 </div>
             </div>
@@ -103,8 +90,8 @@
                     </div>
 
                     <div class="confirmacao_adicionar_usuario">
-                        <button class="botao" onclick="confirmar_editar_usuario()">SIM</button>
-                        <button class="botao" onclick="sair_editar_usuario()">NÂO</button>
+                        <button class="botao" onclick="confirmar_editar_reinicio()">SIM</button>
+                        <button class="botao" onclick="sair_editar_reinicio()">NÂO</button>
                     </div>
                 </div>
             </div>
@@ -117,7 +104,7 @@
                     </div>
                     <div class="confirmacao-alerta-modal">
                         <button class="botao" onclick="sair_deletar()">NÃO</button>
-                        <button class="botao" style="background-color: rgb(218, 40, 40);" onclick="confirmar_deletar_usuario()">SIM</button>
+                        <button class="botao" style="background-color: rgb(218, 40, 40);" onclick="confirmar_deletar_reinicio()">SIM</button>
                     </div>
                 </div>
             </div>
