@@ -64,7 +64,7 @@ function buscarPcSemRetorno(fkEmpresa) {
 function dadosRede(hostname) {
     console.log("ACESSEI O PCMODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function dadosRede()");
     var instrucao = `
-        SELECT valor, FORMAT(dtCaptura, 'HH:mm:ss') as momento FROM metrica JOIN config ON fkConfig = idConfig WHERE fkComputador = '${hostname}' AND fkComponente = 1 
+        SELECT TOP 7 valor, FORMAT(dtCaptura, 'HH:mm:ss') as momento FROM metrica JOIN config ON fkConfig = idConfig WHERE fkComputador = '${hostname}' AND fkComponente = 1 
 	    AND dtCaptura >= DATEADD(DAY, -7, GETDATE()) ORDER BY dtCaptura DESC;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
@@ -83,7 +83,7 @@ function pegarComp(hostname) {
 function dadosRam(hostname, idRam) {
     console.log("ACESSEI O PCMODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function dadosRam()");
     var instrucao = `
-        SELECT valor, FORMAT(dtCaptura, 'HH:mm:ss') as momento FROM metrica JOIN config ON fkConfig = idConfig WHERE fkComputador = '${hostname}' AND idConfig = ${idRam}
+        SELECT TOP 7 valor, FORMAT(dtCaptura, 'HH:mm:ss') as momento FROM metrica JOIN config ON fkConfig = idConfig WHERE fkComputador = '${hostname}' AND idConfig = ${idRam}
 	    AND dtCaptura >= DATEADD(DAY, -7, GETDATE()) ORDER BY dtCaptura DESC;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
@@ -93,7 +93,7 @@ function dadosRam(hostname, idRam) {
 function dadosCpu(hostname, idCpu) {
     console.log("ACESSEI O PCMODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function dadosCpu()");
     var instrucao = `
-        SELECT valor, FORMAT(dtCaptura, 'HH:mm:ss') as momento FROM metrica JOIN config ON fkConfig = idConfig WHERE fkComputador = '${hostname}' AND idConfig = ${idCpu}
+        SELECT TOP 7 valor, FORMAT(dtCaptura, 'HH:mm:ss') as momento FROM metrica JOIN config ON fkConfig = idConfig WHERE fkComputador = '${hostname}' AND idConfig = ${idCpu}
 	    AND dtCaptura >= DATEADD(DAY, -7, GETDATE()) ORDER BY dtCaptura DESC;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);

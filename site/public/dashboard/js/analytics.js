@@ -222,7 +222,7 @@ function dataReinicio(dadosReinicio) {
   new Chart(line, {
     type: 'line',
     data: {
-      labels: ['SEGUNDA', 'TERÇA', 'QUARTA', 'QUINTA', 'SEXTA', 'SABADO', 'DOMINGO'],
+      labels: ['DIA 1', 'DIA 2', 'DIA 3', 'DIA 4', 'DIA 5', 'DIA 6', 'DIA 7'],
       datasets: [{
         label: 'dasdas',
         data: dadosReinicio,
