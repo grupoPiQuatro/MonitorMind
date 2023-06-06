@@ -136,7 +136,7 @@ function alertaPorComponente() {
           if (resposta[i].Nome == 'ram') {
             ram += resposta[i].qtdAlerta
           }
-          if (resposta[i].Nome == 'disco' || resposta[i].nome == 'ssd') {
+          if (resposta[i].Nome == 'hd' || resposta[i].nome == 'ssd') {
             disco += resposta[i].qtdAlerta
           }
           if (resposta[i].Nome == 'cpu') {
