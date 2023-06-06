@@ -172,7 +172,7 @@ function percentPcReinicio() {
         var dadosReinicio = [];
 
 
-        dadosReinicio.push(resposta[0].conta)
+        dadosReinicio.push(2)
         dadosReinicio.push(2)
         dadosReinicio.push(2)
         dadosReinicio.push(2)
@@ -267,7 +267,7 @@ function graficoBarra(dados) {
   new Chart(bar, {
     type: 'bar',
     data: {
-      labels: ['REDE', 'CPU', 'RAM', 'DISCO'],
+      labels: ['REDE', 'RAM', 'CPU', 'DISCO'],
       datasets: [{
         label: '# of Votes',
         data: dados,
