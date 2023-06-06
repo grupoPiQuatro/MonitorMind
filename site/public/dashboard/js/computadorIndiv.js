@@ -124,10 +124,10 @@ function plotarGraficoRede(resposta) {
         dados.push(registro.valor);
     }
 
-    var alerta = resposta[resposta.length - 1];
+    var alerta = resposta[resposta.length - 1].valor;
     var imagemAlerta = document.getElementById("alertaRede");
-    var alertaVerm = Number(document.getElementById("vermRede"));
-    var alertaAmar = Number(document.getElementById("amarRede"));
+    var alertaVerm = Number(document.getElementById("vermRede").innerText);
+    var alertaAmar = Number(document.getElementById("amarRede").innerText);
 
     if (alerta >= alertaVerm) {
         imagemAlerta.src = '../assets/dashboard/vermelho.png'
@@ -211,8 +211,8 @@ function atualizarGraficoRede(dadosRede, dataRede, rede) {
 
                     var alerta = novoRegistro[0].valor;
                     var imagemAlerta = document.getElementById("alertaRede");
-                    var alertaVerm = Number(document.getElementById("vermRede"));
-                    var alertaAmar = Number(document.getElementById("amarRede"));
+                    var alertaVerm = Number(document.getElementById("vermRede").innerText);
+                    var alertaAmar = Number(document.getElementById("amarRede").innerText);
 
                     if (alerta >= alertaVerm) {
                         imagemAlerta.src = '../assets/dashboard/vermelho.png'
@@ -269,10 +269,10 @@ function plotarGraficoRam(resposta) {
         dados.push(registro.valor);
     }
 
-    var alerta = resposta[resposta.length - 1];
+    var alerta = resposta[resposta.length - 1].valor;
     var imagemAlerta = document.getElementById("alertaRam");
-    var alertaVerm = Number(document.getElementById("vermRam"));
-    var alertaAmar = Number(document.getElementById("amarRam"));
+    var alertaVerm = Number(document.getElementById("vermRam").innerText);
+    var alertaAmar = Number(document.getElementById("amarRam").innerText);
 
     if (alerta >= alertaVerm) {
         imagemAlerta.src = '../assets/dashboard/vermelho.png'
@@ -356,8 +356,8 @@ function atualizarGraficoRam(dados, data, ram) {
 
                     var alerta = novoRegistro[0].valor;
                     var imagemAlerta = document.getElementById("alertaRam");
-                    var alertaVerm = Number(document.getElementById("vermRam"));
-                    var alertaAmar = Number(document.getElementById("amarRam"));
+                    var alertaVerm = Number(document.getElementById("vermRam").innerText);
+                    var alertaAmar = Number(document.getElementById("amarRam").innerText);
 
                     if (alerta >= alertaVerm) {
                         imagemAlerta.src = '../assets/dashboard/vermelho.png'
@@ -416,10 +416,10 @@ function plotarGraficoCpu(resposta) {
         dados.push(registro.valor);
     }
 
-    var alerta = resposta[resposta.length - 1];
+    var alerta = resposta[resposta.length - 1].valor;
     var imagemAlerta = document.getElementById("alertaCpu");
-    var alertaVerm = Number(document.getElementById("vermCpu"));
-    var alertaAmar = Number(document.getElementById("amarCpu"));
+    var alertaVerm = Number(document.getElementById("vermCpu").innerText);
+    var alertaAmar = Number(document.getElementById("amarCpu").innerText);
 
     if (alerta >= alertaVerm) {
         imagemAlerta.src = '../assets/dashboard/vermelho.png'
@@ -502,8 +502,8 @@ function atualizarGraficoCpu(dados, data, cpu) {
 
                     var alerta = novoRegistro[0].valor;
                     var imagemAlerta = document.getElementById("alertaCpu");
-                    var alertaVerm = Number(document.getElementById("vermCpu"));
-                    var alertaAmar = Number(document.getElementById("amarCpu"));
+                    var alertaVerm = Number(document.getElementById("vermCpu").innerText);
+                    var alertaAmar = Number(document.getElementById("amarCpu").innerText);
 
                     if (alerta >= alertaVerm) {
                         imagemAlerta.src = '../assets/dashboard/vermelho.png'
@@ -562,10 +562,10 @@ function plotarGraficoDisco(resposta, capacidade) {
     var usoConvertido = (uso / 100) * capacidade;
     var disponivel = capacidade - usoConvertido;
 
-    var alerta = resposta[resposta.length - 1];
+    var alerta = resposta[resposta.length - 1].valor;
     var imagemAlerta = document.getElementById("alertaDisco");
-    var alertaVerm = Number(document.getElementById("vermDisco"));
-    var alertaAmar = Number(document.getElementById("amarDisco"));
+    var alertaVerm = Number(document.getElementById("vermDisco").innerText);
+    var alertaAmar = Number(document.getElementById("amarDisco").innerText);
 
     if (alerta >= alertaVerm) {
         imagemAlerta.src = '../assets/dashboard/vermelho.png'
@@ -625,8 +625,8 @@ function atualizarGraficoDisco(chart, uso, capacidade, disco) {
 
                     var alerta = novoRegistro[0].valor;
                     var imagemAlerta = document.getElementById("alertaDisco");
-                    var alertaVerm = Number(document.getElementById("vermDisco"));
-                    var alertaAmar = Number(document.getElementById("amarDisco"));
+                    var alertaVerm = Number(document.getElementById("vermDisco").innerText);
+                    var alertaAmar = Number(document.getElementById("amarDisco").innerText);
 
                     if (alerta >= alertaVerm) {
                         imagemAlerta.src = '../assets/dashboard/vermelho.png'
