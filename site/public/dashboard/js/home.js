@@ -102,8 +102,8 @@ function listarPc() {
                         pc["ram"] = registro.valor;
                         ax02 += 4;
 
-                        ramVer = (vermRamParam / 100) * registro.numeroChave;
-                        ramAmar = (amarRamParam / 100) * registro.numeroChave;
+                        ramVer = vermRamParam;
+                        ramAmar = amarRamParam;
 
                         if (registro.valor >= ramVer) {
                             pc.vRam += 1;
@@ -131,8 +131,8 @@ function listarPc() {
                         pc["disco"] = registro.valor;
                         ax04 += 4;
 
-                        discoVer = (vermDiscoParam / 100) * registro.numeroChave;
-                        discoAmar = (amarDiscoParam / 100) * registro.numeroChave;
+                        discoVer = vermDiscoParam;
+                        discoAmar = amarDiscoParam;
 
                         if (registro.valor >= discoVer) {
                             pc.vDisco += 1;

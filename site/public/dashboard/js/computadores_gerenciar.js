@@ -422,6 +422,7 @@ function encontrarSetor(edit_setor, edit_status, edit_tipo, volume) {
             resposta.json().then(function (resposta) {
                 console.log("resposta: ", resposta);
                 econtrarConfig(resposta[0].idLocalizacao, edit_status, edit_tipo, volume)
+            });
         } else {
             throw ("Houve um erro ao tentar encontar setor!");
         }

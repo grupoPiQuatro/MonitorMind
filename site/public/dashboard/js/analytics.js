@@ -172,7 +172,7 @@ function percentPcReinicio(){
             
               
               dadosReinicio.push(resposta[0].conta)
-              dadosReinicio.push(resposta[1].conta)
+              dadosReinicio.push(2)
               dadosReinicio.push(2)
               dadosReinicio.push(2)
               dadosReinicio.push(2)
