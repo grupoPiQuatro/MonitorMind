@@ -367,8 +367,30 @@ function graficoStatus() {
             resposta.json().then(function (resposta) {
                 console.log("STATUS: ", JSON.stringify(resposta));
                 
-                separarStatus(resposta);
+                var dados = [];
+                var operando = 0;
+                var manutencao = 0;
+                var interrompido = 0;
+
+                for (let i = 0; i < resposta.length; i++) {
+                    var registro = resposta[i];
+                    
+                    if (registro.status == "Operando") {
+                        operando = registro.quantidade;
+                    }
+
+                    if (registro.status == "Manutenção") {
+                        manutencao  = registro.quantidade;
+                    }
+
+                    if (registro.status == "Interrompido") {
+                        interrompido = registro.quantidade;
+                    }
+                    
+                }
                 
+                dados.push(operando, interrompido, manutencao);
+                plotarGrafico(dados);
             });
         } else {
             throw ('Houve um erro na API!');
@@ -379,23 +401,7 @@ function graficoStatus() {
     });
 }
 
-function separarStatus(resposta) {
-    var operando = 0;
-    var manutencao = 0;
-    var interrompido = 0;
-
-    for (var i = 0; i < resposta.length; i++) {
-        pcDaVez = resposta[i];
-
-        if (pcDaVez.status == 'Operando') {
-            operando++;
-        } else if (pcDaVez.status == 'Manutenção') {
-            manutencao++;
-        } else if (pcDaVez.status == 'Interrompido') {
-            interrompido++;
-        }
-    }
-
+function plotarGrafico(dados) {
     const disco = document.getElementById('grafico');
 
     new Chart(disco, {
@@ -403,7 +409,7 @@ function separarStatus(resposta) {
         data: {
             datasets: [{
                 label: 'Quantidade de computadores',
-                data: [operando, interrompido, manutencao],
+                data: dados,
                 borderWidth: 2,
                 cutout: '0%',
             }]
