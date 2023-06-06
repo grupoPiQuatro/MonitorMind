@@ -37,7 +37,7 @@ function buscarParametro(fkEmpresa) {
 function buscarStatus(fkEmpresa) {
     console.log("ACESSEI O PCMODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function buscarStatus()");
     var instrucao = `
-        select hostname, status from computador where fkEmpresa = ${fkEmpresa};
+        SELECT status, COUNT(*) as quantidade FROM computador WHERE status IN ('Operando', 'Manutenção', 'Interrompido') and fkEmpresa = ${fkEmpresa} group by status;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);

@@ -61,7 +61,7 @@ function semRespostaPing(){
             resposta.json().then(function (resposta) {
             console.log("Resposta Grafico: ", JSON.stringify(resposta));
             var mediaPing = resposta[0].mediaPing
-            ping.innerHTML = Number(mediaPing).toFixed(0) + " ms"
+            ping.innerHTML = mediaPing.toFixed(0) + " ms"
 
           });
         } else {
