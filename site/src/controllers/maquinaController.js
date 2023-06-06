@@ -224,6 +224,26 @@ function cadastrarConfig(req, res) {
         );
 }
 
+function buscarSetores(req, res) {
+
+    var fkEmpresa = req.params.fkEmpresa;
+
+    maquinaModel.buscarSetores(fkEmpresa)
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
 
 module.exports = {
     listarMaquina,
@@ -236,5 +256,6 @@ module.exports = {
     editarMaquina,
     encontrarConfig2,
     inserirComp2,
-    cadastrarConfig
+    cadastrarConfig,
+    buscarSetores
 }
