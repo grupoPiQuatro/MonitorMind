@@ -172,18 +172,13 @@ function percentPcReinicio() {
         var dadosReinicio = [];
 
 
-        dadosReinicio.push(2)
-        dadosReinicio.push(2)
-        dadosReinicio.push(2)
-        dadosReinicio.push(2)
-        dadosReinicio.push(2)
-        dadosReinicio.push(2)
-        dadosReinicio.push(2)
-        // dadosReinicio.push(resposta[2].conta)
-        // dadosReinicio.push(resposta[3].conta)
-        // dadosReinicio.push(resposta[4].conta)
-        // dadosReinicio.push(resposta[5].conta)
-        // dadosReinicio.push(resposta[6].conta)
+        dadosReinicio.push(resposta[0].conta)
+        dadosReinicio.push(resposta[1].conta)
+        dadosReinicio.push(resposta[2].conta)
+        dadosReinicio.push(resposta[3].conta)
+        dadosReinicio.push(resposta[4].conta)
+        dadosReinicio.push(resposta[5].conta)
+        dadosReinicio.push(resposta[6].conta)
 
         dataReinicio(dadosReinicio);
 
