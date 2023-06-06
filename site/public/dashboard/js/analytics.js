@@ -83,7 +83,7 @@ function reinicioMaiorQueUm() {
       resposta.json().then(function (resposta) {
         console.log("Resposta Grafico: ", JSON.stringify(resposta));
         var reinicioMaiorQueUm = resposta[0].qtdReinicio
-        reinicio.innerHTML = reinicioMaiorQueUm + '%'
+        reinicio.innerHTML = ((Number(reinicioMaiorQueUm)/totalComputador) * 100).toFixed(0) + '%'
 
       });
     } else {
@@ -104,7 +104,7 @@ function riscoPreenchimento() {
       resposta.json().then(function (resposta) {
         console.log("Resposta Grafico: ", JSON.stringify(resposta));
         var riscoPreenchimento = resposta[0].qtdComputadores
-        riscoPreenchimentoo.innerHTML = riscoPreenchimento + '%'
+        riscoPreenchimentoo.innerHTML = ((Number(riscoPreenchimento)/totalComputador) * 100).toFixed(0) + '%'
 
       });
     } else {
