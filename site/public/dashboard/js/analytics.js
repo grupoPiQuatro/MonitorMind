@@ -1,319 +1,357 @@
 window.addEventListener("load", function () {
-    TrazerDados();
-    ComputadoresTotais();
-    semRespostaPing();
-    reinicioMaiorQueUm();
-    riscoPreenchimento();
-    alertaPorComponente();
-    percentPcReinicio();
-    tempoStatus();
-  });
+  TrazerDados();
+  ComputadoresTotais();
+  semRespostaPing();
+  reinicioMaiorQueUm();
+  riscoPreenchimento();
+  alertaPorComponente();
+  percentPcReinicio();
+  tempoStatus();
+  graficoPizza()
+});
 
 var totalComputador = 0;
-function ComputadoresTotais(){
-    var fkEmpresa = sessionStorage.FK_EMPRESA;
-    fetch(`/avisos/comptotal/${fkEmpresa}`, { cache: 'no-store' }).then(function (respostaaa) {
-        if (respostaaa.ok) {
-    
-            respostaaa.json().then(function (respostaaa) {
-            console.log("Resposta Grafico: ", JSON.stringify(respostaaa));
-            totalComputador = respostaaa[0].total
-            
+function ComputadoresTotais() {
+  var fkEmpresa = sessionStorage.FK_EMPRESA;
+  fetch(`/avisos/comptotal/${fkEmpresa}`, { cache: 'no-store' }).then(function (respostaaa) {
+    if (respostaaa.ok) {
 
-          });
-        } else {
-          throw ('Houve um erro na API!');
-        }
-      }).catch(function (respostaaa) {
-        console.error(respostaaa);
-    
+      respostaaa.json().then(function (respostaaa) {
+        console.log("Resposta Grafico: ", JSON.stringify(respostaaa));
+        totalComputador = respostaaa[0].total
+
+
       });
+    } else {
+      throw ('Houve um erro na API!');
+    }
+  }).catch(function (respostaaa) {
+    console.error(respostaaa);
+
+  });
 }
 
-function TrazerDados(){
-    var fkEmpresa = sessionStorage.FK_EMPRESA;
-    var resultadoGraficoCpu
-    fetch(`/avisos/puxar/${fkEmpresa}`, { cache: 'no-store' }).then(function (resposta) {
-        if (resposta.ok) {
-    
-            resposta.json().then(function (resposta) {
-            console.log("Resposta Grafico: ", JSON.stringify(resposta));
-            resultadoGraficoCpu = resposta[0].total_linhas  
-            var sla = (Number(resultadoGraficoCpu) / (Number(totalComputador)) * 100);
-            respostaCPU.innerHTML = sla.toFixed(0) + "%";
+function TrazerDados() {
+  var fkEmpresa = sessionStorage.FK_EMPRESA;
+  var resultadoGraficoCpu
+  fetch(`/avisos/puxar/${fkEmpresa}`, { cache: 'no-store' }).then(function (resposta) {
+    if (resposta.ok) {
 
-          });
-        } else {
-          throw ('Houve um erro na API!');
-        }
-      }).catch(function (resposta) {
-        console.error(resposta);
-    
+      resposta.json().then(function (resposta) {
+        console.log("Resposta Grafico: ", JSON.stringify(resposta));
+        resultadoGraficoCpu = resposta[0].total_linhas
+        var sla = (Number(resultadoGraficoCpu) / (Number(totalComputador)) * 100);
+        respostaCPU.innerHTML = sla.toFixed(0) + "%";
+
       });
+    } else {
+      throw ('Houve um erro na API!');
+    }
+  }).catch(function (resposta) {
+    console.error(resposta);
+
+  });
 }
 
-function semRespostaPing(){
-    var fkEmpresa = sessionStorage.FK_EMPRESA;
-    var resultadoGraficoCpu
-    fetch(`/avisos/semRespostaPing/${fkEmpresa}`, { cache: 'no-store' }).then(function (resposta) {
-        if (resposta.ok) {
-    
-            resposta.json().then(function (resposta) {
-            console.log("Resposta Grafico: ", JSON.stringify(resposta));
-            var mediaPing = resposta[0].mediaPing
-            ping.innerHTML = mediaPing.toFixed(0) + " ms"
+function semRespostaPing() {
+  var fkEmpresa = sessionStorage.FK_EMPRESA;
+  var resultadoGraficoCpu
+  fetch(`/avisos/semRespostaPing/${fkEmpresa}`, { cache: 'no-store' }).then(function (resposta) {
+    if (resposta.ok) {
 
-          });
-        } else {
-          throw ('Houve um erro na API!');
-        }
-      }).catch(function (resposta) {
-        console.error(resposta);
-    
+      resposta.json().then(function (resposta) {
+        console.log("Resposta Grafico: ", JSON.stringify(resposta));
+        var mediaPing = resposta[0].mediaPing
+        ping.innerHTML = mediaPing.toFixed(0) + " ms"
+
       });
+    } else {
+      throw ('Houve um erro na API!');
+    }
+  }).catch(function (resposta) {
+    console.error(resposta);
+
+  });
 }
 
-function reinicioMaiorQueUm(){
-    var fkEmpresa = sessionStorage.FK_EMPRESA;
-    var resultadoGraficoCpu
-    fetch(`/avisos/reinicioMaiorQueUm/${fkEmpresa}`, { cache: 'no-store' }).then(function (resposta) {
-        if (resposta.ok) {
-    
-            resposta.json().then(function (resposta) {
-            console.log("Resposta Grafico: ", JSON.stringify(resposta));
-            var reinicioMaiorQueUm = resposta[0].qtdReinicio
-            reinicio.innerHTML = reinicioMaiorQueUm + '%'
+function reinicioMaiorQueUm() {
+  var fkEmpresa = sessionStorage.FK_EMPRESA;
+  var resultadoGraficoCpu
+  fetch(`/avisos/reinicioMaiorQueUm/${fkEmpresa}`, { cache: 'no-store' }).then(function (resposta) {
+    if (resposta.ok) {
 
-          });
-        } else {
-          throw ('Houve um erro na API!');
-        }
-      }).catch(function (resposta) {
-        console.error(resposta);
-    
+      resposta.json().then(function (resposta) {
+        console.log("Resposta Grafico: ", JSON.stringify(resposta));
+        var reinicioMaiorQueUm = resposta[0].qtdReinicio
+        reinicio.innerHTML = reinicioMaiorQueUm + '%'
+
       });
+    } else {
+      throw ('Houve um erro na API!');
+    }
+  }).catch(function (resposta) {
+    console.error(resposta);
+
+  });
 }
 
-function riscoPreenchimento(){
-    var fkEmpresa = sessionStorage.FK_EMPRESA;
-    var resultadoGraficoCpu
-    fetch(`/avisos/riscoPreenchimento/${fkEmpresa}`, { cache: 'no-store' }).then(function (resposta) {
-        if (resposta.ok) {
-    
-            resposta.json().then(function (resposta) {
-            console.log("Resposta Grafico: ", JSON.stringify(resposta));
-            var riscoPreenchimento = resposta[0].qtdComputadores
-            riscoPreenchimentoo.innerHTML = riscoPreenchimento + '%'
+function riscoPreenchimento() {
+  var fkEmpresa = sessionStorage.FK_EMPRESA;
+  var resultadoGraficoCpu
+  fetch(`/avisos/riscoPreenchimento/${fkEmpresa}`, { cache: 'no-store' }).then(function (resposta) {
+    if (resposta.ok) {
 
-          });
-        } else {
-          throw ('Houve um erro na API!');
-        }
-      }).catch(function (resposta) {
-        console.error(resposta);
-    
+      resposta.json().then(function (resposta) {
+        console.log("Resposta Grafico: ", JSON.stringify(resposta));
+        var riscoPreenchimento = resposta[0].qtdComputadores
+        riscoPreenchimentoo.innerHTML = riscoPreenchimento + '%'
+
       });
+    } else {
+      throw ('Houve um erro na API!');
+    }
+  }).catch(function (resposta) {
+    console.error(resposta);
+
+  });
 }
 
-function alertaPorComponente(){
-    var fkEmpresa = sessionStorage.FK_EMPRESA;
-    var resultadoGraficoCpu
-    fetch(`/avisos/alertaPorComponente/${fkEmpresa}`, { cache: 'no-store' }).then(function (resposta) {
-        if (resposta.ok) {
-    
-            resposta.json().then(function (resposta) {
-            console.log("Resposta Grafico: ", JSON.stringify(resposta));
-            var cpu = 0;
-            var rede = 0;
-            var ram = 0;
-            var disco = 0;
-            var dados = []
-            for (let i = 0; i < resposta.length; i++) {
-              if(resposta[i].Nome == 'rede'){
-                rede += resposta[i].qtdAlerta
-              }
-              if(resposta[i].Nome == 'ram'){
-                ram += resposta[i].qtdAlerta
-              }
-              if(resposta[i].Nome == 'disco' || resposta[i].nome == 'ssd'){
-                disco += resposta[i].qtdAlerta
-              }
-              if(resposta[i].Nome == 'cpu'){
-                cpu += resposta[i].qtdAlerta
-              }
-              
-            }
-            dados.push(rede)
-            dados.push(ram)
-            dados.push(cpu)
-            dados.push(disco)      
-            graficoBarra(dados)
+function alertaPorComponente() {
+  var fkEmpresa = sessionStorage.FK_EMPRESA;
+  var resultadoGraficoCpu
+  fetch(`/avisos/alertaPorComponente/${fkEmpresa}`, { cache: 'no-store' }).then(function (resposta) {
+    if (resposta.ok) {
 
-          });
-        } else {
-          throw ('Houve um erro na API!');
+      resposta.json().then(function (resposta) {
+        console.log("Resposta Grafico: ", JSON.stringify(resposta));
+        var cpu = 0;
+        var rede = 0;
+        var ram = 0;
+        var disco = 0;
+        var dados = []
+        for (let i = 0; i < resposta.length; i++) {
+          if (resposta[i].Nome == 'rede') {
+            rede += resposta[i].qtdAlerta
+          }
+          if (resposta[i].Nome == 'ram') {
+            ram += resposta[i].qtdAlerta
+          }
+          if (resposta[i].Nome == 'disco' || resposta[i].nome == 'ssd') {
+            disco += resposta[i].qtdAlerta
+          }
+          if (resposta[i].Nome == 'cpu') {
+            cpu += resposta[i].qtdAlerta
+          }
+
         }
-      }).catch(function (resposta) {
-        console.error(resposta);
-    
+        dados.push(rede)
+        dados.push(ram)
+        dados.push(cpu)
+        dados.push(disco)
+        graficoBarra(dados)
+
       });
+    } else {
+      throw ('Houve um erro na API!');
+    }
+  }).catch(function (resposta) {
+    console.error(resposta);
+
+  });
 }
 
-function percentPcReinicio(){
-    var fkEmpresa = sessionStorage.FK_EMPRESA;
-    var resultadoGraficoCpu
-    fetch(`/avisos/percentPcReinicio/${fkEmpresa}`, { cache: 'no-store' }).then(function (resposta) {
-        if (resposta.ok) {
-    
-            resposta.json().then(function (resposta) {
-            console.log("Resposta Grafico: ", JSON.stringify(resposta));
-            
-            var dadosReinicio = [];
-            
-              
-              dadosReinicio.push(resposta[0].conta)
-              dadosReinicio.push(2)
-              dadosReinicio.push(2)
-              dadosReinicio.push(2)
-              dadosReinicio.push(2)
-              dadosReinicio.push(2)
-              dadosReinicio.push(2)
-              // dadosReinicio.push(resposta[2].conta)
-              // dadosReinicio.push(resposta[3].conta)
-              // dadosReinicio.push(resposta[4].conta)
-              // dadosReinicio.push(resposta[5].conta)
-              // dadosReinicio.push(resposta[6].conta)
-            
-            dataReinicio(dadosReinicio);
+function percentPcReinicio() {
+  var fkEmpresa = sessionStorage.FK_EMPRESA;
+  var resultadoGraficoCpu
+  fetch(`/avisos/percentPcReinicio/${fkEmpresa}`, { cache: 'no-store' }).then(function (resposta) {
+    if (resposta.ok) {
+
+      resposta.json().then(function (resposta) {
+        console.log("Resposta Grafico: ", JSON.stringify(resposta));
+
+        var dadosReinicio = [];
 
 
-          });
-        } else {
-          throw ('Houve um erro na API!');
-        }
-      }).catch(function (resposta) {
-        console.error(resposta);
-    
+        dadosReinicio.push(resposta[0].conta)
+        dadosReinicio.push(2)
+        dadosReinicio.push(2)
+        dadosReinicio.push(2)
+        dadosReinicio.push(2)
+        dadosReinicio.push(2)
+        dadosReinicio.push(2)
+        // dadosReinicio.push(resposta[2].conta)
+        // dadosReinicio.push(resposta[3].conta)
+        // dadosReinicio.push(resposta[4].conta)
+        // dadosReinicio.push(resposta[5].conta)
+        // dadosReinicio.push(resposta[6].conta)
+
+        dataReinicio(dadosReinicio);
+
+
       });
+    } else {
+      throw ('Houve um erro na API!');
+    }
+  }).catch(function (resposta) {
+    console.error(resposta);
+
+  });
 }
 
-function tempoStatus(){
-    var fkEmpresa = sessionStorage.FK_EMPRESA;
-    var resultadoGraficoCpu
-    fetch(`/avisos/tempoStatus/${fkEmpresa}`, { cache: 'no-store' }).then(function (resposta) {
-        if (resposta.ok) {
-    
-            resposta.json().then(function (resposta) {
-            console.log("Resposta Grafico: ", JSON.stringify(resposta));
-            
+function tempoStatus() {
+  var fkEmpresa = sessionStorage.FK_EMPRESA;
+  var resultadoGraficoCpu
+  fetch(`/avisos/tempoStatus/${fkEmpresa}`, { cache: 'no-store' }).then(function (resposta) {
+    if (resposta.ok) {
 
-          });
-        } else {
-          throw ('Houve um erro na API!');
-        }
-      }).catch(function (resposta) {
-        console.error(resposta);
-    
+      resposta.json().then(function (resposta) {
+        console.log("Resposta Grafico: ", JSON.stringify(resposta));
+
+
       });
+    } else {
+      throw ('Houve um erro na API!');
+    }
+  }).catch(function (resposta) {
+    console.error(resposta);
+
+  });
 }
 
 
 
 
-function dataReinicio(dadosReinicio){
-const line = document.getElementById('lineChart');
+function dataReinicio(dadosReinicio) {
+  const line = document.getElementById('lineChart');
 
-new Chart(line, {
+  new Chart(line, {
     type: 'line',
     data: {
-        labels: ['SEGUNDA','TERÇA','QUARTA','QUINTA','SEXTA','SABADO','DOMINGO'],
-        datasets: [{
-            label: 'dasdas',
-            data: dadosReinicio,
-            borderWidth: 4,
-            fill: true,
-            tension: 0.4,
-        }]
+      labels: ['SEGUNDA', 'TERÇA', 'QUARTA', 'QUINTA', 'SEXTA', 'SABADO', 'DOMINGO'],
+      datasets: [{
+        label: 'dasdas',
+        data: dadosReinicio,
+        borderWidth: 4,
+        fill: true,
+        tension: 0.4,
+      }]
     },
     options: {
-        scales: {
-            y: {
-                beginAtZero: true,
-                ticks: {
-                    color: 'black',
-                },
-                grid: {
-                    color: 'black',
-                },
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            color: 'black',
+          },
+          grid: {
+            color: 'black',
+          },
 
-            },
-            x: {
-                beginAtZero: true,
-                ticks: {
-                    color: 'black',
-                },
-                grid: {
-                    color: 'white',
-                },
-            }
         },
+        x: {
+          beginAtZero: true,
+          ticks: {
+            color: 'black',
+          },
+          grid: {
+            color: 'white',
+          },
+        }
+      },
     }
-});
+  });
 }
-function graficoBarra(dados){
-const bar = document.getElementById('barChart');
+function graficoBarra(dados) {
+  const bar = document.getElementById('barChart');
 
-new Chart(bar, {
+  new Chart(bar, {
     type: 'bar',
     data: {
-        labels: ['REDE', 'CPU', 'RAM', 'DISCO'],
-        datasets: [{
-            label: '# of Votes',
-            data: dados,
-            borderWidth: 4,
-            fill: true,
-            tension: 0.4
-        }]
+      labels: ['REDE', 'CPU', 'RAM', 'DISCO'],
+      datasets: [{
+        label: '# of Votes',
+        data: dados,
+        borderWidth: 4,
+        fill: true,
+        tension: 0.4
+      }]
     },
     options: {
-        scales: {
-            y: {
-                beginAtZero: true,
-                ticks: {
-                    color: 'black',
-                },
-                grid: {
-                    color: 'black',
-                }
-            },
-            x: {
-                beginAtZero: true,
-                ticks: {
-                    color: 'black',
-                },
-                grid: {
-                    color: 'white',
-                },
-            }
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            color: 'black',
+          },
+          grid: {
+            color: 'black',
+          }
+        },
+        x: {
+          beginAtZero: true,
+          ticks: {
+            color: 'black',
+          },
+          grid: {
+            color: 'white',
+          },
         }
+      }
     }
-});
+  });
+}
+
+function graficoPizza() {
+  var fkEmpresa = sessionStorage.FK_EMPRESA;
+  
+  fetch(`/maquina/buscarSetores/${fkEmpresa}`, { cache: 'no-store' }).then(function (resposta) {
+    if (resposta.ok) {
+
+      resposta.json().then(function (resposta) {
+        console.log("Resposta Grafico: ", JSON.stringify(resposta));
+
+        var labels = [];
+        var dados = [];
+
+        for (let i = 0; i < resposta.length; i++) {
+          var registro = resposta[i];
+
+          labels.push(registro.setor);
+          dados.push(registro.quantidade);
+
+        }
+
+        plotarPizza(labels, dados);
+
+      });
+    } else {
+      throw ('Houve um erro na API!');
+    }
+  }).catch(function (resposta) {
+    console.error(resposta);
+
+  });
+
 }
 
 
-const pie = document.getElementById('pieChart');
+function plotarPizza(labelss, dados) {
+  const pie = document.getElementById('pieChart');
 
-new Chart(pie, {
+  new Chart(pie, {
     type: 'doughnut',
     data: {
-        labels: ['Operado', 'Manutenção', 'Inativa'],
-        datasets: [{
-            label: '# of Votes',
-            data: [80, 13 ,7],
-            borderWidth: 2,
-            cutout: '60%',
-        }]
+      labels: labelss,
+      datasets: [{
+        label: '',
+        data: dados,
+        borderWidth: 2,
+        cutout: '60%',
+      }]
     },
     options: {
     }
-});
+  });
+
+}
+

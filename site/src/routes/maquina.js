@@ -43,4 +43,8 @@ router.post("/cadastrarConfig", function (req, res) {
     maquinaController.cadastrarConfig(req, res);
 })
 
+router.get("/buscarSetores/:fkEmpresa", function (req, res) {
+    maquinaController.buscarSetores(req, res);
+});
+
 module.exports = router;
